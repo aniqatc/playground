@@ -1,43 +1,44 @@
 {
-	"name": "playground",
-	"version": "1.0.0",
-	"description": "🕹️ A place to showcase a variety of independent widgets with different functionalities.",
-	"private": true,
-	"scripts": {
-		"build": "webpack --mode production",
-		"start": "webpack serve --open --mode development"
-	},
-	"keywords": [
-		"widgets",
-		"javascript widgets",
-		"mini components"
-	],
-	"author": {
-		"name": "Aniqa",
-		"email": "hello@aniqa.io",
-		"url": "https://aniqa.dev"
-	},
-	"license": "MIT",
-	"homepage": "https://playground.aniqa.dev",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/aniqatc/playground.git"
-	},
-	"devDependencies": {
-		"css-loader": "^6.8.1",
-		"css-minimizer-webpack-plugin": "^5.0.1",
-		"html-webpack-plugin": "^5.5.4",
-		"postcss-loader": "^7.3.3",
-		"prettier": "^3.1.1",
-		"prettier-plugin-tailwindcss": "^0.5.9",
-		"terser-webpack-plugin": "^5.3.9",
-		"webpack": "^5.89.0",
-		"webpack-cli": "^5.1.4",
-		"webpack-dev-server": "^4.15.1"
-	},
-	"dependencies": {
-		"autoprefixer": "^10.4.16",
-		"postcss": "^8.4.32",
-		"tailwindcss": "^3.3.6"
-	}
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "🕹️ A place to showcase a variety of independent widgets with different functionalities.",
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack serve --open --mode development"
+  },
+  "keywords": [
+    "widgets",
+    "javascript widgets",
+    "mini components"
+  ],
+  "author": {
+    "name": "Aniqa",
+    "email": "hello@aniqa.io",
+    "url": "https://aniqa.dev"
+  },
+  "license": "MIT",
+  "homepage": "https://playground.aniqa.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aniqatc/playground.git"
+  },
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "css-minimizer-webpack-plugin": "^5.0.1",
+    "html-webpack-plugin": "^5.5.4",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss-loader": "^7.3.3",
+    "prettier": "^3.1.1",
+    "prettier-plugin-tailwindcss": "^0.5.9",
+    "terser-webpack-plugin": "^5.3.9",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6"
+  }
 }

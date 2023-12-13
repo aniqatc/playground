@@ -1,13 +1,16 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("css-minimizer-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
+  entry: "./client/src/index.js",
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "client/public"),
+    publicPath: "/",
+    clean: true,
   },
   module: {
     rules: [
@@ -19,11 +22,13 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: "./client/src/index.html",
+      favicon: "./client/src/assets/favicon.png",
     }),
     new MiniCssExtractPlugin(),
   ],
   optimization: {
+    minimize: true,
     minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
   },
 };
