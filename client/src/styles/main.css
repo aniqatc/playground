@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply font-inter max-w-screen-xl bg-slate-200 dark:bg-stone-950;
+  @apply mx-auto max-w-screen-xl bg-zinc-200 font-inter dark:bg-neutral-900 dark:text-zinc-100;
 }
 
 h1,
