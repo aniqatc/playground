@@ -4,7 +4,7 @@ export function getMarkup() {
   return `
     <!-- Widget 01: About -->
     <section
-        class="widget-01 flex-auto relative rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800"
+        class="widget-01 relative h-min rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800"
       >
         <div class="absolute -inset-[2px] z-[-1] overflow-hidden rounded">
           <div
@@ -99,10 +99,11 @@ export function getMarkup() {
           class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
         >
         <p class="mr-auto">about</p>
-          <button class="group text-red-800">
-            <i class="fa-regular fa-heart block group-hover:hidden"></i>
-            <i class="fa-solid fa-heart hidden group-hover:block"></i></button
-          ><span">1</span>
+          <button class="group cursor-pointer" id="js-like-btn">
+            <i
+              class="fa-solid fa-heart group-hover:text-red-800 group-active:scale-125"
+            ></i></button
+          ><span class="font-archivo">1</span>
       </div>
     </section>
     `;

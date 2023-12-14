@@ -24,7 +24,10 @@
         <h1 class="text-4xl font-medium leading-relaxed">playground</h1>
         <p>
           by
-          <a href="https://aniqa.dev" target="_blank" class="underline"
+          <a
+            href="https://aniqa.dev"
+            target="_blank"
+            class="duration-250 border-b border-slate-400 transition-all hover:border-b-2 hover:border-slate-950 hover:text-slate-950 dark:border-gray-700 hover:dark:border-gray-300 hover:dark:text-gray-300"
             >aniqa</a
           >
         </p>
@@ -44,11 +47,11 @@
     >
       <!-- Widget 00: Template -->
       <!-- <section
-        class="widget-00 relative flex-auto rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800"
+        class="widget-00 relative h-min rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800"
       >
         <div class="absolute -inset-[2px] z-[-1] overflow-hidden rounded">
           <div
-            class="animate-rotate-full absolute -inset-1 z-[-1] rounded bg-[conic-gradient(#550921,transparent_30deg)] dark:bg-[conic-gradient(#e2a4b6,transparent_30deg)]"
+            class="absolute -inset-1 z-[-1] animate-rotate-full rounded bg-[conic-gradient(#550921,transparent_30deg)] dark:bg-[conic-gradient(#e2a4b6,transparent_30deg)]"
           ></div>
         </div>
         <div class="content">**Widget Content Here**</div>
@@ -56,10 +59,11 @@
           class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
         >
           <p class="mr-auto">Title</p>
-          <button class="group text-red-800">
-            <i class="fa-regular fa-heart block group-hover:hidden"></i>
-            <i class="fa-solid fa-heart hidden group-hover:block"></i></button
-          ><span>0</span>
+          <button class="group cursor-pointer" id="js-like-btn">
+            <i
+              class="fa-solid fa-heart group-hover:text-red-800 group-active:scale-125"
+            ></i></button
+          ><span class="font-archivo">0</span>
         </div>
       </section> -->
     </main>
