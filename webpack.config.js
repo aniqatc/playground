@@ -7,8 +7,9 @@ const TerserPlugin = require("terser-webpack-plugin");
 module.exports = {
   entry: "./client/src/scripts/index.js",
   output: {
-    filename: "bundle.js",
     path: path.resolve(__dirname, "client/public"),
+    filename: "index.js",
+    chunkFilename: "scripts.js",
     publicPath: "/",
     clean: true,
   },
@@ -17,6 +18,15 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+      },
+      {
+        test: /\.scss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
+        ],
       },
     ],
   },

@@ -14,3 +14,9 @@ h5,
 h6 {
   @apply font-archivo;
 }
+
+@layer utilities {
+  .grid-col-custom {
+    grid-template-columns: repeat(auto-fill, minmax(min(275px, 100%), 1fr));
+  }
+}
