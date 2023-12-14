@@ -1,7 +1,7 @@
 .widget-01 {
   background-image: radial-gradient(#efefef 1px, transparent 0);
   background-size: 7px 7px;
-  max-width: 300px;
+  width: clamp(300px, 100%, 400px);
 
   & .content {
     & strong {

@@ -24,8 +24,8 @@ module.exports = {
           "100%": { backgroundPositionX: "-100%" },
         },
         rotateFull: {
-          "0%": { transform: "rotate(-60deg) scale(5)" },
-          "100%": { transform: "rotate(-420deg) scale(5)" },
+          "0%": { transform: "rotate(-60deg) scale(10)" },
+          "100%": { transform: "rotate(-420deg) scale(10)" },
         },
       },
       animation: {
