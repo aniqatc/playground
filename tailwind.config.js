@@ -23,9 +23,14 @@ module.exports = {
         textFill: {
           "100%": { backgroundPositionX: "-100%" },
         },
+        rotateFull: {
+          "0%": { transform: "rotate(-60deg) scale(5)" },
+          "100%": { transform: "rotate(-420deg) scale(5)" },
+        },
       },
       animation: {
         "text-fill": "textFill 2s ease both 300ms",
+        "rotate-full": "rotateFull 4s linear both infinite",
       },
     },
   },

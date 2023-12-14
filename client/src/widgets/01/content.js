@@ -2,9 +2,15 @@ import "./style.scss";
 
 export function getMarkup() {
   return `
+    <!-- Widget 01: About -->
     <section
-        class="widget-01 flex-auto w-[200px] relative rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800"
+        class="widget-01 w-[200px] flex-auto relative rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800"
       >
+        <div class="absolute -inset-[2px] z-[-1] overflow-hidden rounded">
+          <div
+            class="animate-rotate-full absolute -inset-1 z-[-1] rounded bg-[conic-gradient(#550921,transparent_30deg)] dark:bg-[conic-gradient(#e2a4b6,transparent_30deg)]"
+          ></div>
+       </div>
        <div class="content">
         <p>
           a place to showcase a variety of <strong>independent widgets</strong> with different
