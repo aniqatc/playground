@@ -13,7 +13,7 @@ mongoose
 	.connect(db)
 	.then(() => console.log('Connected to MongoDB Database:', mongoose.connection.db.databaseName));
 
-// app.use(cors({ origin: "http://localhost:3000", optionsSuccessStatus: 200 }));
+app.use(cors({ origin: 'https://playground-backend-server-bbd836591359.herokuapp.com/' }));
 app.use(express.json());
 app.use('/widget/', likeRouter);
 
