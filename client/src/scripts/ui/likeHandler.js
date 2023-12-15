@@ -1,17 +1,19 @@
 const likeValues = document.querySelectorAll(".js-like-value");
 const likeButtons = document.querySelectorAll(".js-like-btn");
 
-likeValues.forEach((el) => {
-  const id = el.id.split("-")[1];
-  handleLikes(el, id, "GET");
-});
+document.addEventListener("DOMContentLoaded", () => {
+  likeValues.forEach((el) => {
+    const id = el.id.split("-")[1];
+    handleLikes(el, id, "GET");
+  });
 
-likeButtons.forEach((btn) => {
-  btn.addEventListener("click", (event) => {
-    const likesEl = event.target.parentElement.nextElementSibling;
-    const likesId = likesEl.id.split("-")[1];
+  likeButtons.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      const likesEl = event.target.parentElement.nextElementSibling;
+      const likesId = likesEl.id.split("-")[1];
 
-    handleLikes(likesEl, likesId, "POST");
+      handleLikes(likesEl, likesId, "POST");
+    });
   });
 });
 
