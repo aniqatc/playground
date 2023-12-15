@@ -1,14 +1,17 @@
 const widgetContext = require.context("/src/widgets/", true, /content\.js$/);
 
-async function loadContent(entry) {
+function loadContent(entry) {
   const module = widgetContext(`./${entry}/content.js`);
   const markup = module.getMarkup();
   const container = document.querySelector("#js-main-container");
   container.insertAdjacentHTML("beforeend", markup);
 }
 
-async function loadWidgets() {
-  await loadContent("01");
+function loadWidgets() {
+  for (let i = 1; i < 2; i++) {
+    let entry = String(i).padStart(2, "0");
+    loadContent(entry);
+  }
 }
 
 export { loadWidgets };
