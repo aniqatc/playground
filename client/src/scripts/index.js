@@ -6,20 +6,26 @@ applySavedTheme();
 loadWidgets();
 
 const likeButtons = document.querySelectorAll(".js-like-btn");
+const likeValues = document.querySelectorAll(".js-like-value");
 
 likeButtons.forEach((btn) => {
-  btn.addEventListener("click", handleLikes);
-  handleLikes({ target: btn, type: "DOMContentLoaded" });
+  btn.addEventListener("click", (event) => {
+    const likesEl = event.target.parentElement.nextElementSibling;
+    const likesId = likesEl.id.split("-")[1];
+
+    handleLikes(likesEl, likesId, "POST");
+  });
 });
 
-async function handleLikes(event) {
-  const likesEl = event.target.parentElement.nextElementSibling;
-  const likesId = likesEl.id.split("-")[1];
-  const methodType = event.type === "click" ? "POST" : "GET";
-  const likesURL = `https://data.playground.aniqa.dev/widget/likes/${likesId}`;
+likeValues.forEach((el) => {
+  const id = el.id.split("-")[1];
+  handleLikes(el, id, "GET");
+});
 
-  const response = await fetch(likesURL, { method: methodType });
+async function handleLikes(el, id, type) {
+  const likesURL = `https://data.playground.aniqa.dev/widget/likes/${id}`;
+  const response = await fetch(likesURL, { method: type });
   const data = await response.json();
 
-  likesEl.textContent = data.likeCount;
+  el.textContent = data.likeCount;
 }

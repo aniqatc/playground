@@ -103,7 +103,7 @@ export function getMarkup() {
             <i
               class="fa-solid fa-heart group-hover:text-red-800 group-active:scale-125"
             ></i></button
-          ><span class="font-archivo" id="likes-01">1</span>
+          ><span class="font-archivo js-like-value" id="likes-01"></span>
       </div>
     </section>
     `;
