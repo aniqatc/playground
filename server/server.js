@@ -25,3 +25,7 @@ app.use("/widget/", likeRouter);
 app.listen(port, () => {
   console.log(`App running on port: ${port}...`);
 });
+
+app.get("/", (req, res) => {
+  res.send("Hello world!");
+});
