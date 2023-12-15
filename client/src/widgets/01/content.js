@@ -101,7 +101,7 @@ export function getMarkup() {
         <p class="mr-auto">about</p>
           <button class="group cursor-pointer js-like-btn">
             <i
-              class="fa-solid fa-heart group-hover:text-red-800 group-active:scale-125"
+              class="fa-solid fa-heart group-hover:text-[#550921] group-hover:dark:text-[#db8aa1] group-active:scale-125"
             ></i></button
           ><span class="font-archivo js-like-value" id="likes-01"></span>
       </div>
