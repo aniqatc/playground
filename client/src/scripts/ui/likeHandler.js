@@ -1,7 +1,7 @@
 const likeValues = document.querySelectorAll(".js-like-value");
 const likeButtons = document.querySelectorAll(".js-like-btn");
 
-document.addEventListener("DOMContentLoaded", () => {
+function initializeLikes() {
   likeValues.forEach((el) => {
     const id = el.id.split("-")[1];
     handleLikes(el, id, "GET");
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       handleLikes(likesEl, likesId, "POST");
     });
   });
-});
+}
 
 async function handleLikes(el, id, type) {
   const likesURL = `https://data.playground.aniqa.dev/widget/likes/${id}`;
@@ -24,3 +24,5 @@ async function handleLikes(el, id, type) {
 
   el.textContent = data.likeCount;
 }
+
+export { initializeLikes };

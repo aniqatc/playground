@@ -1,7 +1,8 @@
 import "../styles/main.css";
 import { loadWidgets } from "./load";
 import { applySavedTheme } from "./ui/themeHandler";
-import "./ui/likeHandler";
+import { initializeLikes } from "./ui/likeHandler";
 
 applySavedTheme();
 loadWidgets();
+initializeLikes();
