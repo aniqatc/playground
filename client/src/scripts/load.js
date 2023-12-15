@@ -1,8 +1,4 @@
-const widgetContext = require.context(
-  "/client/src/widgets/",
-  true,
-  /content\.js$/,
-);
+const widgetContext = require.context("/src/widgets/", true, /content\.js$/);
 
 async function loadContent(entry) {
   const module = widgetContext(`./${entry}/content.js`);

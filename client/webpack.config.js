@@ -5,7 +5,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
-  entry: "./client/src/scripts/index.js",
+  entry: "./src/scripts/index.js",
   output: {
     path: path.resolve(__dirname, "client/public"),
     filename: "index.js",
@@ -32,8 +32,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./client/src/index.html",
-      favicon: "./client/src/assets/favicon.png",
+      template: "./src/index.html",
+      favicon: "./src/assets/favicon.png",
     }),
     new MiniCssExtractPlugin(),
   ],
