@@ -1,5 +1,7 @@
+@import "../../styles/variables";
+
 .widget-01 {
-  background-image: radial-gradient(#efefef 1px, transparent 0);
+  background-image: $bg-dotted-light;
   background-size: 7px 7px;
   width: clamp(300px, 100%, 400px);
 
@@ -37,8 +39,8 @@
         }
 
         & .icon {
-          border: 1px solid #cfcfcf;
-          background: rgba(0, 0, 0, 0.1);
+          border: $border-light;
+          background: $bg-transparent-light;
           backdrop-filter: blur(3px);
           padding: 6px;
           border-radius: 4px;
@@ -46,7 +48,7 @@
           & svg {
             width: 30px;
             height: 30px;
-            fill: url(#widget-01_light-gradient) #550921;
+            fill: url(#widget-01_light-gradient) $accent-light--purple;
           }
         }
       }
@@ -64,17 +66,17 @@
 }
 
 .dark .widget-01 {
-  background-image: radial-gradient(#323232 1px, transparent 0);
+  background-image: $bg-dotted-dark;
 
   & .content {
     & .icons-group {
       & .icons-row {
         & .icon {
-          border: 1px solid #000000;
-          background: rgba(255, 255, 255, 0.15);
+          border: $border-dark;
+          background: $bg-transparent-dark;
 
           & svg {
-            fill: url(#widget-01_dark-gradient) #db8aa1;
+            fill: url(#widget-01_dark-gradient) $accent-dark--pink;
           }
         }
       }

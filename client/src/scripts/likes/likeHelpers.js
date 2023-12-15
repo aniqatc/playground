@@ -1,4 +1,3 @@
-// helpers for handling localStorage & like limit
 function getUserLikes() {
   return JSON.parse(localStorage.getItem("userLikes")) || {};
 }
