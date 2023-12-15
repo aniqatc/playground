@@ -2,7 +2,7 @@ const { Likes } = require("./likeModel");
 const express = require("express");
 const router = express.Router();
 
-router.route("/:widgetId/likes").get(getCurrentLikes).post(updateLikes);
+router.route("/:widgetId/").get(getCurrentLikes).post(updateLikes);
 
 async function getCurrentLikes(req, res) {
   const widgetId = req.params.widgetId;

@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 
 app.use(cors({ origin: 'https://playground.aniqa.dev' }));
 app.use(express.json());
-app.use('/widget/', likeRouter);
+app.use('/widget/likes/', likeRouter);
 
 app.listen(port, () => {
 	console.log(`App running on port: ${port}...`);
