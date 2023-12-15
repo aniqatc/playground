@@ -4,8 +4,8 @@
 	"description": "🕹️ A place to showcase a variety of independent widgets with different functionalities.",
 	"private": true,
 	"scripts": {
-		"start:dev": "nodemon server.js",
-		"start": "node server.js"
+		"start:dev": "NODE_ENV=development nodemon server.js",
+		"start": "NODE_ENV=production node server.js"
 	},
 	"keywords": [
 		"widgets",

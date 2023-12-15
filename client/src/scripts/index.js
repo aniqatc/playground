@@ -5,6 +5,7 @@ import { applySavedTheme } from "./ui/themeHandler";
 applySavedTheme();
 loadWidgets();
 
+const serverURL = process.env.SERVER;
 const likeValues = document.querySelectorAll(".js-like-value");
 const likeButtons = document.querySelectorAll(".js-like-btn");
 
@@ -23,7 +24,7 @@ likeButtons.forEach((btn) => {
 });
 
 async function handleLikes(el, id, type) {
-  const likesURL = `https://data.playground.aniqa.dev/widget/likes/${id}`;
+  const likesURL = `${serverURL}/widget/likes/${id}`;
   const response = await fetch(likesURL, { method: type });
   const data = await response.json();
 
