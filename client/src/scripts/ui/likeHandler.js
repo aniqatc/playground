@@ -18,11 +18,20 @@ function initializeLikeHandler() {
 }
 
 async function handleLikes(el, id, type) {
+  const cacheKey = `likes-${id}`;
+  let data;
+
   try {
-    const serverURL = process.env.SERVER;
-    const likesURL = `${serverURL}/widget/likes/${id}`;
-    const response = await fetch(likesURL, { method: type });
-    const data = await response.json();
+    if (type === "GET" && sessionStorage.getItem(cacheKey)) {
+      data = JSON.parse(sessionStorage.getItem(cacheKey));
+    } else {
+      const serverURL = process.env.SERVER;
+      const likesURL = `${serverURL}/widget/likes/${id}`;
+      const response = await fetch(likesURL, { method: type });
+      data = await response.json();
+
+      sessionStorage.setItem(cacheKey, JSON.stringify(data));
+    }
 
     el.textContent = data.likeCount;
   } catch (error) {
