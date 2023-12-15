@@ -15,6 +15,11 @@ mongoose
 	.connect(db)
 	.then(() => console.log('Connected to MongoDB Database:', mongoose.connection.db.databaseName));
 
+// middleware
+app.use(cors({ origin: 'https://playground.aniqa.dev' }));
+app.use(express.json());
+app.use('/widget/likes/', likeRouter);
+
 // redirect backend host to frontend
 app.use((req, res, next) => {
 	if (req.hostname === 'data.playground.aniqa.dev') {
@@ -22,11 +27,6 @@ app.use((req, res, next) => {
 	}
 	next();
 });
-
-// middleware
-app.use(cors({ origin: 'https://playground.aniqa.dev' }));
-app.use(express.json());
-app.use('/widget/likes/', likeRouter);
 
 // server
 app.listen(port, () => {

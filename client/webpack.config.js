@@ -7,7 +7,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 module.exports = {
   entry: "./src/scripts/index.js",
   output: {
-    path: path.resolve(__dirname, "client/public"),
+    path: path.resolve(__dirname, "public"),
     filename: "index.js",
     chunkFilename: "scripts.js",
     publicPath: "/",
