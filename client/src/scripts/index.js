@@ -22,7 +22,7 @@ likeButtons.forEach((btn) => {
 });
 
 async function handleLikes(el, id, req) {
-  const likesURL = `http://data.playground.aniqa.dev/widget/likes/${id}`;
+  const likesURL = `https://data.playground.aniqa.dev/widget/likes/${id}`;
   const response = await fetch(likesURL, { method: req });
   const data = await response.json();
 
