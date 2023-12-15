@@ -13,14 +13,17 @@ mongoose
 	.connect(db)
 	.then(() => console.log('Connected to MongoDB Database:', mongoose.connection.db.databaseName));
 
-app.use(cors({ origin: 'https://playground-backend-server-bbd836591359.herokuapp.com/' }));
+app.use((req, res, next) => {
+	if (req.hostname === 'data.playground.aniqa.dev') {
+		return res.redirect('https://playground.aniqa.dev');
+	}
+	next();
+});
+
+app.use(cors({ origin: 'https://playground.aniqa.dev' }));
 app.use(express.json());
 app.use('/widget/', likeRouter);
 
 app.listen(port, () => {
 	console.log(`App running on port: ${port}...`);
-});
-
-app.get('/', (req, res) => {
-	res.send('Hello world!');
 });
