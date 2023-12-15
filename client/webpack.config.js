@@ -1,14 +1,12 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 
-const envFile =
-  process.env.NODE_ENV === "production"
-    ? ".env.production"
-    : ".env.development";
+const isDevelopment = process.env.NODE_ENV !== "production";
 
 module.exports = {
   entry: "./src/scripts/index.js",
@@ -42,9 +40,17 @@ module.exports = {
       favicon: "./src/assets/favicon.png",
     }),
     new MiniCssExtractPlugin(),
-    new Dotenv({
-      path: envFile,
-    }),
+    ...(isDevelopment
+      ? [
+          new Dotenv({
+            path: ".env.development",
+          }),
+        ]
+      : [
+          new webpack.DefinePlugin({
+            "process.env.SERVER": JSON.stringify(process.env.SERVER),
+          }),
+        ]),
   ],
   optimization: {
     minimize: true,

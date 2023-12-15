@@ -16,11 +16,9 @@ mongoose
 	.then(() => console.log('Connected to MongoDB Database:', mongoose.connection.db.databaseName));
 
 // middleware
-if (process.env.NODE_ENV === 'production') {
-	app.use(cors({ origin: 'https://playground.aniqa.dev' }));
-} else {
-	app.use(cors({ origin: 'http://localhost:8080' }));
-}
+process.env.NODE_ENV === 'production'
+	? app.use(cors({ origin: 'https://playground.aniqa.dev' }))
+	: app.use(cors({ origin: 'http://localhost:8080' }));
 app.use(express.json());
 app.use('/widget/likes/', likeRouter);
 
@@ -35,4 +33,5 @@ app.use((req, res, next) => {
 // server
 app.listen(port, () => {
 	console.log(`App running on port: ${port}...`);
+	console.log(`Environment: ${process.env.NODE_ENV}`);
 });
