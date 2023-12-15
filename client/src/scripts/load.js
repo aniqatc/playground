@@ -7,8 +7,11 @@ async function loadContent(entry) {
   container.insertAdjacentHTML("beforeend", markup);
 }
 
-async function loadWidgets() {
+async function loadWidgets(callback) {
   await loadContent("01");
+  if (callback && typeof callback === "function") {
+    callback();
+  }
 }
 
 export { loadWidgets };
