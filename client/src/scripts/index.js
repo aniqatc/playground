@@ -4,5 +4,4 @@ import { applySavedTheme } from "./ui/themeHandler";
 import { initializeLikes } from "./ui/likeHandler";
 
 applySavedTheme();
-loadWidgets();
-initializeLikes();
+loadWidgets().then(initializeLikes);
