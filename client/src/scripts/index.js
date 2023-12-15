@@ -8,22 +8,23 @@ loadWidgets();
 const likeButtons = document.querySelectorAll(".js-like-btn");
 
 likeButtons.forEach((btn) => {
+  const likeEl = btn.nextElementSibling;
+  const likeId = likeEl.id.split("-")[1];
+
+  handleLikes(likeEl, likeId, "GET");
+
   btn.addEventListener("click", async (event) => {
     const likesEl = event.target.parentElement.nextElementSibling;
     const likesId = likesEl.id.split("-")[1];
 
-    const likesURL = `http://localhost:3000/widget/likes/${likesId}`;
-    const response = await fetch(likesURL, { method: "POST" });
-    const data = await response.json();
-    console.log(data);
-    likesEl.textContent = data.likes;
+    handleLikes(likesEl, likesId, "POST");
   });
 });
 
-async function addLikes(el, id) {
-  const likesURL = `http://localhost:3000/widget/likes/${id}`;
-  const response = await fetch(likesURL, { method: "POST" });
+async function handleLikes(el, id, req) {
+  const likesURL = `http://data.playground.aniqa.dev/widget/likes/${id}`;
+  const response = await fetch(likesURL, { method: req });
   const data = await response.json();
-  console.log(data);
-  el.textContent = data.likes;
+
+  el.textContent = data.likeCount;
 }
