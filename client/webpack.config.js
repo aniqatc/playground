@@ -12,7 +12,7 @@ module.exports = {
   entry: "./src/main/scripts/index.js",
   output: {
     path: path.resolve(__dirname, "public"),
-    filename: "index.js",
+    filename: "main.js",
     chunkFilename: "scripts.js",
     publicPath: "/",
     clean: true,
@@ -39,7 +39,9 @@ module.exports = {
       template: "./src/main/index.html",
       favicon: "./src/main/assets/favicon.png",
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "all.css",
+    }),
     ...(isDevelopment
       ? [
           new Dotenv({

@@ -9,7 +9,7 @@ export function getMarkup() {
       >
         <div class="absolute -inset-[2px] z-[-1] overflow-hidden rounded">
           <div
-            class="animate-rotate-full absolute -inset-1 z-[-1] rounded bg-[conic-gradient(#550921,transparent_30deg)] dark:bg-[conic-gradient(#e2a4b6,transparent_30deg)]"
+            class="animate-border-rotate absolute -inset-1 z-[-1] rounded bg-[conic-gradient(#550921,transparent_30deg)] dark:bg-[conic-gradient(#e2a4b6,transparent_30deg)]"
           ></div>
        </div>
        <div class="content">

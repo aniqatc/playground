@@ -19,18 +19,18 @@ module.exports = {
           "sans-serif",
         ],
       },
+      animation: {
+        "text-fill": "textFill 2s ease both 250ms",
+        "border-rotate": "borderRotate 4s linear both infinite",
+      },
       keyframes: {
         textFill: {
           "100%": { backgroundPositionX: "-100%" },
         },
-        rotateFull: {
-          "0%": { transform: "rotate(-60deg) scale(10)" },
-          "100%": { transform: "rotate(-420deg) scale(10)" },
+        borderRotate: {
+          "0%": { transform: "rotate(0deg) scale(10)" },
+          "100%": { transform: "rotate(-360deg) scale(10)" },
         },
-      },
-      animation: {
-        "text-fill": "textFill 2s ease both 300ms",
-        "rotate-full": "rotateFull 4s linear both infinite",
       },
     },
   },
