@@ -9,7 +9,7 @@ const Dotenv = require("dotenv-webpack");
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 module.exports = {
-  entry: "./src/scripts/index.js",
+  entry: "./src/main/scripts/index.js",
   output: {
     path: path.resolve(__dirname, "public"),
     filename: "index.js",
@@ -36,8 +36,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      favicon: "./src/assets/favicon.png",
+      template: "./src/main/index.html",
+      favicon: "./src/main/assets/favicon.png",
     }),
     new MiniCssExtractPlugin(),
     ...(isDevelopment
