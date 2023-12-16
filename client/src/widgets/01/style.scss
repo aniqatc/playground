@@ -48,7 +48,7 @@
           & svg {
             width: 30px;
             height: 30px;
-            fill: url(#widget-01_light-gradient) $accent-light--purple;
+            fill: url(#widget-01_light-gradient) $accent-dark-purple;
           }
         }
       }
@@ -76,7 +76,7 @@
           background: $bg-transparent-dark;
 
           & svg {
-            fill: url(#widget-01_dark-gradient) $accent-dark--pink;
+            fill: url(#widget-01_dark-gradient) $accent-light-pink;
           }
         }
       }
