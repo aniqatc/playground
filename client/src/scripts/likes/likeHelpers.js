@@ -13,4 +13,14 @@ function updateUserLikes(id) {
   localStorage.setItem("userLikes", JSON.stringify(userLikes));
 }
 
-export { getUserLikes, canUserLike, updateUserLikes };
+function updateLikeButtonState(btnIcon, id) {
+  const userLikes = getUserLikes();
+  if (userLikes[id] > 0) {
+    btnIcon.classList.add("liked-color");
+  }
+  if (userLikes[id] >= 5) {
+    btnIcon.classList.remove("group-active:scale-125");
+  }
+}
+
+export { canUserLike, updateLikeButtonState, updateUserLikes };
