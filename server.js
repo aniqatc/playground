@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 const db = process.env.DB_URI.replace('<PASSWORD>', process.env.DB_PW);
 
 // routers
-const likeRouter = require('./server/routers/likeRouter');
+const likeRouter = require('./server/main/routers/likeRouter');
 
 // connect widget db
 mongoose
@@ -17,15 +17,15 @@ mongoose
 
 // middleware
 process.env.NODE_ENV === 'production'
-	? app.use(cors({ origin: 'https://playground.aniqa.dev' }))
-	: app.use(cors({ origin: 'http://localhost:8080' }));
+	? app.use(cors({ origin: process.env.FRONTEND_HOSTED }))
+	: app.use(cors({ origin: process.env.FRONTEND_LOCAL }));
 app.use(express.json());
 app.use('/widget/likes/', likeRouter);
 
 // redirect backend host to frontend
 app.use((req, res, next) => {
 	if (req.hostname === 'data.playground.aniqa.dev') {
-		return res.redirect('https://playground.aniqa.dev');
+		return res.redirect(process.env.FRONTEND_HOSTED);
 	}
 	next();
 });

@@ -9,8 +9,11 @@ function initializeLikeHandler() {
     handleLikes(el, widgetId, "GET");
 
     const userLikes = getUserLikes();
+    const btnIcon = el.previousElementSibling.lastChild;
+
     if (userLikes[widgetId] > 0) {
-      el.previousElementSibling.classList.add("liked-color");
+      btnIcon.classList.remove("group-active:scale-125");
+      btnIcon.classList.add("liked-color");
     }
   });
 
