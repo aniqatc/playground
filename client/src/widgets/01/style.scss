@@ -2,7 +2,7 @@
 
 #widget-01 {
   background-image: var.$bg-dotted-light;
-  background-size: 7px 7px;
+  background-size: 8px 8px;
 
   & .content {
     & strong {
@@ -10,8 +10,8 @@
     }
 
     & .icons-group {
-      padding-top: 8px;
-      padding-bottom: 8px;
+      padding-top: var.$spacing-base;
+      padding-bottom: var.$spacing-base;
       width: fit-content;
       margin: 0 auto;
       mask-image: linear-gradient(
@@ -23,10 +23,10 @@
       );
 
       & .icons-row {
-        margin: 8px auto;
+        margin: var.$spacing-base auto;
         display: flex;
         justify-content: center;
-        gap: 8px;
+        gap: var.$spacing-base;
         animation: translateX 3s ease-in-out infinite alternate;
 
         &:nth-child(odd) {

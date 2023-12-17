@@ -23,9 +23,9 @@ function initializeLikeHandler() {
 
       if (canUserLike(widgetId)) {
         handleLikes(likesEl, widgetId, "POST");
-        updateLikeButtonState(btnIcon, widgetId);
         updateUserLikes(widgetId);
       }
+      updateLikeButtonState(btnIcon, widgetId);
     });
   });
 }

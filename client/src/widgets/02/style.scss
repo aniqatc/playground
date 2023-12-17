@@ -1,0 +1,126 @@
+@use "../../main/styles/var";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+#widget-02 {
+  grid-row: span 2;
+
+  & .content {
+    font-family: "Noto Sans Mono", monospace;
+
+    & .display {
+      width: 97%;
+      margin: -8px auto 0;
+      border-radius: 0 0 4px 4px;
+      background: #fdfeff;
+      text-align: end;
+      padding: var.$spacing-base 16px;
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid #d8dcf1;
+      border-top: 0;
+
+      & .expand-history-btn {
+        align-self: start;
+        color: #8c8c8c;
+        padding: var.$spacing-base;
+        margin: var.$spacing-base * -1;
+        transition: all 200ms ease-out;
+
+        &:hover {
+          color: #8159bc;
+        }
+
+        &:active {
+          transform: scaleY(0.75);
+        }
+      }
+
+      & .history {
+        color: #8c8c8c;
+        font-size: 14px;
+      }
+      & .current-val {
+        font-size: 48px;
+        font-weight: 600;
+        line-height: 1.2;
+        margin-right: -3px;
+        color: #000;
+      }
+    }
+
+    & .calculator {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      place-items: center;
+      row-gap: var.$spacing-base;
+      margin: var.$spacing-base * 2 auto;
+
+      & button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        font-size: 18px;
+
+        &.operation-btns {
+          color: #8159bc;
+          background: #e7e8f7;
+
+          &[data-calc-val="="] {
+            background: #8159bc;
+            color: #e7e8f7;
+            border-radius: 10px;
+            grid-column: span 2;
+            width: 75%;
+          }
+        }
+
+        &.operation-helper-btns {
+          color: #8c8c8c;
+        }
+
+        &.num-btns {
+          font-size: 22px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+.dark #widget-02 {
+  background: #27272a;
+  & .content {
+    & .display {
+      background: rgba(0, 0, 0, 0.5);
+      border: var.$border-dark;
+      border-top: 0;
+
+      & .current-val {
+        color: #fff;
+      }
+    }
+
+    & .calculator {
+      & button {
+        &.operation-btns {
+          color: #8159bc;
+          background: #000000;
+
+          &[data-calc-val="="] {
+            background: #8159bc;
+            color: #e7e8f7;
+          }
+        }
+
+        &.operation-helper-btns {
+        }
+
+        &.num-btns {
+        }
+      }
+    }
+  }
+}
