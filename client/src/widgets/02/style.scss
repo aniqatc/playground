@@ -126,6 +126,11 @@
 }
 
 .dark #widget-02 {
+  & .like-btn {
+    &:hover {
+      color: var.$color-medium-red;
+    }
+  }
   & .liked-color {
     color: var.$color-medium-red;
   }
