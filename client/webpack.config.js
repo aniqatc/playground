@@ -12,8 +12,7 @@ module.exports = {
   entry: "./src/main/scripts/index.js",
   output: {
     path: path.resolve(__dirname, "public"),
-    filename: "main.js",
-    chunkFilename: "scripts.js",
+    filename: "all.js",
     publicPath: "/",
     clean: true,
   },

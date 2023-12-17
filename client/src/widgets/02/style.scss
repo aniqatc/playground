@@ -30,7 +30,7 @@
       border: 1px solid var.$color-light-red;
       border-top: 0;
 
-      & .expand-history-btn {
+      & .history-btn {
         align-self: start;
         color: var.$color-dark-red;
         padding: var.$spacing-base;
@@ -49,7 +49,25 @@
       & .history {
         color: var.$gray-medium;
         font-size: 14px;
+        overflow: hidden;
+
+        & li {
+          transition: var.$med-ease-out;
+        }
+
+        @for $num from 1 through 3 {
+          & li:nth-child(#{$num}) {
+            transition-delay: calc((4 - #{$num}) * 0.25s);
+          }
+
+          & li:nth-child(#{$num}).active {
+            transform: translateY(-100% * $num);
+            opacity: 0;
+            transition-delay: $num * 0.25s;
+          }
+        }
       }
+
       & .current-val {
         font-size: 48px;
         font-weight: 500;
@@ -89,7 +107,7 @@
             background: var.$color-dark-red;
             color: var.$color-light-red;
             grid-column: span 2;
-            width: 80%;
+            width: 78%;
           }
 
           &:hover {
@@ -140,7 +158,7 @@
       background: rgba(0, 0, 0, 0.5);
       border: var.$border-dark;
 
-      & .expand-history-btn {
+      & .history-btn {
         color: var.$color-medium-red;
 
         &:hover {
