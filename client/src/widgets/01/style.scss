@@ -3,6 +3,17 @@
 #widget-01 {
   background-image: var.$bg-dotted-light;
   background-size: 8px 8px;
+  width: var.$widget-base;
+
+  & .like-btn {
+    &:hover {
+      color: var.$accent-dark-burgundy;
+    }
+  }
+
+  & .liked-color {
+    color: var.$accent-dark-burgundy;
+  }
 
   & .content {
     & strong {
@@ -47,7 +58,7 @@
           & svg {
             width: 30px;
             height: 30px;
-            fill: url(#widget-01_light-gradient) var.$accent-dark-purple;
+            fill: url(#widget-01_light-gradient) var.$accent-dark-burgundy;
           }
         }
       }
@@ -66,6 +77,16 @@
 
 .dark #widget-01 {
   background-image: var.$bg-dotted-dark;
+
+  & .like-btn {
+    &:hover {
+      color: var.$accent-light-pink;
+    }
+  }
+
+  & .liked-color {
+    color: var.$accent-light-pink;
+  }
 
   & .content {
     & .icons-group {

@@ -3,6 +3,17 @@
 
 #widget-02 {
   grid-row: span 2;
+  width: var.$widget-base;
+
+  & .like-btn {
+    &:hover {
+      color: #673ea6;
+    }
+  }
+
+  & .liked-color {
+    color: #673ea6;
+  }
 
   & .content {
     font-family: "Noto Sans Mono", monospace;
@@ -27,7 +38,7 @@
         transition: all 200ms ease-out;
 
         &:hover {
-          color: #8159bc;
+          color: #673ea6;
         }
 
         &:active {
@@ -61,7 +72,7 @@
         justify-content: center;
         height: 40px;
         width: 40px;
-        border-radius: 50%;
+        border-radius: 4px;
         font-size: 18px;
 
         &.operation-btns {
@@ -71,7 +82,6 @@
           &[data-calc-val="="] {
             background: #8159bc;
             color: #e7e8f7;
-            border-radius: 10px;
             grid-column: span 2;
             width: 75%;
           }
@@ -92,6 +102,17 @@
 
 .dark #widget-02 {
   background: #27272a;
+
+  & .like-btn {
+    &:hover {
+      color: #8159bc;
+    }
+  }
+
+  & .liked-color {
+    color: #8159bc;
+  }
+
   & .content {
     & .display {
       background: rgba(0, 0, 0, 0.5);

@@ -1,11 +1,11 @@
 import { replayAnimation } from "./replayAnimation";
 
 const root = document.documentElement;
-const themeToggle = document.querySelector("#js-theme-btn");
+const themeToggle = document.querySelector("#theme-btn");
 
 themeToggle.addEventListener("click", () => {
   root.classList.toggle("dark");
-  replayAnimation("#js-text-highlight", "animate-text-fill");
+  replayAnimation("#text-highlight", "animate-text-fill");
   localStorage.setItem(
     "theme",
     root.classList.contains("dark") ? "dark" : "light",

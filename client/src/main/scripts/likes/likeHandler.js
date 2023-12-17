@@ -5,8 +5,8 @@ import {
 } from "./likeHelpers";
 
 function initializeLikeHandler() {
-  const likeValues = document.querySelectorAll(".js-like-value");
-  const likeButtons = document.querySelectorAll(".js-like-btn");
+  const likeValues = document.querySelectorAll(".like-value");
+  const likeButtons = document.querySelectorAll(".like-btn");
 
   likeValues.forEach((el) => {
     const btnIcon = el.previousElementSibling.lastElementChild;

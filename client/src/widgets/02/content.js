@@ -11,13 +11,13 @@ export function getMarkup() {
     class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
   >
     <p class="mr-auto">calculator</p>
-    <button class="js-like-btn group cursor-pointer">
+    <button class="like-btn group cursor-pointer">
       <i
-        class="fa-solid fa-heart group-hover:text-[#550921] group-active:scale-125 group-hover:dark:text-[#db8aa1]"
+        class="fa-solid fa-heart group-active:scale-125"
       >
       </i>
     </button>
-    <span class="js-like-value font-archivo" id="likes-02"></span>
+    <span class="like-value font-archivo" id="likes-02"></span>
   </div>
     <div class="content">
         <div class="display">
