@@ -32,19 +32,21 @@
 
 **Server** files in `/server`
 
-- `main/` holds all database models, express routing and handlers for the overall webpage
-- `widgets/` holds individual widget database models, express routing and handlers
+- `/main` holds all database models, express routing and handlers for the overall webpage
+- `/widgets` holds individual widget database models, express routing and handlers
 
 **Client** files in `/client`
 
-- `public/` contains all production-ready code, bundled and optimized using Webpack
-- `src/` contains all source code, split between `main/` which represents the overall webpage & layout and `widgets/` which represents individual widgets
-  - Inside `widgets/`, there are template files that represent reusable markup for the widgets (`_template.html` for main markup including title and like button and `_border.html` to create an animated border around the widget card)
 - `.prettierrc` includes a plugin to organize Tailwind utility classes in the main HTML file
 - `package.json` & `package-lock.json` refers to any dependencies relating to the frontend
 - `postcss.config.js`, `tailwind.config.js` and `webpack.config.js` are individual configuration files for PostCSS, Tailwind and Webpack
 
-**Webpack Configuration** for client-side
+Inside the `/client` directory: the `/public` directory contains all production-ready code, bundled and optimized using Webpack and the `/src` directory contains all source code, split between `/main` which represents the overall webpage & layout and `/widgets` which represents individual widgets
+- Inside `/widgets`, there are template files that represent reusable markup for the widgets (`_template.html` for main markup including title, like button, etc and `_border.html` to create an animated border around the widget card) and individual folders that hold the markup, styling and scripts for each widget
+- Inside `/main`, the main `index.html` file can be found, along with folders containing global styles and overall webpage functionality (e.g. handling the like button, theme toggling, etc)
+
+
+**Webpack Configuration** for in `/client`
 
 - Handles the SCSS and PostCSS loaders (for Tailwind)
 - Handles bundling all modularized JavaScript code
@@ -56,8 +58,8 @@
 **Documentation** in `/docs`
 
 - Notes for each widget and overall webpage coming soon... (similar to my [CSS](https://github.com/aniqatc/css-100/blob/main/README.md) project)
-- `main/` goes over choices and code relating to overall webpage design and functionality
-- `widgets/` goes over choices and code relating to individual widgets
+- `/main` goes over choices and code relating to overall webpage design and functionality
+- `/widgets` goes over choices and code relating to individual widgets
 
 ## Available Scripts
 
