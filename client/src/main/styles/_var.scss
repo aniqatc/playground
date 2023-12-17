@@ -1,3 +1,9 @@
+// Spacing
+$spacing-base: 8px;
+
+// Sizing
+$widget-base: clamp(300px, 100%, 400px);
+
 // Backgrounds
 $bg-dotted-light: radial-gradient(#efefef 1px, transparent 0);
 $bg-dotted-dark: radial-gradient(#323232 1px, transparent 0);
@@ -5,15 +11,27 @@ $bg-transparent-light: rgba(0, 0, 0, 0.1);
 $bg-transparent-dark: rgba(255, 255, 255, 0.15);
 
 // Shades
-$accent-dark-burgundy: #550921;
-$accent-light-pink: #db8aa1;
+// Widget 01
+$color-dark-burgundy: #550921;
+$color-light-pink: #db8aa1;
+
+// Widget 02
+$color-light-red: #f7e7e7;
+$color-medium-red: #d46060;
+$color-dark-red: #b71818;
+
+$color-light-purple: #e7e8f7;
+$color-medium-purple: #8159bc;
+$color-dark-purple: #673ea6;
+
+// Grays
+$gray-medium: #8c8c8c;
+$gray-dark: #3a3a3a;
 
 // Borders
 $border-light: 1px solid #cfcfcf;
 $border-dark: 1px solid #000000;
 
-// Spacing
-$spacing-base: 8px;
-
-// Sizing
-$widget-base: clamp(300px, 100%, 400px);
+// Transitions
+$short-ease-out: all 200ms ease-out;
+$med-ease-out: all 400ms ease-out;

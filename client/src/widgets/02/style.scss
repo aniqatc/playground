@@ -7,16 +7,16 @@
 
   & .like-btn {
     &:hover {
-      color: #673ea6;
+      color: var.$color-dark-red;
     }
   }
 
   & .liked-color {
-    color: #673ea6;
+    color: var.$color-dark-red;
   }
 
   & .content {
-    font-family: "Noto Sans Mono", monospace;
+    font-family: "Noto Sans Mono", "Inter", "Archivo", sans-serif;
 
     & .display {
       width: 97%;
@@ -27,18 +27,18 @@
       padding: var.$spacing-base 16px;
       display: flex;
       justify-content: space-between;
-      border: 1px solid #d8dcf1;
+      border: 1px solid var.$color-light-red;
       border-top: 0;
 
       & .expand-history-btn {
         align-self: start;
-        color: #8c8c8c;
+        color: var.$color-dark-red;
         padding: var.$spacing-base;
         margin: var.$spacing-base * -1;
-        transition: all 200ms ease-out;
+        transition: var.$short-ease-out;
 
         &:hover {
-          color: #673ea6;
+          color: #000;
         }
 
         &:active {
@@ -47,12 +47,12 @@
       }
 
       & .history {
-        color: #8c8c8c;
+        color: var.$gray-medium;
         font-size: 14px;
       }
       & .current-val {
         font-size: 48px;
-        font-weight: 600;
+        font-weight: 500;
         line-height: 1.2;
         margin-right: -3px;
         color: #000;
@@ -74,26 +74,51 @@
         width: 40px;
         border-radius: 4px;
         font-size: 18px;
+        transition: var.$med-ease-out;
+
+        &:active {
+          transform: scale(0.9);
+          transition: var.$short-ease-out;
+        }
 
         &.operation-btns {
-          color: #8159bc;
-          background: #e7e8f7;
+          color: var.$color-dark-red;
+          background: var.$color-light-red;
 
           &[data-calc-val="="] {
-            background: #8159bc;
-            color: #e7e8f7;
+            background: var.$color-dark-red;
+            color: var.$color-light-red;
             grid-column: span 2;
-            width: 75%;
+            width: 80%;
+          }
+
+          &:hover {
+            color: var.$color-light-red;
+            background: var.$color-medium-red;
           }
         }
 
         &.operation-helper-btns {
-          color: #8c8c8c;
+          color: var.$gray-medium;
+
+          &[data-calc-val="."] {
+            font-size: 36px;
+            font-weight: 800;
+            margin-top: -16px;
+          }
+
+          &:hover {
+            color: var.$color-medium-red;
+          }
         }
 
         &.num-btns {
           font-size: 22px;
           font-weight: 500;
+
+          &:hover {
+            color: var.$color-dark-red;
+          }
         }
       }
     }
@@ -101,23 +126,22 @@
 }
 
 .dark #widget-02 {
-  background: #27272a;
-
-  & .like-btn {
-    &:hover {
-      color: #8159bc;
-    }
-  }
-
   & .liked-color {
-    color: #8159bc;
+    color: var.$color-medium-red;
   }
 
   & .content {
     & .display {
       background: rgba(0, 0, 0, 0.5);
       border: var.$border-dark;
-      border-top: 0;
+
+      & .expand-history-btn {
+        color: var.$color-medium-red;
+
+        &:hover {
+          color: #fff;
+        }
+      }
 
       & .current-val {
         color: #fff;
@@ -127,19 +151,18 @@
     & .calculator {
       & button {
         &.operation-btns {
-          color: #8159bc;
+          color: var.$color-medium-red;
           background: #000000;
 
           &[data-calc-val="="] {
-            background: #8159bc;
-            color: #e7e8f7;
+            background: #c84444;
+            color: var.$color-light-red;
           }
-        }
 
-        &.operation-helper-btns {
-        }
-
-        &.num-btns {
+          &:hover {
+            background: var.$gray-dark;
+            color: var.$color-medium-red;
+          }
         }
       }
     }

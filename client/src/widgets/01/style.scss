@@ -7,12 +7,12 @@
 
   & .like-btn {
     &:hover {
-      color: var.$accent-dark-burgundy;
+      color: var.$color-dark-burgundy;
     }
   }
 
   & .liked-color {
-    color: var.$accent-dark-burgundy;
+    color: var.$color-dark-burgundy;
   }
 
   & .content {
@@ -58,7 +58,7 @@
           & svg {
             width: 30px;
             height: 30px;
-            fill: url(#widget-01_light-gradient) var.$accent-dark-burgundy;
+            fill: url(#widget-01_light-gradient) var.$color-dark-burgundy;
           }
         }
       }
@@ -80,12 +80,12 @@
 
   & .like-btn {
     &:hover {
-      color: var.$accent-light-pink;
+      color: var.$color-light-pink;
     }
   }
 
   & .liked-color {
-    color: var.$accent-light-pink;
+    color: var.$color-light-pink;
   }
 
   & .content {
@@ -96,7 +96,7 @@
           background: var.$bg-transparent-dark;
 
           & svg {
-            fill: url(#widget-01_dark-gradient) var.$accent-light-pink;
+            fill: url(#widget-01_dark-gradient) var.$color-light-pink;
           }
         }
       }
