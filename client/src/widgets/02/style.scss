@@ -52,17 +52,26 @@
         overflow: hidden;
 
         & li {
-          transition: var.$med-ease-out;
+          max-height: 20px;
         }
 
         @for $num from 1 through 4 {
           & li:nth-child(#{$num}) {
-            transition-delay: calc((4 - #{$num}) * 0.25s);
+            transition:
+              opacity 0.5s ease-in-out,
+              max-height 0.25s ease-in-out,
+              transform 0.5s ease-in-out;
+            transition-delay: calc((4 - #{$num}) * 0.5s);
           }
 
           & li:nth-child(#{$num}).active {
             transform: translateY(-100% * $num);
             opacity: 0;
+            max-height: 0;
+            transition:
+              opacity 0.25s ease-out,
+              max-height 1s ease-out,
+              transform 0.25s ease-out;
             transition-delay: $num * 0.25s;
           }
         }
@@ -126,8 +135,7 @@
           }
 
           &[data-calc-val="^"] {
-            padding-top: 5px;
-            padding-left: 2px;
+            padding-left: 5px;
 
             & sup {
               font-size: 11px;

@@ -16,7 +16,7 @@ export function getMarkup() {
           class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
         >
         <p class="mr-auto">about</p>
-          <button class="group cursor-pointer like-btn">
+          <button class="group cursor-pointer like-btn" aria-label="like button">
             <i
               class="fa-solid fa-heart group-active:scale-125"
             ></i></button

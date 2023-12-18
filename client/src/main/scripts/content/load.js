@@ -35,4 +35,4 @@ function loadWidgets() {
   }
 }
 
-loadWidgets();
+export { loadWidgets };

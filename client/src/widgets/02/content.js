@@ -8,14 +8,14 @@ export function getMarkup() {
     class="relative rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800">
     <div class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400">
       <p class="mr-auto">calculator</p>
-      <button class="like-btn group cursor-pointer">
+      <button class="like-btn group cursor-pointer" aria-label="like button">
         <i class="fa-solid fa-heart group-active:scale-125"></i>
       </button>
       <span class="like-value font-archivo" id="likes-02"></span>
     </div>
       <div class="content">
         <div class="display">
-            <button class="history-btn"><i class="fa-solid fa-arrows-up-down"></i></button>
+            <button class="history-btn" aria-label="toggle calculation history"><i class="fa-solid fa-arrows-up-down"></i></button>
             <div class="expressions">
                 <ul class="history">
             </ul>
@@ -32,7 +32,7 @@ export function getMarkup() {
           <button class="num-btns" data-calc-val="8">8</button>
           <button class="num-btns" data-calc-val="9">9</button>
           <button class="operation-btns" data-calc-val="-"><i class="fa-solid fa-minus"></i></button>
-          <button class="operation-btns" data-calc-val="^">^<sup>2</sup></button>
+          <button class="operation-btns" data-calc-val="^">x<sup>2</sup></button>
           <button class="num-btns" data-calc-val="4">4</button>
           <button class="num-btns" data-calc-val="5">5</button>
           <button class="num-btns" data-calc-val="6">6</button>
