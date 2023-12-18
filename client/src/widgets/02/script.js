@@ -14,9 +14,9 @@ export function initializeScript() {
     this.calculatorEl = document.querySelector("#widget-02 .calculator"),
     this.displayValue = document.querySelector("#widget-02 .current-val"),
 
-    this.getFromLocalStorage();
     this.setupCalculatorButtons();
     this.setupHistoryToggle();
+    this.getFromLocalStorage();
   },
 
     setupHistoryToggle: function () {
@@ -100,11 +100,16 @@ export function initializeScript() {
       const calcHistory = localStorage.getItem("calc-history");
       const calcValue = localStorage.getItem("calc-value");
 
-      const parsedCalcHistory = JSON.parse(calcHistory);
-      parsedCalcHistory.forEach((entry) => {
-        this.addToHistory(entry);
-      });
-      this.displayValue.textContent = calcValue;
+      if (calcHistory) {
+        const parsedCalcHistory = JSON.parse(calcHistory);
+        parsedCalcHistory.forEach((entry) => {
+          this.addToHistory(entry);
+        });
+      }
+
+      if (calcValue) {
+        this.displayValue.textContent = calcValue;
+      }
     },
   };
   CalculatorUI.initialize();
