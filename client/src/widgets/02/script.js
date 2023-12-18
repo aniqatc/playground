@@ -38,11 +38,9 @@ const CalculatorUI = {
       try {
         if (
           this.displayValue.textContent === "Error" ||
-          this.displayValue.textContent === "0"
+          this.displayValue.textContent === "0" ||
+          calcValue === "ac"
         ) {
-          this.displayValue.textContent = "";
-        }
-        if (calcValue === "ac") {
           this.displayValue.textContent = "";
         } else if (calcValue === "trim") {
           this.displayValue.textContent = Math.round(
