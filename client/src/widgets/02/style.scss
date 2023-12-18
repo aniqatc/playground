@@ -55,7 +55,7 @@
           transition: var.$med-ease-out;
         }
 
-        @for $num from 1 through 3 {
+        @for $num from 1 through 4 {
           & li:nth-child(#{$num}) {
             transition-delay: calc((4 - #{$num}) * 0.25s);
           }
@@ -73,7 +73,18 @@
         font-weight: 500;
         line-height: 1.2;
         margin-right: -3px;
+        margin-left: -18px;
         color: #000;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        width: 250px;
+        height: 55px;
+
+        &::-webkit-scrollbar,
+        &::-webkit-scrollbar-thumb {
+          display: none;
+        }
       }
     }
 
@@ -93,6 +104,10 @@
         border-radius: 4px;
         font-size: 18px;
         transition: var.$med-ease-out;
+
+        & i {
+          pointer-events: none;
+        }
 
         &:active {
           transform: scale(0.9);

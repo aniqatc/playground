@@ -22,8 +22,9 @@ export function getMarkup() {
                 <li>10 x 10</li>
                 <li>2010 + 9 - (5 + 9)</li>
                 <li>(200 + 9) * 2</li>
+                <li>0.02 * 8 + (10 - 9)</li>
             </ul>
-            <p class="current-val">209</p>
+            <div class="current-val">123</div>
             </div>
         </div>
         <div class="calculator">
@@ -31,7 +32,7 @@ export function getMarkup() {
           <button class="operation-helper-btns" data-calc-val="(">(</button>
           <button class="operation-helper-btns" data-calc-val=")">)</button>
           <button class="operation-btns" data-calc-val="+"><i class="fa-solid fa-plus"></i></button>
-          <button class="operation-btns" data-calc-val="pi">π</button>
+          <button class="operation-btns" data-calc-val="3.14159265359">π</button>
           <button class="num-btns" data-calc-val="7">7</button>
           <button class="num-btns" data-calc-val="8">8</button>
           <button class="num-btns" data-calc-val="9">9</button>
@@ -46,10 +47,10 @@ export function getMarkup() {
           <button class="num-btns" data-calc-val="2">2</button>
           <button class="num-btns" data-calc-val="3">3</button>
           <button class="operation-btns" data-calc-val="/"><i class="fa-solid fa-divide"></i></button>
-          <button class="operation-btns" data-calc-val="e">e</button>
+          <button class="operation-btns" data-calc-val="%"><i class="fa-solid fa-percent"></i></button>
           <button class="num-btns" data-calc-val="0">0</button>
           <button class="operation-helper-btns" data-calc-val=".">.</button>
-          <button class="operation-helper-btns" data-calc-val="%"><i class="fa-solid fa-percent"></i></button>
+          <button class="operation-helper-btns" data-calc-val="trim"><i class="fa-solid fa-scissors"></i></button>
           <button class="operation-btns" data-calc-val="="><i class="fa-solid fa-equals"></i></button>
         </div>
       </div>
