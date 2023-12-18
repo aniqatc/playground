@@ -54,12 +54,11 @@ const CalculatorUI = {
           this.displayValue.textContent = Math.sqrt(
             +this.displayValue.textContent,
           );
-        } else if (calcValue === "^") {
-          this.displayValue.textContent =
-            +this.displayValue.textContent * +this.displayValue.textContent;
         } else if (calcValue === "=") {
           this.addToHistory(this.displayValue.textContent);
-          this.displayValue.textContent = eval(this.displayValue.textContent);
+          this.displayValue.textContent = CalculatorLogic.evaluateExpression(
+            this.displayValue.textContent,
+          );
         } else if (calcValue !== undefined) {
           this.displayValue.textContent += calcValue;
           this.displayValue.scrollLeft = this.displayValue.scrollWidth;
@@ -117,5 +116,86 @@ const CalculatorUI = {
     } else {
       this.displayValue.textContent = "0";
     }
+  },
+};
+
+const CalculatorLogic = {
+  // Regexes to get numbers on both sides of the specified operation
+  regexParentheses: /\(([^()]+)\)/,
+  regexExponent: /(\d+(?:\.\d+)?)\^(\d+(?:\.\d+)?)/,
+  regexMultiply: /(\d+(?:\.\d+)?)\*(\d+(?:\.\d+)?)/,
+  regexDivide: /(\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)/,
+  regexAdd: /(\d+(?:\.\d+)?)\+(\d+(?:\.\d+)?)/,
+  regexSubtract: /(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)/,
+
+  evaluateParentheses: function (expression) {
+    const regex = this.regexParentheses;
+    let match;
+
+    // keeps checking for parentheses and replacing until there are none
+    while ((match = regex.exec(expression))) {
+      const innerExpression = match[1];
+      const evaluatedExpression = this.evaluateExpression(innerExpression);
+      expression = expression.replace(match[0], evaluatedExpression);
+    }
+    return expression;
+  },
+
+  evaluateExponent: function (expression) {
+    const regex = this.regexExponent;
+    let match;
+    while ((match = regex.exec(expression))) {
+      expression = Math.pow(+match[1], +match[2]);
+    }
+
+    return expression;
+  },
+
+  evaluateMultiply: function (expression) {
+    const regex = this.regexMultiply;
+    let match;
+    while ((match = regex.exec(expression))) {
+      expression = +match[1] * +match[2];
+    }
+    return expression;
+  },
+
+  evaluateDivide: function (expression) {
+    const regex = this.regexDivide;
+    let match;
+    while ((match = regex.exec(expression))) {
+      expression = +match[1] / +match[2];
+    }
+    return expression;
+  },
+
+  evaluateAdd: function (expression) {
+    const regex = this.regexAdd;
+    let match;
+    while ((match = regex.exec(expression))) {
+      expression = +match[1] + +match[2];
+    }
+    console.log(match);
+    return expression;
+  },
+
+  evaluateSubtract: function (expression) {
+    const regex = this.regexSubtract;
+    let match;
+    while ((match = regex.exec(expression))) {
+      expression = +match[1] - +match[2];
+    }
+    return expression;
+  },
+
+  // Follows PEMDAS for execution
+  evaluateExpression: function (expression) {
+    expression = this.evaluateParentheses(expression);
+    expression = this.evaluateExponent(expression);
+    expression = this.evaluateMultiply(expression);
+    expression = this.evaluateDivide(expression);
+    expression = this.evaluateAdd(expression);
+    expression = this.evaluateSubtract(expression);
+    return expression;
   },
 };

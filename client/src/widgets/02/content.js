@@ -32,7 +32,7 @@ export function getMarkup() {
           <button class="num-btns" data-calc-val="8">8</button>
           <button class="num-btns" data-calc-val="9">9</button>
           <button class="operation-btns" data-calc-val="-"><i class="fa-solid fa-minus"></i></button>
-          <button class="operation-btns" data-calc-val="^">x<sup>2</sup></button>
+          <button class="operation-btns" data-calc-val="^">x<sup>y</sup></button>
           <button class="num-btns" data-calc-val="4">4</button>
           <button class="num-btns" data-calc-val="5">5</button>
           <button class="num-btns" data-calc-val="6">6</button>
