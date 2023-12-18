@@ -1,6 +1,42 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 627:
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+const widgetMarkupContext = __webpack_require__(976);
+const widgetScriptContext = __webpack_require__(484);
+
+function loadContent(entry) {
+  const module = widgetMarkupContext(`./${entry}/content.js`);
+  const markup = module.getMarkup();
+  const container = document.querySelector("#js-main-container");
+  container.insertAdjacentHTML("beforeend", markup);
+
+  loadScript(entry);
+}
+
+function loadScript(entry) {
+  try {
+    const module = widgetScriptContext(`./${entry}/script.js`);
+    if (module && module.initializeScript) {
+      module.initializeScript();
+    }
+  } catch (error) {
+    // Skip
+  }
+}
+
+(function loadWidgets() {
+  for (let i = 1; i <= 2; i++) {
+    let entry = String(i).padStart(2, "0");
+    loadContent(entry);
+  }
+})();
+
+
+/***/ }),
+
 /***/ 690:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -433,39 +469,8 @@ var __webpack_exports__ = {};
 (() => {
 "use strict";
 
-;// CONCATENATED MODULE: ./src/main/scripts/content/load.js
-const widgetMarkupContext = __webpack_require__(976);
-const widgetScriptContext = __webpack_require__(484);
-
-function loadContent(entry) {
-  const module = widgetMarkupContext(`./${entry}/content.js`);
-  const markup = module.getMarkup();
-  const container = document.querySelector("#js-main-container");
-  container.insertAdjacentHTML("beforeend", markup);
-
-  loadScript(entry);
-}
-
-function loadScript(entry) {
-  try {
-    const module = widgetScriptContext(`./${entry}/script.js`);
-    if (module && module.initializeScript) {
-      module.initializeScript();
-    }
-  } catch (error) {
-    // Skip
-  }
-}
-
-function loadWidgets() {
-  for (let i = 1; i <= 2; i++) {
-    let entry = String(i).padStart(2, "0");
-    loadContent(entry);
-  }
-}
-
-
-
+// EXTERNAL MODULE: ./src/main/scripts/content/load.js
+var load = __webpack_require__(627);
 ;// CONCATENATED MODULE: ./src/main/scripts/ui/replayAnimation.js
 function replayAnimation(elSelector, animationName) {
   const animatedEl = document.querySelector(elSelector);
@@ -588,7 +593,6 @@ async function handleLikes(el, id, type) {
 
 
 
-loadWidgets();
 applySavedTheme();
 initializeLikeHandler();
 

@@ -29,11 +29,9 @@ function loadScript(entry) {
   }
 }
 
-function loadWidgets() {
+(function loadWidgets() {
   for (let i = 1; i <= 2; i++) {
     let entry = String(i).padStart(2, "0");
     loadContent(entry);
   }
-}
-
-export { loadWidgets };
+})();
