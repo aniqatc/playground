@@ -44,16 +44,16 @@
 **Inside the `/client` directory**: the `/public` directory contains all production-ready code, bundled and optimized using Webpack and the `/src` directory contains all source code, split between `/main` which represents the overall webpage & layout and `/widgets` which represents individual widgets
 
 - **Inside `/widgets`**, there are template files that represent reusable markup for the widgets (`_card.html` for main markup including title, like button, etc and `_border.html` to create an animated border around the widget card) and individual folders that hold the markup, styling and scripts for each widget
-- **Inside `/main**`, the main `index.html` file can be found, along with folders containing global styles and overall webpage functionality (e.g. handling the like button, theme toggling, etc)
+- **Inside `/main`**, the main `index.html` file can be found, along with folders containing global styles and overall webpage functionality (e.g. handling the like button, theme toggling, etc)
 
 **Webpack Configuration** for in `/client`
 
 - Handles the SCSS and PostCSS loaders (for Tailwind)
 - Handles bundling all modularized JavaScript code
-- Handles configuring HTML with meta tags and icons
-- Handles retrieval of environmental variables from the hidden `.env` file using different plugins for prod vs. dev environment
-- Handles manifest.json file required for a Progressive Web Application
 - Handles minifying all final CSS and JavaScript files
+- Handles configuring HTML with meta tags and icons
+- Handles retrieval of the relevant environmental variables from the hidden `.env` files, dependent on the environment (development vs production)
+- Handles manifest.json file required for a Progressive Web Application
 
 **Documentation** in `/docs`
 
@@ -64,13 +64,13 @@
 
 #### About
 
-<img src="/docs/screenshots/widget-01.png">
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-01.png"></a>
 
 A card detailing the purpose of the overall webpage along with a smooth animation displaying the different logos of the technologies used.
 
 #### Calculator
 
-<img src="/docs/screenshots/widget-02.png">
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-02.png"></a>
 
 A simple calculator that can handle evaluating different arithmetic expressions with a minimalistic user interface and ability to keep track of previously inputted expressions.
 
