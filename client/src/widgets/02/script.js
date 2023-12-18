@@ -94,7 +94,7 @@ export function initializeScript() {
       localStorage.setItem("calc-history", JSON.stringify(calcHistory));
 
       const calcValue = eval(this.displayValue.textContent);
-      if (!isNaN(parseFloat(calcValue)) && isFinite(calcValue)) {
+      if (!isNaN(parseFloat(calcValue))) {
         localStorage.setItem("calc-value", calcValue);
       }
     },
