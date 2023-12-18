@@ -19,12 +19,8 @@ export function getMarkup() {
             <button class="history-btn"><i class="fa-solid fa-arrows-up-down"></i></button>
             <div class="expressions">
                 <ul class="history">
-                <li>10 x 10</li>
-                <li>2010 + 9 - (5 + 9)</li>
-                <li>(200 + 9) * 2</li>
-                <li>0.02 * 8 + (10 - 9)</li>
             </ul>
-            <div class="current-val">123</div>
+            <div class="current-val">0</div>
             </div>
         </div>
         <div class="calculator">
@@ -37,7 +33,7 @@ export function getMarkup() {
           <button class="num-btns" data-calc-val="8">8</button>
           <button class="num-btns" data-calc-val="9">9</button>
           <button class="operation-btns" data-calc-val="-"><i class="fa-solid fa-minus"></i></button>
-           <button class="operation-btns" data-calc-val="^">^</button>
+          <button class="operation-btns" data-calc-val="^">^<sup>2</sup></button>
           <button class="num-btns" data-calc-val="4">4</button>
           <button class="num-btns" data-calc-val="5">5</button>
           <button class="num-btns" data-calc-val="6">6</button>

@@ -125,6 +125,16 @@
             width: 78%;
           }
 
+          &[data-calc-val="^"] {
+            padding-top: 5px;
+            padding-left: 2px;
+
+            & sup {
+              font-size: 11px;
+              font-weight: 800;
+            }
+          }
+
           &:hover {
             color: var.$color-light-red;
             background: var.$color-medium-red;

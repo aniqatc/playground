@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", () => {
+  CalculatorUI.initialize();
+});
+
 const CalculatorUI = {
   pastEntriesParent: null,
   pastEntries: null,
@@ -13,6 +17,7 @@ const CalculatorUI = {
     this.calculatorEl = document.querySelector("#widget-02 .calculator"),
     this.displayValue = document.querySelector("#widget-02 .current-val"),
 
+    this.getFromLocalStorage();
     this.setupCalculatorButtons();
     this.setupHistoryToggle();
   },
@@ -31,7 +36,10 @@ const CalculatorUI = {
       this.displayValue.style.color = "revert";
 
       try {
-        if (this.displayValue.textContent === "Error") {
+        if (
+          this.displayValue.textContent === "Error" ||
+          this.displayValue.textContent === "0"
+        ) {
           this.displayValue.textContent = "";
         }
         if (calcValue === "ac") {
@@ -77,9 +85,27 @@ const CalculatorUI = {
       this.pastEntriesParent.appendChild(li);
       this.pastEntries = this.pastEntriesParent.querySelectorAll("li");
     }
+
+    this.saveToLocalStorage();
+  },
+
+  saveToLocalStorage: function () {
+    const calcHistory = [...this.pastEntriesParent.querySelectorAll("li")].map(
+      (li) => li.textContent,
+    );
+    const calcValue = eval(this.displayValue.textContent);
+    localStorage.setItem("calc-history", JSON.stringify(calcHistory));
+    localStorage.setItem("calc-value", calcValue);
+  },
+
+  getFromLocalStorage: function () {
+    const calcHistory = localStorage.getItem("calc-history");
+    const calcValue = localStorage.getItem("calc-value");
+
+    const parsedCalcHistory = JSON.parse(calcHistory);
+    parsedCalcHistory.forEach((entry) => {
+      this.addToHistory(entry);
+    });
+    this.displayValue.textContent = calcValue;
   },
 };
-
-document.addEventListener("DOMContentLoaded", () => {
-  CalculatorUI.initialize();
-});
