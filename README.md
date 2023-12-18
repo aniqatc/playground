@@ -57,9 +57,16 @@ Inside the `/client` directory: the `/public` directory contains all production-
 
 **Documentation** in `/docs`
 
-- Notes for each widget and overall webpage coming soon... (similar to my [CSS](https://github.com/aniqatc/css-100/blob/main/README.md) project)
 - `/main` goes over choices and code relating to overall webpage design and functionality
 - `/widgets` goes over choices and code relating to individual widgets
+
+## Widgets
+
+#### About
+A card detailing the purpose of the overall webpage along with a smooth animation displaying the different logos of the technologies used.
+
+#### Calculator
+A simple calculator that can handle evaluating different arithmetic expressions with a minimalistic user interface and ability to keep track of previously inputted expressions.
 
 ## Available Scripts
 
