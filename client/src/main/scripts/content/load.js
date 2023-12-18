@@ -9,13 +9,11 @@ const widgetScriptContext = require.context(
   /script\.js$/,
 );
 
-function loadContent(entry) {
+async function loadContent(entry) {
   const module = widgetMarkupContext(`./${entry}/content.js`);
   const markup = module.getMarkup();
   const container = document.querySelector("#js-main-container");
   container.insertAdjacentHTML("beforeend", markup);
-
-  loadScript(entry);
 }
 
 function loadScript(entry) {
@@ -29,9 +27,10 @@ function loadScript(entry) {
   }
 }
 
-(function loadWidgets() {
+(async function loadWidgets() {
   for (let i = 1; i <= 2; i++) {
     let entry = String(i).padStart(2, "0");
-    loadContent(entry);
+    await loadContent(entry);
+    loadScript(entry);
   }
 })();
