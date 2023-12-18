@@ -26,6 +26,8 @@ function loadScript(entry) {
     }
   } catch (error) {
     // Skip
+    console.log(entry);
+    console.log(error);
   }
 }
 
