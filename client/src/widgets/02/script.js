@@ -95,6 +95,7 @@ const CalculatorUI = {
     localStorage.setItem("calc-history", JSON.stringify(calcHistory));
 
     const calcValue = eval(this.displayValue.textContent);
+    // ensures value is a number & not NaN value
     if (!isNaN(parseFloat(calcValue))) {
       localStorage.setItem("calc-value", calcValue);
     }
@@ -126,6 +127,17 @@ const CalculatorLogic = {
   regexDivide: /(\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)/,
   regexAdd: /(\d+(?:\.\d+)?)\+(\d+(?:\.\d+)?)/,
   regexSubtract: /(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)/,
+
+  // Follows PEMDAS for execution
+  evaluateExpression: function (expression) {
+    expression = this.evaluateParentheses(expression);
+    expression = this.evaluateExponent(expression);
+    expression = this.evaluateMultiply(expression);
+    expression = this.evaluateDivide(expression);
+    expression = this.evaluateAdd(expression);
+    expression = this.evaluateSubtract(expression);
+    return expression;
+  },
 
   evaluateParentheses: function (expression) {
     const regex = this.regexParentheses;
@@ -184,17 +196,6 @@ const CalculatorLogic = {
     while ((match = regex.exec(expression))) {
       expression = +match[1] - +match[2];
     }
-    return expression;
-  },
-
-  // Follows PEMDAS for execution
-  evaluateExpression: function (expression) {
-    expression = this.evaluateParentheses(expression);
-    expression = this.evaluateExponent(expression);
-    expression = this.evaluateMultiply(expression);
-    expression = this.evaluateDivide(expression);
-    expression = this.evaluateAdd(expression);
-    expression = this.evaluateSubtract(expression);
     return expression;
   },
 };
