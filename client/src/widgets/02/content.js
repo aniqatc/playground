@@ -1,5 +1,4 @@
 import "./style.scss";
-import { initializeScript } from "./script";
 
 export function getMarkup() {
   return `
@@ -53,5 +52,3 @@ export function getMarkup() {
   </section>
 `;
 }
-
-initializeScript();

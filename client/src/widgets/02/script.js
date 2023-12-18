@@ -1,8 +1,4 @@
 export function initializeScript() {
-  document.addEventListener("DOMContentLoaded", () => {
-    CalculatorUI.initialize();
-  });
-
   const CalculatorUI = {
     pastEntriesParent: null,
     pastEntries: null,
@@ -111,4 +107,5 @@ export function initializeScript() {
       this.displayValue.textContent = calcValue;
     },
   };
+  CalculatorUI.initialize();
 }
