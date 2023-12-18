@@ -102,8 +102,6 @@ const CalculatorUI = {
 
   getFromLocalStorage: function () {
     const calcHistory = localStorage.getItem("calc-history");
-    const calcValue = localStorage.getItem("calc-value");
-
     if (calcHistory) {
       const parsedCalcHistory = JSON.parse(calcHistory);
       parsedCalcHistory.forEach((entry) => {
@@ -111,6 +109,7 @@ const CalculatorUI = {
       });
     }
 
+    const calcValue = localStorage.getItem("calc-value");
     if (calcValue) {
       this.displayValue.textContent = calcValue;
     } else {
