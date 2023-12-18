@@ -1,4 +1,4 @@
-## playground - [notes incomplete]
+## playground
 
 [https://playground.aniqa.dev](https://playground.aniqa.dev)
 
@@ -41,10 +41,10 @@
 - `package.json` & `package-lock.json` refers to any dependencies relating to the frontend
 - `postcss.config.js`, `tailwind.config.js` and `webpack.config.js` are individual configuration files for PostCSS, Tailwind and Webpack
 
-Inside the `/client` directory: the `/public` directory contains all production-ready code, bundled and optimized using Webpack and the `/src` directory contains all source code, split between `/main` which represents the overall webpage & layout and `/widgets` which represents individual widgets
-- Inside `/widgets`, there are template files that represent reusable markup for the widgets (`_template.html` for main markup including title, like button, etc and `_border.html` to create an animated border around the widget card) and individual folders that hold the markup, styling and scripts for each widget
-- Inside `/main`, the main `index.html` file can be found, along with folders containing global styles and overall webpage functionality (e.g. handling the like button, theme toggling, etc)
+**Inside the `/client` directory**: the `/public` directory contains all production-ready code, bundled and optimized using Webpack and the `/src` directory contains all source code, split between `/main` which represents the overall webpage & layout and `/widgets` which represents individual widgets
 
+- **Inside `/widgets`**, there are template files that represent reusable markup for the widgets (`_card.html` for main markup including title, like button, etc and `_border.html` to create an animated border around the widget card) and individual folders that hold the markup, styling and scripts for each widget
+- **Inside `/main**`, the main `index.html` file can be found, along with folders containing global styles and overall webpage functionality (e.g. handling the like button, theme toggling, etc)
 
 **Webpack Configuration** for in `/client`
 
@@ -63,9 +63,15 @@ Inside the `/client` directory: the `/public` directory contains all production-
 ## Widgets
 
 #### About
+
+<img src="/docs/screenshots/widget-01.png">
+
 A card detailing the purpose of the overall webpage along with a smooth animation displaying the different logos of the technologies used.
 
 #### Calculator
+
+<img src="/docs/screenshots/widget-02.png">
+
 A simple calculator that can handle evaluating different arithmetic expressions with a minimalistic user interface and ability to keep track of previously inputted expressions.
 
 ## Available Scripts
