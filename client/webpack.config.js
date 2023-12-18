@@ -12,7 +12,7 @@ module.exports = {
   entry: "./src/main/scripts/index.js",
   output: {
     path: path.resolve(__dirname, "public"),
-    filename: "all.js",
+    filename: "bundle.js",
     publicPath: "/",
     clean: true,
   },
@@ -39,7 +39,7 @@ module.exports = {
       favicon: "./src/main/assets/favicon.png",
     }),
     new MiniCssExtractPlugin({
-      filename: "all.css",
+      filename: "bundle.css",
     }),
     ...(isDevelopment
       ? [
@@ -55,6 +55,8 @@ module.exports = {
   ],
   optimization: {
     minimize: true,
-    minimizer: [new CssMinimizerPlugin()],
+    splitChunks: false,
+    runtimeChunk: false,
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
   },
 };
