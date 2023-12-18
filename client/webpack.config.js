@@ -55,8 +55,6 @@ module.exports = {
   ],
   optimization: {
     minimize: true,
-    splitChunks: false,
-    runtimeChunk: false,
-    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+    minimizer: [new CssMinimizerPlugin()],
   },
 };

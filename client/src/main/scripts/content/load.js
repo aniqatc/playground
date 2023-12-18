@@ -1,17 +1,26 @@
-async function loadContent(entry) {
-  const module = await import(
-    /* webpackMode: "eager" */ `/src/widgets/${entry}/content.js`
-  );
+const widgetMarkupContext = require.context(
+  "/src/widgets/",
+  true,
+  /content\.js$/,
+);
+const widgetScriptContext = require.context(
+  "/src/widgets/",
+  true,
+  /script\.js$/,
+);
+
+function loadContent(entry) {
+  const module = widgetMarkupContext(`./${entry}/content.js`);
   const markup = module.getMarkup();
   const container = document.querySelector("#js-main-container");
   container.insertAdjacentHTML("beforeend", markup);
+
+  loadScript(entry);
 }
 
-async function loadScript(entry) {
+function loadScript(entry) {
   try {
-    const module = await import(
-      /* webpackMode: "eager" */ `/src/widgets/${entry}/script.js`
-    );
+    const module = widgetScriptContext(`./${entry}/script.js`);
     if (module && module.initializeScript) {
       module.initializeScript();
     }
@@ -20,11 +29,10 @@ async function loadScript(entry) {
   }
 }
 
-async function loadWidgets() {
+function loadWidgets() {
   for (let i = 1; i <= 2; i++) {
     let entry = String(i).padStart(2, "0");
-    await loadContent(entry);
-    await loadScript(entry);
+    loadContent(entry);
   }
 }
 
