@@ -91,9 +91,12 @@ export function initializeScript() {
       const calcHistory = [
         ...this.pastEntriesParent.querySelectorAll("li"),
       ].map((li) => li.textContent);
-      const calcValue = eval(this.displayValue.textContent);
       localStorage.setItem("calc-history", JSON.stringify(calcHistory));
-      localStorage.setItem("calc-value", calcValue);
+
+      const calcValue = eval(this.displayValue.textContent);
+      if (!isNaN(parseFloat(calcValue)) && isFinite(calcValue)) {
+        localStorage.setItem("calc-value", calcValue);
+      }
     },
 
     getFromLocalStorage: function () {
@@ -109,6 +112,8 @@ export function initializeScript() {
 
       if (calcValue) {
         this.displayValue.textContent = calcValue;
+      } else {
+        this.displayValue.textContent = "0";
       }
     },
   };

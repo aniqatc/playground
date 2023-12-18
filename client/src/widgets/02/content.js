@@ -19,7 +19,7 @@ export function getMarkup() {
             <div class="expressions">
                 <ul class="history">
             </ul>
-            <div class="current-val">0</div>
+            <div class="current-val"></div>
             </div>
         </div>
         <div class="calculator">
