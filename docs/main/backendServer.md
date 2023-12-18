@@ -4,7 +4,7 @@
 
 The `server.js` file creates and handles a Node.js application using Express (specifically for routing HTTP requests) and Mongoose to deal with MongoDB database(s).
 
-Here are some key points:
+**Here are some key points**:
 
 - `dotenv` package is used to load environmental variables from the hidden `.env` file which holds sensitive information like the database URI and password
 - Mongoose is used to seamlessly connect to the relevant MongoDB database and upon successful connection, the database name is printed to the console
@@ -23,7 +23,7 @@ process.env.NODE_ENV === 'production'
 
 As noted above, `NODE_ENV` is set based on the npm script that is executed.
 
-- A redirect middleware is set up to send users to my `FRONTEND_HOSTED` domain if anyone tries to access the domain that is hosting the backend:
+- A **redirect middleware** is set up to send users to my `FRONTEND_HOSTED` domain if anyone tries to access the domain that is hosting the backend:
 
 ```javascript
 app.use((req, res, next) => {
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 });
 ```
 
-Additionally, router paths are declared and for now, there is only the `like` router that is being handled:
+Additionally, **router paths** are declared and for now, there is only the `like` router that is being handled:
 
 ```javascript
 const likeRouter = require('./server/main/routers/likeRouter');
