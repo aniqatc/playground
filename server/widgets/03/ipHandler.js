@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 async function collectUserData(req, res, next) {
 	let ip = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress;
 	if (ip) {
@@ -46,8 +48,11 @@ async function getUserMap(req, res) {
 	const arrayBuffer = await response.arrayBuffer();
 	const imageBuffer = Buffer.from(arrayBuffer);
 
-	res.setHeader('Content-Type', 'image/png');
-	res.send(imageBuffer);
+	const imagePath = './client/public/user-map.png';
+	const publicPath = `${process.env.FRONTEND_HOSTED}/user-map.png`;
+	fs.writeFileSync(imagePath, imageBuffer);
+
+	res.json({ imageURL: publicPath });
 }
 
 module.exports = { collectUserData, getUserInfo, getUserMap };
