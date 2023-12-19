@@ -9,9 +9,7 @@ async function ipHandler(req, res, next) {
 		userAgent,
 		data,
 	};
-	console.log(ip);
-	console.log(userAgent);
-	console.log(data);
+	console.log(req.userInfo);
 	next();
 }
 

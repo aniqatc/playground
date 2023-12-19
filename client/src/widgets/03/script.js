@@ -1,18 +1,6 @@
-export function initializeScript() {
-  // operation system
-  console.log(navigator.platform);
-
-  // device type
-  if (
-    navigator.userAgent.includes("Mobi") ||
-    navigator.userAgent.includes("Android")
-  ) {
-    console.log("mobile");
-  } else {
-    console.log("desktop or tablet");
-  }
-  // browser
-  console.log(navigator.userAgent);
-  // timezone
-  console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
+export async function initializeScript() {
+  const serverURL = process.env.SERVER;
+  const response = await fetch(`${serverURL}/widget/ip-data/`);
+  const data = await response.json();
+  console.log(data);
 }
