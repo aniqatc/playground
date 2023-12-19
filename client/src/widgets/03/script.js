@@ -20,9 +20,10 @@ function saveToLocalStorage(data) {
 }
 
 function updateMap(data) {
-  const userMap = document.querySelector("#widget-03 .user-map-img");
-  const userMapParent = document.querySelector("#widget-03 .map-box");
-  const userDataGrid = document.querySelector("#widget-03 .data-grid");
+  const widget = document.querySelector("#widget-03");
+  const userMap = widget.querySelector(".user-map-img");
+  const userMapParent = widget.querySelector(".map-box");
+  const userDataGrid = widget.querySelector(".data-grid");
   const theme = localStorage.getItem("theme") || "outdoors";
   const lat = data.locationData.lat || "33.55";
   const lon = data.locationData.lon || "-117.77";
@@ -36,17 +37,18 @@ function updateMap(data) {
 }
 
 function updateContent(data) {
-  const userCountry = document.querySelector("#widget-03 .user-country");
-  const userRegion = document.querySelector("#widget-03 .user-region");
-  const userCity = document.querySelector("#widget-03 .user-city");
-  const userLat = document.querySelector("#widget-03 .user-lat");
-  const userLon = document.querySelector("#widget-03 .user-lon");
-  const userBrowser = document.querySelector("#widget-03 .user-browser");
-  const userOS = document.querySelector("#widget-03 .user-os");
-  const userPlatform = document.querySelector("#widget-03 .user-platform");
-  const userTimezone = document.querySelector("#widget-03 .user-timezone");
-  const userISP = document.querySelector("#widget-03 .user-isp");
-  const userIP = document.querySelector("#widget-03 .user-ip");
+  const widget = document.querySelector("#widget-03");
+  const userCountry = widget.querySelector(".user-country");
+  const userRegion = widget.querySelector(".user-region");
+  const userCity = widget.querySelector(".user-city");
+  const userLat = widget.querySelector(".user-lat");
+  const userLon = widget.querySelector(".user-lon");
+  const userBrowser = widget.querySelector(".user-browser");
+  const userOS = widget.querySelector(".user-os");
+  const userPlatform = widget.querySelector(".user-platform");
+  const userTimezone = widget.querySelector(".user-timezone");
+  const userISP = widget.querySelector(".user-isp");
+  const userIP = widget.querySelector(".user-ip");
 
   userBrowser.textContent =
     `${data.browser} ${data.browserVersion}` || "Citrus Explorer 8.0";

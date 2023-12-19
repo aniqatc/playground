@@ -11,12 +11,13 @@ const CalculatorUI = {
 
   // prettier-ignore
   initialize: function () {
-    this.pastEntriesParent = document.querySelector("#widget-02 .history");
-    this.pastEntries = this.pastEntriesParent.querySelectorAll("li"),
-    this.toggleHistoryButton = document.querySelector("#widget-02 .history-btn"),
-    this.calculatorEl = document.querySelector("#widget-02 .calculator"),
-    this.displayValue = document.querySelector("#widget-02 .current-val"),
-
+    this.widget = document.querySelector("#widget-02");
+    this.pastEntriesParent = this.widget.querySelector(".history");
+    this.pastEntries = this.widget.querySelectorAll(".history li"),
+    this.toggleHistoryButton = this.widget.querySelector(".history-btn"),
+    this.calculatorEl = this.widget.querySelector(".calculator"),
+    this.displayValue = this.widget.querySelector(".current-val"),
+    
     this.setupCalculatorButtons();
     this.setupHistoryToggle();
     this.getFromLocalStorage();

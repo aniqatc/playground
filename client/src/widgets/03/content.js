@@ -2,7 +2,7 @@ import "./style.scss";
 
 export function getMarkup() {
   return `
-<!-- Widget 03: User Footprint -->
+<!-- Widget 03: User's Digital Footprint -->
 <section
   id="widget-03"
   class="relative h-min rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800"
