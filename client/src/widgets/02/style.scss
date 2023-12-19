@@ -21,7 +21,7 @@
     & .display {
       width: 97%;
       margin: -8px auto 0;
-      border-radius: 0 0 4px 4px;
+      border-radius: 0 0 var.$small-radius var.$small-radius;
       background: #fdfeff;
       text-align: end;
       padding: var.$spacing-base 16px;
@@ -111,7 +111,7 @@
         justify-content: center;
         height: 40px;
         width: 40px;
-        border-radius: 4px;
+        border-radius: var.$small-radius;
         font-size: 18px;
         transition: var.$med-ease-out;
 

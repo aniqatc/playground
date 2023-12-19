@@ -59,7 +59,7 @@
       grid-row: span 4;
 
       & img {
-        border-radius: 3px;
+        border-radius: var.$small-radius;
         object-fit: cover;
         width: 100%;
         height: 100%;
@@ -87,7 +87,7 @@
 
       & .data-item {
         font-size: 13px;
-        border-radius: 3px;
+        border-radius: var.$small-radius;
         box-shadow: var.$tight-shadow rgba(178, 87, 22, 0.15);
         background: #fff;
         border: var.$border-light;
@@ -108,7 +108,6 @@
 
         & ul {
           margin-left: var.$spacing-base;
-          font-family: "Archivo", "Inter", sans-serif;
 
           & li {
             margin: 2px 0;
