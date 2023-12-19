@@ -1,9 +1,22 @@
 export async function initializeScript() {
   const response = await fetch(`${process.env.SERVER}/widget/user-data/`);
   const data = await response.json();
+  saveToLocalStorage(data);
 
-  updateContent(data);
-  updateMap(data);
+  let cachedData = localStorage.getItem("user-footprint");
+  cachedData = JSON.parse(cachedData);
+
+  if (cachedData) {
+    updateContent(cachedData);
+    updateMap(cachedData);
+  } else {
+    updateContent(data);
+    updateMap(data);
+  }
+}
+
+function saveToLocalStorage(data) {
+  localStorage.setItem("user-footprint", JSON.stringify(data));
 }
 
 function updateMap(data) {
