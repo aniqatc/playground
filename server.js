@@ -7,8 +7,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 const db = process.env.DB_URI.replace('<PASSWORD>', process.env.DB_PW);
 
-// routers
+// routers & handlers
 const likeRouter = require('./server/main/routers/likeRouter');
+const ipHandler = require('./server/widgets/03/ipHandler');
 
 // connect widget db
 mongoose
@@ -21,6 +22,7 @@ process.env.NODE_ENV === 'production'
 	: app.use(cors({ origin: process.env.FRONTEND_LOCAL }));
 app.use(express.json());
 app.use('/widget/likes/', likeRouter);
+app.get('/widget/ip-data/', ipHandler.ipHandler, ipHandler.sendIPData);
 
 // redirect backend host to frontend
 app.use((req, res, next) => {
