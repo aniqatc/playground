@@ -26,7 +26,8 @@ app.use(useragent.express());
 
 // paths
 app.use('/widget/likes/', likeRouter);
-app.get('/widget/user-data/', ipHandler.ipRouter, ipHandler.getUserInfo);
+app.get('/widget/user-data/', ipHandler.collectUserData, ipHandler.getUserInfo);
+app.get('/widget/user-map/:theme', ipHandler.collectUserData, ipHandler.getUserMap);
 
 // redirect backend host to frontend
 app.use((req, res, next) => {
