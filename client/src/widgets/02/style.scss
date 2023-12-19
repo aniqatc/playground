@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 #widget-02 {
-  grid-row: span 2;
+  height: fit-content;
   width: var.$widget-base;
 
   & .like-btn {

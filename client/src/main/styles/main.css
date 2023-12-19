@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply mx-auto max-w-screen-xl bg-zinc-200 font-inter dark:bg-neutral-950 dark:text-zinc-100;
+  @apply mx-auto max-w-screen-2xl bg-zinc-200 font-inter dark:bg-neutral-950 dark:text-zinc-100;
 }
 
 h1,
@@ -17,6 +17,7 @@ h6 {
 
 @layer utilities {
   .grid-col-custom {
-    grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    grid-template-rows: 300px;
   }
 }

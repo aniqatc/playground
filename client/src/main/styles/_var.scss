@@ -2,7 +2,8 @@
 $spacing-base: 8px;
 
 // Sizing
-$widget-base: clamp(300px, 100%, 400px);
+$widget-base: max(300px, 100%);
+$widget-md: max(500px, 100%);
 
 // Backgrounds
 $bg-dotted-light: radial-gradient(#efefef 1px, transparent 0);
@@ -35,3 +36,6 @@ $border-dark: 1px solid #000000;
 // Transitions
 $short-ease-out: all 200ms ease-out;
 $med-ease-out: all 400ms ease-out;
+
+// Shadows
+$tight-shadow: 1px 1px 4px;
