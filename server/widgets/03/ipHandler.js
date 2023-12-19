@@ -54,7 +54,7 @@ async function getUserMap(req, res) {
 	const imagePath = path.join(imageDirectory, 'user-map.png');
 	await fs.writeFile(imagePath, imageBuffer);
 
-	const publicPath = 'https://data.playground.aniqa.dev/user-map.png';
+	const publicPath = 'https://data.playground.aniqa.dev/server/widgets/03/user-map.png';
 	res.json({ imageURL: publicPath });
 }
 
