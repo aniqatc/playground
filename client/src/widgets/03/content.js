@@ -35,9 +35,6 @@ export function getMarkup() {
                 <li>Longitude: <span class="user-lon"></span></li>
             </ul>
         </div>
-        <div class="map-box data-item">
-            <img src="#" class="user-map-img">
-        </div>
         <div class="device-box data-item">
             <i class="fa-solid fa-computer"></i>
             <ul class="device-info">
@@ -57,6 +54,9 @@ export function getMarkup() {
             <ul class="isp-info">
                 <li>ISP: <span class="user-isp"></span></li>
             </ul>
+        </div>
+        <div class="map-box data-item">
+            <img src="#" class="user-map-img">
         </div>
     </div>
     <p class="footer-note">
