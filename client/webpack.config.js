@@ -50,6 +50,7 @@ module.exports = {
       : [
           new webpack.DefinePlugin({
             "process.env.SERVER": JSON.stringify(process.env.SERVER),
+            "process.env.MAPBOX_KEY": JSON.stringify(process.env.MAPBOX_KEY),
           }),
         ]),
   ],
