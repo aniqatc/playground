@@ -5,7 +5,7 @@ export async function initializeScript() {
   console.log(data);
 
   const image = await fetch(`${serverURL}/widget/user-map/dark`);
-  const imageFile = await response.blob();
-  const imageUrl = URL.createObjectURL(blob);
+  const imageFile = await image.blob();
+  const imageUrl = URL.createObjectURL(imageFile);
   console.log(imageUrl);
 }
