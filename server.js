@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const useragent = require('express-useragent');
 const app = express();
 
 const port = process.env.PORT || 3000;
@@ -21,8 +22,11 @@ process.env.NODE_ENV === 'production'
 	? app.use(cors({ origin: process.env.FRONTEND_HOSTED }))
 	: app.use(cors({ origin: process.env.FRONTEND_LOCAL }));
 app.use(express.json());
+app.use(useragent.express());
+
+// paths
 app.use('/widget/likes/', likeRouter);
-app.get('/widget/ip-data/', ipHandler.ipHandler, ipHandler.sendIPData);
+app.get('/widget/user-data/', ipHandler.ipRouter, ipHandler.getUserInfo);
 
 // redirect backend host to frontend
 app.use((req, res, next) => {

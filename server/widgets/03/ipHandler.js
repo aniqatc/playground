@@ -1,24 +1,37 @@
-async function ipHandler(req, res, next) {
-	const ip = req.ip || req.connection.remoteAddress;
-	const userAgent = req.headers['user-agent'];
-	const locationAPIURL = `http://ip-api.com/json/24.48.0.1?fields=status,message,country,regionName,city,lat,lon,timezone,isp,query`;
-	const response = await fetch(locationAPIURL);
-	const data = await response.json();
+async function ipRouter(req, res, next) {
+	let ip = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress;
+	if (ip) {
+		ip = ip.split(',')[0];
+	}
+	if (ip.startsWith('::ffff:')) {
+		ip = ip.slice(7);
+	}
+	const browser = req.useragent.browser;
+	const browserVersion = req.useragent.version;
+	const os = req.useragent.os;
+	const platform = req.useragent.platform;
+
+	const locationAPI = `http://ip-api.com/json/${ip}?fields=status,message,country,regionName,city,lat,lon,timezone,isp,query`;
+	const apiResponse = await fetch(locationAPI);
+	const locationData = await apiResponse.json();
+
 	req.userInfo = {
 		ip,
-		userAgent,
-		data,
+		browser,
+		browserVersion,
+		os,
+		platform,
+		locationData,
 	};
-	console.log(req.userInfo);
 	next();
 }
 
-function sendIPData(req, res) {
+function getUserInfo(req, res) {
 	if (req.userInfo) {
 		res.json(req.userInfo);
 	} else {
-		res.status(500).send('Error in fetching user information');
+		res.status(500).send('Error in fetching user information.');
 	}
 }
 
-module.exports = { ipHandler, sendIPData };
+module.exports = { ipRouter, getUserInfo };
