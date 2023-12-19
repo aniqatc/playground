@@ -57,6 +57,7 @@
 
     & .map-box {
       grid-row: span 4;
+      display: none;
 
       & img {
         border-radius: var.$small-radius;
@@ -81,9 +82,10 @@
 
     & .data-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: var.$spacing-base;
       margin-top: var.$spacing-base;
+      overflow: hidden;
 
       & .data-item {
         font-size: 13px;
@@ -91,6 +93,24 @@
         box-shadow: var.$tight-shadow rgba(178, 87, 22, 0.15);
         background: #fff;
         border: var.$border-light;
+
+        @for $num from 1 through 5 {
+          &:nth-child(#{$num}) {
+            animation: translateGridItemsIn 2s ease-in-out forwards;
+          }
+
+          @keyframes translateGridItemsIn {
+            0% {
+              transform: translateY(-100% * $num);
+              opacity: 0;
+            }
+
+            100% {
+              transform: translateY(0);
+              opacity: 1;
+            }
+          }
+        }
 
         &:first-of-type {
           background: var.$color-medium-orange;

@@ -22,7 +22,7 @@ export function getMarkup() {
             <span class="dot"></span>
             Your IP Address
         </div>
-        <div class="user-ip">12.313.131.95</div>
+        <div class="user-ip"></div>
     </div>
     <div class="data-grid">
         <div class="location-box data-item">

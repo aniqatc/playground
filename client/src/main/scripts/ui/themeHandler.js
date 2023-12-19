@@ -1,4 +1,4 @@
-import { initializeScript as Widget3 } from "../../../widgets/03/script";
+import { initializeScript as ReloadWidget3 } from "../../../widgets/03/script";
 import { replayAnimation } from "./replayAnimation";
 
 const root = document.documentElement;
@@ -11,7 +11,7 @@ themeToggle.addEventListener("click", () => {
     "theme",
     root.classList.contains("dark") ? "dark" : "light",
   );
-  reloadWidgetContent(Widget3);
+  ReloadWidget3();
 });
 
 function applySavedTheme() {
@@ -19,10 +19,6 @@ function applySavedTheme() {
   if (savedTheme) {
     root.classList.toggle("dark", savedTheme === "dark");
   }
-}
-
-function reloadWidgetContent(callback) {
-  callback();
 }
 
 export { applySavedTheme };
