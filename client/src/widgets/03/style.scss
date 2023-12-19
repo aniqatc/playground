@@ -5,12 +5,12 @@
 
   & .like-btn {
     &:hover {
-      color: #d27333;
+      color: var.$color-medium-orange;
     }
   }
 
   & .liked-color {
-    color: #d27333;
+    color: var.$color-medium-orange;
   }
 
   & .content {
@@ -18,23 +18,23 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      background: #f7eae1;
+      background: var.$color-light-orange;
       padding: 4px var.$spacing-base;
       border-radius: 2px;
       box-shadow: var.$tight-shadow rgba(0, 0, 0, 0.1);
       border: 1px solid #eccfbc;
 
       & .ip-title {
-        font-size: 11px;
+        font-size: 10px;
         font-weight: 500;
 
         & .dot {
           display: inline-block;
-          height: 9px;
-          width: 9px;
+          height: 8px;
+          width: 8px;
           border-radius: 50%;
           background: #61bf4f;
-          animation: blinking-dot 0.5s ease infinite both alternate-reverse;
+          animation: blinking-dot 1s linear infinite both alternate-reverse;
 
           @keyframes blinking-dot {
             from {
@@ -56,19 +56,19 @@
     }
 
     & .map-box {
-      grid-row: span 3;
+      grid-row: span 4;
 
       & img {
         border-radius: 3px;
         object-fit: cover;
         width: 100%;
         height: 100%;
-        border: 1px solid #d27333;
+        border: 1px solid var.$color-medium-orange;
       }
     }
 
     & i {
-      color: #d27333;
+      color: var.$color-medium-orange;
       border: var.$border-light;
       background: #eee;
       height: 30px;
@@ -93,16 +93,16 @@
         border: var.$border-light;
 
         &:first-of-type {
-          background: #d06a27;
+          background: var.$color-medium-orange;
 
           & i:first-of-type {
-            color: #f9e1d0;
+            color: var.$color-light-orange;
             background: var.$bg-transparent-light;
-            border: 1px solid #b05a21;
+            border: 1px solid var.$color-medium-orange;
           }
 
           & li {
-            color: #f9e1d0;
+            color: var.$color-light-orange;
           }
         }
 
@@ -137,18 +137,18 @@
 .dark #widget-03 {
   & .content {
     & .ip-box {
-      background: #5c2c0c;
-      border: 1px solid #7d4c2c;
+      background: #5c2c0c6d;
+      border: 1px solid var.$color-dark-orange;
     }
 
     & .map-box {
       & img {
-        border: 1px solid #7d4c2c;
+        border: 1px solid var.$color-dark-orange;
       }
     }
 
     & i {
-      color: #d27333;
+      color: var.$color-medium-orange;
       border: var.$border-dark;
       background: var.$gray-dark;
     }
@@ -159,7 +159,11 @@
         border: var.$border-dark;
 
         &:first-of-type {
-          background: #d06a27;
+          background: var.$color-medium-orange;
+
+          & i:first-of-type {
+            background: #5c2c0c6d;
+          }
         }
       }
     }

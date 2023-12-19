@@ -10,7 +10,7 @@ export function getMarkup() {
   <div
     class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
   >
-    <p class="mr-auto">user-footprint</p>
+    <p class="mr-auto">digital footprint</p>
     <button class="like-btn group cursor-pointer" aria-label="like button">
       <i class="fa-solid fa-heart group-active:scale-125"></i>
     </button>
@@ -20,7 +20,7 @@ export function getMarkup() {
     <div class="ip-box">
         <div class="ip-title">
             <span class="dot"></span>
-            User IP Address
+            Your IP Address
         </div>
         <div class="ip-value">12.313.131.95</div>
     </div>
@@ -32,7 +32,7 @@ export function getMarkup() {
                 <li>Region <span class="user-region">America</span></li>
                 <li>City <span class="user-city">New York</span></li>
                 <li>Latitude: <span class="user-lat">America</span></li>
-                <li>Lon: <span class="user-lon">America</span></li>
+                <li>Longitude: <span class="user-lon">America</span></li>
             </ul>
         </div>
         <div class="map-box data-item">
@@ -46,11 +46,13 @@ export function getMarkup() {
                 <li>Screen: <span class="user-res">50x50</span></li>
             </ul>
         </div>
-        <div class="additional-box data-item">
+        <div class="timezone-box data-item">
             <i class="fa-solid fa-clock"></i>
             <ul class="timezone-info">
                 <li>Timezone: <span class="user-timezone">America/New_York</span></li>
             </ul>
+        </div>
+        <div class="isp-box data-item">
             <i class="fa-solid fa-wifi"></i>
             <ul class="isp-info">
                 <li>ISP: <span class="user-isp">Verizon</span></li>
@@ -58,7 +60,7 @@ export function getMarkup() {
         </div>
     </div>
     <p class="footer-note">
-    Disclaimer: This data is <strong>not</strong> being saved.
+    This data is <strong>not</strong> being saved outside your own browser.
     </p>
   </div>
 </section>
