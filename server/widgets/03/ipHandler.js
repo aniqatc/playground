@@ -1,4 +1,5 @@
-const fs = require('fs');
+const fs = require('fs').promises;
+const path = require('path');
 
 async function collectUserData(req, res, next) {
 	let ip = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress;
@@ -48,10 +49,11 @@ async function getUserMap(req, res) {
 	const arrayBuffer = await response.arrayBuffer();
 	const imageBuffer = Buffer.from(arrayBuffer);
 
-	const imagePath = './client/public/user-map.png';
-	const publicPath = `${process.env.FRONTEND_HOSTED}/user-map.png`;
-	fs.writeFileSync(imagePath, imageBuffer);
+	const imageDirectory = '/server/widgets/03/';
+	const imagePath = path.join(imageDirectory, 'user-map.png');
+	await fs.writeFile(imagePath, imageBuffer);
 
+	const publicPath = 'https://data.playground.aniqa.dev/user-map.png';
 	res.json({ imageURL: publicPath });
 }
 
