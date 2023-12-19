@@ -5,6 +5,9 @@ export async function initializeScript() {
   console.log(data);
 
   const image = await fetch(`${serverURL}/widget/user-map/dark`);
-  const imageUrl = await image.json();
-  console.log(imageUrl);
+  const imageBlob = await image.blob();
+  const imageURL = await URL.createObjectURL(imageBlob);
+  console.log(imageURL);
+  const mapEl = document.querySelector("#widget-03 .map-img");
+  mapEl.src = imageURL;
 }

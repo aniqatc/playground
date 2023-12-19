@@ -31,10 +31,7 @@ app.get('/widget/user-map/:theme', ipHandler.collectUserData, ipHandler.getUserM
 
 // redirect backend host to frontend
 app.use((req, res, next) => {
-	if (
-		req.hostname === 'data.playground.aniqa.dev' &&
-		req.path !== '/server/widgets/03/user-map.png'
-	) {
+	if (req.hostname === 'data.playground.aniqa.dev') {
 		return res.redirect(process.env.FRONTEND_HOSTED);
 	}
 	next();

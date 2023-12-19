@@ -47,15 +47,11 @@ async function getUserMap(req, res) {
 	const mapAPI = `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/-122.2207,37.8769,9,0/300x300?access_token=pk.eyJ1IjoiYW5pcWF0YyIsImEiOiJjbHFienh5dDUwMDU1MnBsbTg3MWczODVtIn0.eAr-5dHauazX0HCFKclQHw`;
 
 	const response = await fetch(mapAPI);
-	const arrayBuffer = await response.arrayBuffer();
-	const imageBuffer = Buffer.from(arrayBuffer);
 
-	const imageDirectory = path.join('server', 'widgets', '03');
-	const imagePath = path.join(imageDirectory, 'user-map.png');
-	await fs.writeFile(imagePath, imageBuffer);
-
-	const publicPath = 'https://data.playground.aniqa.dev/server/widgets/03/user-map.png';
-	res.json({ imageURL: publicPath });
+	if (response.ok) {
+		res.setHeader('Content-Type', 'image/png');
+		response.body.pipe(res);
+	}
 }
 
 module.exports = { collectUserData, getUserInfo, getUserMap };

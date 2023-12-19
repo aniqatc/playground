@@ -36,7 +36,7 @@ export function getMarkup() {
             </ul>
         </div>
         <div class="map-box data-item">
-            <img src="https://api.mapbox.com/styles/v1/mapbox/dark-v11/static/pin-s+d27333(-122.4308,37.7805)/-122.4308,37.7805,11.99,0/300x300@2x?access_token=pk.eyJ1IjoiYW5pcWF0YyIsImEiOiJjbHFia3h1YWExdnN5MmtudXVtZGdqcTkxIn0.FxcSIqVz4JxgmyNLROrXRg">
+            <img src="https://api.mapbox.com/styles/v1/mapbox/dark-v11/static/pin-s+d27333(-122.4308,37.7805)/-122.4308,37.7805,11.99,0/300x300@2x?access_token=pk.eyJ1IjoiYW5pcWF0YyIsImEiOiJjbHFia3h1YWExdnN5MmtudXVtZGdqcTkxIn0.FxcSIqVz4JxgmyNLROrXRg" class="map-img">
         </div>
         <div class="device-box data-item">
             <i class="fa-solid fa-computer"></i>
