@@ -28,11 +28,11 @@ export function getMarkup() {
         <div class="location-box data-item">
             <i class="fa-solid fa-earth-americas"></i>
             <ul class="location-info">
-                <li>Country: <span class="user-country">America</span></li>
-                <li>Region <span class="user-region">America</span></li>
-                <li>City <span class="user-city">New York</span></li>
-                <li>Latitude: <span class="user-lat">America</span></li>
-                <li>Longitude: <span class="user-lon">America</span></li>
+                <li>Country: <span class="user-country"></span></li>
+                <li>Region: <span class="user-region"></span></li>
+                <li>City: <span class="user-city"></span></li>
+                <li>Latitude: <span class="user-lat"></span></li>
+                <li>Longitude: <span class="user-lon"></span></li>
             </ul>
         </div>
         <div class="map-box data-item">
@@ -41,21 +41,21 @@ export function getMarkup() {
         <div class="device-box data-item">
             <i class="fa-solid fa-computer"></i>
             <ul class="device-info">
-                <li>Browser: <span class="user-browser">Mozilla</span></li>
-                <li>OS: <span class="user-os">Mac Intel</span></li>
-                <li>Platform: <span class="user-platform">Apple</span></li>
+                <li>Browser: <span class="user-browser"></span></li>
+                <li>OS: <span class="user-os"></span></li>
+                <li>Platform: <span class="user-platform"></span></li>
             </ul>
         </div>
         <div class="timezone-box data-item">
             <i class="fa-solid fa-clock"></i>
             <ul class="timezone-info">
-                <li>Timezone: <span class="user-timezone">America/New_York</span></li>
+                <li>Timezone: <span class="user-timezone"></span></li>
             </ul>
         </div>
         <div class="isp-box data-item">
             <i class="fa-solid fa-wifi"></i>
             <ul class="isp-info">
-                <li>ISP: <span class="user-isp">Verizon</span></li>
+                <li>ISP: <span class="user-isp"></span></li>
             </ul>
         </div>
     </div>
