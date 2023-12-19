@@ -34,15 +34,4 @@ function getUserInfo(req, res) {
 	}
 }
 
-async function getUserMap(req, res) {
-	const theme = req.params.theme;
-	const lat = req.userInfo.locationData.lat;
-	const lon = req.userInfo.locationData.lon;
-	const mapURL = `https://api.mapbox.com/styles/v1/mapbox/${theme}-v11/static/pin-s+d27334(${lon},${lat})/${lon},${lat},13,0/300x300@2x?access_token=${process.env.MAPBOX_KEY}`;
-
-	res.json({
-		mapURL,
-	});
-}
-
-module.exports = { collectUserData, getUserInfo, getUserMap };
+module.exports = { collectUserData, getUserInfo };
