@@ -22,7 +22,7 @@ export function getMarkup() {
             <span class="dot"></span>
             Your IP Address
         </div>
-        <div class="ip-value">12.313.131.95</div>
+        <div class="user-ip">12.313.131.95</div>
     </div>
     <div class="data-grid">
         <div class="location-box data-item">
@@ -36,14 +36,14 @@ export function getMarkup() {
             </ul>
         </div>
         <div class="map-box data-item">
-            <img src="#" class="map-img">
+            <img src="#" class="user-map-img">
         </div>
         <div class="device-box data-item">
             <i class="fa-solid fa-computer"></i>
             <ul class="device-info">
                 <li>Browser: <span class="user-browser">Mozilla</span></li>
                 <li>OS: <span class="user-os">Mac Intel</span></li>
-                <li>Screen: <span class="user-res">50x50</span></li>
+                <li>Platform: <span class="user-platform">Apple</span></li>
             </ul>
         </div>
         <div class="timezone-box data-item">
