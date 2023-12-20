@@ -74,6 +74,12 @@ A card detailing the purpose of the overall webpage along with a smooth animatio
 
 A simple calculator that can handle evaluating different arithmetic expressions with a minimalistic user interface and ability to keep track of previously inputted expressions.
 
+#### Digital Footprint
+
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-03.png"></a>
+
+A mini dashboard that presents a user's digital footprint, including geographic location (obtained using their IP), browser details, operating system, and ISP information, all underscored by a dynamic map visualization for a quick and elegant overview of their online presence.
+
 ## Available Scripts
 
 **To be used at root directory for server-side development**:
