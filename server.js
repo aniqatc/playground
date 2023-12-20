@@ -9,6 +9,7 @@ const port = process.env.PORT || 3000;
 const db = process.env.DB_URI.replace('<PASSWORD>', process.env.DB_PW);
 
 // routers & handlers
+const userRouter = require('./server/main/routers/userRouter');
 const likeRouter = require('./server/main/routers/likeRouter');
 const ipHandler = require('./server/widgets/03/ipHandler');
 
@@ -25,8 +26,9 @@ app.use(express.json());
 app.use(useragent.express());
 
 // paths
-app.use('/widget/likes/', likeRouter);
-app.get('/widget/user-data/', ipHandler.collectUserData, ipHandler.getUserInfo);
+app.use('/users/', userRouter);
+app.use('/likes/', likeRouter);
+app.get('/widget/user-ip-data/', ipHandler.collectUserData, ipHandler.getUserInfo);
 
 // redirect backend host to frontend
 app.use((req, res, next) => {

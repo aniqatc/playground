@@ -4,6 +4,7 @@ const LikeSchema = new mongoose.Schema({
 	widgetId: {
 		type: String,
 		required: true,
+		unique: true,
 	},
 	likeCount: {
 		type: Number,

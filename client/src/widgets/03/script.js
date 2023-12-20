@@ -1,5 +1,5 @@
 export async function initializeScript() {
-  const response = await fetch(`${process.env.SERVER}/widget/user-data/`);
+  const response = await fetch(`${process.env.SERVER}/widget/user-ip-data/`);
   const data = await response.json();
   saveToLocalStorage(data);
 

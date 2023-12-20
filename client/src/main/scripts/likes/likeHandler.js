@@ -40,7 +40,7 @@ async function handleLikes(el, id, type) {
       data = JSON.parse(cachedLikes);
     } else {
       const serverURL = process.env.SERVER;
-      const likesURL = `${serverURL}/widget/likes/${id}`;
+      const likesURL = `${serverURL}/likes/${id}`;
       const response = await fetch(likesURL, { method: type });
       data = await response.json();
 
