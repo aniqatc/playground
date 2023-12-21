@@ -15,5 +15,6 @@ Notes regarding files relating to the overall webpage, including the frontend an
 Notes regarding individual widgets:
 
 - <a href="/docs/widgets/widgetTemplates.md">General widget templates</a>
-- <a href="/docs/widgets/01-about.md">Widget 1: About</a>
-- <a href="/docs/widgets/02-calc.md">Widget 2: Calculator</a>
+- <a href="/docs/widgets/01-about.md">Widget 01: About</a>
+- <a href="/docs/widgets/02-calculator.md">Widget 02: Calculator</a>
+- <a href="/docs/widgets/03-digital-footprint.md">Widget 03: Digital Footprint</a>

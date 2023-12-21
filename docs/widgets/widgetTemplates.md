@@ -1,6 +1,6 @@
 ## Widget Templates
 
-**Relevant file**: `/client/src/widgets/_border.html` and `/client/src/widgets/_card.html`
+**Relevant file**: [/client/src/widgets/\_border.html](../../client/src/widgets/_border.html) and [/client/src/widgets/\_card.html](../../client/src/widgets/_card.html)
 
 At the root of the `/widgets` folder, there are two templates:
 

@@ -1,6 +1,6 @@
 ## Loading Widgets into DOM
 
-**Relevant file**: `/client/src/main/scripts/content/load.js`
+**Relevant file**: [/client/src/main/scripts/content/load.js](../../client/src/main/scripts/content/load.js)
 
 I opted to load the individual widget files similarly to how I load my individual CSS creations in my <a href="https://github.com/aniqatc/css-100">100 Days of CSS project</a>. Each individual day or "entry" has its own dedicated folder with a JavaScript module called `content.js`, the styling in a dedicated `style.css/scss` file and an optional `script.js` file. My widgets in this project follow the same convention.
 

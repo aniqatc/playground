@@ -2,7 +2,7 @@
 
 [https://playground.aniqa.dev](https://playground.aniqa.dev)
 
-🕹️ A place to showcase a collection of independent, interactive widgets that each demonstrate a different functionality using both frontend and backend technologies. 
+🕹️ A place to showcase a collection of independent, interactive widgets that each demonstrate a different functionality using both frontend and backend technologies.
 
 ## Tech
 
@@ -60,13 +60,12 @@
 - `/main` goes over choices and code relating to overall webpage design and functionality
 - `/widgets` goes over choices and code relating to individual widgets
 
-## Widgets
+## Individual Widgets
 
 #### About
 
 [![HTML Badge](https://img.shields.io/badge/HTML-703F77)](https://github.com/aniqatc/playground)
 [![SCSS Badge](https://img.shields.io/badge/SCSS-703F77)](https://github.com/aniqatc/playground)
-
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-01.png"></a>
 
@@ -77,7 +76,6 @@ A card detailing the purpose of the overall webpage along with a smooth animatio
 [![HTML Badge](https://img.shields.io/badge/HTML-B81717)](https://github.com/aniqatc/playground)
 [![SCSS Badge](https://img.shields.io/badge/SCSS-B81717)](https://github.com/aniqatc/playground)
 [![JavaScript Badge](https://img.shields.io/badge/JavaScript-B81717)](https://github.com/aniqatc/playground)
-
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-02.png"></a>
 

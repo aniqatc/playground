@@ -1,6 +1,6 @@
 ## Backend Server
 
-**Relevant file**: `server.js`
+**Relevant file**: [server.js](../../server.js)
 
 The `server.js` file creates and handles a Node.js application using Express (specifically for routing HTTP requests) and Mongoose to deal with MongoDB database(s).
 

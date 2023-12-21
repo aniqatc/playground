@@ -2,10 +2,10 @@
 
 **Relevant file**:
 
-- `/server/main/models/userModel.js`
-- `/server/main/routers/userRouter.js`
-- `/server/main/helpers/userHelpers.js`
-- `/client/main/scripts/user/userHandler.js`
+- [/server/main/models/userModel.js](../../server/main/models/userModel.js)
+- [/server/main/routers/userRouter.js](../../server/main/routers/userRouter.js)
+- [/server/main/helpers/userHelpers.js](../../server/main/helpers/userHelpers.js)
+- [/client/main/scripts/user/userHandler.js](../../client/main/scripts/user/userHandler.js)
 
 On the client-side of this application, the `userHandler.js` file deals with creating a unique ID using the `uuid` package for each user that visits. This is done by checking their `localStorage` for the ID and if there isn't any, they are assigned a new one and it is sent to the corresponding MongoDB database using the Fetch API.
 
@@ -31,11 +31,12 @@ async function addWidgetDataToUser(userId, widgetId, widgetType, widgetData) {
 In order to connect widget data to a user - the widget needs its own model based on its own Mongoose schema. This is then referenced in `mongoose.model` above which creates a new document with the `widgetData` and is saved. Then, the corresponding user is found and the refrenced to the newly created document is made.
 
 Example:
+
 ```javascript
 // /server/main/models/toDoModel.js
 const mongoose = require('mongoose');
 const ToDoListSchema = new mongoose.Schema({
-    items: [{ content: String, completed: Boolean }]
+	items: [{ content: String, completed: Boolean }],
 });
 
 module.exports = mongoose.model('ToDoList', ToDoListSchema);

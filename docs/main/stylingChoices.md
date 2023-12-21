@@ -1,6 +1,6 @@
 ## Styling choices for webpage and widgets
 
-**Relevant files**: `/client/src/main/*` and `/client/src/widgets/*`
+**Relevant files**: [/client/src/main/\*](../../client/src/main/styles/) and [/client/src/widgets/\*](../../client/src/widgets/)
 
 The overall webpage styling, including the header, dark mode, card styling and layout, is handled using Tailwind's utility classes and be found directly in the main `index.html` file. The individual widgets, however, use SCSS for styling and can be found in the individual folders of each widget.
 

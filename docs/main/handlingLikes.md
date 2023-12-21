@@ -2,9 +2,9 @@
 
 **Relevant file**:
 
-- `/server/main/models/likeModel.js`
-- `/server/main/routers/likeRouter.js`
-- `/client/src/main/scripts/likes/*`
+- [/server/main/models/likeModel.js](../../server/main/models/likeModel.js)
+- [/server/main/routers/likeRouter.js](../../server/main/routers/likeRouter.js)
+- [/client/src/main/scripts/likes/\*](../../client/src/main/scripts/likes/)
 
 For this website, I wanted there to be a way for visitors to show their appreciation for widgets that they enjoy the most. It also serves an indication to me as the creator to see which widgets might benefit from having its own dedicated website with more features.
 
