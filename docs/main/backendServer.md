@@ -34,9 +34,16 @@ app.use((req, res, next) => {
 });
 ```
 
-Additionally, **router paths** are declared and for now, there is only the `like` router that is being handled:
+Additionally, **router paths** are declared and for now, there is only the `like` and `user` router that is being handled:
 
 ```javascript
+const userRouter = require('./server/main/routers/userRouter');
 const likeRouter = require('./server/main/routers/likeRouter');
-app.use('/widget/likes/', likeRouter);
+app.use('/users/', userRouter);
+app.use('/likes/', likeRouter);
 ```
+
+More details:
+
+- <a href="/docs/main/handlingLikes.md">Handling Likes</a>
+- <a href="/docs/main/handlingUsers.md">Handling User Data</a>
