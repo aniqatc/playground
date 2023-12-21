@@ -1,22 +1,9 @@
 export async function initializeScript() {
   const response = await fetch(`${process.env.SERVER}/widget/user-ip-data/`);
   const data = await response.json();
-  saveToLocalStorage(data);
 
-  let cachedData = localStorage.getItem("user-footprint");
-  cachedData = JSON.parse(cachedData);
-
-  if (cachedData) {
-    updateContent(cachedData);
-    updateMap(cachedData);
-  } else {
-    updateContent(data);
-    updateMap(data);
-  }
-}
-
-function saveToLocalStorage(data) {
-  localStorage.setItem("user-footprint", JSON.stringify(data));
+  updateContent(data);
+  updateMap(data);
 }
 
 function updateMap(data) {
@@ -49,7 +36,7 @@ function updateContent(data) {
   const userTimezone = widget.querySelector(".user-timezone");
   const userISP = widget.querySelector(".user-isp");
   const userIP = widget.querySelector(".user-ip");
-  const timezoneFormatted = data?.locationData?.timezone.replace("_", " ");
+  const timezoneFormatted = data?.locationData?.timezone?.replace("_", " ");
 
   userBrowser.textContent =
     `${data?.browser} ${data?.browserVersion}` || "Citrus Explorer 8.0";

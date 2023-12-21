@@ -8,6 +8,7 @@ Notes regarding files relating to the overall webpage, including the frontend an
 - <a href="/docs/main/stylingChoices.md">Frontend: styling choices for webpage and widgets</a>
 - <a href="/docs/main/loadingWidgets.md">Frontend: loading individual widget files in load.js file</a>
 - <a href="/docs/main/handlingLikes.md">Frontend & backend: handling likes</a>
+- <a href="/docs/main/handlingUsers.md">Frontend & backend: handling users</a>
 
 #### Individual Widgets
 
