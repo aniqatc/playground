@@ -2,7 +2,7 @@
 
 [https://playground.aniqa.dev](https://playground.aniqa.dev)
 
-🕹️ A place to showcase a variety of independent widgets with different functionalities.
+🕹️ A place to showcase a collection of independent, interactive widgets that each demonstrate a different functionality using both frontend and backend technologies. 
 
 ## Tech
 
