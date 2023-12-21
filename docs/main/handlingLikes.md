@@ -25,7 +25,7 @@ First, I ensure that I create a new router object with Express which allows me t
 
 ```javascript
 // server.js includes middleware that handles likeRouter at this path
-app.use('/widget/likes/', likeRouter);
+app.use('/likes/', likeRouter);
 
 // likeRouter.js
 const router = express.Router();
@@ -35,7 +35,7 @@ router.route('/:widgetId/').get(getCurrentLikes).post(updateLikes);
 An example of what the request URL would look like to retrieve or update the database:
 
 ```txt
-https://data.playground.aniqa.dev/widget/likes/02
+https://data.playground.aniqa.dev/likes/02
 ```
 
 Now, there are two functions that handle the requests:
