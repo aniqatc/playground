@@ -25,3 +25,31 @@ async function addWidgetDataToUser(userId, widgetId, widgetType, widgetData) {
 	await user.save();
 }
 ```
+
+**Connecting a widget (example)**
+
+In order to connect widget data to a user - the widget needs its own model based on its own Mongoose schema. This is then referenced in `mongoose.model` above which creates a new document with the `widgetData` and is saved. Then, the corresponding user is found and the refrenced to the newly created document is made.
+
+Example:
+```javascript
+// /server/main/models/toDoModel.js
+const mongoose = require('mongoose');
+const ToDoListSchema = new mongoose.Schema({
+    items: [{ content: String, completed: Boolean }]
+});
+
+module.exports = mongoose.model('ToDoList', ToDoListSchema);
+```
+
+Then, the above `addWidgetDataToUser()` function is called when handling a route using Express:
+
+```javascript
+app.post('/widget/:widgetId/:userId', async (req, res) => {
+	const userId = req.params.userId;
+	const widgetId = req.params.widgetId;
+        const toDoData = { items: [] };
+        await addWidgetDataToUser(userId, widgetId, 'ToDoList', toDoData;
+
+        res.status(200).send('To-Do widget added successfully');
+});
+```
