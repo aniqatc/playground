@@ -18,5 +18,6 @@ h6 {
 @layer utilities {
   .grid-col-custom {
     grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    justify-content: center;
   }
 }

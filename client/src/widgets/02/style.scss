@@ -19,7 +19,7 @@
     font-family: "Noto Sans Mono", "Inter", "Archivo", sans-serif;
 
     & .display {
-      width: 97%;
+      width: 100%;
       margin: -8px auto 0;
       border-radius: 0 0 var.$small-radius var.$small-radius;
       background: #fdfeff;
@@ -47,53 +47,55 @@
         }
       }
 
-      & .history {
-        color: var.$gray-medium;
-        font-size: 14px;
-        overflow: hidden;
+      & .expressions {
+        width: 100%;
 
-        & li {
-          max-height: 20px;
-        }
+        & .history {
+          color: var.$gray-medium;
+          font-size: 14px;
+          overflow: hidden;
 
-        @for $num from 1 through 4 {
-          & li:nth-child(#{$num}) {
-            transition:
-              opacity 0.5s ease-in-out,
-              max-height 0.25s ease-in-out,
-              transform 0.5s ease-in-out;
-            transition-delay: calc((4 - #{$num}) * 0.5s);
+          & li {
+            width: 100%;
           }
 
-          & li:nth-child(#{$num}).active {
-            transform: translateY(-100% * $num);
-            opacity: 0;
-            max-height: 0;
-            transition:
-              opacity 0.25s ease-out,
-              max-height 1s ease-out,
-              transform 0.25s ease-out;
-            transition-delay: $num * 0.25s;
+          @for $num from 1 through 4 {
+            & li:nth-child(#{$num}) {
+              transition:
+                opacity 0.5s ease-in-out,
+                max-height 0.25s ease-in-out,
+                transform 0.5s ease-in-out;
+              transition-delay: calc((4 - #{$num}) * 0.5s);
+            }
+
+            & li:nth-child(#{$num}).active {
+              transform: translateY(-100% * $num);
+              opacity: 0;
+              max-height: 0;
+              transition:
+                opacity 0.25s ease-out,
+                max-height 1s ease-out,
+                transform 0.25s ease-out;
+              transition-delay: $num * 0.25s;
+            }
           }
         }
-      }
 
-      & .current-val {
-        font-size: 48px;
-        font-weight: 500;
-        line-height: 1.2;
-        margin-right: -3px;
-        margin-left: -18px;
-        color: #000;
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-        width: 250px;
-        height: 55px;
+        & .current-val {
+          font-size: 48px;
+          font-weight: 500;
+          line-height: 1.2;
+          margin-left: -18px;
+          color: #000;
+          overflow-x: auto;
+          overflow-y: hidden;
+          white-space: nowrap;
+          height: 55px;
 
-        &::-webkit-scrollbar,
-        &::-webkit-scrollbar-thumb {
-          display: none;
+          &::-webkit-scrollbar,
+          &::-webkit-scrollbar-thumb {
+            display: none;
+          }
         }
       }
     }
