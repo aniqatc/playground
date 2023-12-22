@@ -1,5 +1,4 @@
 @use "../../main/styles/var";
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 #widget-02 {
   height: fit-content;
@@ -16,14 +15,13 @@
   }
 
   & .content {
-    font-family: "Noto Sans Mono", "Inter", "Archivo", sans-serif;
+    font-family: "Archivo", "Inter", sans-serif;
 
     & .display {
       width: 100%;
       margin: -8px auto 0;
       border-radius: 0 0 var.$small-radius var.$small-radius;
       background: #fdfeff;
-      text-align: end;
       padding: var.$spacing-base 16px;
       display: flex;
       justify-content: space-between;
@@ -50,6 +48,7 @@
       & .expressions {
         width: 100%;
         padding-right: 8px;
+        text-align: end;
 
         & .history {
           color: var.$gray-medium;
@@ -59,6 +58,8 @@
           & li {
             width: 100%;
             max-height: 20px;
+            white-space: nowrap;
+            padding-left: 4px;
           }
 
           @for $num from 1 through 4 {

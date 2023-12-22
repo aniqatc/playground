@@ -144,8 +144,6 @@ const CalculatorLogic = {
   evaluateParentheses: function (expression) {
     const regex = this.regexParentheses;
     let match;
-
-    // keeps checking for parentheses and replacing until there are none
     while ((match = regex.exec(expression))) {
       const innerExpression = match[1];
       const evaluatedExpression = this.evaluateExpression(innerExpression);

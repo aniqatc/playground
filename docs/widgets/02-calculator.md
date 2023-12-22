@@ -4,7 +4,7 @@
 [![SCSS Badge](https://img.shields.io/badge/SCSS-B81717)](https://github.com/aniqatc/playground)
 [![JavaScript Badge](https://img.shields.io/badge/JavaScript-B81717)](https://github.com/aniqatc/playground)
 
-**Relevant file(s)**: `/client/src/widgets/02/*`
+**Relevant file(s)**: [/client/src/widgets/02/\*](../../client/src/widgets/02/)
 
 A simple calculator that can handle evaluating different arithmetic expressions with a minimalistic user interface and ability to keep track of previously inputted expressions.
 
