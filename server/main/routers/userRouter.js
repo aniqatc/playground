@@ -28,4 +28,4 @@ async function createNewUser(userId) {
 	return user;
 }
 
-module.exports = router;
+module.exports = { router, createNewUser };

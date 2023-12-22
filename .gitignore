@@ -1,5 +1,14 @@
+# npm packages
 client/node_modules/
 node_modules/
+
+# .env variable files
 .env
 client/.env.development
 client/.env
+
+# personal use: Mongoose schema template 
+server/widgets/_widgetModelTemplate.js
+
+# vs code
+.vscode/settings.json

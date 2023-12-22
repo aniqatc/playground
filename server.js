@@ -8,11 +8,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 const db = process.env.DB_URI.replace('<PASSWORD>', process.env.DB_PW);
 
-// routers & handlers
-const userRouter = require('./server/main/routers/userRouter');
-const likeRouter = require('./server/main/routers/likeRouter');
-const ipHandler = require('./server/widgets/03/ipHandler');
-
 // connect widget db
 mongoose
 	.connect(db)
@@ -25,7 +20,11 @@ process.env.NODE_ENV === 'production'
 app.use(express.json());
 app.use(useragent.express());
 
-// paths
+// routers & handlers
+const userRouter = require('./server/main/routers/userRouter');
+const likeRouter = require('./server/main/routers/likeRouter');
+const ipHandler = require('./server/widgets/03/ipHandler');
+
 app.use('/users/', userRouter);
 app.use('/likes/', likeRouter);
 app.get('/widget/user-ip-data/', ipHandler.collectUserData, ipHandler.getUserInfo);
