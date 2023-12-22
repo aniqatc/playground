@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const useragent = require('express-useragent');
 const app = express();
-
 const port = process.env.PORT || 3000;
 const db = process.env.DB_URI.replace('<PASSWORD>', process.env.DB_PW);
 

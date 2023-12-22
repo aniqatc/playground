@@ -8,7 +8,7 @@ client/.env.development
 client/.env
 
 # personal use: Mongoose schema template 
-server/widgets/_widgetModelTemplate.js
+server/widgets/_modelTemplate.js
 
 # vs code
 .vscode/settings.json

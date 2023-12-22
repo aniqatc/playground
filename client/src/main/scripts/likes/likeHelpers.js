@@ -18,8 +18,17 @@ function updateLikeButtonState(btnIcon, id) {
   if (userLikes[id] > 0) {
     btnIcon.classList.add("liked-color");
   }
-  if (userLikes[id] >= 5) {
+  if (userLikes[id] === 5) {
     btnIcon.classList.remove("group-active:scale-125");
+    btnIcon.classList.add("animate-pop");
+    btnIcon.addEventListener(
+      "animationend",
+      () => {
+        btnIcon.classList.remove("animate-pop");
+      },
+      { once: true },
+    );
+    btnIcon.parentElement.disabled = true;
   }
 }
 
