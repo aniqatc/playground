@@ -45,6 +45,7 @@ const CalculatorUI = {
         }
         if (calcValue === "ac") {
           this.displayValue.textContent = "";
+          localStorage.removeItem("calc-value");
         } else if (calcValue === "trim") {
           this.displayValue.textContent = Math.round(
             +this.displayValue.textContent,

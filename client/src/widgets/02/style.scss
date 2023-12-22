@@ -49,6 +49,7 @@
 
       & .expressions {
         width: 100%;
+        padding-right: 8px;
 
         & .history {
           color: var.$gray-medium;
@@ -57,6 +58,7 @@
 
           & li {
             width: 100%;
+            max-height: 20px;
           }
 
           @for $num from 1 through 4 {
@@ -85,7 +87,7 @@
           font-size: 48px;
           font-weight: 500;
           line-height: 1.2;
-          margin-left: -18px;
+          margin-left: 8px;
           color: #000;
           overflow-x: auto;
           overflow-y: hidden;
