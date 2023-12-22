@@ -62,7 +62,7 @@
 
 ## Individual Widgets
 
-#### About
+#### Widget 01: About ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/01-about.md))
 
 [![HTML Badge](https://img.shields.io/badge/HTML-703F77)](https://github.com/aniqatc/playground)
 [![SCSS Badge](https://img.shields.io/badge/SCSS-703F77)](https://github.com/aniqatc/playground)
@@ -71,7 +71,7 @@
 
 A card detailing the purpose of the overall webpage along with a smooth animation displaying the different logos of the technologies used.
 
-#### Calculator
+#### Widget 02: Calculator ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/02-calculator.md))
 
 [![HTML Badge](https://img.shields.io/badge/HTML-B81717)](https://github.com/aniqatc/playground)
 [![SCSS Badge](https://img.shields.io/badge/SCSS-B81717)](https://github.com/aniqatc/playground)
@@ -81,7 +81,7 @@ A card detailing the purpose of the overall webpage along with a smooth animatio
 
 A simple calculator that can handle evaluating different arithmetic expressions with a minimalistic user interface and ability to keep track of previously inputted expressions.
 
-#### Digital Footprint
+#### Widget 03: Digital Footprint ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/03-digital-footprint.md))
 
 [![HTML Badge](https://img.shields.io/badge/HTML-D27334)](https://github.com/aniqatc/playground)
 [![SCSS Badge](https://img.shields.io/badge/SCSS-D27334)](https://github.com/aniqatc/playground)
