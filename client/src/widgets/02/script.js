@@ -1,3 +1,5 @@
+import functionPlot from "function-plot";
+
 export function initializeScript() {
   CalculatorUI.initialize();
 }
@@ -199,3 +201,22 @@ const CalculatorLogic = {
     return expression;
   },
 };
+
+// test
+function graphTheFunction(expression) {
+  CalculatorUI.pastEntriesParent.innerHTML = "";
+
+  functionPlot({
+    target: "#widget-02 .history",
+    // height: 300,
+    // width: 300,
+    grid: true,
+    yAxis: { domain: [-20, 30] },
+    xAxis: { domain: [-20, 30] },
+    data: [
+      {
+        fn: expression,
+      },
+    ],
+  });
+}

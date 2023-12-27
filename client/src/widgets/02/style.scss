@@ -1,4 +1,5 @@
 @use "../../main/styles/var";
+@import url("https://fonts.googleapis.com/css2?family=Recursive:CASL,MONO@0.25,0.25&display=swap");
 
 #widget-02 {
   height: fit-content;
@@ -15,35 +16,61 @@
   }
 
   & .content {
-    font-family: "Archivo", "Inter", sans-serif;
+    font-family: "Recursive", "Archivo", "Inter", sans-serif;
+    display: grid;
+    grid-template-columns: 25px minmax(250px, 1fr);
 
-    & .display {
-      width: 100%;
-      margin: -8px auto 0;
-      border-radius: 0 0 var.$small-radius var.$small-radius;
-      background: #fdfeff;
-      padding: var.$spacing-base 16px;
+    & .calc-menu {
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      border: 1px solid var.$color-light-red;
-      border-top: 0;
+      height: 100%;
+      color: var.$gray-light;
 
-      & .history-btn {
-        align-self: start;
-        color: var.$color-dark-red;
-        padding: var.$spacing-base;
-        margin: var.$spacing-base * -1;
-        transition: var.$short-ease-out;
-        isolation: isolate;
+      & .options {
+        display: flex;
+        gap: 12px;
+        font-size: 12px;
+        transform: rotate(-90deg) translateX(-95px);
+        margin-left: -16px;
 
-        &:hover {
-          color: #000;
-        }
-
-        &:active {
-          transform: scaleY(0.75);
+        & li:hover,
+        & li.active {
+          color: var.$color-dark-red;
+          cursor: pointer;
         }
       }
+
+      & .toolbar li {
+        display: flex;
+        justify-content: center;
+        margin-left: -8px;
+        font-size: 14px;
+
+        & button {
+          padding: 4px 0;
+          transition: var.$short-ease-out;
+
+          &:hover {
+            color: var.$color-dark-red;
+            cursor: pointer;
+          }
+
+          &:active {
+            transform: scaleY(0.75);
+          }
+        }
+      }
+    }
+
+    & .display {
+      margin-top: -8px;
+      margin-right: -11px;
+      border-radius: 0 var.$small-radius 0 var.$small-radius;
+      background: #fdfeff;
+      padding: var.$spacing-base;
+      border: 1px solid var.$color-light-red;
+      border-top: 0;
 
       & .expressions {
         width: 100%;
@@ -105,17 +132,20 @@
 
     & .calculator {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(3, minmax(38px, 1fr)) repeat(
+          3,
+          minmax(38px, 60px)
+        );
       place-items: center;
       row-gap: var.$spacing-base;
-      margin: var.$spacing-base * 2 auto;
+      margin: var.$spacing-base auto;
 
       & button {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 40px;
-        width: 40px;
+        height: 38px;
+        width: 38px;
         border-radius: var.$small-radius;
         font-size: 18px;
         transition: var.$med-ease-out;
@@ -129,6 +159,10 @@
           transition: var.$short-ease-out;
         }
 
+        &:disabled {
+          cursor: not-allowed;
+        }
+
         &.operation-btns {
           color: var.$color-dark-red;
           background: var.$color-light-red;
@@ -137,7 +171,7 @@
             background: var.$color-dark-red;
             color: var.$color-light-red;
             grid-column: span 2;
-            width: 78%;
+            width: clamp(80px, 90%, 120px);
           }
 
           &[data-calc-val="^"] {
@@ -170,11 +204,27 @@
         }
 
         &.num-btns {
-          font-size: 22px;
+          font-size: 20px;
           font-weight: 500;
 
           &:hover {
             color: var.$color-dark-red;
+          }
+        }
+
+        &.graphing-btns {
+          font-size: 12px;
+          color: var.$gray-light;
+          background: var.$color-light-red;
+
+          &[data-calc-val="x"] {
+            font-size: 20px;
+          }
+
+          &[data-calc-val="graph"] {
+            font-size: 18px;
+            color: var.$color-light-red;
+            background: var.$gray-light;
           }
         }
       }
@@ -193,17 +243,27 @@
   }
 
   & .content {
+    & .calc-menu {
+      color: #797979;
+
+      & .options {
+        & li:hover,
+        & li.active {
+          color: var.$color-medium-red;
+        }
+      }
+
+      & .toolbar li {
+        & button {
+          &:hover {
+            color: var.$color-medium-red;
+          }
+        }
+      }
+    }
     & .display {
       background: rgba(0, 0, 0, 0.5);
       border: var.$border-dark;
-
-      & .history-btn {
-        color: var.$color-medium-red;
-
-        &:hover {
-          color: #fff;
-        }
-      }
 
       & .current-val {
         color: #fff;
@@ -224,6 +284,14 @@
           &:hover {
             background: var.$gray-dark;
             color: var.$color-medium-red;
+          }
+        }
+        &.graphing-btns {
+          color: var.$gray-light;
+          background: #000000;
+
+          &[data-calc-val="graph"] {
+            background: var.$gray-dark;
           }
         }
       }
