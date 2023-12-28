@@ -35,8 +35,8 @@ export function getMarkup() {
                 </button>
               </li>
               <li>
-                <button class="download-btn" title="Download History" aria-label="download current calculator display">
-                  <i class="fa-solid fa-download"></i>
+                <button class="snap-btn" title="Snapshot Display" aria-label="screenshot current calculator display">
+                  <i class="fa-solid fa-camera"></i>
                 </button>
               </li>
               <li>

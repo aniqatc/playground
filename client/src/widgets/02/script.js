@@ -10,7 +10,7 @@ const CalculatorUI = {
   pastEntries: null,
   toggleHistoryButton: null,
   deleteButton: null,
-  downloadButton: null,
+  snapButton: null,
   calculatorEl: null,
   displayValue: null,
   calcTypeOptions: null,
@@ -26,7 +26,7 @@ const CalculatorUI = {
     this.pastEntries = this.widget.querySelectorAll(".history li"),
     this.toggleHistoryButton = this.widget.querySelector(".history-btn"),
     this.deleteButton = this.widget.querySelector(".delete-btn"),
-    this.downloadButton = this.widget.querySelector(".download-btn"),
+    this.snapButton = this.widget.querySelector(".snap-btn"),
     this.calculatorEl = this.widget.querySelector(".calculator"),
     this.displayValue = this.widget.querySelector(".current-val"),
     this.calcTypeOptions = this.widget.querySelectorAll(".options li");
@@ -38,12 +38,12 @@ const CalculatorUI = {
     this.setupHistoryToggle();
     this.setupCalcTypes();
     this.setupDeleteButton();
-    this.setupDownloadButton();
+    this.setupSnapButton();
     CalculatorStorage.getFromLocalStorage();
   },
 
-  setupDownloadButton: function () {
-    this.downloadButton.addEventListener("click", () => {
+  setupSnapButton: function () {
+    this.snapButton.addEventListener("click", () => {
       html2canvas(this.widget.querySelector(".display"), {
         removeContainer: true,
       }).then((canvas) => {
@@ -256,17 +256,14 @@ const CalculatorLogic = {
     }
     expression = this.evaluateParentheses(expression);
     expression = this.evaluateExponent(expression);
-    expression = this.evaluateMultiply(expression);
-    expression = this.evaluateDivide(expression);
-    expression = this.evaluateAdd(expression);
-    expression = this.evaluateSubtract(expression);
+    expression = this.evaluateMultiplyAndDivide(expression);
+    expression = this.evaluateAddAndSubtract(expression);
     return expression;
   },
 
   evaluateParentheses: function (expression) {
-    const regex = this.regexParentheses;
     let match;
-    while ((match = regex.exec(expression))) {
+    while ((match = this.regexParentheses.exec(expression))) {
       const innerExpression = match[1];
       const evaluatedExpression = this.evaluateExpression(innerExpression);
       expression = expression.replace(match[0], evaluatedExpression);
@@ -275,47 +272,38 @@ const CalculatorLogic = {
   },
 
   evaluateExponent: function (expression) {
-    const regex = this.regexExponent;
     let match;
-    while ((match = regex.exec(expression))) {
+    while ((match = this.regexExponent.exec(expression))) {
       expression = Math.pow(+match[1], +match[2]);
     }
 
     return expression;
   },
 
-  evaluateMultiply: function (expression) {
-    const regex = this.regexMultiply;
+  evaluateMultiplyAndDivide: function (expression) {
     let match;
-    while ((match = regex.exec(expression))) {
-      expression = +match[1] * +match[2];
+    while (
+      (match = this.regexMultiply.exec(expression)) ||
+      (match = this.regexDivide.exec(expression))
+    ) {
+      const evaluated = match[0].includes("*")
+        ? +match[1] * +match[2]
+        : +match[1] / +match[2];
+      expression = expression.replace(match[0], evaluated);
     }
     return expression;
   },
 
-  evaluateDivide: function (expression) {
-    const regex = this.regexDivide;
+  evaluateAddAndSubtract: function (expression) {
     let match;
-    while ((match = regex.exec(expression))) {
-      expression = +match[1] / +match[2];
-    }
-    return expression;
-  },
-
-  evaluateAdd: function (expression) {
-    const regex = this.regexAdd;
-    let match;
-    while ((match = regex.exec(expression))) {
-      expression = +match[1] + +match[2];
-    }
-    return expression;
-  },
-
-  evaluateSubtract: function (expression) {
-    const regex = this.regexSubtract;
-    let match;
-    while ((match = regex.exec(expression))) {
-      expression = +match[1] - +match[2];
+    while (
+      (match = this.regexAdd.exec(expression)) ||
+      (match = this.regexSubtract.exec(expression))
+    ) {
+      const evaluated = match[0].includes("+")
+        ? +match[1] + +match[2]
+        : +match[1] - +match[2];
+      expression = expression.replace(match[0], evaluated);
     }
     return expression;
   },
