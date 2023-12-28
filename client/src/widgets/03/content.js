@@ -56,7 +56,7 @@ export function getMarkup() {
             </ul>
         </div>
         <div class="map-box data-item">
-            <img src="#" class="user-map-img">
+            <img src="#" class="user-map-img" alt="user's approximate location">
         </div>
     </div>
     <p class="footer-note">

@@ -35,12 +35,12 @@ export function getMarkup() {
                 </button>
               </li>
               <li>
-                <button class="snap-btn" title="Snapshot Display" aria-label="screenshot current calculator display">
+                <button class="snap-btn" title="Snap Display" aria-label="screenshot current calculator display">
                   <i class="fa-solid fa-camera"></i>
                 </button>
               </li>
               <li>
-                <button class="delete-btn" title="Clear History" aria-label="clear current calculator display">
+                <button class="delete-btn" title="Clear History" aria-label="clear current calculator display and storage">
                   <i class="fa-regular fa-trash-can"></i>
                 </button>
               </li>
@@ -60,7 +60,7 @@ export function getMarkup() {
               </button>
               <button class="operation-helper-btns" data-calc-val="(">(</button>
               <button class="operation-helper-btns" data-calc-val=")">)</button>
-              <button class="operation-btns" data-calc-val="+">
+              <button class="operation-btns" data-calc-val="+" aria-label="addition operator">
                 <i class="fa-solid fa-plus"></i>
               </button>
               <button class="operation-btns" data-calc-val="3.14159265359">
@@ -72,7 +72,7 @@ export function getMarkup() {
               <button class="num-btns" data-calc-val="7">7</button>
               <button class="num-btns" data-calc-val="8">8</button>
               <button class="num-btns" data-calc-val="9">9</button>
-              <button class="operation-btns" data-calc-val="-">
+              <button class="operation-btns" data-calc-val="-" aria-label="subtract operator">
                 <i class="fa-solid fa-minus"></i>
               </button>
               <button class="operation-btns" data-calc-val="^">
@@ -84,7 +84,7 @@ export function getMarkup() {
               <button class="num-btns" data-calc-val="4">4</button>
               <button class="num-btns" data-calc-val="5">5</button>
               <button class="num-btns" data-calc-val="6">6</button>
-              <button class="operation-btns" data-calc-val="*">
+              <button class="operation-btns" data-calc-val="*" aria-label="multiply operator">
                 <i class="fa-solid fa-xmark"></i>
               </button>
               <button class="operation-btns" data-calc-val="√">√</button>
@@ -94,10 +94,10 @@ export function getMarkup() {
               <button class="num-btns" data-calc-val="1">1</button>
               <button class="num-btns" data-calc-val="2">2</button>
               <button class="num-btns" data-calc-val="3">3</button>
-              <button class="operation-btns" data-calc-val="/">
+              <button class="operation-btns" data-calc-val="/" aria-label="divide operator">
                 <i class="fa-solid fa-divide"></i>
               </button>
-              <button class="operation-btns" data-calc-val="%">
+              <button class="operation-btns" data-calc-val="%" aria-label="convert to percentage">
                 <i class="fa-solid fa-percent"></i>
               </button>
               <button class="graphing-btns" data-calc-val="cos" disabled>
@@ -105,13 +105,13 @@ export function getMarkup() {
               </button>
               <button class="num-btns" data-calc-val="0">0</button>
               <button class="operation-helper-btns" data-calc-val=".">.</button>
-              <button class="operation-helper-btns" data-calc-val="trim">
+              <button class="operation-helper-btns" data-calc-val="trim" aria-label="remove decimals by rounding">
                 <i class="fa-solid fa-scissors"></i>
               </button>
-              <button class="operation-btns active" data-calc-val="=">
+              <button class="operation-btns active" data-calc-val="=" aria-label="evaluate expression">
                 <i class="fa-solid fa-equals"></i>
               </button>
-              <button class="graphing-btns" data-calc-val="graph" disabled>
+              <button class="graphing-btns" data-calc-val="graph" aria-label="generate graph" disabled>
                 <i class="fa-solid fa-chart-line"></i>
               </button>
             </div>
