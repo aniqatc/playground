@@ -76,6 +76,8 @@ A card detailing the purpose of the overall webpage along with a smooth animatio
 [![HTML Badge](https://img.shields.io/badge/HTML-B81717)](https://github.com/aniqatc/playground)
 [![SCSS Badge](https://img.shields.io/badge/SCSS-B81717)](https://github.com/aniqatc/playground)
 [![JavaScript Badge](https://img.shields.io/badge/JavaScript-B81717)](https://github.com/aniqatc/playground)
+[![Function Plot Badge](https://img.shields.io/badge/FunctionPlot-B81717)](https://github.com/mauriciopoppe/function-plot)
+[![HTML2Canvas Badge](https://img.shields.io/badge/HTML2Canvas-B81717)](https://github.com/niklasvh/html2canvas)
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-02_v2.png"></a>
 
@@ -88,8 +90,8 @@ A simple calculator that can handle evaluating different arithmetic expressions 
 [![JavaScript Badge](https://img.shields.io/badge/JavaScript-D27334)](https://github.com/aniqatc/playground)
 [![Node Badge](https://img.shields.io/badge/Node-D27334)](https://github.com/aniqatc/playground)
 [![Express Badge](https://img.shields.io/badge/Express-D27334)](https://github.com/aniqatc/playground)
-[![MapBox Badge](https://img.shields.io/badge/MapBox-D27334)](https://github.com/aniqatc/playground)
-[![IP API Badge](https://img.shields.io/badge/IP%20API-D27334)](https://github.com/aniqatc/playground)
+[![MapBox Badge](https://img.shields.io/badge/MapBox-D27334)](https://www.mapbox.com/)
+[![IP API Badge](https://img.shields.io/badge/IP%20API-D27334)](https://ip-api.com/)
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-03_v1.png"></a>
 
