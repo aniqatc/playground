@@ -5,8 +5,8 @@
 [![JavaScript Badge](https://img.shields.io/badge/JavaScript-D27334)](https://github.com/aniqatc/playground)
 [![Node Badge](https://img.shields.io/badge/Node-D27334)](https://github.com/aniqatc/playground)
 [![Express Badge](https://img.shields.io/badge/Express-D27334)](https://github.com/aniqatc/playground)
-[![MapBox Badge](https://img.shields.io/badge/MapBox-D27334)](https://github.com/aniqatc/playground)
-[![IP API Badge](https://img.shields.io/badge/IP%20API-D27334)](https://github.com/aniqatc/playground)
+[![MapBox Badge](https://img.shields.io/badge/MapBox-D27334)](https://www.mapbox.com/) 
+[![IP API Badge](https://img.shields.io/badge/IP%20API-D27334)](https://ip-api.com/)
 
 **Relevant file(s)**: [/client/src/widgets/03/\*](../../client/src/widgets/03/)
 
