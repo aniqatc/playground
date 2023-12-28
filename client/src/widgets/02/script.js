@@ -1,7 +1,8 @@
-import functionPlot from "function-plot";
 import html2canvas from "html2canvas";
+import { CalculatorStorage } from "./core/storage";
+import { CalculatorLogic } from "./core/logic";
 
-export function initializeScript() {
+function initializeScript() {
   CalculatorUI.initialize();
 }
 
@@ -98,10 +99,7 @@ const CalculatorUI = {
   executeCalculatorAction: function (calcValue) {
     if (calcValue === "ac") {
       this.displayValue.textContent = "0";
-    } else if (
-      calcValue === "trim" &&
-      !this.displayValue.textContent.includes(/[a-zA-Z]/)
-    ) {
+    } else if (calcValue === "trim") {
       this.displayValue.textContent = Math.round(
         +this.displayValue.textContent,
       );
@@ -195,132 +193,4 @@ const CalculatorUI = {
   },
 };
 
-const CalculatorLogic = {
-  // Regexes to get numbers on both sides of the specified operation
-  regexParentheses: /\(([^()]+)\)/,
-  regexExponent: /(\d+(?:\.\d+)?)\^(\d+(?:\.\d+)?)/,
-  regexMultiply: /(\d+(?:\.\d+)?)\*(\d+(?:\.\d+)?)/,
-  regexDivide: /(\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)/,
-  regexAdd: /(\d+(?:\.\d+)?)\+(\d+(?:\.\d+)?)/,
-  regexSubtract: /(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)/,
-
-  // Follows PEMDAS for execution
-  evaluateExpression: function (expression) {
-    const invalidPattern = /[\x\.\+\*\/]{2,}/;
-    if (invalidPattern.test(expression)) {
-      CalculatorUI.displayError();
-      return "Error";
-    }
-    if (
-      expression.includes("log") ||
-      expression.includes("sin") ||
-      expression.includes("cos")
-    ) {
-      return "0";
-    }
-    expression = this.evaluateParentheses(expression);
-    expression = this.evaluateExponent(expression);
-    expression = this.evaluateMultiplyAndDivide(expression);
-    expression = this.evaluateAddAndSubtract(expression);
-    return expression;
-  },
-
-  evaluateParentheses: function (expression) {
-    let match;
-    while ((match = this.regexParentheses.exec(expression))) {
-      const innerExpression = match[1];
-      const evaluatedExpression = this.evaluateExpression(innerExpression);
-      expression = expression.replace(match[0], evaluatedExpression);
-    }
-    return expression;
-  },
-
-  evaluateExponent: function (expression) {
-    let match;
-    while ((match = this.regexExponent.exec(expression))) {
-      expression = Math.pow(+match[1], +match[2]);
-    }
-
-    return expression;
-  },
-
-  evaluateMultiplyAndDivide: function (expression) {
-    let match;
-    while (
-      (match = this.regexMultiply.exec(expression)) ||
-      (match = this.regexDivide.exec(expression))
-    ) {
-      const evaluated = match[0].includes("*")
-        ? +match[1] * +match[2]
-        : +match[1] / +match[2];
-      expression = expression.replace(match[0], evaluated);
-    }
-    return expression;
-  },
-
-  evaluateAddAndSubtract: function (expression) {
-    let match;
-    while (
-      (match = this.regexAdd.exec(expression)) ||
-      (match = this.regexSubtract.exec(expression))
-    ) {
-      const evaluated = match[0].includes("+")
-        ? +match[1] + +match[2]
-        : +match[1] - +match[2];
-      expression = expression.replace(match[0], evaluated);
-    }
-    return expression;
-  },
-
-  graphFunction: function (expression) {
-    functionPlot({
-      target: "#widget-02 .graph",
-      height: 160,
-      grid: false,
-      data: [
-        {
-          fn: expression,
-        },
-      ],
-    });
-  },
-};
-
-const CalculatorStorage = {
-  saveToLocalStorage: function () {
-    const calcHistoryItems = [
-      ...CalculatorUI.pastEntriesParent.querySelectorAll("li"),
-    ];
-    const calcHistory = calcHistoryItems.map((li) => li.textContent);
-    const calcValue = CalculatorUI.displayValue.textContent || "0";
-
-    const storageObject = { calcHistory, calcValue };
-    localStorage.setItem("calculatorData", JSON.stringify(storageObject));
-  },
-
-  getFromLocalStorage: function () {
-    const storedData = localStorage.getItem("calculatorData");
-    if (storedData) {
-      const { calcHistory = [], calcValue = "0" } = JSON.parse(storedData);
-      calcHistory.forEach((entry) => CalculatorUI.addToHistory(entry));
-      CalculatorUI.displayValue.textContent = calcValue;
-      this.renderDefaultGraph(calcValue);
-    } else {
-      CalculatorUI.displayValue.textContent = "0";
-      this.renderDefaultGraph();
-    }
-  },
-
-  renderDefaultGraph: function (calcValue = "") {
-    if (
-      calcValue.includes("log") ||
-      calcValue.includes("sin") ||
-      calcValue.includes("cos") ||
-      calcValue.includes("x")
-    ) {
-      CalculatorLogic.graphFunction(calcValue);
-    } else {
-      CalculatorLogic.graphFunction("0");
-    }
-  },
-};
+export { initializeScript, CalculatorUI };
