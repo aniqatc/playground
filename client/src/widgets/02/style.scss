@@ -135,7 +135,9 @@
           overflow-x: scroll;
           overflow-y: hidden;
           white-space: nowrap;
-          transition: all 500ms ease 200ms;
+          transition:
+            font-size 500ms ease 200ms,
+            color 200ms ease;
 
           &::-webkit-scrollbar,
           &::-webkit-scrollbar-thumb {

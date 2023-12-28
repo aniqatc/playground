@@ -1,4 +1,4 @@
-import { CalculatorUI } from "../script";
+import { CalculatorUI } from "./ui";
 import { CalculatorLogic } from "./logic";
 
 const CalculatorStorage = {
