@@ -28,24 +28,19 @@ export function getMarkup() {
             <ul class="toolbar">
               <li>
                 <button
-                  class="history-btn"
+                  class="history-btn" title="Toggle History"
                   aria-label="toggle calculation history"
                 >
                   <i class="fa-solid fa-arrows-up-down"></i>
                 </button>
               </li>
               <li>
-                <button aria-label="print current calculator display">
-                  <i class="fa-solid fa-print"></i>
+                <button class="download-btn" title="Download History" aria-label="download current calculator display">
+                  <i class="fa-solid fa-download"></i>
                 </button>
               </li>
               <li>
-                <button aria-label="save current calculator display">
-                  <i class="fa-regular fa-floppy-disk"></i>
-                </button>
-              </li>
-              <li>
-                <button aria-label="clear current calculator display">
+                <button class="delete-btn" title="Clear History" aria-label="clear current calculator display">
                   <i class="fa-regular fa-trash-can"></i>
                 </button>
               </li>
@@ -83,7 +78,7 @@ export function getMarkup() {
               <button class="operation-btns" data-calc-val="^">
                 x<sup>y</sup>
               </button>
-              <button class="graphing-btns operation-btns" data-calc-val="sin" disabled>
+              <button class="graphing-btns" data-calc-val="sin" disabled>
                 sin
               </button>
               <button class="num-btns" data-calc-val="4">4</button>
@@ -93,7 +88,7 @@ export function getMarkup() {
                 <i class="fa-solid fa-xmark"></i>
               </button>
               <button class="operation-btns" data-calc-val="√">√</button>
-              <button class="graphing-btns operation-btns" data-calc-val="log" disabled>
+              <button class="graphing-btns" data-calc-val="log" disabled>
                 log
               </button>
               <button class="num-btns" data-calc-val="1">1</button>
@@ -105,7 +100,7 @@ export function getMarkup() {
               <button class="operation-btns" data-calc-val="%">
                 <i class="fa-solid fa-percent"></i>
               </button>
-              <button class="graphing-btns operation-btns" data-calc-val="cos" disabled>
+              <button class="graphing-btns" data-calc-val="cos" disabled>
                 cos
               </button>
               <button class="num-btns" data-calc-val="0">0</button>
@@ -116,7 +111,7 @@ export function getMarkup() {
               <button class="operation-btns active" data-calc-val="=">
                 <i class="fa-solid fa-equals"></i>
               </button>
-              <button class="graphing-btns operation-btns" data-calc-val="graph" disabled>
+              <button class="graphing-btns" data-calc-val="graph" disabled>
                 <i class="fa-solid fa-chart-line"></i>
               </button>
             </div>

@@ -8,11 +8,15 @@ const CalculatorUI = {
   pastEntriesParent: null,
   pastEntries: null,
   toggleHistoryButton: null,
+  deleteButton: null,
+  downloadButton: null,
   calculatorEl: null,
   displayValue: null,
   calcTypeOptions: null,
   graphingCalcButtons: null,
   functionPlotGraph: null,
+  calcEqualButton: null,
+  calcGraphButton: null,
 
   // prettier-ignore
   initialize: function () {
@@ -20,6 +24,8 @@ const CalculatorUI = {
     this.pastEntriesParent = this.widget.querySelector(".history");
     this.pastEntries = this.widget.querySelectorAll(".history li"),
     this.toggleHistoryButton = this.widget.querySelector(".history-btn"),
+    this.deleteButton = this.widget.querySelector(".delete-btn"),
+    this.downloadButton = this.widget.querySelector(".download-btn"),
     this.calculatorEl = this.widget.querySelector(".calculator"),
     this.displayValue = this.widget.querySelector(".current-val"),
     this.calcTypeOptions = this.widget.querySelectorAll(".options li");
@@ -29,8 +35,9 @@ const CalculatorUI = {
     
     this.setupCalculatorButtons();
     this.setupHistoryToggle();
-    this.getFromLocalStorage();
     this.setupCalcTypes();
+    this.setupDeleteButton();
+    CalculatorStorage.getFromLocalStorage();
   },
 
   setupCalcTypes: function () {
@@ -42,15 +49,17 @@ const CalculatorUI = {
         option.classList.add("active");
 
         if (option.textContent === "Graphing") {
-          graphTheFunction("0");
+          CalculatorStorage.getFromLocalStorage();
           setTimeout(() => {
             if (document.querySelector(".function-plot")) {
+              document.querySelector(".function-plot").style.height = "auto";
               document.querySelector(".function-plot").style.opacity = "1";
-              document.querySelector(".function-plot").style.height = "revert";
             }
-          }, 2000);
+          }, 1000);
+
           this.graphingCalcButtons.forEach((btn) => {
             btn.disabled = false;
+            btn.classList.add("active");
           });
           this.calcEqualButton.disabled = true;
           this.calcEqualButton.classList.remove("active");
@@ -61,7 +70,11 @@ const CalculatorUI = {
           });
           this.displayValue.style.fontSize = "16px";
         } else if (option.textContent === "Scientific") {
-          this.graphingCalcButtons.forEach((btn) => (btn.disabled = true));
+          CalculatorStorage.getFromLocalStorage();
+          this.graphingCalcButtons.forEach((btn) => {
+            btn.disabled = true;
+            btn.classList.remove("active");
+          });
           this.calcEqualButton.disabled = false;
           this.toggleHistoryButton.disabled = false;
           this.calcGraphButton.classList.remove("active");
@@ -86,6 +99,16 @@ const CalculatorUI = {
     });
   },
 
+  setupDeleteButton: function () {
+    this.deleteButton.addEventListener("click", () => {
+      localStorage.removeItem("calculatorData");
+      this.pastEntries = this.pastEntriesParent.querySelectorAll("li");
+      this.pastEntries.forEach((entry) => entry.remove());
+      this.displayValue.textContent = "0";
+      CalculatorLogic.graphFunction("0");
+    });
+  },
+
   setupCalculatorButtons: function () {
     this.calculatorEl.addEventListener("click", (event) => {
       const calcValue = event.target.dataset.calcVal;
@@ -100,14 +123,16 @@ const CalculatorUI = {
         }
         if (calcValue === "ac") {
           this.displayValue.textContent = "0";
-          localStorage.removeItem("calc-value");
-        } else if (calcValue === "trim") {
+        } else if (
+          calcValue === "trim" &&
+          !this.displayValue.textContent.includes(/[a-zA-Z]/)
+        ) {
           this.displayValue.textContent = Math.round(
             +this.displayValue.textContent,
           );
         } else if (calcValue === "graph") {
-          graphTheFunction(this.displayValue.textContent);
-          this.addToHistory(this.displayValue.textContent);
+          CalculatorLogic.graphFunction(this.displayValue.textContent);
+          CalculatorStorage.saveToLocalStorage();
         } else if (calcValue === "%") {
           this.displayValue.textContent =
             CalculatorLogic.evaluateExpression(this.displayValue.textContent) /
@@ -121,12 +146,12 @@ const CalculatorUI = {
           this.displayValue.textContent = CalculatorLogic.evaluateExpression(
             this.displayValue.textContent,
           );
+          CalculatorStorage.saveToLocalStorage();
         } else if (calcValue !== undefined) {
           this.displayValue.textContent += calcValue;
           this.displayValue.scrollLeft = this.displayValue.scrollWidth;
         }
       } catch (error) {
-        console.log(error);
         this.displayValue.style.color = "#d46060";
         this.displayValue.textContent = "Error";
       }
@@ -147,34 +172,50 @@ const CalculatorUI = {
       this.pastEntriesParent.appendChild(li);
       this.pastEntries = this.pastEntriesParent.querySelectorAll("li");
     }
-
-    this.saveToLocalStorage();
   },
+};
 
+const CalculatorStorage = {
   saveToLocalStorage: function () {
-    const calcHistory = [...this.pastEntriesParent.querySelectorAll("li")].map(
-      (li) => li.textContent,
-    );
-    localStorage.setItem("calc-history", JSON.stringify(calcHistory));
-    if (this.displayValue.textContent) {
-      localStorage.setItem("calc-value", this.displayValue.textContent);
-    }
+    const calcHistoryItems = [
+      ...CalculatorUI.pastEntriesParent.querySelectorAll("li"),
+    ];
+    const calcHistory = calcHistoryItems.map((li) => li.textContent) || "";
+    const calcValue = CalculatorUI.displayValue.textContent || "0";
+
+    const storageObject = {
+      calcHistory,
+      calcValue,
+    };
+
+    localStorage.setItem("calculatorData", JSON.stringify(storageObject));
   },
 
   getFromLocalStorage: function () {
-    const calcHistory = localStorage.getItem("calc-history");
-    if (calcHistory) {
-      const parsedCalcHistory = JSON.parse(calcHistory);
-      parsedCalcHistory.forEach((entry) => {
-        this.addToHistory(entry);
-      });
-    }
+    const storedData = localStorage.getItem("calculatorData");
+    if (storedData) {
+      const { calcHistory, calcValue } = JSON.parse(storedData);
 
-    const calcValue = localStorage.getItem("calc-value");
-    if (calcValue) {
-      this.displayValue.textContent = calcValue;
+      if (calcHistory) {
+        calcHistory.forEach((entry) => CalculatorUI.addToHistory(entry));
+      }
+
+      if (calcValue) {
+        CalculatorUI.displayValue.textContent = calcValue;
+      }
+
+      if (
+        calcValue.includes("log") ||
+        calcValue.includes("sin") ||
+        calcValue.includes("cos")
+      ) {
+        CalculatorLogic.graphFunction(calcValue);
+      } else {
+        CalculatorLogic.graphFunction("0");
+      }
     } else {
-      this.displayValue.textContent = "0";
+      CalculatorLogic.graphFunction("0");
+      CalculatorUI.displayValue.textContent = "0";
     }
   },
 };
@@ -190,6 +231,13 @@ const CalculatorLogic = {
 
   // Follows PEMDAS for execution
   evaluateExpression: function (expression) {
+    if (
+      expression.includes("log") ||
+      expression.includes("sin") ||
+      expression.includes("cos")
+    ) {
+      return expression;
+    }
     expression = this.evaluateParentheses(expression);
     expression = this.evaluateExponent(expression);
     expression = this.evaluateMultiply(expression);
@@ -255,17 +303,17 @@ const CalculatorLogic = {
     }
     return expression;
   },
-};
 
-function graphTheFunction(expression) {
-  functionPlot({
-    target: "#widget-02 .graph",
-    height: 162,
-    grid: false,
-    data: [
-      {
-        fn: expression,
-      },
-    ],
-  });
-}
+  graphFunction: function (expression) {
+    functionPlot({
+      target: "#widget-02 .graph",
+      height: 160,
+      grid: false,
+      data: [
+        {
+          fn: expression,
+        },
+      ],
+    });
+  },
+};

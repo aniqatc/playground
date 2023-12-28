@@ -237,6 +237,10 @@
           color: var.$gray-medium;
           background: var.$color-light-red;
 
+          &.active {
+              @extend .operation-btns;
+          }
+
           &[data-calc-val="x"] {
             font-size: 20px;
           }
