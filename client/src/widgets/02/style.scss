@@ -5,12 +5,6 @@
   height: fit-content;
   width: var.$widget-base;
 
-  & .function-plot {
-    opacity: 0;
-    height: 0;
-    transition: all 300ms ease-out;
-  }
-
   & .like-btn {
     &:hover {
       color: var.$color-dark-red;
@@ -75,12 +69,13 @@
 
     & .display {
       margin-top: -8px;
-      margin-right: -11px;
+      margin-right: -12px;
       border-radius: 0 var.$small-radius 0 var.$small-radius;
       background: #fdfeff;
       padding: var.$spacing-base;
       border: 1px solid var.$color-light-red;
       border-top: 0;
+      border-right: 0;
 
       & .expressions {
         width: 100%;
@@ -89,7 +84,12 @@
         text-align: end;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
+
+        & .graph {
+          min-height: 0;
+          overflow: hidden;
+        }
 
         & .history {
           color: var.$gray-medium;
@@ -130,13 +130,11 @@
           font-weight: 500;
           line-height: 1.2;
           margin-left: 8px;
+          margin-top: auto;
           color: #000;
-          overflow-x: auto;
+          overflow-x: scroll;
           overflow-y: hidden;
           white-space: nowrap;
-          display: flex;
-          align-items: flex-end;
-          justify-content: flex-end;
           transition: all 500ms ease 200ms;
 
           &::-webkit-scrollbar,
@@ -147,12 +145,10 @@
       }
     }
 
+    // prettier-ignore
     & .calculator {
       display: grid;
-      grid-template-columns: repeat(3, minmax(38px, 1fr)) repeat(
-          3,
-          minmax(38px, 60px)
-        );
+      grid-template-columns: repeat(3, minmax(38px, 1fr)) repeat(3, minmax(38px, 50px));
       place-items: center;
       row-gap: var.$spacing-base;
       margin: var.$spacing-base auto;
@@ -262,6 +258,45 @@
       }
     }
   }
+
+  & .function-plot {
+    opacity: 0;
+    height: 0;
+    transition: all 300ms ease-out;
+
+    & .tip,
+    & .graph .line {
+      stroke: var.$color-medium-red !important;
+    }
+
+    & .x {
+      &.origin {
+        stroke: var.$gray-medium;
+      }
+      & text {
+        color: var.$gray-light;
+        font-family: "Recursive", "Archivo", "Inter", sans-serif;
+      }
+      & path.domain {
+        stroke: var.$color-medium-red;
+        fill: var.$color-medium-red;
+        color: var.$color-medium-red;
+      }
+    }
+
+    & .y {
+      &.origin {
+        stroke: var.$gray-medium;
+      }
+      & text {
+        color: var.$gray-light;
+        font-family: "Recursive", "Archivo", "Inter", sans-serif;
+      }
+      & path.domain {
+        stroke: var.$color-medium-red;
+      }
+    }
+  }
 }
 
 .dark #widget-02 {
@@ -341,6 +376,19 @@
             color: var.$color-medium-red;
           }
         }
+      }
+    }
+  }
+  & .function-plot {
+    & .x {
+      & text {
+        color: var.$gray-medium;
+      }
+    }
+
+    & .y {
+      & text {
+        color: var.$gray-medium;
       }
     }
   }

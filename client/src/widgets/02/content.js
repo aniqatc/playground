@@ -54,6 +54,7 @@ export function getMarkup() {
           <div class="calc-container">
             <div class="display">
               <div class="expressions">
+                <div class="graph"></div>
                 <ul class="history"></ul>
                 <div class="current-val"></div>
               </div>
