@@ -70,7 +70,7 @@ export function getMarkup() {
               <button class="operation-btns" data-calc-val="3.14159265359">
                 π
               </button>
-              <button class="graphing-btns" data-calc-val="x" disabled>
+              <button class="graphing-btns operation-btns" data-calc-val="x" disabled>
                 x
               </button>
               <button class="num-btns" data-calc-val="7">7</button>
@@ -82,7 +82,7 @@ export function getMarkup() {
               <button class="operation-btns" data-calc-val="^">
                 x<sup>y</sup>
               </button>
-              <button class="graphing-btns" data-calc-val="sin()" disabled>
+              <button class="graphing-btns operation-btns" data-calc-val="sin" disabled>
                 sin
               </button>
               <button class="num-btns" data-calc-val="4">4</button>
@@ -92,7 +92,7 @@ export function getMarkup() {
                 <i class="fa-solid fa-xmark"></i>
               </button>
               <button class="operation-btns" data-calc-val="√">√</button>
-              <button class="graphing-btns" data-calc-val="log()" disabled>
+              <button class="graphing-btns operation-btns" data-calc-val="log" disabled>
                 log
               </button>
               <button class="num-btns" data-calc-val="1">1</button>
@@ -104,7 +104,7 @@ export function getMarkup() {
               <button class="operation-btns" data-calc-val="%">
                 <i class="fa-solid fa-percent"></i>
               </button>
-              <button class="graphing-btns" data-calc-val="cos()" disabled>
+              <button class="graphing-btns operation-btns" data-calc-val="cos" disabled>
                 cos
               </button>
               <button class="num-btns" data-calc-val="0">0</button>
@@ -112,10 +112,10 @@ export function getMarkup() {
               <button class="operation-helper-btns" data-calc-val="trim">
                 <i class="fa-solid fa-scissors"></i>
               </button>
-              <button class="operation-btns" data-calc-val="=">
+              <button class="operation-btns active" data-calc-val="=">
                 <i class="fa-solid fa-equals"></i>
               </button>
-              <button class="graphing-btns" data-calc-val="graph" disabled>
+              <button class="graphing-btns operation-btns" data-calc-val="graph" disabled>
                 <i class="fa-solid fa-chart-line"></i>
               </button>
             </div>

@@ -10,6 +10,9 @@ const CalculatorUI = {
   toggleHistoryButton: null,
   calculatorEl: null,
   displayValue: null,
+  calcTypeOptions: null,
+  graphingCalcButtons: null,
+  functionPlotGraph: null,
 
   // prettier-ignore
   initialize: function () {
@@ -19,10 +22,58 @@ const CalculatorUI = {
     this.toggleHistoryButton = this.widget.querySelector(".history-btn"),
     this.calculatorEl = this.widget.querySelector(".calculator"),
     this.displayValue = this.widget.querySelector(".current-val"),
+    this.calcTypeOptions = this.widget.querySelectorAll(".options li");
+    this.graphingCalcButtons = this.widget.querySelectorAll(".graphing-btns");
+    this.calcEqualButton = this.widget.querySelector('button[data-calc-val="="]');
+    this.calcGraphButton = this.widget.querySelector('button[data-calc-val="graph"]');
     
     this.setupCalculatorButtons();
     this.setupHistoryToggle();
     this.getFromLocalStorage();
+    this.setupCalcTypes();
+  },
+
+  setupCalcTypes: function () {
+    this.calcTypeOptions.forEach((option) => {
+      option.addEventListener("click", () => {
+        this.calcTypeOptions.forEach((type) => {
+          type.classList.remove("active");
+        });
+        option.classList.add("active");
+
+        if (option.textContent === "Graphing") {
+          graphTheFunction("x");
+          setTimeout(() => {
+            document.querySelector(".function-plot").style.opacity = "1";
+            document.querySelector(".function-plot").style.height = "revert";
+          }, 2000);
+          this.graphingCalcButtons.forEach((btn) => {
+            btn.disabled = false;
+          });
+          this.calcEqualButton.disabled = true;
+          this.calcEqualButton.classList.remove("active");
+          this.toggleHistoryButton.disabled = true;
+          this.calcGraphButton.classList.add("active");
+          this.pastEntries.forEach((entry) => {
+            entry.classList.add("active");
+          });
+          this.displayValue.style.fontSize = "16px";
+        } else if (option.textContent === "Scientific") {
+          this.graphingCalcButtons.forEach((btn) => (btn.disabled = true));
+          this.calcEqualButton.disabled = false;
+          this.toggleHistoryButton.disabled = false;
+          this.calcGraphButton.classList.remove("active");
+          this.calcEqualButton.classList.add("active");
+          this.pastEntries.forEach((entry) => {
+            entry.classList.remove("active");
+          });
+          this.displayValue.style.fontSize = "48px";
+          if (document.querySelector(".function-plot")) {
+            document.querySelector(".function-plot").remove();
+          }
+        }
+      });
+    });
   },
 
   setupHistoryToggle: function () {
@@ -46,7 +97,7 @@ const CalculatorUI = {
           this.displayValue.textContent = "";
         }
         if (calcValue === "ac") {
-          this.displayValue.textContent = "";
+          this.displayValue.textContent = "0";
           localStorage.removeItem("calc-value");
         } else if (calcValue === "trim") {
           this.displayValue.textContent = Math.round(
@@ -63,6 +114,8 @@ const CalculatorUI = {
           this.displayValue.textContent = CalculatorLogic.evaluateExpression(
             this.displayValue.textContent,
           );
+        } else if (calcValue === "graph") {
+          graphTheFunction(this.displayValue.textContent);
         } else if (calcValue !== undefined) {
           this.displayValue.textContent += calcValue;
           this.displayValue.scrollLeft = this.displayValue.scrollWidth;
@@ -78,7 +131,7 @@ const CalculatorUI = {
     this.pastEntries = this.pastEntriesParent.querySelectorAll("li");
 
     if (expression.length > 0) {
-      if (this.pastEntries.length >= 4) {
+      if (this.pastEntries.length >= 6) {
         this.pastEntriesParent.removeChild(this.pastEntries[0]);
       }
 
@@ -202,17 +255,11 @@ const CalculatorLogic = {
   },
 };
 
-// test
 function graphTheFunction(expression) {
-  CalculatorUI.pastEntriesParent.innerHTML = "";
-
   functionPlot({
     target: "#widget-02 .history",
-    // height: 300,
-    // width: 300,
-    grid: true,
-    yAxis: { domain: [-20, 30] },
-    xAxis: { domain: [-20, 30] },
+    height: 162,
+    grid: false,
     data: [
       {
         fn: expression,
