@@ -40,7 +40,7 @@ export function getMarkup() {
                 </button>
               </li>
               <li>
-                <button class="delete-btn" title="Clear History" aria-label="clear current calculator display and storage">
+                <button class="clear-btn" title="Clear History" aria-label="clear current calculator display and storage">
                   <i class="fa-regular fa-trash-can"></i>
                 </button>
               </li>

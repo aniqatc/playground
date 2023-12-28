@@ -10,7 +10,7 @@ const CalculatorUI = {
     this.setupCalculatorButtons();
     this.setupHistoryToggle();
     this.setupCalcMode();
-    this.setupDeleteButton();
+    this.setupClearButton();
     this.setupSnapButton();
     CalculatorStorage.getFromLocalStorage();
   },
@@ -21,7 +21,7 @@ const CalculatorUI = {
     this.pastEntriesParent = this.widget.querySelector(".history");
     this.pastEntries = this.widget.querySelectorAll(".history li"),
     this.toggleHistoryButton = this.widget.querySelector(".history-btn"),
-    this.deleteButton = this.widget.querySelector(".delete-btn"),
+    this.clearButton = this.widget.querySelector(".clear-btn"),
     this.snapButton = this.widget.querySelector(".snap-btn"),
     this.calculatorEl = this.widget.querySelector(".calculator"),
     this.displayValue = this.widget.querySelector(".current-val"),
@@ -34,13 +34,14 @@ const CalculatorUI = {
   setupCalcMode: function () {
     this.modeOptions.forEach((option) => {
       option.addEventListener("click", () => {
+        CalculatorStorage.getFromLocalStorage();
+
         this.modeOptions.forEach((el) => el.classList.remove("active"));
         option.classList.add("active");
 
-        CalculatorStorage.getFromLocalStorage();
         if (option.textContent === "Graphing") {
           handleGraphingMode();
-        } else if (option.textContent === "Scientific") {
+        } else {
           handleScientificMode();
         }
       });
@@ -55,8 +56,8 @@ const CalculatorUI = {
     });
   },
 
-  setupDeleteButton: function () {
-    this.deleteButton.addEventListener("click", () => {
+  setupClearButton: function () {
+    this.clearButton.addEventListener("click", () => {
       localStorage.removeItem("calculatorData");
       this.pastEntries.forEach((entry) => entry.remove());
       this.displayValue.textContent = "0";
@@ -69,10 +70,9 @@ const CalculatorUI = {
       html2canvas(this.widget.querySelector(".display"), {
         removeContainer: true,
       }).then((canvas) => {
-        let image = canvas.toDataURL("image/png");
         let link = document.createElement("a");
-        link.download = "calculations_aniqa-dev.png";
-        link.href = image;
+        link.download = "calc-aniqa_dev.png";
+        link.href = canvas.toDataURL("image/png");
         link.click();
       });
     });
@@ -80,16 +80,14 @@ const CalculatorUI = {
 
   setupCalculatorButtons: function () {
     this.calculatorEl.addEventListener("click", (event) => {
-      this.displayValue.style.color = "revert";
-      const calcValue = event.target.dataset.calcVal;
-
       this.resetDisplay();
 
       try {
-        executeCalculatorAction(calcValue);
+        executeCalculatorAction(event.target.dataset.calcVal);
       } catch (error) {
         this.displayError();
       }
+
       CalculatorStorage.saveToLocalStorage();
     });
   },
@@ -100,6 +98,7 @@ const CalculatorUI = {
       this.displayValue.textContent === "0"
     ) {
       this.displayValue.textContent = "";
+      this.displayValue.style.color = "revert";
     }
   },
 
