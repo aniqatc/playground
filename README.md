@@ -81,7 +81,7 @@ A card detailing the purpose of the overall webpage along with a smooth animatio
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-02_v2.png"></a>
 
-A simple calculator that can handle evaluating different arithmetic expressions with a minimalistic user interface and ability to keep track of previously inputted expressions.
+A dual-mode calculator that can handle evaluating different arithmetic expressions and provides the ability to graph select functions, accessed through a minimalistic user interface. The calculator allows users to keep track of their previously inputted expressions and allows them to save a `.png` file of the calculator's display and history.
 
 #### Widget 03: Digital Footprint ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/03-digital-footprint.md))
 
