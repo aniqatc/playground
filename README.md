@@ -67,7 +67,7 @@
 [![HTML Badge](https://img.shields.io/badge/HTML-703F77)](https://github.com/aniqatc/playground)
 [![SCSS Badge](https://img.shields.io/badge/SCSS-703F77)](https://github.com/aniqatc/playground)
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-01.png"></a>
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-01_v1.png"></a>
 
 A card detailing the purpose of the overall webpage along with a smooth animation displaying the different logos of the technologies used.
 
@@ -77,7 +77,7 @@ A card detailing the purpose of the overall webpage along with a smooth animatio
 [![SCSS Badge](https://img.shields.io/badge/SCSS-B81717)](https://github.com/aniqatc/playground)
 [![JavaScript Badge](https://img.shields.io/badge/JavaScript-B81717)](https://github.com/aniqatc/playground)
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-02.png"></a>
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-02_v2.png"></a>
 
 A simple calculator that can handle evaluating different arithmetic expressions with a minimalistic user interface and ability to keep track of previously inputted expressions.
 
@@ -91,7 +91,7 @@ A simple calculator that can handle evaluating different arithmetic expressions 
 [![MapBox Badge](https://img.shields.io/badge/MapBox-D27334)](https://github.com/aniqatc/playground)
 [![IP API Badge](https://img.shields.io/badge/IP%20API-D27334)](https://github.com/aniqatc/playground)
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-03.png"></a>
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-03_v1.png"></a>
 
 A mini dashboard that presents a user's digital footprint, including geographic location (obtained using their IP), browser details, operating system, and ISP information, all underscored by a dynamic map visualization for a quick and elegant overview of their online presence.
 
