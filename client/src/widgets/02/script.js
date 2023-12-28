@@ -1,4 +1,5 @@
 import functionPlot from "function-plot";
+import html2canvas from "html2canvas";
 
 export function initializeScript() {
   CalculatorUI.initialize();
@@ -37,7 +38,22 @@ const CalculatorUI = {
     this.setupHistoryToggle();
     this.setupCalcTypes();
     this.setupDeleteButton();
+    this.setupDownloadButton();
     CalculatorStorage.getFromLocalStorage();
+  },
+
+  setupDownloadButton: function () {
+    this.downloadButton.addEventListener("click", () => {
+      html2canvas(this.widget.querySelector(".display"), {
+        removeContainer: true,
+      }).then((canvas) => {
+        let image = canvas.toDataURL("image/png");
+        let link = document.createElement("a");
+        link.download = "calculations_aniqa-dev.png";
+        link.href = image;
+        link.click();
+      });
+    });
   },
 
   setupCalcTypes: function () {

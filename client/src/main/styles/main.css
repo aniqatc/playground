@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply mx-auto max-w-screen-2xl bg-zinc-200 font-inter dark:bg-neutral-950 dark:text-zinc-100;
-}
-
 h1,
 h2,
 h3,
@@ -13,6 +9,16 @@ h4,
 h5,
 h6 {
   @apply font-archivo;
+}
+
+body {
+  @apply mx-auto max-w-screen-2xl bg-zinc-200 font-inter dark:bg-neutral-950 dark:text-zinc-100;
+}
+
+body canvas,
+body img {
+  display: initial;
+  vertical-align: initial;
 }
 
 @layer utilities {
