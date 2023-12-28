@@ -40,8 +40,8 @@ export function getMarkup() {
                 </button>
               </li>
               <li>
-                <button class="clear-btn" title="Clear History" aria-label="clear current calculator display and storage">
-                  <i class="fa-regular fa-trash-can"></i>
+                <button class="reset-btn" title="Reset Calculator" aria-label="reset display and storage">
+                  <i class="fa-solid fa-power-off"></i>
                 </button>
               </li>
             </ul>

@@ -1,43 +1,33 @@
 import { CalculatorUI } from "./ui";
-import { CalculatorLogic } from "./logic";
+import { Context } from "./context";
+import { Logic } from "./logic";
 
-const CalculatorStorage = {
-  saveToLocalStorage: function () {
+class CalculatorStorage {
+  saveToLocalStorage() {
     const calcHistoryItems = [
-      ...CalculatorUI.pastEntriesParent.querySelectorAll("li"),
+      ...Context.pastEntriesParent.querySelectorAll("li"),
     ];
     const calcHistory = calcHistoryItems.map((li) => li.textContent);
-    const calcValue = CalculatorUI.displayValue.textContent || "0";
+    const calcValue = Context.displayValue.textContent || "0";
 
     const storageObject = { calcHistory, calcValue };
     localStorage.setItem("calculatorData", JSON.stringify(storageObject));
-  },
+  }
 
-  getFromLocalStorage: function () {
+  getFromLocalStorage() {
     const storedData = localStorage.getItem("calculatorData");
     if (storedData) {
       const { calcHistory = [], calcValue = "0" } = JSON.parse(storedData);
       calcHistory.forEach((entry) => CalculatorUI.addToHistory(entry));
-      CalculatorUI.displayValue.textContent = calcValue;
-      this.renderDefaultGraph(calcValue);
+      Context.displayValue.textContent = calcValue;
+      Logic.renderDefaultGraph(calcValue);
     } else {
-      CalculatorUI.displayValue.textContent = "0";
-      this.renderDefaultGraph();
+      Context.displayValue.textContent = "0";
+      Logic.renderDefaultGraph();
     }
-  },
+  }
+}
 
-  renderDefaultGraph: function (calcValue = "") {
-    if (
-      calcValue.includes("log") ||
-      calcValue.includes("sin") ||
-      calcValue.includes("cos") ||
-      calcValue.includes("x")
-    ) {
-      CalculatorLogic.graphFunction(calcValue);
-    } else {
-      CalculatorLogic.graphFunction("0");
-    }
-  },
-};
+const Storage = new CalculatorStorage();
 
-export { CalculatorStorage };
+export { Storage };

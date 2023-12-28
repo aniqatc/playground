@@ -1,9 +1,11 @@
 import functionPlot from "function-plot";
 
-const CalculatorLogic = {
-  regexExponent: /(\d+(?:\.\d+)?)\^(\d+(?:\.\d+)?)/,
+class CalculatorLogic {
+  constructor() {
+    this.regexExponent = /(\d+(?:\.\d+)?)\^(\d+(?:\.\d+)?)/;
+  }
 
-  evaluateExpression: function (expression) {
+  evaluateExpression(expression) {
     if (
       expression.includes("log") ||
       expression.includes("sin") ||
@@ -13,17 +15,17 @@ const CalculatorLogic = {
     }
     expression = this.evaluateExponent(expression);
     return eval(expression);
-  },
+  }
 
-  evaluateExponent: function (expression) {
+  evaluateExponent(expression) {
     let match;
     while ((match = this.regexExponent.exec(expression))) {
       expression = Math.pow(+match[1], +match[2]);
     }
     return expression;
-  },
+  }
 
-  graphFunction: function (expression) {
+  graphFunction(expression) {
     functionPlot({
       target: "#widget-02 .graph",
       height: 160,
@@ -34,7 +36,22 @@ const CalculatorLogic = {
         },
       ],
     });
-  },
-};
+  }
 
-export { CalculatorLogic };
+  renderDefaultGraph(calcValue = "") {
+    if (
+      calcValue.includes("log") ||
+      calcValue.includes("sin") ||
+      calcValue.includes("cos") ||
+      calcValue.includes("x")
+    ) {
+      this.graphFunction(calcValue);
+    } else {
+      this.graphFunction("0");
+    }
+  }
+}
+
+const Logic = new CalculatorLogic();
+
+export { Logic };

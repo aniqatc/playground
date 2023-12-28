@@ -1,33 +1,31 @@
+import { Logic } from "./logic";
+import { Context } from "./context";
 import { CalculatorUI } from "./ui";
-import { CalculatorLogic } from "./logic";
 
 function executeCalculatorAction(calcValue) {
   if (calcValue === "ac") {
-    CalculatorUI.displayValue.textContent = "0";
+    Context.displayValue.textContent = "0";
   } else if (calcValue === "trim") {
-    CalculatorUI.displayValue.textContent = Math.round(
-      +CalculatorUI.displayValue.textContent,
+    Context.displayValue.textContent = Math.round(
+      +Context.displayValue.textContent,
     );
   } else if (calcValue === "graph") {
-    CalculatorLogic.graphFunction(CalculatorUI.displayValue.textContent);
+    Logic.graphFunction(Context.displayValue.textContent);
   } else if (calcValue === "%") {
-    CalculatorUI.displayValue.textContent =
-      CalculatorLogic.evaluateExpression(
-        CalculatorUI.displayValue.textContent,
-      ) / 100;
+    Context.displayValue.textContent =
+      Logic.evaluateExpression(Context.displayValue.textContent) / 100;
   } else if (calcValue === "√") {
-    CalculatorUI.displayValue.textContent = Math.sqrt(
-      CalculatorLogic.evaluateExpression(CalculatorUI.displayValue.textContent),
+    Context.displayValue.textContent = Math.sqrt(
+      Logic.evaluateExpression(Context.displayValue.textContent),
     );
   } else if (calcValue === "=") {
-    CalculatorUI.addToHistory(CalculatorUI.displayValue.textContent);
-    CalculatorUI.displayValue.textContent = CalculatorLogic.evaluateExpression(
-      CalculatorUI.displayValue.textContent,
+    CalculatorUI.addToHistory(Context.displayValue.textContent);
+    Context.displayValue.textContent = Logic.evaluateExpression(
+      Context.displayValue.textContent,
     );
   } else if (calcValue !== undefined) {
-    CalculatorUI.displayValue.textContent += calcValue;
-    CalculatorUI.displayValue.scrollLeft =
-      CalculatorUI.displayValue.scrollWidth;
+    Context.displayValue.textContent += calcValue;
+    Context.displayValue.scrollLeft = Context.displayValue.scrollWidth;
   }
 }
 

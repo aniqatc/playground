@@ -1,42 +1,26 @@
 import html2canvas from "html2canvas";
-import { CalculatorStorage } from "./storage";
-import { CalculatorLogic } from "./logic";
+import { Storage } from "./storage";
+import { Logic } from "./logic";
+import { Context } from "./context";
 import { handleGraphingMode, handleScientificMode } from "./styles";
 import { executeCalculatorAction } from "./input";
 
 const CalculatorUI = {
   initialize: function () {
-    this.initializeElements();
     this.setupCalculatorButtons();
     this.setupHistoryToggle();
     this.setupCalcMode();
-    this.setupClearButton();
+    this.setupResetButton();
     this.setupSnapButton();
-    CalculatorStorage.getFromLocalStorage();
-  },
-
-  // prettier-ignore
-  initializeElements: function() {
-    this.widget = document.querySelector("#widget-02");
-    this.pastEntriesParent = this.widget.querySelector(".history");
-    this.pastEntries = this.widget.querySelectorAll(".history li"),
-    this.toggleHistoryButton = this.widget.querySelector(".history-btn"),
-    this.clearButton = this.widget.querySelector(".clear-btn"),
-    this.snapButton = this.widget.querySelector(".snap-btn"),
-    this.calculatorEl = this.widget.querySelector(".calculator"),
-    this.displayValue = this.widget.querySelector(".current-val"),
-    this.modeOptions = this.widget.querySelectorAll(".options li");
-    this.graphingButtons = this.widget.querySelectorAll(".graphing-btns");
-    this.equalButton = this.widget.querySelector('button[data-calc-val="="]');
-    this.graphButton = this.widget.querySelector('button[data-calc-val="graph"]');
+    Storage.getFromLocalStorage();
   },
 
   setupCalcMode: function () {
-    this.modeOptions.forEach((option) => {
+    Context.modeOptions.forEach((option) => {
       option.addEventListener("click", () => {
-        CalculatorStorage.getFromLocalStorage();
+        Storage.getFromLocalStorage();
 
-        this.modeOptions.forEach((el) => el.classList.remove("active"));
+        Context.modeOptions.forEach((el) => el.classList.remove("active"));
         option.classList.add("active");
 
         if (option.textContent === "Graphing") {
@@ -49,25 +33,25 @@ const CalculatorUI = {
   },
 
   setupHistoryToggle: function () {
-    this.toggleHistoryButton.addEventListener("click", () => {
-      this.pastEntries.forEach((entry) => {
+    Context.toggleHistoryButton.addEventListener("click", () => {
+      Context.pastEntries.forEach((entry) => {
         entry.classList.toggle("active");
       });
     });
   },
 
-  setupClearButton: function () {
-    this.clearButton.addEventListener("click", () => {
+  setupResetButton: function () {
+    Context.resetButton.addEventListener("click", () => {
       localStorage.removeItem("calculatorData");
-      this.pastEntries.forEach((entry) => entry.remove());
-      this.displayValue.textContent = "0";
-      CalculatorLogic.graphFunction("0");
+      Context.pastEntries.forEach((entry) => entry.remove());
+      Context.displayValue.textContent = "0";
+      Logic.graphFunction("0");
     });
   },
 
   setupSnapButton: function () {
-    this.snapButton.addEventListener("click", () => {
-      html2canvas(this.widget.querySelector(".display"), {
+    Context.snapButton.addEventListener("click", () => {
+      html2canvas(Context.widget.querySelector(".display"), {
         removeContainer: true,
       }).then((canvas) => {
         let link = document.createElement("a");
@@ -79,7 +63,7 @@ const CalculatorUI = {
   },
 
   setupCalculatorButtons: function () {
-    this.calculatorEl.addEventListener("click", (event) => {
+    Context.calculatorEl.addEventListener("click", (event) => {
       this.resetDisplay();
 
       try {
@@ -88,38 +72,38 @@ const CalculatorUI = {
         this.displayError();
       }
 
-      CalculatorStorage.saveToLocalStorage();
+      Storage.saveToLocalStorage();
     });
   },
 
   resetDisplay: function () {
     if (
-      this.displayValue.textContent === "Error" ||
-      this.displayValue.textContent === "0"
+      Context.displayValue.textContent === "Error" ||
+      Context.displayValue.textContent === "0"
     ) {
-      this.displayValue.textContent = "";
-      this.displayValue.style.color = "revert";
+      Context.displayValue.textContent = "";
+      Context.displayValue.style.color = "revert";
     }
   },
 
   displayError: function () {
-    this.displayValue.style.color = "#d46060";
-    this.displayValue.textContent = "Error";
+    Context.displayValue.style.color = "#d46060";
+    Context.displayValue.textContent = "Error";
   },
 
   addToHistory: function (expression) {
-    this.pastEntries = this.pastEntriesParent.querySelectorAll("li");
+    Context.pastEntries = Context.pastEntriesParent.querySelectorAll("li");
 
     if (expression.length > 0) {
-      if (this.pastEntries.length >= 6) {
-        this.pastEntriesParent.removeChild(this.pastEntries[0]);
+      if (Context.pastEntries.length >= 6) {
+        Context.pastEntriesParent.removeChild(Context.pastEntries[0]);
       }
 
       const li = document.createElement("li");
       const formattedExp = expression.replace(/(\+|\-|\/|\*)/g, " $1 ");
       li.textContent = formattedExp;
-      this.pastEntriesParent.appendChild(li);
-      this.pastEntries = this.pastEntriesParent.querySelectorAll("li");
+      Context.pastEntriesParent.appendChild(li);
+      Context.pastEntries = Context.pastEntriesParent.querySelectorAll("li");
     }
   },
 };
