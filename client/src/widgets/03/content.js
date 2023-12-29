@@ -60,7 +60,7 @@ export function getMarkup() {
         </div>
     </div>
     <p class="footer-note">
-    This data is <strong>not</strong> being saved outside your own browser.
+    This data is <strong>not</strong> being saved anywhere.
     </p>
   </div>
 </section>
