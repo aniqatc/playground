@@ -11,3 +11,20 @@ A dual-mode calculator that can handle evaluating different arithmetic expressio
 **Relevant file(s)**: [/client/src/widgets/02/\*](../../client/src/widgets/02/)
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-02_v2.png"></a>
+
+## Tech
+
+- HTML
+- SCSS
+- JavaScript
+- Function Plot for interactive graphs
+- HTML2Canvas for exporting portion of calculator display as `.png`
+
+## Features
+
+- Allows for basic to intermediate **arithmetic computations** utilizing `eval()` and custom methods for edge cases
+- Switch **calculator modes** to focus on calculations based on the mode selected
+- Displays **interactive function graphs** using the Function-Plot library
+- **History tracking** that can be toggled, cleared, or saved in a user's browser storage for future review
+- **Export and save** the current calculator display as a `.png` file (whether it's the arithmetic history or the view of the current function graph)
+- Responsive with user-friendly and minimalistic interface
