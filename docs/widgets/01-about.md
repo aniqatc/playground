@@ -9,22 +9,6 @@ A card detailing the purpose of the overall webpage along with a smooth animatio
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-01_v1.png"></a>
 
-## Purpose
-
-To showcase the core programming technologies used in building this webpage, which include:
-
-- HTML5
-- Tailwind
-- Sass
-- JavaScript
-- Webpack
-- Node
-- Express
-- MongoDB
-- Mongoose
-- Vercel
-- Heroku
-
 ## Features
 
 - SVG brand icons styled with gradients
