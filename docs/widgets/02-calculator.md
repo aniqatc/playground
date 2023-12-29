@@ -14,11 +14,13 @@ A dual-mode calculator that can handle evaluating different arithmetic expressio
 
 ## Tech
 
-- HTML
-- SCSS
-- JavaScript
-- Function Plot for interactive graphs
-- HTML2Canvas for exporting portion of calculator display as `.png`
+- JavaScript/HTML/SCSS: Core technologies for building and styling the widget
+- Function Plot: Library for building interactive SVG graphs
+- HTML2Canvas: library for exporting portion of the calculator display as `.png`
+
+## Storage
+
+- Browser storage: local storage utilized to temporarily save previously inputted expressions
 
 ## Features
 
