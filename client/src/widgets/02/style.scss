@@ -109,7 +109,7 @@
                 opacity 0.5s ease-in-out,
                 max-height 0.25s ease-in-out,
                 transform 0.5s ease-in-out;
-              transition-delay: calc((6 - #{$num}) * 0.5s);
+              transition-delay: calc((5 - #{$num}) * 0.5s);
             }
 
             & li:nth-child(#{$num}).active {

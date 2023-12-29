@@ -1,31 +1,28 @@
 import { Logic } from "./logic";
-import { Context } from "./context";
-import { CalculatorUI } from "./ui";
+import { UI } from "./ui";
 
 function executeCalculatorAction(calcValue) {
   if (calcValue === "ac") {
-    Context.displayValue.textContent = "0";
+    UI.displayValue.textContent = "0";
   } else if (calcValue === "trim") {
-    Context.displayValue.textContent = Math.round(
-      +Context.displayValue.textContent,
-    );
+    UI.displayValue.textContent = Math.round(+UI.displayValue.textContent);
   } else if (calcValue === "graph") {
-    Logic.graphFunction(Context.displayValue.textContent);
+    Logic.graphFunction(UI.displayValue.textContent);
   } else if (calcValue === "%") {
-    Context.displayValue.textContent =
-      Logic.evaluateExpression(Context.displayValue.textContent) / 100;
+    UI.displayValue.textContent =
+      Logic.evaluateExpression(UI.displayValue.textContent) / 100;
   } else if (calcValue === "√") {
-    Context.displayValue.textContent = Math.sqrt(
-      Logic.evaluateExpression(Context.displayValue.textContent),
+    UI.displayValue.textContent = Math.sqrt(
+      Logic.evaluateExpression(UI.displayValue.textContent),
     );
   } else if (calcValue === "=") {
-    CalculatorUI.addToHistory(Context.displayValue.textContent);
-    Context.displayValue.textContent = Logic.evaluateExpression(
-      Context.displayValue.textContent,
+    UI.addToHistory(UI.displayValue.textContent);
+    UI.displayValue.textContent = Logic.evaluateExpression(
+      UI.displayValue.textContent,
     );
   } else if (calcValue !== undefined) {
-    Context.displayValue.textContent += calcValue;
-    Context.displayValue.scrollLeft = Context.displayValue.scrollWidth;
+    UI.displayValue.textContent += calcValue;
+    UI.displayValue.scrollLeft = UI.displayValue.scrollWidth;
   }
 }
 

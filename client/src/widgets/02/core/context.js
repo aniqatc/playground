@@ -20,6 +20,4 @@ class CalculatorContext {
   }
 }
 
-const Context = new CalculatorContext();
-
-export { Context };
+export { CalculatorContext };

@@ -1,5 +1,5 @@
-import { CalculatorUI } from "./core/ui";
+import { UI } from "./core/ui";
 
 export function initializeScript() {
-  CalculatorUI.initialize();
+  UI.initializeUI();
 }
