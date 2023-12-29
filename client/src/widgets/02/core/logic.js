@@ -9,7 +9,8 @@ class CalculatorLogic {
     if (
       expression.includes("log") ||
       expression.includes("sin") ||
-      expression.includes("cos")
+      expression.includes("cos") ||
+      expression.includes("x")
     ) {
       return "0";
     }
@@ -25,7 +26,7 @@ class CalculatorLogic {
     return expression;
   }
 
-  graphFunction(expression) {
+  graphFunction(expression = "x") {
     functionPlot({
       target: "#widget-02 .graph",
       height: 160,
@@ -47,7 +48,7 @@ class CalculatorLogic {
     ) {
       this.graphFunction(calcValue);
     } else {
-      this.graphFunction("0");
+      this.graphFunction();
     }
   }
 }

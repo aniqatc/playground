@@ -16,11 +16,10 @@ class CalculatorStorage {
     if (storedData) {
       const { calcHistory = [], calcValue = "0" } = JSON.parse(storedData);
       calcHistory.forEach((entry) => UI.addToHistory(entry));
-      UI.displayValue.textContent = calcValue;
       Logic.renderDefaultGraph(calcValue);
+      UI.displayValue.textContent = calcValue;
     } else {
-      UI.displayValue.textContent = "0";
-      Logic.renderDefaultGraph();
+      UI.resetGraph();
     }
   }
 }

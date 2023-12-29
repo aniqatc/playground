@@ -1,13 +1,11 @@
 import html2canvas from "html2canvas";
+import { CalculatorContext } from "./context";
 import { Storage } from "./storage";
 import { Logic } from "./logic";
-import { CalculatorContext } from "./context";
-import { handleGraphingMode, handleScientificMode } from "./styles";
+import { Styles } from "./styles";
 import { executeCalculatorAction } from "./input";
 
 class CalculatorUI extends CalculatorContext {
-  static instance;
-
   constructor() {
     super();
   }
@@ -25,15 +23,14 @@ class CalculatorUI extends CalculatorContext {
   setupCalcMode() {
     this.modeOptions.forEach((option) => {
       option.addEventListener("click", () => {
-        Storage.getFromLocalStorage();
-
         this.modeOptions.forEach((el) => el.classList.remove("active"));
         option.classList.add("active");
 
         if (option.textContent === "Graphing") {
-          handleGraphingMode();
+          Storage.getFromLocalStorage();
+          Styles.graphingMode();
         } else {
-          handleScientificMode();
+          Styles.scientificMode();
         }
       });
     });
@@ -52,7 +49,7 @@ class CalculatorUI extends CalculatorContext {
       localStorage.removeItem("calculatorData");
       this.pastEntries.forEach((entry) => entry.remove());
       this.displayValue.textContent = "0";
-      Logic.graphFunction("0");
+      Logic.graphFunction();
     });
   }
 
@@ -91,6 +88,11 @@ class CalculatorUI extends CalculatorContext {
       this.displayValue.textContent = "";
       this.displayValue.style.color = "revert";
     }
+  }
+
+  resetGraph() {
+    this.displayValue.textContent = "0";
+    Logic.renderDefaultGraph();
   }
 
   displayError() {
