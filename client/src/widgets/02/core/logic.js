@@ -15,13 +15,15 @@ class CalculatorLogic {
       return "0";
     }
     expression = this.evaluateExponent(expression);
-    return eval(expression);
+    expression = eval(expression);
+    return expression;
   }
 
   evaluateExponent(expression) {
     let match;
     while ((match = this.regexExponent.exec(expression))) {
-      expression = Math.pow(+match[1], +match[2]);
+      const result = Math.pow(+match[1], +match[2]).toString();
+      expression = expression.replace(match[0], result);
     }
     return expression;
   }
