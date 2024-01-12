@@ -2,9 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Recursive:CASL,MONO@0.25,0.25&display=swap");
 
 #widget-02 {
-  height: fit-content;
-  width: var.$widget-base;
-
   & .like-btn {
     &:hover {
       color: var.$color-dark-red;
@@ -79,7 +76,7 @@
 
       & .expressions {
         width: 100%;
-        min-height: 180px;
+        min-height: 200px;
         padding-right: 8px;
         text-align: end;
         display: flex;
@@ -103,7 +100,7 @@
             padding-left: 4px;
           }
 
-          @for $num from 1 through 6 {
+          @for $num from 1 through 7 {
             & li:nth-child(#{$num}) {
               transition:
                 opacity 0.5s ease-in-out,
@@ -150,17 +147,17 @@
     // prettier-ignore
     & .calculator {
       display: grid;
-      grid-template-columns: repeat(3, minmax(38px, 1fr)) repeat(3, minmax(38px, 50px));
+      grid-template-columns: repeat(3, minmax(40px, 1fr)) repeat(3, minmax(40px, 50px));
       place-items: center;
       row-gap: var.$spacing-base;
-      margin: var.$spacing-base auto;
+      margin: 12px auto var.$spacing-base;
 
       & button {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 38px;
-        width: 38px;
+        height: 40px;
+        width: 40px;
         border-radius: var.$small-radius;
         font-size: 18px;
         transition: var.$med-ease-out;
@@ -184,7 +181,7 @@
 
           &[data-calc-val="="] {
             grid-column: auto;
-            width: 38px;
+            width: 40px;
             font-size: 18px;
             color: var.$color-light-red;
             background: var.$gray-light;
@@ -249,7 +246,7 @@
 
           &[data-calc-val="graph"] {
             grid-column: auto;
-            width: 38px;
+            width: 40px;
             font-size: 18px;
             color: var.$color-light-red;
             background: var.$gray-light;

@@ -104,7 +104,7 @@ class CalculatorUI extends CalculatorContext {
     this.pastEntries = this.pastEntriesParent.querySelectorAll("li");
 
     if (expression.length > 0) {
-      if (this.pastEntries.length >= 6) {
+      if (this.pastEntries.length >= 7) {
         this.pastEntriesParent.removeChild(this.pastEntries[0]);
       }
 

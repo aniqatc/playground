@@ -31,7 +31,7 @@ class CalculatorLogic {
   graphFunction(expression = "x") {
     functionPlot({
       target: "#widget-02 .graph",
-      height: 160,
+      height: 175,
       grid: false,
       data: [
         {

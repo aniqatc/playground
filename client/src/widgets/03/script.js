@@ -14,7 +14,7 @@ function updateMap(data) {
   const theme = localStorage.getItem("theme") || "outdoors";
   const lat = data?.locationData.lat || "33.55";
   const lon = data?.locationData.lon || "-117.77";
-  const mapURL = `https://api.mapbox.com/styles/v1/mapbox/${theme}-v11/static/pin-s+d27334(${lon},${lat})/${lon},${lat},12,0/300x300@2x?access_token=${process.env.MAPBOX_KEY}`;
+  const mapURL = `https://api.mapbox.com/styles/v1/mapbox/${theme}-v11/static/pin-s+d27334(${lon},${lat})/${lon},${lat},11,0/300x300@2x?access_token=${process.env.MAPBOX_KEY}`;
 
   if (!mapURL.includes("undefined")) {
     userDataGrid.style.gridTemplateColumns = "1fr 1fr";

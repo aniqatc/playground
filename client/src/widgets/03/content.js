@@ -33,6 +33,7 @@ export function getMarkup() {
                 <li>City: <span class="user-city"></span></li>
                 <li>Latitude: <span class="user-lat"></span></li>
                 <li>Longitude: <span class="user-lon"></span></li>
+                <li>Timezone: <span class="user-timezone"></span></li>
             </ul>
         </div>
         <div class="device-box data-item">
@@ -41,12 +42,6 @@ export function getMarkup() {
                 <li>Browser: <span class="user-browser"></span></li>
                 <li>OS: <span class="user-os"></span></li>
                 <li>Platform: <span class="user-platform"></span></li>
-            </ul>
-        </div>
-        <div class="timezone-box data-item">
-            <i class="fa-solid fa-clock"></i>
-            <ul class="timezone-info">
-                <li>Timezone: <span class="user-timezone"></span></li>
             </ul>
         </div>
         <div class="isp-box data-item">

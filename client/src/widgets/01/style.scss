@@ -1,10 +1,6 @@
 @use "../../main/styles/var";
 
 #widget-01 {
-  background-image: var.$bg-dotted-light;
-  background-size: 8px 8px;
-  width: var.$widget-base;
-
   & .like-btn {
     &:hover {
       color: var.$color-dark-burgundy;
@@ -16,6 +12,9 @@
   }
 
   & .content {
+    background-image: var.$bg-dotted-light;
+    background-size: 8px 8px;
+
     & strong {
       font-weight: 500;
     }
@@ -76,8 +75,6 @@
 }
 
 .dark #widget-01 {
-  background-image: var.$bg-dotted-dark;
-
   & .like-btn {
     &:hover {
       color: var.$color-light-pink;
@@ -89,6 +86,8 @@
   }
 
   & .content {
+    background-image: var.$bg-dotted-dark;
+
     & .icons-group {
       & .icons-row {
         & .icon {

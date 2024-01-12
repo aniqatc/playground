@@ -3,17 +3,9 @@ import "./style.scss";
 export function getMarkup() {
   return `
     <!-- Widget 01: About -->
-    <section
-        id="widget-01"
-        class="relative h-min rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800 border border-[#afb4bd] dark:border-zinc-600"
-      >
-        <div class="absolute -inset-[2px] z-[-1] overflow-hidden rounded">
-          <div
-            class="animate-border-rotate absolute -inset-1 z-[-1] rounded bg-[conic-gradient(#550921,transparent_30deg)] dark:bg-[conic-gradient(#e2a4b6,transparent_30deg)]"
-          ></div>
-       </div>
+    <section id="widget-01" class="relative">
        <div
-          class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
+          class="absolute -bottom-6 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
         >
         <p class="mr-auto">about</p>
           <button class="group cursor-pointer like-btn" aria-label="like button">
@@ -22,7 +14,12 @@ export function getMarkup() {
             ></i></button
           ><span class="font-archivo like-value" id="likes-01"></span>
       </div>
-       <div class="content">
+       <div class="content relative rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800 border border-[#afb4bd] dark:border-zinc-600">
+       <div class="absolute -inset-[2px] z-[-1] overflow-hidden rounded">
+          <div
+            class="animate-border-rotate absolute -inset-1 z-[-1] rounded bg-[conic-gradient(#550921,transparent_30deg)] dark:bg-[conic-gradient(#e2a4b6,transparent_30deg)]"
+          ></div>
+       </div>
         <p>
           a place to showcase a variety of <strong>independent widgets</strong> with different
           functionalities utilizing both frontend and backend technologies
@@ -105,6 +102,8 @@ export function getMarkup() {
             </div>
           </div>
         </div>
+      </div>
+      <div class="rounded bg-stone-50 px-3 py-2 my-3 shadow-md dark:bg-zinc-800 border border-[#afb4bd] dark:border-zinc-600">
       </div>
     </section>
     `;
