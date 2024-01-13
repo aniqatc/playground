@@ -23,7 +23,7 @@ body img {
 
 #js-main-container section {
   min-width: 100%;
-  min-height: 480px;
+  max-height: 510px;
 }
 
 @layer utilities {

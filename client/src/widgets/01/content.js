@@ -3,7 +3,7 @@ import "./style.scss";
 export function getMarkup() {
   return `
     <!-- Widget 01: About -->
-    <section id="widget-01" class="relative">
+    <section id="widget-01" class="relative h-full">
        <div
           class="absolute -bottom-6 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
         >
@@ -103,7 +103,38 @@ export function getMarkup() {
           </div>
         </div>
       </div>
-      <div class="rounded bg-stone-50 px-3 py-2 my-3 shadow-md dark:bg-zinc-800 border border-[#afb4bd] dark:border-zinc-600">
+      <div class="card-wrapper mt-3">
+      <div class="card rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800 border border-[#afb4bd] dark:border-zinc-600">
+      <a href="https://github.com/aniqatc" target="_blank">
+      <p><i class="fa-brands fa-github"></i>
+      <br/>
+      github</p>
+        <img src="https://ghchart.rshah.org/550921/aniqatc" alt="aniqatc's github contribution chart" 
+      class="gh-image dark:hidden block"/>
+        <img src="https://ghchart.rshah.org/db8aa1/aniqatc" alt="aniqatc's github contribution chart" class="gh-image dark:block hidden"/>
+      </a>
+      </div>
+      <div class="card-wrapper flex-col">
+      <div class="card rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800 border border-[#afb4bd] dark:border-zinc-600">
+     <a href="https://twitter.com/aniqatc" target="_blank">
+      <p><i class="fa-brands fa-twitter"></i>
+      <br/>
+      twitter</p>
+      </a>
+      </div>
+      <div class="card rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800 border border-[#afb4bd] dark:border-zinc-600">
+      <a href="https://aniqa.dev" target="_blank">
+      <p><i class="fa-solid fa-laptop"></i>
+      <br/>
+      projects</p>
+      </a>
+      </div>
+      </div>
+      </div>
+      <div class="card card-final rounded bg-stone-50 px-3 py-2 mt-2 shadow-md dark:bg-zinc-800 border border-[#afb4bd] dark:border-zinc-600">
+     <a href="https://github.com/aniqatc/playground" target="_blank">
+      <p><i class="fa-solid fa-code-branch"></i>  view playground repository</p>
+      </a>
       </div>
     </section>
     `;
