@@ -77,11 +77,11 @@
     }
   }
 
-  & .card-wrapper {
+  & .card-container {
     display: flex;
     gap: var.$spacing-base;
 
-    & .card {
+    & .card-tile {
       width: 100%;
       height: 100%;
       display: grid;
@@ -97,19 +97,19 @@
         font-size: 16px;
       }
     }
+
+    & .gh-image {
+      object-fit: cover;
+      object-position: 100% -14px;
+      width: 100%;
+      min-height: 100px;
+    }
   }
 
-  & .card-final {
+  & .card-footer {
     font-size: 11px;
     color: var.$color-dark-burgundy;
     text-align: center;
-  }
-
-  & .gh-image {
-    object-fit: cover;
-    object-position: 100% -14px;
-    width: 100%;
-    min-height: 105px;
   }
 }
 
@@ -141,15 +141,15 @@
     }
   }
 
-  & .card-wrapper {
-    & .card {
+  & .card-container {
+    & .card-tile {
       & p {
         color: #ffd7ee;
       }
     }
   }
 
-  & .card-final {
+  & .card-footer {
     color: #ffd7ee;
   }
 }

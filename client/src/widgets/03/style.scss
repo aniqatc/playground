@@ -73,6 +73,7 @@
 
     & .data-grid {
       display: grid;
+      height: 100%;
       grid-template-columns: 1fr;
       gap: var.$spacing-base;
       margin-top: var.$spacing-base;
@@ -153,13 +154,6 @@
           }
         }
       }
-    }
-
-    & .footer-note {
-      font-size: 10px;
-      text-align: center;
-      color: var.$gray-medium;
-      margin-top: var.$spacing-base;
     }
   }
 }

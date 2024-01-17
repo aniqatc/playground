@@ -54,9 +54,6 @@ export function getMarkup() {
             <img src="#" class="user-map-img" alt="user's approximate location">
         </div>
     </div>
-    <p class="footer-note">
-    This data is <strong>not</strong> being saved anywhere.
-    </p>
   </div>
 </section>
 `;
