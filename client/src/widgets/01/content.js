@@ -200,7 +200,7 @@ export function getMarkup() {
             </div>
           </div>
         </div>
-        <div class="card-container mt-3">
+        <div class="card-container mt-2">
           <div
             class="card-tile rounded border border-[#afb4bd] bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
           >
