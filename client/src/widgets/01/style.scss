@@ -3,12 +3,12 @@
 #widget-01 {
   & .like-btn {
     &:hover {
-      color: var.$color-dark-burgundy;
+      color: var.$color-dark;
     }
   }
 
   & .liked-color {
-    color: var.$color-dark-burgundy;
+    color: var.$color-dark;
   }
 
   & .content {
@@ -61,7 +61,7 @@
           & svg {
             width: 33px;
             height: 33px;
-            fill: url(#widget-01_light-gradient) var.$color-dark-burgundy;
+            fill: url(#widget-01_light-gradient) var.$color-dark;
           }
         }
       }
@@ -89,7 +89,7 @@
       font-size: 13px;
 
       & p {
-        color: var.$color-dark-burgundy;
+        color: var.$color-dark;
         text-align: center;
       }
 
@@ -108,7 +108,7 @@
 
   & .card-footer {
     font-size: 11px;
-    color: var.$color-dark-burgundy;
+    color: var.$color-dark;
     text-align: center;
   }
 }
@@ -116,12 +116,12 @@
 .dark #widget-01 {
   & .like-btn {
     &:hover {
-      color: var.$color-light-pink;
+      color: #fff;
     }
   }
 
   & .liked-color {
-    color: var.$color-light-pink;
+    color: #fff;
   }
 
   & .content {
@@ -134,7 +134,7 @@
           background: var.$bg-transparent-dark;
 
           & svg {
-            fill: url(#widget-01_dark-gradient) var.$color-light-pink;
+            fill: url(#widget-01_dark-gradient) var.$color-light;
           }
         }
       }
@@ -144,12 +144,12 @@
   & .card-container {
     & .card-tile {
       & p {
-        color: #ffd7ee;
+        color: #dadada;
       }
     }
   }
 
   & .card-footer {
-    color: #ffd7ee;
+    color: #dadada;
   }
 }

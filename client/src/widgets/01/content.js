@@ -20,7 +20,7 @@ export function getMarkup() {
         >
           <div class="absolute -inset-[2px] z-[-1] overflow-hidden rounded">
             <div
-              class="absolute -inset-1 z-[-1] animate-border-rotate rounded bg-[conic-gradient(#550921,transparent_30deg)] dark:bg-[conic-gradient(#e2a4b6,transparent_30deg)]"
+              class="absolute -inset-1 z-[-1] animate-border-rotate rounded bg-[conic-gradient(#010101,transparent_30deg)] dark:bg-[conic-gradient(#f7f7f7,transparent_30deg)]"
             ></div>
           </div>
           <p>
@@ -36,8 +36,8 @@ export function getMarkup() {
                 focusable="false"
               >
                 <linearGradient id="widget-01_light-gradient" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#C33764" />
-                  <stop offset="100%" stop-color="#1D2671" />
+                  <stop offset="0%" stop-color="#000000" />
+                  <stop offset="100%" stop-color="#878787" />
                 </linearGradient>
               </svg>
               <svg
@@ -46,9 +46,9 @@ export function getMarkup() {
                 focusable="false"
               >
                 <linearGradient id="widget-01_dark-gradient" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#C5796D" />
+                  <stop offset="0%" stop-color="#211e1f" />
                   <stop offset="50%" stop-color="#DBE6F6" />
-                  <stop offset="100%" stop-color="#C06C84" />
+                  <stop offset="100%" stop-color="#878787" />
                 </linearGradient>
               </svg>
               <div class="icon">
@@ -211,12 +211,12 @@ export function getMarkup() {
                 github
               </p>
               <img
-                src="https://ghchart.rshah.org/550921/aniqatc"
+                src="https://ghchart.rshah.org/211e1f/aniqatc"
                 alt="aniqatc's github contribution chart"
                 class="gh-image block dark:hidden"
               />
               <img
-                src="https://ghchart.rshah.org/db8aa1/aniqatc"
+                src="https://ghchart.rshah.org/494949/aniqatc"
                 alt="aniqatc's github contribution chart"
                 class="gh-image hidden dark:block"
               />

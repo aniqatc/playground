@@ -12,3 +12,6 @@ server/widgets/_modelTemplate.js
 
 # vs code
 .vscode/settings.json
+
+# idea xml
+.idea/
