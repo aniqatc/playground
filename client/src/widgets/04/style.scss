@@ -1,0 +1,21 @@
+@use "../../main/styles/var";
+
+#widget-04 {
+  & .like-btn {
+    &:hover {
+      color: var.$color-medium-yellow;
+    }
+  }
+
+  & .liked-color {
+    color: var.$color-medium-yellow;
+  }
+
+  & .content {
+  }
+}
+
+.dark #widget-04 {
+  & .content {
+  }
+}
