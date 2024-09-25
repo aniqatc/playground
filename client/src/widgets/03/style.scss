@@ -80,7 +80,7 @@
       overflow: hidden;
 
       & .data-item {
-        font-size: 12px;
+        font-size: var.$font-size-sm;
         border-radius: var.$small-radius;
         box-shadow: var.$tight-shadow rgba(178, 87, 22, 0.15);
         background: #fff;
@@ -125,7 +125,7 @@
           & li {
             & span[class^="user-"] {
               font-weight: 500;
-              font-size: 13px;
+              font-size: var.$font-size-base;
             }
           }
         }

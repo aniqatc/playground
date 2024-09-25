@@ -27,7 +27,7 @@
       & .options {
         display: flex;
         gap: 12px;
-        font-size: 12px;
+        font-size: var.$font-size-sm;
         transform: rotate(-90deg) translateX(-95px);
         margin-left: -16px;
 
@@ -42,7 +42,7 @@
         display: flex;
         justify-content: center;
         margin-left: -8px;
-        font-size: 14px;
+        font-size: var.$font-size-med;
 
         & button {
           padding: 4px 0;
@@ -90,7 +90,7 @@
 
         & .history {
           color: var.$gray-medium;
-          font-size: 14px;
+          font-size: var.$font-size-med;
           overflow: hidden;
 
           & li {

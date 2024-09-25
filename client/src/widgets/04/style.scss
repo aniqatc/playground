@@ -12,6 +12,29 @@
   }
 
   & .content {
+    font-size: var.$font-size-base;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - (var.$spacing-base * 2));
+
+    textarea {
+      font-family: inherit;
+      display: inline-block;
+      background-color: transparent;
+      border: none;
+      resize: none;
+      width: 100%;
+      height: 75px;
+      border-radius: 2px;
+      overflow-wrap: break-word;
+      border: var.$border-light;
+      padding: 8px 8px;
+
+      &:focus {
+        outline: 1px solid var.$color-medium-yellow;
+      }
+    }
   }
 }
 

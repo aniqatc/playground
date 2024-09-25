@@ -20,7 +20,7 @@
     }
 
     p {
-      font-size: 14px;
+      font-size: var.$font-size-med;
     }
 
     & .icons-group {
@@ -86,7 +86,7 @@
       height: 100%;
       display: grid;
       place-items: center;
-      font-size: 13px;
+      font-size: var.$font-size-base;
 
       & p {
         color: var.$color-dark;
@@ -107,7 +107,7 @@
   }
 
   & .card-footer {
-    font-size: 11px;
+    font-size: var.$font-size-base;
     color: var.$color-dark;
     text-align: center;
   }
