@@ -69,7 +69,7 @@
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-01_v1.png"></a>
 
-A card detailing the purpose of the overall webpage along with a smooth animation displaying the different logos of the technologies used.
+A card showcasing the purpose of the webpage with animated SVG logos of the technologies used, a GitHub activity grid of the creator, and links to source code and social media.
 
 #### Widget 02: Calculator ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/02-calculator.md))
 

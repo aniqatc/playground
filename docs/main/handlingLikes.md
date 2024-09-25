@@ -44,7 +44,7 @@ Now, there are two functions that handle the requests:
   - Extracts the `widgetId` from the request URL and looks for the corresponding document in the database
   - Returns the `widgetId` and current `likeCount` in the response to the frontend
 - `updateLikes()` for `POST` requests
-  - Extracts the `widgetId` from the request URL and looks for the corresponding document in the database: if it doesn't exist, a new document will be created for it based on the model specified in `likeModel.js`; if it exists, the exist document's `likeCount` field will be incremented by 1
+  - Extracts the `widgetId` from the request URL and looks for the corresponding document in the database: if it doesn't exist, a new document will be created for it based on the model specified in `likeModel.js`; if it exists, the existing document's `likeCount` field will be incremented by 1
   - The document is then saved to the database
   - Returns the updated `likeCount` in the response to the frontend
 
@@ -63,7 +63,7 @@ For each like button:
   - checks if the user can like the widget based on the limit (of 5)
   - updates the likes in the database by sending a `POST` request
   - updates the button styling
-  - updates the user's current like amount in `localStorage` (to keep track so that it doesn't exceed the limit)
+  - updates the user's current like amount in `localStorage` (to keep track so that it doesn't exceed the limit of 5 likes per widget)
 
 For each like count value:
 
@@ -80,6 +80,14 @@ This function takes three parameters: `el`, `id`, `type`
 - `type` => represents the HTTP request type, either `GET` or `POST`
 
 The function uses `sessionStorage` to cache the like count for each widget, which reduces the need for unnecessary network requests during a single session. If the like counts are available in `sessionStorage`, those values will be used to show to the user. However, if it isn't available, then either a `POST` or `GET` request is made.
+
+**Reasoning for using `sessionStorage`**
+
+The reason for using `sessionStorage` to show the current like counts is to reduce the number of `GET` requests sent to the API. Instead of constantly querying the server to get the current like count every time a widget's like count is displayed, we cache the like count in `sessionStorage` for the duration of the session. This minimizes unnecessary network requests and improves performance.
+
+When a user likes a widget, the like count in the database is still updated via a `POST` request. After this update, the frontend directly updates the like count in the UI using the response from the `POST` request. Since the count is already updated in the database and the user is immediately shown the new count, it is unnecessary to send another `GET` request to fetch the updated count.
+
+`localStorage` is not used for this purpose as `localStorage` would persist the data across sessions, which could lead to outdated like counts being shown to users.
 
 **Helpers** in `likeHelpers.js`
 

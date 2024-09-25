@@ -6,7 +6,7 @@ The overall webpage styling, including the header, dark mode, card styling and l
 
 **Here are some key points**:
 
-- Tailwind is used for the overall webpage styling and layout as it makes it easy to adjust the styling directly in the markup and keeps it separate from the individual widget styling which is declarated in its own dedicated SCSS file
+- Tailwind is used for the overall webpage styling and layout as it makes it easy to adjust the styling directly in the markup and keeps it separate from the individual widget styling which is declared in its own dedicated SCSS file
 - SCSS is used specifically to encapsulate and modularize the individual widget styling because of SCSS' nesting abilities. This allows me to nest classes under a single ID or class that is specific to the widget and ensure that the styles won't conflict with other widget styling. If it wasn't for this capability, I would have to create unique class names that could get very long and hard-to-read and manage (e.g. `.widget-03-header-title_icon` vs `#widget-03` and nesting all the styling under it)
 
 Basically, anything relating to the overall webpage or layout is edited inside the main `html` file and the individual widgets are edited in its respective SCSS file.

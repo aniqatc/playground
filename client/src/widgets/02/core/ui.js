@@ -59,7 +59,7 @@ class CalculatorUI extends CalculatorContext {
         removeContainer: true,
       }).then((canvas) => {
         let link = document.createElement("a");
-        link.download = "calc-aniqa_dev.png";
+        link.download = "calc-history.png";
         link.href = canvas.toDataURL("image/png");
         link.click();
       });

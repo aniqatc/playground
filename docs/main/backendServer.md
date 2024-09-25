@@ -6,8 +6,8 @@ The `server.js` file creates and handles a Node.js application using Express (sp
 
 **Here are some key points**:
 
-- `dotenv` package is used to load environmental variables from the hidden `.env` file which holds sensitive information like the database URI and password
-- Mongoose is used to seamlessly connect to the relevant MongoDB database and upon successful connection, the database name is printed to the console
+- `dotenv` package is used to load environmental variables from the hidden `.env` file which holds sensitive information like API keys, and database URI and password
+- Mongoose is used to connect to the relevant MongoDB database and upon successful connection, the database name is printed to the console
 - The server is started using `app.listen` with the relevant port information and certain details are logged to the console (e.g. connection is sucessful and the environment mode based on the `NODE_ENV` variable which is set using npm scripts)
 
 **Middleware configurations**
