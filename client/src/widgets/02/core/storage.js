@@ -15,6 +15,7 @@ class CalculatorStorage {
     const storedData = localStorage.getItem("calculatorData");
     if (storedData) {
       const { calcHistory = [], calcValue = "0" } = JSON.parse(storedData);
+      UI.pastEntriesParent.innerHTML = "";
       calcHistory.forEach((entry) => UI.addToHistory(entry));
       Logic.renderDefaultGraph(calcValue);
       UI.displayValue.textContent = calcValue;

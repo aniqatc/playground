@@ -103,10 +103,10 @@
           @for $num from 1 through 7 {
             & li:nth-child(#{$num}) {
               transition:
-                opacity 0.5s ease-in-out,
-                max-height 0.25s ease-in-out,
-                transform 0.5s ease-in-out;
-              transition-delay: calc((5 - #{$num}) * 0.5s);
+                opacity 0.4s ease-in-out,
+                max-height 0.2s ease-in-out,
+                transform 0.3s ease-in-out;
+              transition-delay: calc((5 - #{$num}) * 0.35s);
             }
 
             & li:nth-child(#{$num}).active {
