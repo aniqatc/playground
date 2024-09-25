@@ -64,8 +64,8 @@
 
 #### Widget 01: About ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/01-about.md))
 
-[![HTML Badge](https://img.shields.io/badge/HTML-703F77)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-703F77)](https://github.com/aniqatc/playground)
+[![HTML Badge](https://img.shields.io/badge/HTML-0A0A0A)](https://github.com/aniqatc/playground)
+[![SCSS Badge](https://img.shields.io/badge/SCSS-0A0A0A)](https://github.com/aniqatc/playground)
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-01_v1.png"></a>
 
