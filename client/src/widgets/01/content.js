@@ -24,7 +24,7 @@ export function getMarkup() {
             ></div>
           </div>
           <p>
-            a place to showcase a variety of
+            a showcase featuring a variety of
             <strong>independent widgets</strong> with different functionalities
             utilizing both frontend and backend technologies
           </p>

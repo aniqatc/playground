@@ -21,7 +21,6 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 100%;
       color: var.$gray-light;
 
       & .options {
@@ -151,6 +150,7 @@
       place-items: center;
       row-gap: var.$spacing-base;
       margin: 12px auto var.$spacing-base;
+    
 
       & button {
         display: flex;

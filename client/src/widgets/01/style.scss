@@ -1,6 +1,10 @@
 @use "../../main/styles/var";
 
 #widget-01 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   & .like-btn {
     &:hover {
       color: var.$color-dark;
@@ -21,6 +25,8 @@
 
     p {
       font-size: var.$font-size-med;
+      word-break: keep-all;
+      hyphens: auto;
     }
 
     & .icons-group {
@@ -94,7 +100,7 @@
       }
 
       & i {
-        font-size: 16px;
+        font-size: 18px;
       }
     }
 
@@ -102,7 +108,7 @@
       object-fit: cover;
       object-position: 100% -14px;
       width: 100%;
-      min-height: 100px;
+      min-height: 95px;
     }
   }
 
@@ -110,6 +116,7 @@
     font-size: var.$font-size-base;
     color: var.$color-dark;
     text-align: center;
+    font-size: var.$font-size-sm;
   }
 }
 
