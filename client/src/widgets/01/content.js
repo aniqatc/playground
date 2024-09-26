@@ -16,7 +16,7 @@ export function getMarkup() {
           ><span class="like-value font-archivo" id="likes-01"></span>
         </div>
         <div
-          class="content relative rounded border border-[#afb4bd] bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
+          class="content relative rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800"
         >
           <div class="absolute -inset-[2px] z-[-1] overflow-hidden rounded">
             <div
@@ -202,7 +202,7 @@ export function getMarkup() {
         </div>
         <div class="card-container mt-2">
           <div
-            class="card-tile rounded border border-[#afb4bd] bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
+            class="card-tile rounded  bg-stone-50 px-3 py-2 shadow-md  dark:bg-zinc-800"
           >
             <a href="https://github.com/aniqatc" target="_blank">
               <p>
@@ -224,7 +224,7 @@ export function getMarkup() {
           </div>
           <div class="card-container flex-col">
             <div
-              class="card-tile rounded border border-[#afb4bd] bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
+              class="card-tile rounded  bg-stone-50 px-3 py-2 shadow-md  dark:bg-zinc-800"
             >
               <a href="https://twitter.com/aniqatc" target="_blank">
                 <p>
@@ -235,7 +235,7 @@ export function getMarkup() {
               </a>
             </div>
             <div
-              class="card-tile rounded border border-[#afb4bd] bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
+              class="card-tile rounded  bg-stone-50 px-3 py-2 shadow-md  dark:bg-zinc-800"
             >
               <a href="https://aniqa.dev" target="_blank">
                 <p>
@@ -248,7 +248,7 @@ export function getMarkup() {
           </div>
         </div>
         <div
-          class="card-tile card-footer mt-2 rounded border border-[#afb4bd] bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
+          class="card-tile card-footer mt-2 rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800"
         >
           <a href="https://github.com/aniqatc/playground" target="_blank">
             <p>

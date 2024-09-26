@@ -5,7 +5,7 @@ export function getMarkup() {
 <!-- Widget 03: User's Digital Footprint -->
 <section
   id="widget-03"
-  class="relative rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800 border border-[#afb4bd] dark:border-zinc-600"
+  class="relative rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800 "
 >
   <div
     class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
