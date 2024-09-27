@@ -49,14 +49,14 @@
       & .todo-headings {
         font-weight: 500;
         border-bottom: 1px solid var.$color-light-yellow;
-        margin: 0 -12px 6px -12px;
+        margin: 0 -12px 3px -12px;
         padding: 0 12px 4px 12px;
       }
 
       & input[type="checkbox"] {
         appearance: none;
-        width: 17px;
-        height: 17px;
+        min-width: 17px;
+        min-height: 17px;
         border-radius: 50%;
         border: 1px solid var.$color-light-yellow;
         outline: 2px solid transparent;
@@ -64,6 +64,7 @@
         transition: all 200ms ease-in;
         cursor: pointer;
         position: relative;
+        display: block;
 
         &:checked {
           background-color: var.$color-medium-yellow;
@@ -96,7 +97,7 @@
           border-width: 0 2px 2px 0;
           position: absolute;
           top: 2px;
-          left: 5.5px;
+          left: 5px;
           opacity: 0;
           transform: rotate(45deg) scale(0.5);
           transition:
@@ -112,9 +113,7 @@
           outline 100ms ease-in,
           height 200ms ease;
         height: 38px;
-        box-shadow:
-          1px 1px 6px rgba(0, 0, 0, 0.05),
-          -1px -1px 6px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         border-radius: 2px;
 
         &.focused {
@@ -232,6 +231,7 @@
               background-color: var.$color-medium-yellow;
               border-radius: 50%;
               transition: all 200ms ease;
+              box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 
               &:hover {
                 color: var.$color-medium-yellow;
@@ -254,9 +254,11 @@
           display: flex;
           align-items: flex-start;
           padding: 6px 12px 8px 12px;
+          transition: all 250ms ease-in;
 
           &:hover {
             background-color: rgba(229, 191, 0, 0.1);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
           }
 
           & .todo-item-detail-box {
@@ -266,7 +268,7 @@
             cursor: pointer;
 
             & .todo-item-description {
-              max-width: 330px;
+              max-width: 300px;
               font-size: var.$font-size-sm;
             }
 
