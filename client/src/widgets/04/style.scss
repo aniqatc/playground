@@ -55,8 +55,8 @@
 
       & input[type="checkbox"] {
         appearance: none;
-        width: 19px;
-        height: 19px;
+        width: 17px;
+        height: 17px;
         border-radius: 50%;
         border: 1px solid var.$color-light-yellow;
         outline: 2px solid transparent;
@@ -90,8 +90,8 @@
         &::after {
           content: "";
           display: block;
-          width: 6px;
-          height: 11px;
+          width: 5px;
+          height: 10px;
           border: solid #fafaf9;
           border-width: 0 2px 2px 0;
           position: absolute;
@@ -112,10 +112,13 @@
           outline 100ms ease-in,
           height 200ms ease;
         height: 38px;
+        box-shadow:
+          1px 1px 6px rgba(0, 0, 0, 0.05),
+          -1px -1px 6px rgba(0, 0, 0, 0.05);
+        border-radius: 2px;
 
         &.focused {
           outline: 2px solid var.$color-medium-yellow;
-          border-radius: 2px;
           height: 78px;
         }
 
@@ -214,7 +217,7 @@
                 }
 
                 &:hover {
-                  background-color: var.$color-light-yellow;
+                  background-color: #f8f4e5;
                   border-radius: 8px;
                 }
               }
@@ -244,23 +247,31 @@
       }
 
       & ul {
+        margin-left: -12px;
+        margin-right: -12px;
+
         & .todo-item {
           display: flex;
           align-items: flex-start;
-          margin: 6px 0 8px;
+          padding: 6px 12px 8px 12px;
+
+          &:hover {
+            background-color: rgba(229, 191, 0, 0.1);
+          }
 
           & .todo-item-detail-box {
             display: flex;
             flex-direction: column;
-            margin-left: 12px;
+            padding-left: 12px;
             cursor: pointer;
 
             & .todo-item-description {
               max-width: 330px;
+              font-size: var.$font-size-sm;
             }
 
             & .todo-date {
-              font-size: var.$font-size-sm;
+              font-size: 11px;
               color: var.$gray-dark;
               display: flex;
               align-items: center;
