@@ -1,6 +1,8 @@
 @use "../../main/styles/var";
 
 #widget-04 {
+  min-height: 100%;
+
   & .like-btn {
     &:hover {
       color: var.$color-medium-yellow;
@@ -68,7 +70,7 @@
 
           &::after {
             opacity: 1;
-            transition: all 100ms ease;
+            transform: rotate(45deg) scale(1);
           }
 
           & ~ label {
@@ -92,11 +94,14 @@
           height: 11px;
           border: solid #fafaf9;
           border-width: 0 2px 2px 0;
-          transform: rotate(45deg);
           position: absolute;
           top: 2px;
           left: 5.5px;
           opacity: 0;
+          transform: rotate(45deg) scale(0.5);
+          transition:
+            opacity 200ms ease,
+            transform 400ms ease;
         }
       }
 
@@ -169,7 +174,7 @@
               display: flex;
               justify-content: space-between;
               align-items: center;
-              gap: 3px;
+              gap: 5px;
               padding: 2px 5px;
               cursor: pointer;
               transition: all 300ms ease;
@@ -198,7 +203,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                gap: 3px;
+                gap: 5px;
                 padding: 2px 5px;
                 cursor: pointer;
                 background-color: #fafaf9;
@@ -218,6 +223,7 @@
 
           & .tasks-btn-group {
             & > button {
+              margin-left: 4px;
               height: 32px;
               width: 32px;
               background-color: var.$color-medium-yellow;
@@ -241,6 +247,7 @@
         & .todo-item {
           display: flex;
           align-items: flex-start;
+          margin: 6px 0 8px;
 
           & .todo-item-detail-box {
             display: flex;
@@ -249,7 +256,7 @@
             cursor: pointer;
 
             & .todo-item-description {
-              // later
+              max-width: 330px;
             }
 
             & .todo-date {
@@ -264,7 +271,33 @@
           & .todo-item-btn-group {
             font-size: var.$font-size-med;
             margin-left: auto;
-            color: var.$color-dark-yellow;
+            color: var.$gray-medium;
+            display: flex;
+            gap: 5px;
+
+            & button {
+              font-size: 18px;
+              padding: 6px;
+
+              &.active {
+                display: block;
+              }
+            }
+
+            & .expand-btn {
+            }
+
+            & .todo-edit-btn {
+              display: none;
+            }
+
+            & .todo-save-btn {
+              display: none;
+            }
+
+            & .todo-delete-btn {
+              display: none;
+            }
           }
         }
 

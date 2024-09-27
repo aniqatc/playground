@@ -2,7 +2,7 @@ import "./style.scss";
 
 export function getMarkup() {
   return `
-      <!-- Widget 04: To-Do -->
+            <!-- Widget 04: To-Do -->
       <section
         id="widget-04"
         class="relative rounded bg-stone-50 px-3 py-3 shadow-md dark:bg-zinc-800"
@@ -25,7 +25,7 @@ export function getMarkup() {
               <div class="todo-create-input">
                 <textarea
                   placeholder="What do you need to do?"
-                  maxlength="150"
+                  maxlength="75"
                 ></textarea>
               </div>
               <div class="todo-taskbar">
@@ -79,6 +79,9 @@ export function getMarkup() {
                     </div>
                   </label>
                   <div class="todo-item-btn-group">
+                    <button class="expand-btn">
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
                     <button class="todo-edit-btn">
                       <i class="fa-solid fa-pen"></i>
                     </button>
@@ -86,7 +89,7 @@ export function getMarkup() {
                       <i class="fa-regular fa-circle-check"></i>
                     </button>
                     <button class="todo-delete-btn">
-                      <i class="fa-regular fa-trash-can"></i>
+                      <i class="fa-solid fa-trash"></i>
                     </button>
                   </div>
                 </li>
@@ -95,7 +98,8 @@ export function getMarkup() {
                   <label for="04-02">
                     <div class="todo-item-detail-box">
                       <span class="todo-item-description"
-                        >Lorem ipsum blah lorem mapisum</span
+                        >Lorem ipsum blah lorem mapisum orem ipsum blah lorem
+                        mapisum</span
                       >
                       <span>
                         <span class="todo-date"
@@ -106,6 +110,9 @@ export function getMarkup() {
                     </div>
                   </label>
                   <div class="todo-item-btn-group">
+                    <button class="expand-btn">
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
                     <button class="todo-edit-btn">
                       <i class="fa-solid fa-pen"></i>
                     </button>
@@ -113,7 +120,7 @@ export function getMarkup() {
                       <i class="fa-regular fa-circle-check"></i>
                     </button>
                     <button class="todo-delete-btn">
-                      <i class="fa-regular fa-trash-can"></i>
+                      <i class="fa-solid fa-trash"></i>
                     </button>
                   </div>
                 </li>
@@ -133,6 +140,9 @@ export function getMarkup() {
                     </div>
                   </label>
                   <div class="todo-item-btn-group">
+                    <button class="expand-btn">
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
                     <button class="todo-edit-btn">
                       <i class="fa-solid fa-pen"></i>
                     </button>
@@ -140,7 +150,7 @@ export function getMarkup() {
                       <i class="fa-regular fa-circle-check"></i>
                     </button>
                     <button class="todo-delete-btn">
-                      <i class="fa-regular fa-trash-can"></i>
+                      <i class="fa-solid fa-trash"></i>
                     </button>
                   </div>
                 </li>
@@ -168,11 +178,11 @@ export function getMarkup() {
               </ul>
             </section>
           </div>
-        <footer class="content-footer">
-          <button>Mark All As Completed</button>
-          <button>Clear All</button>
-        </footer>
-                </div>
+          <footer class="content-footer">
+            <button>Mark All As Completed</button>
+            <button>Clear All</button>
+          </footer>
+        </div>
       </section>
 `;
 }
