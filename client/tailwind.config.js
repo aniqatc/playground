@@ -11,8 +11,8 @@ module.exports = {
           "BlinkMacSystemFont",
           "sans-serif",
         ],
-        inter: [
-          "Inter",
+        dmsans: [
+          "DM Sans",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",
