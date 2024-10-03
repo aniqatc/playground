@@ -1,14 +1,14 @@
 export function initializeScript() {
   document.addEventListener("DOMContentLoaded", () => {
-    const textarea = document.querySelector(".todo-create-input textarea");
+    const textarea = document.querySelector(".todo-input textarea");
     const todoContainer = document.querySelector(".todo-taskbar");
-    const container = document.querySelector(".todo-create-container");
+    const container = document.querySelector(".content-head");
     let isSelecting = false;
 
     // Prevent textarea blur when clicking on custom select
-    const selectBtn = document.querySelector(".custom-select .selected-option");
-    const optionsList = document.querySelector(".custom-select .options-list");
-    const options = document.querySelectorAll(".custom-select .option");
+    const selectBtn = document.querySelector(".filter--selected-option");
+    const optionsList = document.querySelector(".filter--options-list");
+    const options = document.querySelectorAll(".filter--option");
 
     selectBtn.addEventListener("mousedown", () => {
       isSelecting = true;
