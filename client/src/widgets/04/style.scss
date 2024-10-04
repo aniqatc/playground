@@ -193,7 +193,19 @@
 
     & .content-body {
       overflow-y: auto;
-      max-height: 380px;
+      max-height: 370px;
+      scrollbar-width: thin;
+      flex-grow: 0;
+      flex-shrink: 1;
+      margin-top: 6px;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
 
       & input[type="checkbox"] {
         appearance: none;
@@ -268,6 +280,8 @@
       }
 
       & .todo-list {
+        margin-top: -8px;
+
         & .todo-item {
           display: flex;
           flex-direction: column;
@@ -339,8 +353,21 @@
               display: none;
             }
 
+            & .delete-todo-btn {
+              margin-left: auto;
+              color: var.$gray-medium;
+              transition: all 200ms ease-in;
+              cursor: pointer;
+              font-size: 14px;
+
+              &:hover {
+                color: var.$gray-dark;
+              }
+            }
+
             & input[type="checkbox"] {
               border: 1px solid transparent;
+              margin-top: 0;
 
               &:disabled {
                 cursor: not-allowed;
@@ -375,6 +402,18 @@
       overflow-x: auto;
       gap: 4px;
       margin-top: auto;
+      scrollbar-width: thin;
+      margin-bottom: -8px;
+      padding-bottom: 8px;
+      padding-top: 6px;
+
+      &::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
 
       & button {
         flex-shrink: 0;
@@ -404,5 +443,128 @@
 
 .dark #widget-04 {
   & .content {
+    & .content-head {
+      border: 1px solid var.$gray-dark;
+
+      & .todo-temp-btn {
+        background-color: var.$color-medium-yellow;
+        color: var.$color-dark;
+      }
+
+      & .todo-taskbar {
+        & .todo-taskbar--select {
+          border: 1px solid var.$gray-dark;
+          background-color: #494949;
+
+          & .filter--options-list {
+            background-color: #494949;
+
+            & .filter--option {
+              background-color: #494949;
+
+              &:hover {
+                background-color: #2e2e2e;
+              }
+            }
+          }
+        }
+
+        & .todo-taskbar--buttons {
+          & > button {
+            color: var.$color-dark;
+
+            &:hover {
+              color: var.$color-medium-yellow;
+              background-color: var.$color-dark;
+              border: 1px solid var.$gray-dark;
+            }
+          }
+        }
+      }
+    }
+
+    & .content-body {
+      & input[type="checkbox"] {
+        border: 1px solid var.$color-medium-yellow;
+
+        &::after {
+          border: solid var.$color-dark;
+          border-width: 0 2px 2px 0;
+        }
+      }
+
+      & button {
+        color: #e1c48e;
+
+        &:hover {
+          color: var.$color-medium-yellow;
+        }
+      }
+
+      & .todo-list {
+        & .todo-item {
+          background-color: rgba(135, 117, 58, 0.5);
+
+          & .todo-item--details {
+            & .todo-item--details-desc {
+              & .todo-item--date {
+                color: #c8c8c8;
+              }
+            }
+          }
+
+          &.active {
+            border: 1px solid var.$color-medium-yellow;
+          }
+
+          &:hover {
+            border: 1px solid var.$color-medium-yellow;
+          }
+
+          &.archived {
+            background-color: #444444;
+
+            &:hover {
+              border: 1px solid transparent;
+            }
+
+            & .delete-todo-btn {
+              &:hover {
+                color: #bababa;
+              }
+            }
+
+            & input[type="checkbox"] {
+              &::after {
+                border: solid var.$gray-dark;
+                border-width: 0 2px 2px 0;
+              }
+
+              &:checked {
+                & ~ label {
+                  color: #bababa;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    & .content-footer {
+      & button {
+        border: 1px solid #434343;
+
+        &:hover {
+          border: 1px solid var.$gray-medium;
+          background: #4f4f4f;
+        }
+
+        &.active {
+          border: 1px solid var.$gray-medium;
+          background: #4f4f4f;
+        }
+      }
+    }
   }
 }

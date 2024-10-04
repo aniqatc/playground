@@ -2,7 +2,7 @@ import "./style.scss";
 
 export function getMarkup() {
   return `
-        <!-- Widget 04: To-Do -->
+      <!-- Widget 04: To-Do -->
       <section
         id="widget-04"
         class="relative rounded bg-stone-50 px-3 py-3 shadow-md dark:bg-zinc-800"
@@ -160,10 +160,10 @@ export function getMarkup() {
                   <button><i class="fa-solid fa-trash-can"></i> Delete</button>
                 </div>
               </li>
-              <li class="todo-item archived">
+              <li class="todo-item">
                 <div class="todo-item--details">
-                  <input type="checkbox" id="todo-6" checked disabled />
-                  <label for="todo-6">
+                  <input type="checkbox" id="todo-9" />
+                  <label for="todo-9">
                     <div class="todo-item--details-desc">
                       <span>Lorem ipsum blah lorem mapisum</span>
                       <span class="todo-item--date">
@@ -193,6 +193,23 @@ export function getMarkup() {
               </li>
               <li class="todo-item archived">
                 <div class="todo-item--details">
+                  <input type="checkbox" id="todo-6" checked disabled />
+                  <label for="todo-6">
+                    <div class="todo-item--details-desc">
+                      <span>Lorem ipsum blah lorem mapisum</span>
+                      <span class="todo-item--date">
+                        <i class="fa-solid fa-hashtag high-color"></i> Sept
+                        24</span
+                      >
+                    </div>
+                  </label>
+                  <button class="delete-todo-btn">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+              </li>
+              <li class="todo-item archived">
+                <div class="todo-item--details">
                   <input type="checkbox" id="todo-7" checked disabled />
                   <label for="todo-7">
                     <div class="todo-item--details-desc">
@@ -203,23 +220,9 @@ export function getMarkup() {
                       >
                     </div>
                   </label>
-                  <button class="todo-item-expand-btn">
-                    <i
-                      class="fa-solid fa-up-right-and-down-left-from-center"
-                    ></i>
+                  <button class="delete-todo-btn">
+                    <i class="fa-solid fa-trash-can"></i>
                   </button>
-                </div>
-                <div class="todo-item--actions">
-                  <button>
-                    <i class="fa-solid fa-box-archive"></i> Archive
-                  </button>
-                  <button>
-                    <i class="fa-solid fa-calendar-plus"></i> Delay
-                  </button>
-                  <button>
-                    <i class="fa-solid fa-pen-to-square"></i> Edit
-                  </button>
-                  <button><i class="fa-solid fa-trash-can"></i> Delete</button>
                 </div>
               </li>
             </ul>
