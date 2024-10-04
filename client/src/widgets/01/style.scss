@@ -86,6 +86,7 @@
   & .card-container {
     display: flex;
     gap: var.$spacing-base;
+    height: 100%;
 
     & .card-tile {
       width: 100%;

@@ -74,7 +74,7 @@ export function getMarkup() {
                         ipsum blah lorem mapisum</span
                       >
                       <span class="todo-item--date">
-                        <i class="fa-solid fa-hashtag high-color"></i> Sept
+                        <i class="fa-solid fa-hashtag low-color"></i> Sept
                         24</span
                       >
                     </div>
@@ -136,7 +136,7 @@ export function getMarkup() {
                     <div class="todo-item--details-desc">
                       <span>Lorem ipsum blah lorem mapisum</span>
                       <span class="todo-item--date">
-                        <i class="fa-solid fa-hashtag high-color"></i> Sept
+                        <i class="fa-solid fa-hashtag low-color"></i> Sept
                         24</span
                       >
                     </div>
@@ -167,7 +167,7 @@ export function getMarkup() {
                     <div class="todo-item--details-desc">
                       <span>Lorem ipsum blah lorem mapisum</span>
                       <span class="todo-item--date">
-                        <i class="fa-solid fa-hashtag high-color"></i> Sept
+                        <i class="fa-solid fa-hashtag medium-color"></i> Sept
                         24</span
                       >
                     </div>

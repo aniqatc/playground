@@ -12,7 +12,7 @@ h6 {
 }
 
 body {
-  @apply font-dmsans mx-auto max-w-screen-2xl bg-zinc-100 dark:bg-neutral-950 dark:text-zinc-100;
+  @apply mx-auto max-w-screen-2xl bg-zinc-100 font-dmsans dark:bg-neutral-950 dark:text-zinc-100;
 }
 
 body canvas,
