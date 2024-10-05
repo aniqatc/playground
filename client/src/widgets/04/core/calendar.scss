@@ -1,3 +1,4 @@
+// Adjusted from the Confetti theme: https://flatpickr.js.org/themes/
 .flatpickr-calendar {
   background: transparent;
   opacity: 0;
@@ -825,7 +826,7 @@ span.flatpickr-weekday {
   }
 }
 
-// My added styles to the confetti theme
+// Dark mode styles
 .dark {
   & .flatpickr-calendar {
     background-color: #333;
