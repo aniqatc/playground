@@ -1,5 +1,5 @@
 import flatpickr from "flatpickr";
-import "flatpickr/dist/themes/confetti.css";
+import "./calendar.scss";
 
 export function initializeScript() {
   document.addEventListener("DOMContentLoaded", () => {
@@ -14,9 +14,7 @@ export function initializeScript() {
       dateFormat: "Y-m-d",
       minDate: "today",
       maxDate: new Date().fp_incr(45),
-      onReady: (selectedDates, dateStr, instance) => {
-        instance.calendarContainer.style.fontSize = "12px";
-      },
+      disableMobile: true,
       onChange: (selectedDates) => {
         if (selectedDates.length > 0) {
           document.querySelector(".todo---selected-date").textContent =
