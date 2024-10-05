@@ -165,6 +165,12 @@
           }
         }
 
+        & .todo---selected-date {
+          margin-left: auto;
+          margin-right: 8px;
+          color: var.$gray-dark;
+        }
+
         & .todo-taskbar--buttons {
           & > button {
             margin-left: 2px;
@@ -466,6 +472,10 @@
               }
             }
           }
+        }
+
+        & .todo---selected-date {
+          color: var.$gray-light;
         }
 
         & .todo-taskbar--buttons {

@@ -2,7 +2,7 @@ import "./style.scss";
 
 export function getMarkup() {
   return `
-      <!-- Widget 04: To-Do -->
+        <!-- Widget 04: To-Do -->
       <section
         id="widget-04"
         class="relative rounded bg-stone-50 px-3 py-3 shadow-md dark:bg-zinc-800"
@@ -52,6 +52,7 @@ export function getMarkup() {
                   </div>
                 </div>
               </div>
+              <div class="todo---selected-date"></div>
               <div class="todo-taskbar--buttons">
                 <button class="todo-date-btn">
                   <i class="fa-solid fa-calendar-days"></i>

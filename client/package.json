@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.16",
+    "flatpickr": "^4.6.13",
     "function-plot": "^1.24.0",
     "html2canvas": "^1.4.1",
     "postcss": "^8.4.32",
