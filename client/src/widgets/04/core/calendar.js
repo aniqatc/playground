@@ -2,7 +2,7 @@ import todoContext from "./context";
 import flatpickr from "flatpickr";
 import "./calendar.scss";
 
-function initializeCalendar() {
+function initializeCalendarEl() {
   const { todoSelectedDate, todoDateButton } = todoContext;
 
   todoSelectedDate.textContent = formatDate(new Date());
@@ -27,4 +27,4 @@ function formatDate(date) {
   });
 }
 
-export { initializeCalendar };
+export { initializeCalendarEl };

@@ -15,7 +15,9 @@ class ToDoContext {
     this.selectOptionButton = this.widget.querySelector(".filter--selected-option"); // prettier-ignore
     this.selectOptionsList = this.widget.querySelector(".filter--options-list"); // prettier-ignore
     this.selectOption = this.widget.querySelectorAll(".filter--option");
-    // Todo Checkboxes
+    this.toDoAddButton = this.widget.querySelector(".todo-add-btn");
+    // Todo Items
+    this.toDoList = this.widget.querySelector(".todo-list");
     // Todo-Specific Taskbar
     // Tag Filters
   }

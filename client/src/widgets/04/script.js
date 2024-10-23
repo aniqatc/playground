@@ -1,9 +1,9 @@
-import { initializeCalendar } from "./core/calendar";
-import { initializeToDoElements } from "./core/textarea";
+import { initializeCalendarEl } from "./core/calendar";
+import { initializeTextareaEl } from "./core/textarea";
 
 export function initializeScript() {
   document.addEventListener("DOMContentLoaded", () => {
-    initializeCalendar();
-    initializeToDoElements();
+    initializeCalendarEl();
+    initializeTextareaEl();
   });
 }

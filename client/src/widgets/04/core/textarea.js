@@ -1,8 +1,6 @@
 import todoContext from "./context";
 
-export function initializeToDoElements() {
-  let isSelecting = false;
-
+export function initializeTextareaEl() {
   const {
     textarea,
     inputContainer,
@@ -12,6 +10,8 @@ export function initializeToDoElements() {
     selectOption,
     todoDateButton,
   } = todoContext;
+
+  let isSelecting = false;
 
   selectOptionButton.addEventListener("mousedown", () => {
     isSelecting = true;
