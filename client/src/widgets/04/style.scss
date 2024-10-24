@@ -70,6 +70,10 @@
         & .todo-temp-btn {
           display: none;
         }
+
+        &.error {
+          outline: 2px solid var.$color-dark-red;
+        }
       }
 
       & .todo-input {

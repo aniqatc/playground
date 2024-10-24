@@ -7,7 +7,28 @@ export function initializeInput() {
     selectOptionButton,
     toDoAddButton,
     toDoList,
+    inputContainer,
   } = todoContext;
+
+  toDoAddButton.addEventListener("mousedown", (e) => {
+    e.preventDefault();
+  });
+
+  toDoAddButton.addEventListener("click", () => {
+    const date = toDoSelectedDate ? toDoSelectedDate : Date.now();
+    const content = textarea.value;
+    const tag = selectOptionButton.getAttribute("data-value");
+    if (content && tag) {
+      alert("Hello!");
+      console.log(content, tag, date);
+    } else {
+      inputContainer.classList.add("error");
+    }
+  });
+
+  textarea.addEventListener("input", () => {
+    inputContainer.classList.remove("error");
+  });
 }
 
 /* 
