@@ -18,7 +18,6 @@ class ToDoContext {
     this.toDoAddButton = this.widget.querySelector(".todo-add-btn");
     // Todo Items
     this.toDoList = this.widget.querySelector(".todo-list");
-    // Todo-Specific Taskbar
     // Tag Filters
   }
 }

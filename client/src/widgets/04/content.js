@@ -65,7 +65,7 @@ export function getMarkup() {
           </section>
           <section class="content-body">
             <ul class="todo-list">
-              <li class="todo-item active">
+              <li class="todo-item">
                 <div class="todo-item--details">
                   <input type="checkbox" id="todo-1" />
                   <label for="todo-1">

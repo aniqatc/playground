@@ -7,18 +7,12 @@ const User = require('../../main/models/userModel');
 router.post('/', async (req, res) => {
 	try {
 		const { task, dueDate, priority, userRef } = req.body;
-
-		// Find the user by their userRef (which is a unique identifier, not the ObjectId)
 		const user = await User.findOne({ userId: userRef });
-		if (!user) {
-			return res.status(404).json({ message: 'User not found' });
-		}
-
 		const newTodo = new ToDo({
 			task,
 			dueDate: dueDate || Date.now(),
 			priority: priority,
-			userRef: user._id,
+			userRef: user._id, // ObjectId in DB
 			widgetId: '04',
 		});
 
@@ -35,10 +29,6 @@ router.get('/:userId', async (req, res) => {
 	try {
 		const userId = req.params.userId;
 		const user = await User.findOne({ userId: userId });
-		if (!user) {
-			return res.status(404).json({ message: 'User not found' });
-		}
-
 		const todos = await ToDo.find({ userRef: user._id });
 
 		if (!todos || todos.length === 0) {

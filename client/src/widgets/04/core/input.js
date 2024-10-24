@@ -36,14 +36,3 @@ export function initializeInput() {
     inputContainer.classList.remove("error");
   });
 }
-
-/* 
-class toDoActions
-- edit to do - to DOM and to DB
-- delete to do - to DOM and to DB
-- adjust status (incomplete task, archived task, completed task)
-*/
-
-// function to check if limit is reached
-// event listener to trigger the todo creation
-// function to trigger creation of eventlisteners on the individual todo item

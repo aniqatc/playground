@@ -2,6 +2,31 @@ import todoContext from "./context";
 import { formatDate } from "./calendar";
 
 class ToDoActions {
+  constructor() {
+    this.initializeExistingToDos();
+  }
+
+  // specifically for default todo items :) - temp
+  initializeExistingToDos() {
+    const allToDoItems = document.querySelectorAll(".todo-item");
+    allToDoItems.forEach((item) => {
+      const expandBtn = item.querySelector(".todo-item-expand-btn");
+      if (expandBtn) {
+        expandBtn.addEventListener("click", () => this.toggleTaskbar(item));
+      }
+    });
+  }
+
+  toggleTaskbar(selectedTodo) {
+    const allTodos = document.querySelectorAll(".todo-item");
+    allTodos.forEach((item) => {
+      if (item !== selectedTodo) {
+        item.classList.remove("active");
+      }
+    });
+    selectedTodo.classList.toggle("active");
+  }
+
   async fetchAndDisplayToDos() {
     const userId = localStorage.getItem("userId");
     const response = await fetch(
@@ -10,7 +35,7 @@ class ToDoActions {
 
     const todos = await response.json();
     todos.forEach((todo) => {
-      this.addToDOM(todo); // Render each todo in the DOM
+      this.addToDOM(todo);
     });
   }
 
@@ -40,6 +65,8 @@ class ToDoActions {
 
     const toDoItem = document.createElement("li");
     toDoItem.classList.add("todo-item");
+    this.toggleTaskbar(toDoItem);
+
     toDoItem.innerHTML = `<div class="todo-item--details">
         <input type="checkbox" id="${_id}" />
         <label for="${_id}">
@@ -60,6 +87,9 @@ class ToDoActions {
         <button class="archive-btn">
           <i class="fa-solid fa-box-archive"></i> Archive
         </button>
+        <button>
+          <i class="fa-solid fa-calendar-plus"></i> Delay
+        </button>
         <button class="edit-btn">
           <i class="fa-solid fa-pen-to-square"></i> Edit
         </button>
@@ -67,8 +97,12 @@ class ToDoActions {
           <i class="fa-solid fa-trash-can"></i> Delete
         </button>
       </div>`;
+
     todoContext.toDoList.prepend(toDoItem);
     toDoItem.classList.add("fade-in");
+
+    const expandButton = toDoItem.querySelector(".todo-item-expand-btn");
+    expandButton.addEventListener("click", () => this.toggleTaskbar(toDoItem));
   };
 }
 
