@@ -23,10 +23,12 @@ app.use(useragent.express());
 const { router: userRouter } = require('./server/main/routers/userRouter');
 const likeRouter = require('./server/main/routers/likeRouter');
 const ipHandler = require('./server/widgets/03/ipHandler');
+const toDoRouter = require('./server/widgets/04/toDoRouter');
 
 app.use('/users/', userRouter);
 app.use('/likes/', likeRouter);
 app.get('/widget/user-ip-data/', ipHandler.collectUserData, ipHandler.getUserInfo);
+app.use('/widget/todos/', toDoRouter);
 
 // redirect backend host to frontend
 app.use((req, res, next) => {

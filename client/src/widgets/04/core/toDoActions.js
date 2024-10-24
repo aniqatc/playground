@@ -2,17 +2,52 @@ import todoContext from "./context";
 import { formatDate } from "./calendar";
 
 class ToDoActions {
-  addToDOM(content, date, tag) {
+  async fetchAndDisplayToDos() {
+    const userId = localStorage.getItem("userId");
+    const response = await fetch(
+      `${process.env.SERVER}/widget/todos/${userId}`,
+    );
+
+    const todos = await response.json();
+    todos.forEach((todo) => {
+      this.addToDOM(todo); // Render each todo in the DOM
+    });
+  }
+
+  addToDB = async (task, dueDate, priority) => {
+    const userId = localStorage.getItem("userId");
+    const serverURL = process.env.SERVER;
+
+    const response = await fetch(`${serverURL}/widget/todos/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        task: task,
+        dueDate: dueDate,
+        priority: priority,
+        userRef: userId,
+      }),
+    });
+
+    const todoData = await response.json();
+    this.addToDOM(todoData);
+  };
+
+  addToDOM = (todoData) => {
+    const { _id, task, dueDate, priority } = todoData;
+
     const toDoItem = document.createElement("li");
     toDoItem.classList.add("todo-item");
     toDoItem.innerHTML = `<div class="todo-item--details">
-        <input type="checkbox" id="todo-${date}" />
-        <label for="todo-${date}">
+        <input type="checkbox" id="${_id}" />
+        <label for="${_id}">
           <div class="todo-item--details-desc">
-            <span>${content}</span>
+            <span>${task}</span>
             <span class="todo-item--date">
-              <i class="fa-solid fa-hashtag ${tag}-color"></i> ${formatDate(
-                date,
+              <i class="fa-solid fa-hashtag ${priority}-color"></i> ${formatDate(
+                dueDate,
               )}
             </span>
           </div>
@@ -34,7 +69,7 @@ class ToDoActions {
       </div>`;
     todoContext.toDoList.prepend(toDoItem);
     toDoItem.classList.add("fade-in");
-  }
+  };
 }
 
 const todoActions = new ToDoActions();
