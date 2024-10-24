@@ -1,4 +1,5 @@
 import todoContext from "./context";
+import todoActions from "./toDoActions";
 
 export function initializeInput() {
   const {
@@ -8,7 +9,10 @@ export function initializeInput() {
     toDoAddButton,
     toDoList,
     inputContainer,
+    todoDateButton,
   } = todoContext;
+
+  const { addToDOM } = todoActions;
 
   toDoAddButton.addEventListener("mousedown", (e) => {
     e.preventDefault();
@@ -18,9 +22,11 @@ export function initializeInput() {
     const date = toDoSelectedDate ? toDoSelectedDate : Date.now();
     const content = textarea.value;
     const tag = selectOptionButton.getAttribute("data-value");
+
     if (content && tag) {
-      alert("Hello!");
-      console.log(content, tag, date);
+      addToDOM(content, date, tag);
+      textarea.value = "";
+      todoDateButton.blur();
     } else {
       inputContainer.classList.add("error");
     }

@@ -303,6 +303,19 @@
           border: 1px solid transparent;
           transition: all 250ms ease-in;
 
+          &.fade-in {
+            animation: fade 1s ease forwards;
+          }
+
+          @keyframes fade {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+
           & .todo-item--details {
             display: flex;
             align-items: flex-start;
