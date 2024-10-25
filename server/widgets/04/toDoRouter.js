@@ -31,15 +31,44 @@ router.get('/:userId', async (req, res) => {
 		const user = await User.findOne({ userId: userId });
 		const todos = await ToDo.find({ userRef: user._id });
 
-		if (!todos || todos.length === 0) {
-			return res.status(404).json({ message: 'No To-Dos found for this user' });
-		}
-
 		res.status(200).json(todos);
 	} catch (error) {
 		console.error('Error retrieving todo list:', error);
 		res.status(500).json({ message: 'Error retrieving todo list' });
 	}
+});
+
+// Update completion status
+router.patch('/complete/:todoId', async (req, res) => {
+	try {
+		const { todoId } = req.params;
+		const { isCompleted } = req.body;
+
+		const updatedTodo = await ToDo.findByIdAndUpdate(todoId, { isCompleted }, { new: true });
+		res.status(200).json(updatedTodo);
+	} catch (error) {
+		res.status(500).json({ message: 'Error updating todo' });
+	}
+});
+
+// Update archive status
+router.patch('/archive/:todoId', async (req, res) => {
+	try {
+		const { todoId } = req.params;
+		const { isArchived } = req.body;
+
+		const updatedTodo = await ToDo.findByIdAndUpdate(todoId, { isArchived }, { new: true });
+		res.status(200).json(updatedTodo);
+	} catch (error) {
+		res.status(500).json({ message: 'Error updating todo' });
+	}
+});
+
+// Delete todo
+router.delete('/:todoId', async (req, res) => {
+	const { todoId } = req.params;
+	const deletedTodo = await ToDo.findByIdAndDelete(todoId);
+	res.status(200).json({ message: 'To-Do deleted successfully' });
 });
 
 module.exports = router;

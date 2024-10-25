@@ -204,7 +204,7 @@ export function getMarkup() {
                       >
                     </div>
                   </label>
-                  <button class="delete-todo-btn">
+                  <button class="delete-btn">
                     <i class="fa-solid fa-trash-can"></i>
                   </button>
                 </div>
@@ -221,7 +221,7 @@ export function getMarkup() {
                       >
                     </div>
                   </label>
-                  <button class="delete-todo-btn">
+                  <button class="delete-btn">
                     <i class="fa-solid fa-trash-can"></i>
                   </button>
                 </div>
