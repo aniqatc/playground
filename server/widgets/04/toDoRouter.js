@@ -71,4 +71,65 @@ router.delete('/:todoId', async (req, res) => {
 	res.status(200).json({ message: 'To-Do deleted successfully' });
 });
 
+// Default todos for new users
+router.post('/create', async (req, res) => {
+	const { userId } = req.body;
+	let user = await User.findOne({ userId });
+	if (!user) {
+		return res.status(404).json({ message: 'User not found' });
+	}
+
+	const existingToDos = await ToDo.find({ userRef: user._id });
+	if (existingToDos.length > 0) {
+		return res.status(200).json({ message: 'User already has to-dos' });
+	}
+
+	const defaultToDos = [
+		{
+			task: 'Play around with the new to-do widget in the playground',
+			dueDate: new Date(new Date().setDate(new Date().getDate() + 5)),
+			priority: 'high',
+			isCompleted: false,
+			userRef: user._id,
+			widgetId: '04',
+		},
+		{
+			task: 'View the GitHub repository for this website and provide feedback',
+			dueDate: new Date(new Date().setDate(new Date().getDate() + 10)),
+			priority: 'low',
+			isCompleted: false,
+			userRef: user._id,
+			widgetId: '04',
+		},
+		{
+			task: 'Create example tasks for new users to view',
+			dueDate: new Date(),
+			priority: 'low',
+			isCompleted: true,
+			userRef: user._id,
+			widgetId: '04',
+		},
+		{
+			task: 'Create a digital footprint widget with a map from MapBox',
+			dueDate: new Date(),
+			priority: 'low',
+			isCompleted: true,
+			isArchived: true,
+			userRef: user._id,
+			widgetId: '04',
+		},
+		{
+			task: 'Build a simple scientific and graphic calculator',
+			dueDate: new Date(),
+			priority: 'low',
+			isCompleted: true,
+			isArchived: true,
+			userRef: user._id,
+			widgetId: '04',
+		},
+	];
+	await ToDo.insertMany(defaultToDos);
+	res.status(201).json({ message: 'Default To-Dos created for user', defaultToDos });
+});
+
 module.exports = router;
