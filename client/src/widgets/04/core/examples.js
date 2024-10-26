@@ -1,4 +1,4 @@
-export async function displayDefaultTodos() {
+async function displayDefaultTodos() {
   let userId = localStorage.getItem("userId");
   if (!userId) return;
 
@@ -15,3 +15,5 @@ export async function displayDefaultTodos() {
     });
   }
 }
+
+export { displayDefaultTodos };
