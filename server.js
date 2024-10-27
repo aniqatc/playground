@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(useragent.express());
 
 // routers & handlers
-const { router: userRouter } = require('./server/main/routers/userRouter');
+const userRouter = require('./server/main/routers/userRouter');
 const likeRouter = require('./server/main/routers/likeRouter');
 const ipHandler = require('./server/widgets/03/ipHandler');
 const toDoRouter = require('./server/widgets/04/toDoRouter');

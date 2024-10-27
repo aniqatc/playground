@@ -6,7 +6,14 @@ async function createNewUser() {
     localStorage.setItem("userId", userId);
 
     const serverURL = process.env.SERVER;
-    const response = await fetch(`${serverURL}/users/${userId}`);
+    const response = await fetch(`${serverURL}/users/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId }),
+    });
+
     const userData = await response.json();
     return userData;
   }

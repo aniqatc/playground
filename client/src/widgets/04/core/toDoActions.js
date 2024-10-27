@@ -33,9 +33,11 @@ class ToDoActions {
     );
 
     const todos = await response.json();
-    todos.forEach((todo) => {
-      this.addToDOM(todo);
-    });
+    if (todos && todos.length > 0) {
+      todos.forEach((todo) => {
+        this.addToDOM(todo);
+      });
+    }
   }
 
   addToDB = async (task, dueDate, priority) => {
