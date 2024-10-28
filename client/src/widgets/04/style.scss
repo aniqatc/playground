@@ -234,6 +234,7 @@
 
         & ~ label {
           cursor: pointer;
+          width: 100%;
         }
 
         &:checked {
@@ -319,10 +320,22 @@
           & .todo-item--details {
             display: flex;
             align-items: flex-start;
+            min-width: 100%;
 
             & .todo-item--details-desc {
               margin: 0 8px;
               font-size: var.$font-size-base;
+
+              & textarea {
+                width: 100%;
+                max-width: 100%;
+                background-color: #fffdf6;
+                outline: none;
+                color: inherit;
+                resize: none;
+                border-radius: 2px;
+                padding: 1px;
+              }
 
               & .todo-item--date {
                 display: block;
@@ -543,6 +556,10 @@
 
           & .todo-item--details {
             & .todo-item--details-desc {
+              & textarea {
+                background-color: #6e664b;
+              }
+
               & .todo-item--date {
                 color: #c8c8c8;
               }

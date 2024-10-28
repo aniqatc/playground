@@ -80,13 +80,16 @@ router.patch('/archive/:todoId', async (req, res) => {
 	}
 });
 
-// Update date
+// Update date or task text
 router.patch('/update/:todoId', async (req, res) => {
 	try {
 		const { todoId } = req.params;
-		const { dueDate } = req.body;
+		const newData = {};
 
-		const updatedTodo = await ToDo.findByIdAndUpdate(todoId, { dueDate }, { new: true });
+		if (req.body.task) newData.task = req.body.task;
+		if (req.body.dueDate) newData.dueDate = req.body.dueDate;
+
+		const updatedTodo = await ToDo.findByIdAndUpdate(todoId, newData, { new: true });
 		res.status(200).json(updatedTodo);
 	} catch (error) {
 		res.status(500).json({ message: 'Error updating todo' });

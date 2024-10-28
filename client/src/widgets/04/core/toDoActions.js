@@ -37,6 +37,18 @@ class ToDoActions {
       todos.forEach((todo) => {
         this.addToDOM(todo);
       });
+      this.setInitialActiveTodo();
+    }
+  }
+
+  setInitialActiveTodo() {
+    const allTodos = document.querySelectorAll(".todo-item");
+    const firstNonArchivedTodo = Array.from(allTodos).find(
+      (todo) => !todo.classList.contains("archived"),
+    );
+
+    if (firstNonArchivedTodo) {
+      firstNonArchivedTodo.classList.add("active");
     }
   }
 
@@ -65,49 +77,48 @@ class ToDoActions {
 
     const toDoItem = document.createElement("li");
     toDoItem.classList.add("todo-item");
-    this.toggleTaskbar(toDoItem);
     if (isArchived) toDoItem.classList.add("archived");
 
     toDoItem.innerHTML = `<div class="todo-item--details">
-        <input type="checkbox" id="${_id}" 
-        ${isCompleted ? "checked" : ""} 
-        ${isArchived ? "checked disabled" : ""} 
-        />
-        <label for="${_id}">
-          <div class="todo-item--details-desc">
-            <span>${task}</span>
-            <span class="todo-item--date">
-              <i class="fa-solid fa-hashtag ${priority}-color"></i> ${formatDate(
-                dueDate,
-              )}
-            </span>
-          </div>
-        </label>
-        <button class="todo-item-expand-btn">
-          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
-        </button>
-        ${
-          isArchived
-            ? `<button class="delete-btn">
-         <i class="fa-solid fa-trash-can"></i>
-       </button>`
-            : ""
-        }
-      </div>
-      <div class="todo-item--actions">
-        <button class="archive-btn">
-          <i class="fa-solid fa-box-archive"></i> Archive
-        </button>
-        <button class="delay-btn">
-          <i class="fa-solid fa-calendar-plus"></i> Delay
-        </button>
-        <button class="edit-btn">
-          <i class="fa-solid fa-pen-to-square"></i> Edit
-        </button>
-        <button class="delete-btn">
-          <i class="fa-solid fa-trash-can"></i> Delete
-        </button>
-      </div>`;
+      <input type="checkbox" id="${_id}" 
+      ${isCompleted ? "checked" : ""} 
+      ${isArchived ? "checked disabled" : ""} 
+      />
+      <label for="${_id}">
+        <div class="todo-item--details-desc">
+          <span class="todo-item--task">${task}</span>
+          <span class="todo-item--date">
+            <i class="fa-solid fa-hashtag ${priority}-color"></i> ${formatDate(
+              dueDate,
+            )}
+          </span>
+        </div>
+      </label>
+      <button class="todo-item-expand-btn">
+        <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+      </button>
+      ${
+        isArchived
+          ? `<button class="delete-btn">
+       <i class="fa-solid fa-trash-can"></i>
+     </button>`
+          : ""
+      }
+    </div>
+    <div class="todo-item--actions">
+      <button class="archive-btn">
+        <i class="fa-solid fa-box-archive"></i> Archive
+      </button>
+      <button class="delay-btn">
+        <i class="fa-solid fa-calendar-plus"></i> Delay
+      </button>
+      <button class="edit-btn">
+        <i class="fa-solid fa-pen-to-square"></i> Edit
+      </button>
+      <button class="delete-btn">
+        <i class="fa-solid fa-trash-can"></i> Delete
+      </button>
+    </div>`;
 
     if (isArchived) {
       todoContext.toDoList.append(toDoItem);
@@ -117,6 +128,7 @@ class ToDoActions {
 
     toDoItem.classList.add("fade-in");
 
+    // Add event listeners
     const checkbox = document.getElementById(_id);
     checkbox.addEventListener("change", () =>
       this.toggleCompletion(_id, checkbox.checked),
@@ -223,8 +235,62 @@ class ToDoActions {
       )}`;
   };
 
-  editToDo = (todoId, toDoItem) => {
-    // edit
+  editToDo = async (todoId, toDoItem) => {
+    const toDoItemTask = toDoItem.querySelector(".todo-item--task");
+    const editButton = toDoItem.querySelector(".edit-btn");
+
+    const saveTask = async (updatedTask) => {
+      toDoItemTask.innerHTML = "";
+
+      const span = document.createElement("span");
+      span.classList.add("todo-item--task");
+      span.textContent = updatedTask;
+      toDoItemTask.appendChild(span);
+      editButton.innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Edit`;
+
+      // Update in the DB
+      await this.updateTaskInDB(todoId, updatedTask);
+    };
+
+    if (editButton.textContent.trim() === "Edit") {
+      const currentTask = toDoItemTask.textContent;
+      const textarea = document.createElement("textarea");
+      toDoItemTask.innerHTML = "";
+      textarea.value = currentTask;
+      textarea.rows = 2;
+      textarea.maxLength = 75;
+      toDoItemTask.appendChild(textarea);
+      editButton.innerHTML = `<i class="fa-solid fa-floppy-disk"></i> Save`;
+
+      async function clickOutsideEdit(event) {
+        if (
+          !toDoItem.contains(event.target) &&
+          toDoItemTask.contains(textarea)
+        ) {
+          const updatedTask = textarea.value;
+          await saveTask(updatedTask);
+          document.removeEventListener("click", clickOutsideEdit);
+        }
+      }
+
+      document.addEventListener("click", clickOutsideEdit);
+    } else {
+      const updatedTask = toDoItemTask.querySelector("textarea").value;
+      await saveTask(updatedTask);
+    }
+  };
+
+  updateTaskInDB = async (todoId, updatedTask) => {
+    const response = await fetch(
+      `${process.env.SERVER}/widget/todos/update/${todoId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ task: updatedTask }),
+      },
+    );
   };
 
   deleteToDo = async (todoId, toDoItem) => {
