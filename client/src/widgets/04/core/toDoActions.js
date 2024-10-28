@@ -206,6 +206,11 @@ class ToDoActions {
       `<button class="delete-btn">
     <i class="fa-solid fa-trash-can"></i>
     </button>`;
+
+    const deleteButton = toDoItem.querySelector(".delete-btn");
+    deleteButton.addEventListener("click", () =>
+      this.deleteToDo(todoId, toDoItem),
+    );
   };
 
   delayToDo = async (todoId, toDoItem, priority) => {
