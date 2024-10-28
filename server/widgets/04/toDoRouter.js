@@ -38,6 +38,22 @@ router.get('/:userId', async (req, res) => {
 	}
 });
 
+// Get todo by todoId
+router.get('/find/:todoId', async (req, res) => {
+	try {
+		const { todoId } = req.params;
+		const todo = await ToDo.findById(todoId);
+		if (!todo) {
+			return res.status(404).json({ message: 'Todo not found' });
+		}
+
+		res.status(200).json(todo);
+	} catch (error) {
+		console.error('Error retrieving specified task:', error);
+		res.status(500).json({ message: 'Error retrieving specified task' });
+	}
+});
+
 // Update completion status
 router.patch('/complete/:todoId', async (req, res) => {
 	try {
@@ -58,6 +74,19 @@ router.patch('/archive/:todoId', async (req, res) => {
 		const { isArchived } = req.body;
 
 		const updatedTodo = await ToDo.findByIdAndUpdate(todoId, { isArchived }, { new: true });
+		res.status(200).json(updatedTodo);
+	} catch (error) {
+		res.status(500).json({ message: 'Error updating todo' });
+	}
+});
+
+// Update date
+router.patch('/update/:todoId', async (req, res) => {
+	try {
+		const { todoId } = req.params;
+		const { dueDate } = req.body;
+
+		const updatedTodo = await ToDo.findByIdAndUpdate(todoId, { dueDate }, { new: true });
 		res.status(200).json(updatedTodo);
 	} catch (error) {
 		res.status(500).json({ message: 'Error updating todo' });

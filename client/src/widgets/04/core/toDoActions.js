@@ -98,7 +98,7 @@ class ToDoActions {
         <button class="archive-btn">
           <i class="fa-solid fa-box-archive"></i> Archive
         </button>
-        <button>
+        <button class="delay-btn">
           <i class="fa-solid fa-calendar-plus"></i> Delay
         </button>
         <button class="edit-btn">
@@ -114,6 +114,7 @@ class ToDoActions {
     } else {
       todoContext.toDoList.prepend(toDoItem);
     }
+
     toDoItem.classList.add("fade-in");
 
     const checkbox = document.getElementById(_id);
@@ -137,7 +138,9 @@ class ToDoActions {
 
     const delayButton = toDoItem.querySelector(".delay-btn");
     if (delayButton) {
-      delayButton.addEventListener("click", () => this.delayToDo(_id));
+      delayButton.addEventListener("click", () =>
+        this.delayToDo(_id, toDoItem, priority),
+      );
     }
 
     const editButton = toDoItem.querySelector(".edit-btn");
@@ -193,8 +196,31 @@ class ToDoActions {
     </button>`;
   };
 
-  delayToDo = (todoId) => {
-    // delay
+  delayToDo = async (todoId, toDoItem, priority) => {
+    const response = await fetch(
+      `${process.env.SERVER}/widget/todos/find/${todoId}`,
+    );
+    const todo = await response.json();
+    const currentDueDate = new Date(todo.dueDate);
+    const updatedDueDate = new Date(
+      currentDueDate.setDate(currentDueDate.getDate() + 1),
+    );
+
+    const updateResponse = await fetch(
+      `${process.env.SERVER}/widget/todos/update/${todoId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ dueDate: updatedDueDate.toISOString() }),
+      },
+    );
+    const updatedTodo = await updateResponse.json();
+    toDoItem.querySelector(".todo-item--date").innerHTML =
+      `<i class="fa-solid fa-hashtag ${priority}-color"></i> ${formatDate(
+        updatedTodo.dueDate,
+      )}`;
   };
 
   editToDo = (todoId, toDoItem) => {

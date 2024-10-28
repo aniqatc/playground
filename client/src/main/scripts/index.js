@@ -4,7 +4,7 @@ import { applySavedTheme } from "./ui/themeHandler";
 import { initializeLikeHandler } from "./likes/likeHandler";
 import { createNewUser } from "./user/userHandler";
 
+createNewUser();
 loadWidgets();
 applySavedTheme();
 initializeLikeHandler();
-createNewUser();
