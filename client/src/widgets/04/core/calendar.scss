@@ -365,7 +365,7 @@
   background: transparent;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  color: inherit;
+  color: fff;
   cursor: text;
   padding: 0 0 0 0.5ch;
   margin: 0;
@@ -388,7 +388,7 @@
 .flatpickr-current-month input.cur-year[disabled],
 .flatpickr-current-month input.cur-year[disabled]:hover {
   font-size: 100%;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.65);
   background: transparent;
   pointer-events: none;
 }
@@ -631,7 +631,7 @@ span.flatpickr-weekday {
 .flatpickr-day.notAllowed,
 .flatpickr-day.notAllowed.prevMonthDay,
 .flatpickr-day.notAllowed.nextMonthDay {
-  color: rgba(72, 72, 72, 0.3);
+  color: rgba(72, 72, 72, 0.45);
   background: transparent;
   border-color: transparent;
   cursor: default;
@@ -639,7 +639,7 @@ span.flatpickr-weekday {
 .flatpickr-day.flatpickr-disabled,
 .flatpickr-day.flatpickr-disabled:hover {
   cursor: not-allowed;
-  color: rgba(72, 72, 72, 0.1);
+  color: rgba(72, 72, 72, 0.25);
 }
 .flatpickr-day.week.selected {
   border-radius: 0;
