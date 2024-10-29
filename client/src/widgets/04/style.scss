@@ -178,7 +178,7 @@
         }
 
         & .todo-taskbar--buttons {
-          & > button {
+          & button {
             margin-left: 2px;
             margin-bottom: 4px;
             height: 30px;
@@ -511,7 +511,7 @@
         }
 
         & .todo-taskbar--buttons {
-          & > button {
+          & button {
             color: var.$color-dark;
 
             &:hover {

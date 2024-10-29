@@ -12,6 +12,7 @@ function initializeCalendarEl() {
     minDate: "today",
     maxDate: new Date().fp_incr(45),
     disableMobile: true,
+    static: true,
     onChange: (selectedDates) => {
       if (selectedDates.length > 0) {
         todoSelectedDate.textContent = formatDate(selectedDates[0]);
