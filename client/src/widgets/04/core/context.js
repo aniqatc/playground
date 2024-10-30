@@ -19,6 +19,7 @@ class ToDoContext {
     // Todo Items
     this.toDoList = this.widget.querySelector(".todo-list");
     // Tag Filters
+    this.filterContainer = this.widget.querySelector(".content-footer");
   }
 }
 

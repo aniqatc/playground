@@ -69,9 +69,8 @@ export function getMarkup() {
           </section>
           <section class="content-footer">
             <button class="active">All</button>
-            <button>Archive</button>
-            <button>Today</button>
-            <button>Upcoming</button>
+            <button>Archived</button>
+            <button>Completed</button>
             <button><i class="fa-solid fa-hashtag low-color"></i>Low</button>
             <button>
               <i class="fa-solid fa-hashtag medium-color"></i>Medium
