@@ -1,3 +1,5 @@
+import toDoActions from "./toDoActions";
+
 async function displayDefaultTodos() {
   let userId = localStorage.getItem("userId");
   if (!userId) return;
@@ -14,6 +16,7 @@ async function displayDefaultTodos() {
       body: JSON.stringify({ userId }),
     });
   }
+  toDoActions.fetchAndDisplayToDos();
 }
 
 export { displayDefaultTodos };

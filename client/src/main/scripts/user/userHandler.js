@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
+import {v4 as uuidv4} from "uuid";
 
 async function createNewUser() {
   if (!localStorage.getItem("userId")) {
@@ -14,8 +14,7 @@ async function createNewUser() {
       body: JSON.stringify({ userId }),
     });
 
-    const userData = await response.json();
-    return userData;
+    return await response.json();
   }
 }
 
@@ -25,8 +24,7 @@ async function fetchUserData() {
   if (userId) {
     const serverURL = process.env.SERVER;
     const response = await fetch(`${serverURL}/users/${userId}`);
-    const userData = await response.json();
-    return userData;
+    return await response.json();
   }
 }
 
