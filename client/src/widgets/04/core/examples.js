@@ -1,8 +1,8 @@
 import toDoActions from "./toDoActions";
+import { createNewUser } from "../../../main/scripts/user/userHandler";
 
 async function displayDefaultTodos() {
-  let userId = localStorage.getItem("userId");
-  if (!userId) return;
+  let userId = await createNewUser();
 
   const response = await fetch(`${process.env.SERVER}/widget/todos/${userId}`);
   const todos = await response.json();

@@ -14,8 +14,10 @@ async function createNewUser() {
       body: JSON.stringify({ userId }),
     });
 
-    return await response.json();
+    await response.json();
+    return userId;
   }
+  return localStorage.getItem("userId");
 }
 
 async function fetchUserData() {
