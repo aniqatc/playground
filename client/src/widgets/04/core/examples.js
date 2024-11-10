@@ -15,8 +15,18 @@ async function displayDefaultTodos() {
       },
       body: JSON.stringify({ userId }),
     });
+
+    const updatedResponse = await fetch(`${process.env.SERVER}/widget/todos/${userId}`);
+    const updatedTodos = await updatedResponse.json();
+
+    updatedTodos.forEach((todo) => {
+      toDoActions.addToDOM(todo);
+    });
+  } else {
+    todos.forEach((todo) => {
+      toDoActions.addToDOM(todo);
+    });
   }
-  await toDoActions.fetchAndDisplayToDos();
 }
 
 export { displayDefaultTodos };
