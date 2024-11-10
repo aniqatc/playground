@@ -16,7 +16,7 @@ async function displayDefaultTodos() {
       body: JSON.stringify({ userId }),
     });
   }
-  toDoActions.fetchAndDisplayToDos();
+  await toDoActions.fetchAndDisplayToDos();
 }
 
 export { displayDefaultTodos };

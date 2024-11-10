@@ -7,7 +7,6 @@ export function initializeInput() {
     textarea,
     selectOptionButton,
     toDoAddButton,
-    toDoList,
     inputContainer,
     todoDateButton,
   } = todoContext;
