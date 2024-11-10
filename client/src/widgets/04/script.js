@@ -3,7 +3,6 @@ import { initializeTextareaEl } from "./core/textarea";
 import { initializeInput } from "./core/input";
 import { displayDefaultTodos } from "./core/examples";
 import { initializeFilterTags } from "./core/filter";
-import { createNewUser } from "../../main/scripts/user/userHandler";
 
 export async function initializeScript() {
   document.addEventListener("DOMContentLoaded", async () => {
@@ -12,7 +11,6 @@ export async function initializeScript() {
     initializeInput();
     initializeFilterTags();
 
-    await createNewUser();
     await displayDefaultTodos();
   });
 }

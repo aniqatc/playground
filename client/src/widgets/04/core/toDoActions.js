@@ -52,7 +52,7 @@ class ToDoActions {
     }
   }
 
-  addToDB = async (task, dueDate, priority) => {
+  addToDB = async (task, dueDate, priority, isArchived = false, isCompleted = false) => {
     const userId = localStorage.getItem("userId");
 
     const response = await fetch(`${process.env.SERVER}/widget/todos/`, {
@@ -64,6 +64,8 @@ class ToDoActions {
         task: task,
         dueDate: dueDate,
         priority: priority,
+        isArchived: isArchived,
+        isCompleted: isCompleted,
         userRef: userId,
       }),
     });

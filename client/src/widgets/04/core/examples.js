@@ -8,24 +8,49 @@ async function displayDefaultTodos() {
   const todos = await response.json();
 
   if (todos.length === 0) {
-    await fetch(`${process.env.SERVER}/widget/todos/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const exampleTodos = [
+      {
+        task: "Play around with the new to-do widget in the playground",
+        dueDate: new Date(new Date().setDate(new Date().getDate() + 5)).toISOString(),
+        priority: "high",
+        isArchived: false,
+        isCompleted: false
       },
-      body: JSON.stringify({ userId }),
-    });
+      {
+        task: "View the GitHub repository for this website and provide feedback",
+        dueDate: new Date(new Date().setDate(new Date().getDate() + 10)).toISOString(),
+        priority: "medium",
+        isArchived: false,
+        isCompleted: false
+      },
+      {
+        task: "Create example tasks for new users to view",
+        dueDate: new Date().toISOString(),
+        priority: "low",
+        isArchived: false,
+        isCompleted: true
+      },
+      {
+        task: "Create a digital footprint widget with a map from MapBox",
+        dueDate: new Date().toISOString(),
+        priority: "low",
+        isArchived: true,
+        isCompleted: true
+      },
+      {
+        task: "Build a simple scientific and graphic calculator",
+        dueDate: new Date().toISOString(),
+        priority: "low",
+        isArchived: true,
+        isCompleted: true
+      }
+    ];
 
-    const updatedResponse = await fetch(`${process.env.SERVER}/widget/todos/${userId}`);
-    const updatedTodos = await updatedResponse.json();
-
-    updatedTodos.forEach((todo) => {
-      toDoActions.addToDOM(todo);
-    });
+    for (const todo of exampleTodos) {
+      await toDoActions.addToDB(todo.task, todo.dueDate, todo.priority, todo.isArchived, todo.isCompleted);
+    }
   } else {
-    todos.forEach((todo) => {
-      toDoActions.addToDOM(todo);
-    });
+    await toDoActions.fetchAndDisplayToDos();
   }
 }
 
