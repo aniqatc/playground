@@ -16,6 +16,7 @@ async function displayDefaultTodos() {
       body: JSON.stringify({ userId }),
     });
 
+    await new Promise((resolve) => setTimeout(resolve, 500));
     const updatedResponse = await fetch(`${process.env.SERVER}/widget/todos/${userId}`);
     const updatedTodos = await updatedResponse.json();
 
