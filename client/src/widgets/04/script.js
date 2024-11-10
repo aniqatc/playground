@@ -5,12 +5,10 @@ import { displayDefaultTodos } from "./core/examples";
 import { initializeFilterTags } from "./core/filter";
 
 export async function initializeScript() {
-  document.addEventListener("DOMContentLoaded", async () => {
-    initializeCalendarEl();
-    initializeTextareaEl();
-    initializeInput();
-    initializeFilterTags();
+  initializeCalendarEl();
+  initializeTextareaEl();
+  initializeInput();
+  initializeFilterTags();
 
-    await displayDefaultTodos();
-  });
+  await displayDefaultTodos();
 }

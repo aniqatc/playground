@@ -4,7 +4,11 @@ import { applySavedTheme } from "./ui/themeHandler";
 import { initializeLikeHandler } from "./likes/likeHandler";
 import { createNewUser } from "./user/userHandler";
 
-createNewUser();
-loadWidgets();
-applySavedTheme();
-initializeLikeHandler();
+async function initializeApp() {
+    await createNewUser();
+    loadWidgets();
+    applySavedTheme();
+    initializeLikeHandler();
+}
+
+initializeApp();
