@@ -65,6 +65,126 @@
           background-color: transparent;
         }
       }
+      & > div {
+        & .card-group {
+          & .card {
+            border: 1px solid #D2D2D2;
+            background-color: #efefef;
+            border-radius: 3px;
+            padding: 8px;
+
+            & .card-head {
+              display: flex;
+              align-items: flex-start;
+              justify-content: space-between;
+
+              & .card-heading--name {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                & .logo-wrapper {
+                  width: 32px;
+                  height: 32px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  background-color: #b4b4b4;
+
+                  & img {
+                    width: 18px;
+                    opacity: 0.75;
+                    filter: grayscale(100%);
+                  }
+                }
+
+                & .company-symbol {
+                  font-size: 22px;
+                  text-transform: uppercase;
+                }
+
+                & .company-name {
+                  font-size: 12px;
+                  color: var.$gray-medium-dark;
+                  margin-bottom: -4px;
+                }
+              }
+
+              & .card-heading--price {
+                text-align: end;
+
+                & > div {
+                  display: flex;
+                  gap: 5px;
+                  font-size: 22px;
+
+                  & .company-price--indicator {
+                    opacity: 0.60;
+                  }
+
+                  & .company-price--value {
+                    opacity: 0.80;
+                  }
+                }
+
+                & .company-price--label {
+                  font-size: 12px;
+                  color: var.$gray-medium;
+                  margin-top: -8px;
+                  display: block;
+                }
+              }
+            }
+            & .card-body {
+              display: grid;
+              grid-template-columns: 2fr 1fr;
+
+              & .card-body--details {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 5px;
+
+                & li {
+                  display: flex;
+                  flex-direction: column;
+
+                  & .card-body--details_value {
+                    font-size: 16px;
+                  }
+
+                  & .card-body--details_label {
+                    font-size: 11px;
+                    color: var.$gray-medium;
+                    display: block;
+                    margin-top: -3px;
+                    white-space: nowrap;
+                  }
+                }
+              }
+
+              & .card-body--graph {}
+            }
+            & .card-footer {
+              & .expand-btn {
+                display: flex;
+                align-items: center;
+                margin-left: auto;
+                margin-right: -4px;
+                margin-bottom: -6px;
+                gap: 6px;
+                font-size: 12px;
+                padding: 4px 6px;
+                color: var.$gray-medium-dark;
+              }
+            }
+          }
+        }
+
+        & .hidden {
+          display: none;
+        }
+      }
     }
   }
 }
