@@ -46,34 +46,91 @@ export function getMarkup() {
                           <li>
                             <span class="card-body--details_value">8204820</span>
                             <span class="card-body--details_label">Volume</span>
-                          </li>                          
-                          <li>
-                            <span class="card-body--details_value">0.4242</span>
-                            <span class="card-body--details_label">Change</span>
-                          </li>
-                          <li>
-                            <span class="card-body--details_value">5.3022</span>
-                            <span class="card-body--details_label">Change (%)</span>
-                          </li>
-                          <li>
+                          </li> 
+                                                    <li>
                             <span class="card-body--details_value">415.20</span>
                             <span class="card-body--details_label">Open</span>
-                          </li>
+                          </li>  
+                                                    <li>
+                            <span class="card-body--details_value">514.20</span>
+                            <span class="card-body--details_label">Year Low</span>
+                          </li>  
+                                                    <li>
+                            <span class="card-body--details_value">5.3022</span>
+                            <span class="card-body--details_label">Change (%)</span>
+                          </li>  
+                                                    </li>
                           <li>
                             <span class="card-body--details_value">210.30</span>
                             <span class="card-body--details_label">Close</span>
-                          </li>                          
+                          </li>
+                                                    <li>
+                            <span class="card-body--details_value">530.21</span>
+                            <span class="card-body--details_label">Year High</span>
+                          </li>                    
+                          <li>
+                            <span class="card-body--details_value">0.4242</span>
+                            <span class="card-body--details_label">Change</span>                         
                           <li>
                             <span class="card-body--details_value">NYSE</span>
                             <span class="card-body--details_label">Exchange</span>
                           </li>
+                        </ul>
+                        <div class="card-body--graph"></div>
+                    </div>
+                    <div class="card-footer">
+                    <button class="expand-btn">Details <i class="fa-solid fa-arrow-right-long"></i></button>
+</div>
+                </div>
+                <div class="card">
+                    <div class="card-head">
+                        <div class="card-heading--name">
+                            <span class="logo-wrapper">                            
+                            <img src="https://www.google.com/s2/favicons?domain=tesla.com&sz=128"/></span>
+                            <h1 class="company-symbol">TSLA</h1>
+                            <span class="company-name">Tesla, Inc.</span>
+                        </div>
+                        <div class="card-heading--price">
+                            <div>
+                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                                <h1 class="company-price--value">$245.43</h1>
+                            </div>
+                            <span class="company-price--label">Current Price</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="card-body--details">
                           <li>
+                            <span class="card-body--details_value">8204820</span>
+                            <span class="card-body--details_label">Volume</span>
+                          </li> 
+                                                    <li>
+                            <span class="card-body--details_value">415.20</span>
+                            <span class="card-body--details_label">Open</span>
+                          </li>  
+                                                    <li>
                             <span class="card-body--details_value">514.20</span>
                             <span class="card-body--details_label">Year Low</span>
-                          </li>
+                          </li>  
+                                                    <li>
+                            <span class="card-body--details_value">5.3022</span>
+                            <span class="card-body--details_label">Change (%)</span>
+                          </li>  
+                                                    </li>
                           <li>
+                            <span class="card-body--details_value">210.30</span>
+                            <span class="card-body--details_label">Close</span>
+                          </li>
+                                                    <li>
                             <span class="card-body--details_value">530.21</span>
                             <span class="card-body--details_label">Year High</span>
+                          </li>                    
+                          <li>
+                            <span class="card-body--details_value">0.4242</span>
+                            <span class="card-body--details_label">Change</span>                         
+                          <li>
+                            <span class="card-body--details_value">NYSE</span>
+                            <span class="card-body--details_label">Exchange</span>
                           </li>
                         </ul>
                         <div class="card-body--graph"></div>
