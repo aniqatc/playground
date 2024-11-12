@@ -1,0 +1,19 @@
+@use "../../main/styles/var";
+
+#widget-05 {
+  & .like-btn {
+    &:hover {
+      color: var.$color-light-green;
+    }
+  }
+
+  & .liked-color {
+    color: var.$color-medium-green;
+  }
+
+  & .content {}
+}
+
+.dark #widget-05 {
+  & .content {}
+}
