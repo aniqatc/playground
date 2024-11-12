@@ -1,6 +1,8 @@
 @use "../../main/styles/var";
 
 #widget-05 {
+  min-height: 480px;
+
   & .like-btn {
     &:hover {
       color: var.$color-light-green;
@@ -11,7 +13,60 @@
     color: var.$color-medium-green;
   }
 
-  & .content {}
+  & .content {
+    font-size: 14px;
+
+    & .content-head {
+      margin-left: -6px;
+
+      & button {
+        padding: 4px 6px;
+        margin-right: 4px;
+        letter-spacing: 0.15px;
+        color: var.$gray-medium;
+        transition: all 100ms ease-in;
+
+        &.active {
+          color: var.$color-medium-green;
+          text-shadow: 0px 0px 1px var.$color-medium-green;
+        }
+
+        &:hover {
+          color: var.$color-medium-green;
+          text-shadow: 0px 0px 1px var.$color-medium-green;
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+
+        & i {
+          color: var.$color-dark-green;
+        }
+      }
+    }
+
+    & .content-body {
+      & > div > input {
+        outline-color: var.$color-medium-green;
+        padding: 4px 8px;
+        margin: 6px 0px;
+        background-color: #EFEFEF;
+        border: 1px solid #D2D2D2;
+        border-radius: 2px;
+        width: 100%;
+        transition: all 100ms ease-in;
+
+        &::placeholder {
+          font-size: 13px;
+        }
+
+        &:focus {
+          background-color: transparent;
+        }
+      }
+    }
+  }
 }
 
 .dark #widget-05 {
