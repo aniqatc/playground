@@ -80,6 +80,8 @@
 
           & .card {
             &.initial {
+              grid-column: unset;
+
               & .card-head {
                 & .card-heading--name {
                   & .company-name {
@@ -136,23 +138,48 @@
               }
             }
 
-            &.active {
-              grid-column: 1 / -1;
+            &.positive {
+              border: 1px solid #AFE0B4;
+              background-color: var.$color-light-green;
 
-              & .card-footer {
-                & .expand-btn {
-                  &:hover {
-                    & i {
-                      padding-left: 9px;
-                      transform: scaleX(1.25);
-                      transform-origin: right;
-                    }
+              & .card-head {
+                & .card-heading--name {
+                  & .logo-wrapper {
+                    background-color: #87C482FF;
                   }
                 }
 
+                & .card-heading--price {
+                  & > div {
+                    & .company-price--indicator {
+                      color: var.$color-dark-green;
+                    }
+
+                    & .company-price--value {
+                      color: var.$color-dark-green;
+                    }
+                  }
+                }
               }
             }
 
+            &.negative {
+             & .card-head {
+               & .card-heading--price {
+                  & > div {
+                    & .company-price--indicator {
+                      color: #A01111;
+                    }
+
+                    & .company-price--value {
+                      color: #A01111;
+                    }
+                  }
+                }
+              }
+            }
+
+            grid-column: 1 / -1;
             width: 100%;
             border: 1px solid #D2D2D2;
             background-color: #efefef;
@@ -181,7 +208,6 @@
 
                   & img {
                     width: 16px;
-                    opacity: 0.75;
                     filter: grayscale(100%);
                   }
                 }
@@ -277,6 +303,11 @@
 
                 &:hover {
                   color: var.$gray-dark;
+                  & i {
+                    padding-left: 9px;
+                    transform: scaleX(1.25);
+                    transform-origin: right;
+                  }
                 }
 
                 &:active {
