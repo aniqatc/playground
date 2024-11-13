@@ -79,7 +79,7 @@ export function getMarkup() {
                         <div class="card-body--graph"></div>
                     </div>
                     <div class="card-footer">
-                    <button class="expand-btn">Details <i class="fa-solid fa-arrow-right-long"></i></button>
+                    <button class="expand-btn">Details <i class="fa-solid fa-arrow-left-long"></i></button>
 </div>
                 </div>
                 <div class="card negative initial">
@@ -250,7 +250,7 @@ export function getMarkup() {
                         <div class="card-body--graph"></div>
                     </div>
                     <div class="card-footer">
-                    <button class="expand-btn">Details <i class="fa-solid fa-arrow-right-long"></i></button>
+                    <button class="expand-btn">Details <i class="fa-solid fa-arrow-left-long"></i></button>
 </div>
                 </div>
             </div>
@@ -264,7 +264,7 @@ export function getMarkup() {
     </section>
     <section class="content-footer">
     <i class="fa-solid fa-earth-americas"></i>
-    <span>Today, November 12th at 1:34PM</span>
+    <span>Tuesday, November 12th at 1:34PM</span>
 </section>
 </div>
 </section>

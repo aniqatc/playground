@@ -95,7 +95,7 @@
                     font-size: 16px;
 
                     & .company-price--indicator {
-                      opacity: 0.60;
+                      opacity: 0.8;
                       font-size: 22px;
                       margin-bottom: -6px;
                       display: block;
@@ -233,11 +233,11 @@
                   font-size: 19px;
 
                   & .company-price--indicator {
-                    opacity: 0.60;
+                    opacity: 0.8;
                   }
 
                   & .company-price--value {
-                    opacity: 0.80;
+                    opacity: 0.8;
                   }
                 }
 
@@ -331,11 +331,125 @@
       font-size: 12px;
       color: var.$color-dark-green;
       text-align: end;
+      animation: blinking-date-at-footer infinite 800ms linear alternate;
+
+      @keyframes blinking-date-at-footer {
+        0% {
+          opacity: 1.0;
+        }
+        100% {
+          opacity: 0.5;
+        }
+      }
     }
   }
 }
 
 .dark #widget-05 {
   & .content {
+    & .content-body {
+      & > div > input {
+        background-color: #3B3B3B;
+        border: 1px solid #4E4E4E;
+      }
+
+      & > div {
+        & .card-group {
+          & .card {
+            &.initial {
+              & .card-footer {
+                & .expand-btn {
+                  &:hover {
+                    & i {
+                      padding-left: 4px;
+                      transform: scaleX(1.25);
+                      transform-origin: left;
+                    }
+                  }
+                }
+              }
+            }
+
+            &.positive {
+              border: 1px solid #26722E;
+              background-color: #334b32;
+
+              & .card-head {
+                & .card-heading--price {
+                  & > div {
+                    & .company-price--indicator {
+                      color: var.$color-light-green;
+                    }
+
+                    & .company-price--value {
+                      color: var.$color-light-green;
+                    }
+                  }
+                }
+              }
+            }
+
+            &.negative {
+              & .card-head {
+                & .card-heading--price {
+                  & > div {
+                    & .company-price--indicator {
+                      color: #ee5353;
+                    }
+
+                    & .company-price--value {
+                      color: #ee5353;
+                    }
+                  }
+                }
+              }
+            }
+
+            border: 1px solid #4E4E4E;
+            background-color: #3b3b3b;
+
+            & .card-head {
+              & .card-heading--name {
+                & .company-name {
+                  color: var.$gray-light;
+                }
+              }
+
+              & .card-heading--price {
+                & .company-price--label {
+                  color: var.$gray-light;
+                }
+              }
+            }
+
+            & .card-body {
+              & .card-body--details {
+                & li {
+                  & .card-body--details_label {
+                    color: var.$gray-light;
+                  }
+                }
+              }
+
+              & .card-body--graph {
+              }
+            }
+
+            & .card-footer {
+              & .expand-btn {
+                color: var.$gray-light;
+
+                &:hover {
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    & .content-footer {
+      color: var.$color-medium-green;
+    }
   }
 }
