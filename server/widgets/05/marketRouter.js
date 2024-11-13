@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
-
-// widget/markets/top & /stocks & /stocks/search & /stocks/chart & /currencies & /currencies/search
+const marketData = require('./marketData');
 
 // Stocks
+router.get('/active', async (req, res) => {
+    const stocks = await marketData.getActiveStocks();
+    res.json(stocks);
+})
 
 // Currencies
 

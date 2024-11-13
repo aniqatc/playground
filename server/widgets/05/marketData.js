@@ -21,26 +21,34 @@ class MarketData {
     async getActiveStocks() {
         const response = await fetch (`${this.baseURL}?function=TOP_GAINERS_LOSERS&apikey=${this.apiKey}`);
         const data = await response.json();
-        // Only ticker, price, volume, change amount & percentage:
+
         const activeStocks = data.most_actively_traded || [];
 
         // For each of the most actively traded stocks, get additional details and package into one object for the frontend
         const activeStocksWithDetails = await Promise.all(activeStocks.map(async (stock) => {
             const details = await this.getCompanyDetails(stock.ticker);
+            const quote = await this.getOpenCloseDetails(stock.ticker);
+
+            if (!details || !quote) return null;
+
             return {
                 symbol: stock.ticker,
                 name: details.name || stock.ticker,
-                price: stock.price,
-                change: stock.change_amount,
-                changePercent: stock.change_percentage,
-                volume: stock.volume,
+                logo: details.logo,
+                price: stock.price || quote.price,
+                change: stock.change_amount || quote.change,
+                changePercent: stock.change_percentage || quote.changePercent,
+                volume: stock.volume || quote.volume,
                 exchange: details.exchange || "N/A",
                 website: details.website,
                 yearHigh: details.yearHigh,
                 yearLow: details.yearLow,
-                logo: details.logo
+                open: quote.open,
+                close: quote.close,
             };
         }))
+        // Remove any stocks will null data
+        return activeStocksWithDetails.filter(stock => stock !== null);
     }
 
     async getCompanyDetails(symbol) {
@@ -64,5 +72,54 @@ class MarketData {
         };
     }
 
-    async getOpenCloseDetails(symbol) {}
+    async getOpenCloseDetails(symbol) {
+        const response = await fetch(`${this.baseURL}?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${this.apiKey}`);
+        const data = await response.json();
+        const quote = data['Global Quote'];
+
+        if (!quote) return null;
+
+        return {
+            open: quote['02. open'],
+            close: quote['08. previous close'],
+            change: quote['02. change'],
+            changePercent: quote['02. changePercent'],
+            volume: quote['02. volume'],
+            price: quote['05. price']
+        }
+    }
+
+    async getIndividualStock(symbol) {
+        const details = await this.getCompanyDetails(symbol);
+        const quote = await this.getOpenCloseDetails(symbol);
+
+        return {
+            symbol: symbol,
+            name: details.name || symbol,
+            logo: details.logo,
+            price: quote.price,
+            change: quote.change,
+            changePercent: quote.changePercent,
+            volume: quote.volume,
+            exchange: details.exchange || "N/A",
+            website: details.website,
+            yearHigh: details.yearHigh,
+            yearLow: details.yearLow,
+            open: quote.open,
+            close: quote.close,
+        }
+    }
+
+    async getPopularStockDetails() {
+        const data = {};
+        const promises = this.popularStocks.map(stock => {
+            return this.getIndividualStock(stock).then(stockData => {
+                data[stock] = stockData;
+            })
+        })
+        await Promise.all(promises);
+        return data;
+    }
 }
+
+module.exports = new MarketData();
