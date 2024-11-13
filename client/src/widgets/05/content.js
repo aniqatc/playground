@@ -17,13 +17,17 @@ export function getMarkup() {
   </div>
   <div class="content">
     <section class="content-head">
-        <button class="top-btn active"><i class="fa-solid fa-star"></i> Top</button>
-        <button class="stock-btn">Stocks</button>
+        <button class="active-btn active"><i class="fa-solid fa-star"></i> Active</button>
+        <button class="popular-btn">Popular</button>
         <button class="currency-btn">Currencies</button>
+        <button class="reset-btn"><i class="fa-solid fa-rotate"></i></button>
     </section>
     <section class="content-body">
-        <div class="top-container active">
-            <input type="text" placeholder="Search Company Symbol..." autocomplete="off" class="top-input" />
+        <div class="active-container active">
+            <div class="input-group">
+                <input type="text" placeholder="Search Company Symbol..." autocomplete="off" class="active-input" />
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
             <div class="card-group">
                 <div class="card positive">
                     <div class="card-head">
@@ -92,7 +96,7 @@ export function getMarkup() {
                         </div>
                         <div class="card-heading--price">
                             <div>
-                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-down"></i></span>
                                 <h1 class="company-price--value">$245.43</h1>
                             </div>
                             <span class="company-price--label">Price</span>
@@ -206,7 +210,7 @@ export function getMarkup() {
                         </div>
                         <div class="card-heading--price">
                             <div>
-                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-down"></i></span>
                                 <h1 class="company-price--value">$245.43</h1>
                             </div>
                             <span class="company-price--label">Price</span>
@@ -255,8 +259,8 @@ export function getMarkup() {
                 </div>
             </div>
         </div>
-        <div class="stock-container hidden">
-            <input type="text" placeholder="Search Company Symbol..." autocomplete="off" class="stock-input" />
+        <div class="popular-container hidden">
+            <input type="text" placeholder="Search Company Symbol..." autocomplete="off" class="popular-input" />
         </div>
         <div class="currency-container hidden">
             <input type="text" placeholder="Search Currency Symbol..." autocomplete="off" class="currency-input" />

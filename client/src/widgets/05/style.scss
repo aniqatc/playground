@@ -18,6 +18,7 @@
 
     & .content-head {
       margin-left: -6px;
+      display: flex;
 
       & button {
         padding: 4px 6px;
@@ -25,6 +26,10 @@
         letter-spacing: 0.15px;
         color: var.$gray-medium;
         transition: all 100ms ease-in;
+
+        &.reset-btn {
+          margin-left: auto;
+        }
 
         &.active {
           color: var.$color-medium-green;
@@ -47,27 +52,49 @@
     }
 
     & .content-body {
-      & > div > input {
-        outline-color: var.$color-medium-green;
-        padding: 4px 8px;
-        margin: 6px 0px;
-        background-color: #EFEFEF;
-        border: 1px solid #D2D2D2;
-        border-radius: 2px;
-        width: 100%;
-        transition: all 100ms ease-in;
-
-        &::placeholder {
-          font-size: 13px;
-        }
-
-        &:focus {
-          background-color: transparent;
-          outline: var.$color-medium-green solid 2px;
-        }
-      }
-
       & > div {
+        & .input-group {
+          position: relative;
+
+          & button {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 6px;
+            padding: 4px;
+            color: var.$color-dark-green;
+            transition: all 150ms ease-in;
+
+            &:hover {
+              color: #66af60;
+            }
+
+            &:active {
+              transform: scale(0.9);
+            }
+          }
+
+          & input {
+            outline-color: var.$color-medium-green;
+            padding: 4px 8px;
+            margin: 6px 0px;
+            background-color: #EFEFEF;
+            border: 1px solid #D2D2D2;
+            border-radius: 2px;
+            width: 100%;
+            transition: all 100ms ease-in;
+
+            &::placeholder {
+              font-size: 13px;
+            }
+
+            &:focus {
+              background-color: transparent;
+              outline: var.$color-medium-green solid 2px;
+            }
+          }
+        }
+
         & .card-group {
           max-height: 375px;
           overflow-y: auto;
@@ -313,6 +340,10 @@
                 &:active {
                   transform: scale(0.95);
                 }
+
+                &:focus, &:active {
+                  outline: none;
+                }
               }
 
             }
@@ -347,13 +378,33 @@
 
 .dark #widget-05 {
   & .content {
-    & .content-body {
-      & > div > input {
-        background-color: #3B3B3B;
-        border: 1px solid #4E4E4E;
+    & .content-head {
+      & button {
+        &.reset-btn {
+          & i {
+            color: var.$color-medium-green;
+          }
+        }
       }
+    }
 
+    & .content-body {
       & > div {
+        & .input-group {
+          & button {
+            color: var.$color-light-green;
+
+            &:hover {
+              color: #66af60;
+            }
+          }
+
+          & input {
+            background-color: #3B3B3B;
+            border: 1px solid #4E4E4E;
+          }
+        }
+
         & .card-group {
           & .card {
             &.initial {
