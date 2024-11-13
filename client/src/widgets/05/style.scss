@@ -69,16 +69,90 @@
 
       & > div {
         & .card-group {
-          max-height: 385px;
+          max-height: 375px;
           overflow-y: auto;
           overflow-x: hidden;
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+          grid-template-columns: 1fr 1fr;
           gap: 5px;
           padding-right: 11px;
           margin-right: -11px;
 
           & .card {
+            &.initial {
+              & .card-head {
+                & .card-heading--name {
+                  & .company-name {
+                    display: none;
+                  }
+                }
+
+                & .card-heading--price {
+                  & > div {
+                    display: block;
+                    font-size: 16px;
+
+                    & .company-price--indicator {
+                      opacity: 0.60;
+                      font-size: 22px;
+                      margin-bottom: -6px;
+                      display: block;
+                    }
+
+                    & .company-price--value {
+                      display: none;
+                    }
+                  }
+
+                  & .company-price--label {
+                    display: block;
+                    white-space: nowrap;
+
+                  }
+                }
+              }
+
+              & .card-body {
+                & .card-body--details {
+                  display: flex;
+                  flex-direction: column;
+
+                  & li:nth-child(n + 4):nth-child(-n + 9) {
+                    display: none;
+                  }
+                }
+              }
+
+              & .card-footer {
+                & .expand-btn {
+                  &:hover {
+                    & i {
+                      padding-left: 4px;
+                      transform: scaleX(1.25);
+                      transform-origin: left;
+                    }
+                  }
+                }
+              }
+            }
+
+            &.active {
+              grid-column: 1 / -1;
+
+              & .card-footer {
+                & .expand-btn {
+                  &:hover {
+                    & i {
+                      padding-left: 9px;
+                      transform: scaleX(1.25);
+                      transform-origin: right;
+                    }
+                  }
+                }
+
+              }
+            }
+
             width: 100%;
             border: 1px solid #D2D2D2;
             background-color: #efefef;
@@ -96,8 +170,8 @@
                 gap: 5px;
 
                 & .logo-wrapper {
-                  width: 32px;
-                  height: 32px;
+                  width: 28px;
+                  height: 28px;
                   aspect-ratio: 1/1;
                   border-radius: 50%;
                   display: flex;
@@ -106,19 +180,19 @@
                   background-color: #b4b4b4;
 
                   & img {
-                    width: 18px;
+                    width: 16px;
                     opacity: 0.75;
                     filter: grayscale(100%);
                   }
                 }
 
                 & .company-symbol {
-                  font-size: 22px;
+                  font-size: 19px;
                   text-transform: uppercase;
                 }
 
                 & .company-name {
-                  font-size: 12px;
+                  font-size: 11px;
                   color: var.$gray-medium-dark;
                   margin-bottom: -4px;
                 }
@@ -130,7 +204,7 @@
                 & > div {
                   display: flex;
                   gap: 6px;
-                  font-size: 22px;
+                  font-size: 19px;
 
                   & .company-price--indicator {
                     opacity: 0.60;
@@ -142,13 +216,14 @@
                 }
 
                 & .company-price--label {
-                  font-size: 12px;
+                  font-size: 11px;
                   color: var.$gray-medium;
-                  margin-top: -8px;
+                  margin-top: -6px;
                   display: block;
                 }
               }
             }
+
             & .card-body {
               display: grid;
               grid-template-columns: 2fr 1fr;
@@ -163,7 +238,7 @@
                   flex-direction: column;
 
                   & .card-body--details_value {
-                    font-size: 16px;
+                    font-size: 15px;
                   }
 
                   & .card-body--details_label {
@@ -176,8 +251,10 @@
                 }
               }
 
-              & .card-body--graph {}
+              & .card-body--graph {
+              }
             }
+
             & .card-footer {
               margin-top: -16px;
 
@@ -187,7 +264,6 @@
                 margin-left: auto;
                 margin-right: -4px;
                 margin-bottom: -6px;
-                gap: 6px;
                 font-size: 12px;
                 padding: 4px 6px;
                 color: var.$gray-medium-dark;
@@ -195,16 +271,12 @@
 
                 & i {
                   margin-left: -2px;
+                  padding-left: 6px;
                   transition: var.$short-ease-out;
                 }
 
                 &:hover {
                   color: var.$gray-dark;
-                }
-
-                &:hover i {
-                  transform: scaleX(1.25);
-                  transform-origin: left;
                 }
 
                 &:active {
@@ -221,9 +293,18 @@
         }
       }
     }
+
+    & .content-footer {
+      padding-top: 3px;
+      padding-bottom: 3px;
+      font-size: 12px;
+      color: var.$color-dark-green;
+      text-align: end;
+    }
   }
 }
 
 .dark #widget-05 {
-  & .content {}
+  & .content {
+  }
 }
