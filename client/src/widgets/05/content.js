@@ -34,8 +34,8 @@ export function getMarkup() {
         </div>
     </section>
     <section class="content-footer">
-    <i class="fa-solid fa-earth-americas"></i>
-    <span class="message">Most Active Stocks as of Nov. 13, 12:12PM</span>
+    <i class="fa-solid fa-circle-exclamation"></i>
+    <span class="message"></span>
 </section>
 </div>
 </section>

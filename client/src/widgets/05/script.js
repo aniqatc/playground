@@ -6,10 +6,10 @@ export async function initializeScript() {
     const widget = document.querySelector("#widget-05");
     const cardGroup = widget.querySelector('.card-group');
     const messageSpan = widget.querySelector('.content-footer .message');
-    messageSpan.textContent = `Featured stocks as of ${json.lastUpdated}`;
+    messageSpan.textContent = `Last Updated: ${json.lastUpdated}`;
 
     cardGroup.innerHTML = json.stocks.map(stock => `
-                  <div class="card initial ${stock.change >= 0 ? 'positive' : 'negative'}">
+                  <div class="card ${stock.change >= 0 ? 'positive' : 'negative'}">
                     <div class="card-head">
                         <div class="card-heading--name">
                             <span class="logo-wrapper">                            
@@ -21,7 +21,7 @@ export async function initializeScript() {
                         <div class="card-heading--price">
                             <div>
                                 <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-${stock.change >= 0 ? 'up' : 'down'}"></i></span>
-                                <h1 class="company-price--value">${stock.price}</h1>
+                                <h1 class="company-price--value">$${parseFloat(stock.price).toFixed(2)}</h1>
                             </div>
                             <span class="company-price--label">Price</span>
                         </div>

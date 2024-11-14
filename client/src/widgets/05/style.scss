@@ -282,13 +282,14 @@
               grid-template-columns: 2fr 1fr;
 
               & .card-body--details {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
+                display: flex;
+                flex-wrap: wrap;
                 gap: 5px;
 
                 & li {
                   display: flex;
                   flex-direction: column;
+                  flex: 1 1 calc(33.333% - 5px);
 
                   & .card-body--details_value {
                     font-size: 15px;
