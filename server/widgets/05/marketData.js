@@ -85,10 +85,8 @@ class MarketData {
         const response = await fetch (`${this.baseURLAV}?function=TOP_GAINERS_LOSERS&apikey=${this.apiKeyAV}`);
         const data = await response.json();
 
-        const topGainers = data.top_gainers.slice(0, 6).map(stock => stock.ticker);
-        const topLosers = data.top_losers.slice(0, 6).map(stock => stock.ticker);
-        const topActive = data.most_actively_traded.slice(0, 6).map(stock => stock.ticker);
-        const symbols = [...topGainers, ...topLosers, ...topActive].sort(() => Math.random() - 0.5) || this.featuredStocks;
+        const topActive = data.most_actively_traded.slice(0, 12).map(stock => stock.ticker);
+        const symbols = [...topActive].sort(() => Math.random() - 0.5) || this.featuredStocks;
 
         await Stock.deleteMany({}); // delete current collection of stocks
         for (const symbol of symbols) {
@@ -100,7 +98,7 @@ class MarketData {
         const response = await fetch(`${this.baseURLTD}/quote?symbol=${symbol}&apikey=${this.apiKeyTD}`);
         const data = await response.json();
 
-        await Stock.findOneAndUpdate( {symbol }, {
+        await Stock.findOneAndUpdate( { symbol }, {
             symbol,
             name: data.name,
             price: data.close,
