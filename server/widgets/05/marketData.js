@@ -1,124 +1,142 @@
+const Stock = require("./models/stockModel");
+const Company = require("./models/companyModel");
+
 class MarketData {
     constructor() {
-        this.apiKey = process.env.ALPHA_VANTAGE_API_KEY;
-        this.baseURL = "https://www.alphavantage.co/query";
-        this.batchSize = 15;
-        this.popularStocks = [
-            'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META', 'TSLA', 'NVDA', 'AMD',
-            'NFLX', 'DIS', 'PYPL', 'INTC', 'CSCO', 'ADBE', 'ORCL', 'CRM',
-            'IBM', 'QCOM', 'SHOP', 'UBER', 'LYFT', 'SNAP', 'PINS', 'PLTR',
-            'COIN', 'SQ', 'U', 'RBLX', 'ZM', 'DASH', 'MARA', 'RIOT',
-            'BA', 'WMT', 'T', 'KO', 'PEP', 'JNJ', 'PFE', 'MRK',
-            'CVX', 'XOM', 'WFC', 'BAC', 'GS', 'JPM', 'BLK', 'V',
-            'MA', 'AXP', 'MCD', 'SBUX', 'HD', 'LOW', 'COST', 'NKE',
-            'SPOT', 'TWLO', 'FSLY', 'TTD', 'DOCU', 'ZM', 'SQ', 'BYND',
-            'BABA', 'JD', 'BIDU', 'NIO', 'XPEV', 'LI', 'BILI', 'TME',
-            'SONY', 'NTDOY', 'SNE', 'EA', 'ATVI', 'TTWO', 'ROKU', 'ZM',
-            'PTON', 'ENPH', 'SEDG', 'RUN', 'SPWR', 'PLUG', 'FCEL', 'BLDP'
+        this.apiKeyAV = process.env.ALPHA_VANTAGE_API_KEY;
+        this.apiKeyTD = process.env.TWELVE_DATA_API_KEY;
+        this.baseURLAV = "https://www.alphavantage.co/query";
+        this.baseURLTD = "https://api.twelvedata.com";
+        this.cacheDuration = 24 * 60 * 60 * 1000;
+        this.featuredStocks = [
+            'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META',
+            'TSLA', 'NVDA', 'AMD', 'NFLX', 'IBM', 'RIOT', 'RBLX'
         ];
     }
 
-    async getActiveStocks() {
-        const response = await fetch (`${this.baseURL}?function=TOP_GAINERS_LOSERS&apikey=${this.apiKey}`);
-        const data = await response.json();
+    async getIndividualStock(symbol) {
+        symbol = symbol.toUpperCase();
 
-        const activeStocks = data.most_actively_traded || [];
-
-        // For each of the most actively traded stocks, get additional details and package into one object for the frontend
-        const activeStocksWithDetails = await Promise.all(activeStocks.map(async (stock) => {
-            const details = await this.getCompanyDetails(stock.ticker);
-            const quote = await this.getOpenCloseDetails(stock.ticker);
-
-            if (!details || !quote) return null;
-
+        // If it exists in DB, serve from DB
+        let stock = await Stock.findOne({ symbol });
+        if (stock) {
+            const company = await Company.findOne({ symbol });
             return {
-                symbol: stock.ticker,
-                name: details.name || stock.ticker,
-                logo: details.logo,
-                price: stock.price || quote.price,
-                change: stock.change_amount || quote.change,
-                changePercent: stock.change_percentage || quote.changePercent,
-                volume: stock.volume || quote.volume,
-                exchange: details.exchange || "N/A",
-                website: details.website,
-                yearHigh: details.yearHigh,
-                yearLow: details.yearLow,
-                open: quote.open,
-                close: quote.close,
+                ...stock.toObject(),
+                logo: company.logo
             };
-        }))
-        // Remove any stocks will null data
-        return activeStocksWithDetails.filter(stock => stock !== null);
-    }
+        }
 
-    async getCompanyDetails(symbol) {
-        const response = await fetch(`${this.baseURL}?function=OVERVIEW&symbol=${symbol}&apikey=${this.apiKey}`);
+        // Otherwise, fetch fresh data from API
+        const response = await fetch(`${this.baseURLTD}/quote?symbol=${symbol}&apikey=${this.apiKeyTD}`);
         const data = await response.json();
-
-        if (!data || !data.Symbol) return null;
-
-        const logoURL = data.OfficialSite
-            ? `https://www.google.com/s2/favicons?domain=${new URL(data.OfficialSite).hostname}&sz=128`
-            : `https://www.google.com/s2/favicons?domain=aniqa.dev&sz=128`
+        const company = await this.getCompanyInfo(symbol);
 
         return {
-            name: data.Name,
-            exchange: data.Exchange,
-            symbol: data.Symbol,
-            website: data.OfficialSite,
-            yearHigh: data['52WeekHigh'],
-            yearLow: data['52WeekLow'],
-            logo: logoURL
+            symbol,
+            name: data.name,
+            price: parseFloat(data.close),
+            change: parseFloat(data.change),
+            changePercent: parseFloat(data.percent_change),
+            volume: parseInt(data.volume),
+            exchange: data.exchange || 'N/A',
+            open: parseFloat(data.open),
+            close: parseFloat(data.previous_close),
+            yearHigh: parseFloat(data.fifty_two_week.high),
+            yearLow: parseFloat(data.fifty_two_week.low),
+            logo: company.logo,
+            lastUpdated: new Date()
+        }
+    }
+
+    async getFeaturedStocks() {
+        const oldestStockEntry = await Stock.findOne().sort({ lastUpdated: 1});
+        if (!oldestStockEntry || Date.now() - oldestStockEntry.lastUpdated > this.cacheDuration) {
+            await this.updateFeaturedStocks();
+        }
+
+        const stocks = await Stock.find().sort({ symbol: 1 });
+        const companies = await Company.find({
+            symbol: { $in: stocks.map(stock => stock.symbol) }
+        });
+
+        const lastUpdated = oldestStockEntry.lastUpdated;
+        const formattedDate = new Intl.DateTimeFormat('en-US', {
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true
+        }).format(lastUpdated);
+
+        return {
+            stocks: stocks.map(stock => {
+                const company = companies.find(company => company.symbol === stock.symbol);
+                return {
+                    ...stock.toObject(),
+                    logo: company?.logo
+                };
+            }),
+            lastUpdated: formattedDate
         };
     }
 
-    async getOpenCloseDetails(symbol) {
-        const response = await fetch(`${this.baseURL}?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${this.apiKey}`);
+    async updateFeaturedStocks() {
+        const response = await fetch (`${this.baseURLAV}?function=TOP_GAINERS_LOSERS&apikey=${this.apiKeyAV}`);
         const data = await response.json();
-        const quote = data['Global Quote'];
 
-        if (!quote) return null;
+        const topGainers = data.top_gainers.slice(0, 6).map(stock => stock.ticker);
+        const topLosers = data.top_losers.slice(0, 6).map(stock => stock.ticker);
+        const topActive = data.most_actively_traded.slice(0, 6).map(stock => stock.ticker);
+        const symbols = [...topGainers, ...topLosers, ...topActive].sort(() => Math.random() - 0.5) || this.featuredStocks;
 
-        return {
-            open: quote['02. open'],
-            close: quote['08. previous close'],
-            change: quote['02. change'],
-            changePercent: quote['02. changePercent'],
-            volume: quote['02. volume'],
-            price: quote['05. price']
+        await Stock.deleteMany({}); // delete current collection of stocks
+        for (const symbol of symbols) {
+            await this.updateStockData(symbol);
         }
     }
 
-    async getIndividualStock(symbol) {
-        const details = await this.getCompanyDetails(symbol);
-        const quote = await this.getOpenCloseDetails(symbol);
+    async updateStockData(symbol) {
+        const response = await fetch(`${this.baseURLTD}/quote?symbol=${symbol}&apikey=${this.apiKeyTD}`);
+        const data = await response.json();
 
-        return {
-            symbol: symbol,
-            name: details.name || symbol,
-            logo: details.logo,
-            price: quote.price,
-            change: quote.change,
-            changePercent: quote.changePercent,
-            volume: quote.volume,
-            exchange: details.exchange || "N/A",
-            website: details.website,
-            yearHigh: details.yearHigh,
-            yearLow: details.yearLow,
-            open: quote.open,
-            close: quote.close,
-        }
+        await Stock.findOneAndUpdate( {symbol }, {
+            symbol,
+            name: data.name,
+            price: data.close,
+            change: data.change,
+            changePercent: data.percent_change,
+            volume: data.volume,
+            exchange: data.exchange,
+            open: data.open,
+            close: data.previous_close,
+            yearHigh: data.fifty_two_week.high,
+            yearLow: data.fifty_two_week.low,
+            lastUpdated: new Date()
+        }, { upsert: true, new: true });
+        await this.getCompanyInfo(symbol);
     }
 
-    async getPopularStockDetails() {
-        const data = {};
-        const promises = this.popularStocks.map(stock => {
-            return this.getIndividualStock(stock).then(stockData => {
-                data[stock] = stockData;
-            })
+    async getCompanyInfo(symbol) {
+        let company = await Company.findOne({ symbol });
+        if (company) return company;
+
+        const response = await fetch(`${this.baseURLAV}?function=OVERVIEW&symbol=${symbol}&apikey=${this.apiKeyAV}`);
+        const data = await response.json();
+
+        const logoURL = data.OfficialSite && data.OfficialSite !== 'None'
+                ? `https://www.google.com/s2/favicons?domain=${new URL(data.OfficialSite).hostname}&sz=128`
+                : `https://www.google.com/s2/favicons?domain=${symbol.toLowerCase()}.com&sz=128`;
+
+        company = await Company.create({
+            symbol,
+            name: data.Name,
+            website: data.OfficialSite,
+            logo: logoURL,
+            exchange: data.Exchange,
+            lastUpdated: new Date()
         })
-        await Promise.all(promises);
-        return data;
+        return company;
     }
 }
 
