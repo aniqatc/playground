@@ -5,6 +5,9 @@ export async function initializeScript() {
 
     const widget = document.querySelector("#widget-05");
     const cardGroup = widget.querySelector('.card-group');
+    const messageSpan = widget.querySelector('.content-footer .message');
+    messageSpan.textContent = `Featured stocks as of ${json.lastUpdated}`;
+
     cardGroup.innerHTML = json.stocks.map(stock => `
                   <div class="card initial ${stock.change >= 0 ? 'positive' : 'negative'}">
                     <div class="card-head">
