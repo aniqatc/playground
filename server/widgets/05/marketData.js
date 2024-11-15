@@ -70,7 +70,8 @@ class MarketData {
             day: 'numeric',
             hour: 'numeric',
             minute: 'numeric',
-            hour12: true
+            hour12: true,
+            timeZoneName: 'short'
         }).format(lastUpdated);
 
         return {
