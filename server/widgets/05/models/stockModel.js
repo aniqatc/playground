@@ -14,8 +14,8 @@ const stockSchema = new mongoose.Schema({
     exchange: String,
     open: Number,
     close: Number,
-    yearHigh: Number,
-    yearLow: Number,
+    yearHigh: String,
+    yearLow: String,
     lastUpdated: {
         type: Date,
         default: Date.now

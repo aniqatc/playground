@@ -1,73 +1,30 @@
+import marketContext from "./core/context.js";
+import { fetchMarketData } from "./core/data.js";
+import { toggleCardState, clearLoadingMsg, generateStockCard } from "./core/stockCard.js";
+
 export async function initializeScript() {
-    // temporary
-    const response = await fetch(`${process.env.SERVER}/widget/markets/featured`);
-    const json = await response.json();
+    const data = await fetchMarketData();
+    clearLoadingMsg();
+    marketContext.updateLastUpdated(data.lastUpdated);
 
-    const widget = document.querySelector("#widget-05");
-    const cardGroup = widget.querySelector('.card-group');
-    const messageSpan = widget.querySelector('.content-footer .message');
-    messageSpan.textContent = `Last Updated: ${json.lastUpdated}`;
+    if (marketContext.stockCardGroup && data.stocks) {
+        data.stocks.forEach((stock, index) => generateStockCard(stock, index));
+    }
 
-    cardGroup.innerHTML = json.stocks.map(stock => `
-                  <div class="card ${stock.change >= 0 ? 'positive' : 'negative'}">
-                    <div class="card-head">
-                        <div class="card-heading--name">
-                            <span class="logo-wrapper">                            
-                            <img src="${stock.logo}" alt="${stock.symbol} logo"/>
-                            </span>
-                            <h1 class="company-symbol">${stock.symbol}</h1>
-                            <span class="company-name">${stock.name}</span>
-                        </div>
-                        <div class="card-heading--price">
-                            <div>
-                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-${stock.change >= 0 ? 'up' : 'down'}"></i></span>
-                                <h1 class="company-price--value">$${parseFloat(stock.price).toFixed(2)}</h1>
-                            </div>
-                            <span class="company-price--label">Price</span>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                                        <ul class="card-body--details">
-                    <li>
-                        <span class="card-body--details_value">${parseInt(stock.volume).toLocaleString()}</span>
-                        <span class="card-body--details_label">Volume</span>
-                    </li> 
-                    <li>
-                        <span class="card-body--details_value">${parseFloat(stock.changePercent).toFixed(2)}%</span>
-                        <span class="card-body--details_label">Change (%)</span>
-                    </li> 
-                    <li>
-                        <span class="card-body--details_value">${parseFloat(stock.change).toFixed(2)}</span>
-                        <span class="card-body--details_label">Change</span>  
-                    </li>     
-                    <li>
-                        <span class="card-body--details_value">${parseFloat(stock.open).toFixed(2)}</span>
-                        <span class="card-body--details_label">Open</span>
-                    </li>  
-                    <li>
-                        <span class="card-body--details_value">${parseFloat(stock.close).toFixed(2)}</span>
-                        <span class="card-body--details_label">Close</span>
-                    </li>
-                    <li>
-                        <span class="card-body--details_value">${stock.exchange}</span>
-                        <span class="card-body--details_label">Exchange</span>
-                    </li>
-                    <li>
-                        <span class="card-body--details_value">${parseFloat(stock.yearLow).toFixed(2)}</span>
-                        <span class="card-body--details_label">Year Low</span>
-                    </li>  
-                    <li>
-                        <span class="card-body--details_value">${parseFloat(stock.yearHigh).toFixed(2)}</span>
-                        <span class="card-body--details_label">Year High</span>
-                    </li>                                       
-                </ul>
-                        <div class="card-body--graph"></div>
-                    </div>
-                    <div class="card-footer">
-                    <button class="expand-btn">Details <i class="fa-solid fa-arrow-right-long"></i></button>
-                    </div>
-                </div>
-    `).join("");
+
+    marketContext.expandAllButton.addEventListener("click", () => {
+        const cards = marketContext.stockCardGroup.querySelectorAll(".card");
+        const allExpanded = Array.from(cards).every(card => !card.classList.contains("initial"));
+
+        if (allExpanded) {
+            cards.forEach(card => { toggleCardState(card); });
+        } else {
+            cards.forEach(card => {
+                if (card.classList.contains("initial")) {
+                    toggleCardState(card);
+                }
+            })
+        }
+    });
 }
-
 

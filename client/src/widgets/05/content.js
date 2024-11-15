@@ -19,6 +19,7 @@ export function getMarkup() {
     <section class="content-head">
         <button class="stock-btn active"><i class="fa-solid fa-star"></i> Stocks</button>
         <button class="currency-btn">Currencies</button>
+        <button class="expandAll-btn"><i class="fa-solid fa-arrows-left-right"></i></button>
         <button class="reset-btn"><i class="fa-solid fa-rotate"></i></button>
     </section>
     <section class="content-body">
@@ -27,10 +28,20 @@ export function getMarkup() {
                 <input type="text" placeholder="Search Company Symbol..." autocomplete="off" class="stock-input" />
                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
-            <div class="card-group"></div>
+            <div class="card-group loading">
+                <span>Loading today's popular stocks...</span>
+                <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+            </div>
         </div>
         <div class="currency-container hidden">
-            <input type="text" placeholder="Search Currency Symbol..." autocomplete="off" class="currency-input" />
+            <div class="input-group">
+                <input type="text" placeholder="Search Currency Symbol..." autocomplete="off" class="currency-input" />
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="card-group loading">
+                <span>Loading today's popular stocks...</span>
+                <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+            </div>
         </div>
     </section>
     <section class="content-footer">

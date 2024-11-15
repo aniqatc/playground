@@ -23,7 +23,8 @@ class MarketData {
             const company = await Company.findOne({ symbol });
             return {
                 ...stock.toObject(),
-                logo: company.logo
+                logo: company.logo,
+                website: company.website
             };
         }
 
@@ -45,6 +46,7 @@ class MarketData {
             yearHigh: parseFloat(data.fifty_two_week.high),
             yearLow: parseFloat(data.fifty_two_week.low),
             logo: company.logo,
+            website: company.website,
             lastUpdated: new Date()
         }
     }
@@ -60,7 +62,7 @@ class MarketData {
             symbol: { $in: stocks.map(stock => stock.symbol) }
         });
 
-        const lastUpdated = oldestStockEntry.lastUpdated;
+        const lastUpdated = oldestStockEntry?.lastUpdated;
         const formattedDate = new Intl.DateTimeFormat('en-US', {
             month: 'short',
             day: 'numeric',
@@ -74,7 +76,8 @@ class MarketData {
                 const company = companies.find(company => company.symbol === stock.symbol);
                 return {
                     ...stock.toObject(),
-                    logo: company?.logo
+                    logo: company?.logo,
+                    website: company?.website
                 };
             }),
             lastUpdated: formattedDate
@@ -85,7 +88,7 @@ class MarketData {
         const response = await fetch (`${this.baseURLAV}?function=TOP_GAINERS_LOSERS&apikey=${this.apiKeyAV}`);
         const data = await response.json();
 
-        const topActive = data.most_actively_traded.slice(0, 12).map(stock => stock.ticker);
+        const topActive = data.most_actively_traded.slice(0, 8).map(stock => stock.ticker);
         const symbols = [...topActive].sort(() => Math.random() - 0.5) || this.featuredStocks;
 
         await Stock.deleteMany({}); // delete current collection of stocks
@@ -108,8 +111,8 @@ class MarketData {
             exchange: data.exchange,
             open: data.open,
             close: data.previous_close,
-            yearHigh: data.fifty_two_week?.high || 0,
-            yearLow: data.fifty_two_week?.low || 0,
+            yearHigh: data.fifty_two_week?.high || "N/A",
+            yearLow: data.fifty_two_week?.low || "N/A",
             lastUpdated: new Date()
         }, { upsert: true, new: true });
         await this.getCompanyInfo(symbol);
