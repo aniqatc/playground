@@ -195,11 +195,11 @@
                & .card-heading--price {
                   & > div {
                     & .company-price--indicator {
-                      color: #A01111;
+                      color: #c91b1b
                     }
 
                     & .company-price--value {
-                      color: #A01111;
+                      color: #c91b1b;
                     }
                   }
                 }
@@ -235,7 +235,7 @@
 
                   & img {
                     width: 16px;
-                    filter: grayscale(100%);
+                    filter: grayscale(100%) contrast(1.5);
                   }
                 }
 
@@ -258,14 +258,6 @@
                   display: flex;
                   gap: 6px;
                   font-size: 19px;
-
-                  & .company-price--indicator {
-                    opacity: 0.8;
-                  }
-
-                  & .company-price--value {
-                    opacity: 0.8;
-                  }
                 }
 
                 & .company-price--label {
@@ -446,11 +438,11 @@
                 & .card-heading--price {
                   & > div {
                     & .company-price--indicator {
-                      color: #ee5353;
+                      color: #ff6363;
                     }
 
                     & .company-price--value {
-                      color: #ee5353;
+                      color: #ff6363;
                     }
                   }
                 }

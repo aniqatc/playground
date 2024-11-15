@@ -108,8 +108,8 @@ class MarketData {
             exchange: data.exchange,
             open: data.open,
             close: data.previous_close,
-            yearHigh: data.fifty_two_week?.high,
-            yearLow: data.fifty_two_week?.low,
+            yearHigh: data.fifty_two_week?.high || 0,
+            yearLow: data.fifty_two_week?.low || 0,
             lastUpdated: new Date()
         }, { upsert: true, new: true });
         await this.getCompanyInfo(symbol);
