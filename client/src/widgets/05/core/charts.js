@@ -7,6 +7,7 @@ export async function createChart(cardEl, stock) {
     if (!chartCanvas || !stock) return;
 
     const chartData = await fetchChartData(stock.symbol);
+    chartData.reverse();
 
     const context = chartCanvas.getContext("2d");
     const prices = chartData.map(data => data.close);
