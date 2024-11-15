@@ -17,6 +17,10 @@ router.get('/search/:symbol', async (req, res) => {
     res.json({ stock });
 })
 
-// Currencies
+router.get('/weekly/:symbol', async (req, res) => {
+    const { symbol } = req.params;
+    const weeklyData = await marketData.getStockWeeklyData(symbol);
+    res.json(weeklyData);
+})
 
 module.exports = router;

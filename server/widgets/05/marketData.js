@@ -1,5 +1,6 @@
 const Stock = require("./models/stockModel");
 const Company = require("./models/companyModel");
+const StockWeekly = require("./models/stockWeeklyData");
 
 class MarketData {
     constructor() {
@@ -7,7 +8,8 @@ class MarketData {
         this.apiKeyTD = process.env.TWELVE_DATA_API_KEY;
         this.baseURLAV = "https://www.alphavantage.co/query";
         this.baseURLTD = "https://api.twelvedata.com";
-        this.cacheDuration = 24 * 60 * 60 * 1000;
+        this.cacheDurationDay = 24 * 60 * 60 * 1000;
+        this.cacheDurationWeek = (24 * 7) * 60 * 60 * 1000;
         this.featuredStocks = [
             'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META',
             'TSLA', 'NVDA', 'AMD', 'NFLX', 'IBM', 'RIOT', 'RBLX'
@@ -53,7 +55,7 @@ class MarketData {
 
     async getFeaturedStocks() {
         const oldestStockEntry = await Stock.findOne().sort({ lastUpdated: 1});
-        if (!oldestStockEntry || Date.now() - oldestStockEntry.lastUpdated > this.cacheDuration) {
+        if (!oldestStockEntry || Date.now() - oldestStockEntry.lastUpdated > this.cacheDurationDay) {
             await this.updateFeaturedStocks();
         }
 
@@ -139,6 +141,33 @@ class MarketData {
         })
         return company;
     }
+
+    async getStockWeeklyData(symbol) {
+        symbol = symbol.toUpperCase();
+        // Check DB first
+        const weeklyData = await StockWeekly.findOne({ symbol });
+        const isDataStale = weeklyData &&
+            (Date.now() - weeklyData.lastUpdated > this.cacheDurationWeek);
+
+        if (weeklyData && !isDataStale) {
+            return weeklyData.data;
+        }
+
+        const response = await fetch(`${this.baseURLTD}/time_series?symbol=${symbol}&interval=1day&outputsize=7&apikey=${this.apiKeyTD}`)
+        const data = await response.json();
+
+        const formattedData = data.values.map(stock => ({
+            date: stock.datetime,
+            close: parseFloat(stock.close)
+        }));
+
+        await StockWeekly.findOneAndUpdate({ symbol: symbol }, {
+            symbol,
+            data: formattedData,
+            lastUpdated: new Date()
+        }, { upsert: true })
+        return formattedData;
+    };
 }
 
 module.exports = new MarketData();

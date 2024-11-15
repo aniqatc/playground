@@ -179,6 +179,10 @@
                     display: none;
                   }
                 }
+
+                & .card-body--graph {
+                  display: none;
+                }
               }
 
               & .card-footer {
@@ -293,7 +297,8 @@
 
             & .card-body {
               display: grid;
-              grid-template-columns: 2fr 1fr;
+              grid-template-columns: 3fr 2fr;
+              gap: 2px;
 
               & .card-body--details {
                 display: grid;
@@ -319,6 +324,11 @@
               }
 
               & .card-body--graph {
+                display: block;
+                max-width: 100%;
+                margin-bottom: 18px;
+                margin-top: 4px;
+                overflow: hidden;
               }
             }
 

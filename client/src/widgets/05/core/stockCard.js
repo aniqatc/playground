@@ -1,15 +1,18 @@
 import marketContext from "./context.js";
+import { createChart } from "./charts";
 
-function generateStockCard(stock, index) {
+async function generateStockCard(stock, index) {
     const { stockCardGroup } = marketContext;
     const cardEl = document.createElement("div");
     cardEl.classList.add("card");
     if (index !== 0) {
         cardEl.classList.add("initial");
     }
+
     stock.change >= 0
         ? cardEl.classList.add("positive")
         : cardEl.classList.add("negative");
+
     cardEl.innerHTML = `<div class="card-head">
                            <a href="${stock.website}" target="_blank">
                             <div class="card-heading--name">
@@ -21,7 +24,7 @@ function generateStockCard(stock, index) {
                             </div></a>
                         <div class="card-heading--price">
                             <div>
-                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-${stock.change >= 0 ? 'up' : 'down'}"></i></span>
+                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-${stock.change > 0 ? 'up' : 'down'}"></i></span>
                                 <h1 class="company-price--value">$${parseFloat(stock.price).toFixed(2)}</h1>
                             </div>
                             <span class="company-price--label">Price</span>
@@ -38,7 +41,7 @@ function generateStockCard(stock, index) {
                             <span class="card-body--details_label">Change (%)</span>
                         </li> 
                         <li>
-                            <span class="card-body--details_value">${parseFloat(stock.change).toFixed(2)}</span>
+                            <span class="card-body--details_value company-change-value">${parseFloat(stock.change).toFixed(2)}</span>
                             <span class="card-body--details_label">Change</span>  
                         </li>     
                         <li>
@@ -62,19 +65,43 @@ function generateStockCard(stock, index) {
                             <span class="card-body--details_label">Year High</span>
                         </li>                                       
                     </ul>
-                        <div class="card-body--graph"></div>
+                        <div class="card-body--graph">
+                        </div>
                     </div>
                     <div class="card-footer">
                         <button class="expand-btn">Details <i class="fa-solid fa-arrow-${cardEl.classList.contains("initial") ? "right" : "left" }-long"></i></button>
                     </div>`
-    stockCardGroup.append(cardEl);
-    stockCardEventHandlers(cardEl);
+    const graphDiv = cardEl.querySelector(".card-body--graph");
+    graphDiv.innerHTML = '<canvas></canvas>';
+
+    if (index === 0) {
+        stockCardGroup.prepend(cardEl);
+        await createChart(cardEl, stock);
+    } else {
+        stockCardGroup.append(cardEl);
+    }
+
+    stockCardEventHandlers(cardEl, stock);
 }
 
-function stockCardEventHandlers(cardEl) {
+function stockCardEventHandlers(cardEl, stock) {
     const expandBtn = cardEl.querySelector(".expand-btn");
-    expandBtn.addEventListener("click", function () {
+    const graphDiv = cardEl.querySelector(".card-body--graph");
+    let chart = null;
+
+    expandBtn.addEventListener("click", async function () {
         toggleCardState(cardEl);
+
+        if (!cardEl.classList.contains("initial")) {
+            graphDiv.innerHTML = '<canvas></canvas>';
+            chart = await createChart(cardEl, stock);
+        } else {
+            if (chart) {
+                chart.destroy();
+                chart = null;
+            }
+            graphDiv.innerHTML = "";
+        }
     });
 }
 
