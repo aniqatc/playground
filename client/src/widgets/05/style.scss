@@ -135,6 +135,9 @@
             border-radius: 3px;
             padding: 8px;
 
+            container-type: inline-size;
+            container-name: card;
+
             &.initial {
               grid-column: unset;
 
@@ -297,8 +300,15 @@
 
             & .card-body {
               display: grid;
-              grid-template-columns: 3fr 2fr;
+              grid-template-columns: 4fr 3fr;
               gap: 2px;
+
+              @container card (max-width: 315px) {
+                & {
+                  grid-template-columns: 1fr;
+                  gap: 10px;
+                }
+              }
 
               & .card-body--details {
                 display: grid;
