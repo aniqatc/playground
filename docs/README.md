@@ -19,3 +19,4 @@ Notes regarding individual widgets:
 - <a href="/docs/widgets/02-calculator.md">Widget 02: Calculator</a>
 - <a href="/docs/widgets/03-digital-footprint.md">Widget 03: Digital Footprint</a>
 - <a href="/docs/widgets/04-todo-list.md">Widget 04: Task Tracker</a>
+- <a href="/docs/widgets/05-fin-market.md">Widget 05: Financial Market Monitor</a>
