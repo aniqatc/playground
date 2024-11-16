@@ -44,8 +44,9 @@ export function getMarkup() {
         </div>
     </section>
     <section class="content-footer">
-    <i class="fa-solid fa-circle-exclamation"></i>
-    <span class="message"></span>
+    <span class="short-description">Top Actively Traded</span>
+   <span class="timestamp-wrapper"><i class="fa-solid fa-circle-exclamation"></i><span class="timestamp"></span>
+    </span>
 </section>
 </div>
 </section>

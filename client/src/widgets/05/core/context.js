@@ -5,7 +5,8 @@ class MarketContext {
 
     initializeElements() {
         this.widget = document.querySelector("#widget-05");
-        this.messageEl = this.widget.querySelector(".content-footer .message");
+        this.timestampEl = this.widget.querySelector(".content-footer .timestamp");
+        this.descriptionEl = this.widget.querySelector(".short-description");
         // Menu
         this.stockButton = this.widget.querySelector(".stock-btn");
         this.currencyButton = this.widget.querySelector(".currency-btn");
@@ -22,7 +23,16 @@ class MarketContext {
     }
 
     updateLastUpdated(timestamp) {
-        this.messageEl.textContent = `Last Updated: ${timestamp}`;
+        this.timestampEl.textContent = `Last Updated: ${timestamp}`;
+    }
+
+    updateDescription(type) {
+        if (type === "stocks") {
+            this.descriptionEl.textContent = `Top Actively Traded`;
+        }
+        if (type === "currencies") {
+            this.descriptionEl.textContent = `Exchange Rates`;
+        }
     }
 
     clearLoadingMsg() {
