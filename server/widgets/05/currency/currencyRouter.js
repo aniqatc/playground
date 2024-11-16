@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const currencyData = require('../currency/currencyData');
+const currencyData = require('./currencyData');
 
 router.get('/all', async (req, res) => {
     const data = await currencyData.fetchCurrencyInfo();

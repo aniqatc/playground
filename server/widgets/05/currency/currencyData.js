@@ -1,5 +1,5 @@
-const ExchangeRate = require('../models/ExchangeRateModel');
-const CurrencyInfo = require('../models/CurrencyInfoModel');
+const ExchangeRate = require('../models/exchangeRateModel');
+const CurrencyInfo = require('../models/currencyInfoModel');
 
 class CurrencyData {
     constructor() {
