@@ -14,3 +14,5 @@ export async function initializeScript() {
         marketContext.updateLastUpdated(stockData.lastUpdated);
     }
 }
+
+// handle currency search & stocks search

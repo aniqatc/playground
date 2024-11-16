@@ -264,6 +264,8 @@
                 & .card-heading--name {
                   & .logo-wrapper {
                     background-color: var.$color-dark-green;
+                    color: var.$color-light-green;
+                    font-size: 18px;
                   }
                   & .company-name {
                     color: var.$color-dark;
@@ -579,6 +581,11 @@
 
             & .card-head {
               & .card-heading--name {
+                & .logo-wrapper {
+                  & .symbol {
+                    color: var.$color-dark;
+                  }
+                }
                 & .company-name {
                   color: var.$gray-light;
                 }

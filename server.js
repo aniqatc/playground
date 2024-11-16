@@ -14,11 +14,6 @@ mongoose
 	.then(() => console.log('Connected to MongoDB Database:', mongoose.connection.db.databaseName));
 
 // middleware
-console.log(
-	'CORS configured for:',
-	process.env.NODE_ENV === 'production' ? process.env.FRONTEND_HOSTED : process.env.FRONTEND_LOCAL
-);
-
 process.env.NODE_ENV === 'production'
 	? app.use(cors({ origin: process.env.FRONTEND_HOSTED }))
 	: app.use(cors({ origin: process.env.FRONTEND_LOCAL }));
@@ -54,12 +49,6 @@ app.use((req, res, next) => {
 		return res.redirect(process.env.FRONTEND_HOSTED);
 	}
 	next();
-});
-
-// Error-handling middleware
-app.use((err, req, res, next) => {
-	console.error('Error:', err.stack);
-	res.status(500).send('Something went wrong!');
 });
 
 // server
