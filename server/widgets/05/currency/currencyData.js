@@ -16,8 +16,7 @@ class CurrencyData {
         if (data) {
             const currencyData = Object.entries(data).map(([code, fullName]) => ({
                 currencyCode: code.toUpperCase(),
-                fullName,
-                symbol: ""
+                fullName
             }));
             await CurrencyInfo.deleteMany({});
             return await CurrencyInfo.insertMany(currencyData);
@@ -25,7 +24,7 @@ class CurrencyData {
     }
 
     async mergeRatesAndCurrencyInfo(rates) {
-        const currencyInfo = await CurrencyInfo.find().lean();
+        const currencyInfo = await CurrencyInfo.find();
 
         const formattedDate = new Intl.DateTimeFormat('en-US', {
             month: 'short',
