@@ -435,6 +435,8 @@
               & .card-body--details {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
+                align-content: center;
+                justify-items: stretch;
                 gap: 5px;
 
                 & li {
@@ -458,9 +460,10 @@
               & .card-body--graph {
                 display: block;
                 max-width: 100%;
-                margin-bottom: 18px;
-                margin-top: 4px;
+                margin-bottom: 16px;
+                margin-top: -4px;
                 overflow: hidden;
+                max-height: 132px;
               }
             }
 
