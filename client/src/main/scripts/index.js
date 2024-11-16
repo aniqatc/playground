@@ -6,7 +6,7 @@ import { createNewUser } from "./user/userHandler";
 
 async function initializeApp() {
     await createNewUser();
-    loadWidgets();
+    await loadWidgets();
     applySavedTheme();
     initializeLikeHandler();
 }
