@@ -118,10 +118,47 @@ function toggleCardState(cardEl) {
     }
 }
 
-function clearLoadingMsg() {
-    const { stockCardGroup } = marketContext;
-    stockCardGroup.classList.remove("loading");
-    stockCardGroup.innerHTML = "";
+function clearLoadingMsg(type) {
+    const { stockCardGroup, currencyCardGroup } = marketContext;
+    if (type === "stock") {
+        stockCardGroup.classList.remove("loading");
+        stockCardGroup.innerHTML = "";
+    } else {
+        // tempppppp
+        currencyCardGroup.classList.remove("loading");
+        currencyCardGroup.innerHTML = `                <div class="card positive"><div class="card-head">
+                            <div class="card-heading--name">
+                                <span class="logo-wrapper">                            
+                                    <img src="https://aniqa.dev/favicon.png"/>
+                                </span>
+                                <h1 class="company-symbol">USD</h1>
+                                <span class="company-name">United States Dollar</span>
+                            </div>
+                        <div class="card-heading--price">
+                            <div>
+                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-down"></i></span>
+                                <h1 class="company-price--value">1</h1>
+                            </div>
+                            <span class="company-price--label">Baseline Currency</span>
+                        </div>
+                    </div></div>
+                    <div class="card"><div class="card-head">
+                            <div class="card-heading--name">
+                                <span class="logo-wrapper">                            
+                                    <img src="https://aniqa.dev/favicon.png"/>
+                                </span>
+                                <h1 class="company-symbol">JPY</h1>
+                                <span class="company-name">Japanese Yen</span>
+                            </div>
+                        <div class="card-heading--price">
+                            <div>
+                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-down"></i></span>
+                                <h1 class="company-price--value">0.92</h1>
+                            </div>
+                            <span class="company-price--label">Compared to USD</span>
+                        </div>
+                    </div>`;
+    }
 }
 
 export { toggleCardState, clearLoadingMsg, generateStockCard };

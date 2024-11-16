@@ -23,7 +23,7 @@ export function getMarkup() {
         <button class="reset-btn"><i class="fa-solid fa-rotate"></i></button>
     </section>
     <section class="content-body">
-        <div class="stock-container active">
+        <div class="stock-container">
             <div class="input-group">
                 <input type="text" placeholder="Search Company Symbol..." autocomplete="off" class="stock-input" />
                 <button><i class="fa-solid fa-magnifying-glass"></i></button>

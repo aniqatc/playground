@@ -4,8 +4,28 @@ import { toggleCardState, clearLoadingMsg, generateStockCard } from "./core/stoc
 import { createChart } from "./core/charts";
 
 export async function initializeScript() {
+    marketContext.currencyButton.addEventListener("click", async () => {
+
+        if (marketContext.currencyTab.classList.contains("hidden")) {
+            marketContext.currencyButton.classList.add("active");
+            marketContext.stockButton.classList.remove("active");
+            marketContext.currencyTab.classList.remove("hidden");
+            marketContext.stockTab.classList.add("hidden");
+            clearLoadingMsg("currency");
+        }
+    })
+
+    marketContext.stockButton.addEventListener("click", async () => {
+        if (marketContext.stockTab.classList.contains("hidden")) {
+            marketContext.currencyButton.classList.remove("active");
+            marketContext.stockButton.classList.add("active");
+            marketContext.stockTab.classList.remove("hidden");
+            marketContext.currencyTab.classList.add("hidden");
+        }
+    })
+
     const data = await fetchMarketData();
-    clearLoadingMsg();
+    clearLoadingMsg("stock");
     marketContext.updateLastUpdated(data.lastUpdated);
 
     if (marketContext.stockCardGroup && data.stocks) {
