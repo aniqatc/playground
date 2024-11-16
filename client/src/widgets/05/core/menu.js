@@ -12,32 +12,40 @@ export function initializeMenu(stockData, currencyData) {
 }
 
 function initializeExpandBtn(stockData) {
-        const cards = stockCardGroup.querySelectorAll(".card");
-        const allExpanded = Array.from(cards).every(card => !card.classList.contains("initial"));
+        if (!stockTab.classList.contains("hidden")) {
+            const cards = stockCardGroup.querySelectorAll(".card");
+            const allExpanded = Array.from(cards).every(card => !card.classList.contains("initial"));
 
-        if (allExpanded) {
-            cards.forEach(card => {
-                const graphDiv = card.querySelector(".card-body--graph");
-                if (graphDiv.chart) {
-                    graphDiv.chart.destroy();
-                    graphDiv.chart = null;
-                }
-                graphDiv.innerHTML = "";
-                toggleCardState(card);
-            });
-        } else {
-            cards.forEach(async card => {
-                if (card.classList.contains("initial")) {
-                    toggleCardState(card);
-
+            if (allExpanded) {
+                cards.forEach(card => {
                     const graphDiv = card.querySelector(".card-body--graph");
-                    graphDiv.innerHTML = '<canvas></canvas>';
-                    const symbol = card.querySelector(".company-symbol").textContent;
-                    const stock = stockData.stocks.find(stock => stock.symbol === symbol);
-
-                    if (stock) {
-                        graphDiv.chart = await createChart(card, stock);
+                    if (graphDiv.chart) {
+                        graphDiv.chart.destroy();
+                        graphDiv.chart = null;
                     }
+                    graphDiv.innerHTML = "";
+                    toggleCardState(card);
+                });
+            } else {
+                cards.forEach(async card => {
+                    if (card.classList.contains("initial")) {
+                        toggleCardState(card);
+
+                        const graphDiv = card.querySelector(".card-body--graph");
+                        graphDiv.innerHTML = '<canvas></canvas>';
+                        const symbol = card.querySelector(".company-symbol").textContent;
+                        const stock = stockData.stocks.find(stock => stock.symbol === symbol);
+
+                        if (stock) {
+                            graphDiv.chart = await createChart(card, stock);
+                        }
+                    }
+                })
+            }
+        } else if (!currencyTab.classList.contains("hidden")) {
+            currencyCardGroup.querySelectorAll(".card").forEach(card => {
+                if (!card.classList.contains("baseline")) {
+                    card.classList.toggle("initial");
                 }
             })
         }

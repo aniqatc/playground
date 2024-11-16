@@ -21,10 +21,10 @@ export function generateCurrencyCards(data) {
                                     </div>
                                     <div class="card-heading--price">
                                         <div>
-                                            <span class="company-price--indicator">
+                                            <span class="company-price--value">
                                                 <i class="fa-solid fa-arrow-trend-${currency.rate >= 1 ? "up" : "down"}"></i>
                                             </span>
-                                            <h1 class="company-price--value">${currency.rate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h1>
+                                            <h1 class="company-price--indicator">${currency.rate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h1>
                                         </div>
                                         <span class="company-price--label">versus <strong>USD</strong></span>
                                     </div>
@@ -46,8 +46,8 @@ function displayBaselineCurrencyCard() {
                             </div>
                         <div class="card-heading--price">
                             <div>
-                                <span class="company-price--indicator"><i class="fa-solid fa-money-check-dollar"></i></span>
-                                <h1 class="company-price--value">$1.00</h1>
+                                <span class="company-price--value"><i class="fa-solid fa-money-check-dollar"></i></span>
+                                <h1 class="company-price--indicator">$1.00</h1>
                             </div>
                             <span class="company-price--label">Baseline Currency</span>
                         </div>

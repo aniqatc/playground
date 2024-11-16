@@ -38,7 +38,7 @@ app.use('/widget/currencies/', currencyRouter);
 // widget 5: daily market refresh
 const marketData = require('./server/widgets/05/market/marketData');
 const currencyData = require("./server/widgets/05/currency/currencyData");
-cron.schedule('0 10 * * 1-5', async () => {
+cron.schedule('0 10 * * *', async () => {
 	await marketData.updateFeaturedStocks();
 	await currencyData.fetchExchangeRate();
 }, { timezone: "America/New_York" })
