@@ -14,6 +14,11 @@ mongoose
 	.then(() => console.log('Connected to MongoDB Database:', mongoose.connection.db.databaseName));
 
 // middleware
+console.log(
+	'CORS configured for:',
+	process.env.NODE_ENV === 'production' ? process.env.FRONTEND_HOSTED : process.env.FRONTEND_LOCAL
+);
+
 process.env.NODE_ENV === 'production'
 	? app.use(cors({ origin: process.env.FRONTEND_HOSTED }))
 	: app.use(cors({ origin: process.env.FRONTEND_LOCAL }));
