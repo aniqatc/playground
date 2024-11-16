@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const marketData = require('./marketData');
 
-// Stocks
 router.get('/featured', async (req, res) => {
     const stocks = await marketData.getFeaturedStocks();
     res.json(stocks);

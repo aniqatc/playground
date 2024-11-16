@@ -20,7 +20,6 @@ export function getMarkup() {
         <button class="stock-btn active"><i class="fa-solid fa-star"></i> Stocks</button>
         <button class="currency-btn">Currencies</button>
         <button class="expandAll-btn"><i class="fa-solid fa-arrows-left-right"></i></button>
-        <button class="reset-btn"><i class="fa-solid fa-rotate"></i></button>
     </section>
     <section class="content-body">
         <div class="stock-container">

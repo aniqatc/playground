@@ -92,6 +92,11 @@ function stockCardEventHandlers(cardEl, stock) {
     expandBtn.addEventListener("click", async function () {
         toggleCardState(cardEl);
 
+        cardEl.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+
         if (!cardEl.classList.contains("initial")) {
             graphDiv.innerHTML = '<canvas></canvas>';
             chart = await createChart(cardEl, stock);
@@ -126,7 +131,7 @@ function clearLoadingMsg(type) {
     } else {
         // tempppppp
         currencyCardGroup.classList.remove("loading");
-        currencyCardGroup.innerHTML = `                <div class="card positive"><div class="card-head">
+        currencyCardGroup.innerHTML = `                <div class="card baseline"><div class="card-head">
                             <div class="card-heading--name">
                                 <span class="logo-wrapper">                            
                                     <img src="https://aniqa.dev/favicon.png"/>
@@ -136,28 +141,12 @@ function clearLoadingMsg(type) {
                             </div>
                         <div class="card-heading--price">
                             <div>
-                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-down"></i></span>
+                                <span class="company-price--indicator"><i class="fa-solid fa-money-check-dollar"></i></span>
                                 <h1 class="company-price--value">1</h1>
                             </div>
                             <span class="company-price--label">Baseline Currency</span>
                         </div>
-                    </div></div>
-                    <div class="card"><div class="card-head">
-                            <div class="card-heading--name">
-                                <span class="logo-wrapper">                            
-                                    <img src="https://aniqa.dev/favicon.png"/>
-                                </span>
-                                <h1 class="company-symbol">JPY</h1>
-                                <span class="company-name">Japanese Yen</span>
-                            </div>
-                        <div class="card-heading--price">
-                            <div>
-                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-down"></i></span>
-                                <h1 class="company-price--value">0.92</h1>
-                            </div>
-                            <span class="company-price--label">Compared to USD</span>
-                        </div>
-                    </div>`;
+                    </div></div>`;
     }
 }
 

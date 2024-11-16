@@ -9,7 +9,6 @@ class MarketContext {
         // Menu
         this.stockButton = this.widget.querySelector(".stock-btn");
         this.currencyButton = this.widget.querySelector(".currency-btn");
-        this.resetButton = this.widget.querySelector(".reset-btn");
         this.expandAllButton = this.widget.querySelector(".expandAll-btn");
         // Tabs
         this.stockTab = this.widget.querySelector(".stock-container");

@@ -1,6 +1,6 @@
-const Stock = require("./models/stockModel");
-const Company = require("./models/companyModel");
-const StockWeekly = require("./models/stockWeeklyData");
+const Stock = require("../models/stockModel");
+const Company = require("../models/companyModel");
+const StockWeekly = require("../models/stockWeeklyData");
 
 class MarketData {
     constructor() {
