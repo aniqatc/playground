@@ -53,6 +53,68 @@
 
     & .content-body {
       & > div {
+        &.currency-container {
+          container-type: inline-size;
+          container-name: card-parent;
+
+          @container card-parent (max-width: 385px) {
+            & .card-group .card.initial .card-head {
+              .card-heading--price > div .company-price--indicator,
+              .card-heading--name .company-symbol {
+                font-size: 18px;
+                margin-bottom: 0;
+              }
+            }
+          }
+
+          @container card-parent (max-width: 340px) {
+            & .card-group .card.initial {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              .card-head {
+                flex-direction: column;
+                display: flex;
+
+                .card-heading--price {
+                  flex-direction: column;
+                  display: flex;
+                  gap: 2px;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                  margin-top: 2px;
+
+                  & > div {
+                    display: flex;
+                    align-items: center;
+
+                    .company-price--value {
+                      display: block;
+                    }
+                  }
+                }
+
+                .card-heading--name {
+                  flex-direction: column;
+                  display: flex;
+                  gap: 2px;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                  margin-top: 2px;
+
+                  .company-name {
+                    flex-direction: column;
+                    display: flex;
+                  }
+                }
+              }
+            }
+          }
+        }
+
         & .input-group {
           position: relative;
 
@@ -265,7 +327,6 @@
                   & .logo-wrapper {
                     background-color: var.$color-dark-green;
                     color: var.$color-light-green;
-                    font-size: 18px;
                   }
                   & .company-name {
                     color: var.$color-dark;
@@ -287,8 +348,6 @@
                     font-weight: 500;
                   }
                 }
-
-
               }
             }
 
@@ -309,15 +368,24 @@
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  background-color: #b4b4b4;
+                  background-color: #d3d3d3;
 
                   & .symbol {
                     font-weight: 600;
+                    width: 28px;
+                    height: 28px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    & i {
+                      font-size: 18px;
+                    }
                   }
 
                   & img {
                     width: 16px;
-                    filter: grayscale(100%) contrast(1.5);
+                    filter: grayscale(100%) saturate(100%) contrast(100%);
                   }
                 }
 
@@ -518,6 +586,14 @@
               background-color: #334b32;
 
               & .card-head {
+                & .card-heading--name {
+                  & .logo-wrapper {
+                    background-color: #87c482;
+                  }
+                  & .company-name {
+                    color: var.$gray-light;
+                  }
+                }
                 & .card-heading--price {
                   & > div {
                     & .company-price--indicator {
@@ -558,6 +634,11 @@
                 & .card-heading--name {
                   & .logo-wrapper {
                     background-color: #000;
+                    & .symbol {
+                      & i {
+                        color: var.$color-light-green;
+                      }
+                    }
                   }
                   & .company-name {
                     color: var.$gray-light;
@@ -585,10 +666,11 @@
 
             & .card-head {
               & .card-heading--name {
-                & .logo-wrapper {
-                  & .symbol {
-                    color: var.$color-dark;
-                  }
+                  & .logo-wrapper {
+                    background-color: #959595;
+                    & .symbol {
+                      color: var.$color-dark;
+                    }
                 }
                 & .company-name {
                   color: var.$gray-light;

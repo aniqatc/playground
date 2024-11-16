@@ -14,7 +14,7 @@ export function generateCurrencyCards(data) {
                                 <div class="card-head">
                                     <div class="card-heading--name">
                                         <span class="logo-wrapper">
-                                            <span class="symbol">${currency.symbol || '<i class="fa-solid fa-coins"></i>'}</span>
+                                            <span class="symbol">${currency.symbol || '<i class="fa-solid fa-sack-dollar"></i>'}</span>
                                         </span>
                                         <h1 class="company-symbol">${currency.currencyCode}</h1>
                                         <span class="company-name">${currency.fullName}</span>
@@ -39,7 +39,7 @@ function displayBaselineCurrencyCard() {
                     <div class="card-head">
                             <div class="card-heading--name">
                                 <span class="logo-wrapper">                            
-                                    $
+                                    <span class="symbol"><i class="fa-solid fa-dollar-sign"></i></span>
                                 </span>
                                 <h1 class="company-symbol">USD</h1>
                                 <span class="company-name">United States Dollar</span>
