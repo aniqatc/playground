@@ -311,6 +311,10 @@
                   justify-content: center;
                   background-color: #b4b4b4;
 
+                  & .symbol {
+                    font-weight: 600;
+                  }
+
                   & img {
                     width: 16px;
                     filter: grayscale(100%) contrast(1.5);

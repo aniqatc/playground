@@ -19,7 +19,8 @@ class CurrencyData {
                 fullName
             }));
             await CurrencyInfo.deleteMany({});
-            return await CurrencyInfo.insertMany(currencyData);
+            await CurrencyInfo.insertMany(currencyData);
+            return CurrencyInfo.find();
         }
     }
 

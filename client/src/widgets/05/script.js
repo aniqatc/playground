@@ -16,4 +16,3 @@ export async function initializeScript() {
 }
 
 // handle currency search & stocks search
-// expandBtn should minimize the currency too
