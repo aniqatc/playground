@@ -35,6 +35,14 @@ app.use('/widget/todos/', toDoRouter);
 app.use('/widget/markets/', marketRouter);
 app.use('/widget/currencies/', currencyRouter);
 
+// widget 5: daily market refresh
+const marketData = require('./server/widgets/05/market/marketData');
+const currencyData = require("./server/widgets/05/currency/currencyData");
+cron.schedule('0 10 * * 1-5', async () => {
+	await marketData.updateFeaturedStocks();
+	await currencyData.fetchExchangeRate();
+}, { timezone: "America/New_York" })
+
 // redirect backend host to frontend
 app.use((req, res, next) => {
 	if (req.hostname === 'data.playground.aniqa.dev') {
@@ -43,13 +51,11 @@ app.use((req, res, next) => {
 	next();
 });
 
-// widget 5: daily market refresh
-const marketData = require('./server/widgets/05/market/marketData');
-const currencyData = require("./server/widgets/05/currency/currencyData");
-cron.schedule('0 10 * * 1-5', async () => {
-	await marketData.updateFeaturedStocks();
-	await currencyData.fetchExchangeRate();
-}, { timezone: "America/New_York" })
+// Error-handling middleware
+app.use((err, req, res, next) => {
+	console.error('Error:', err.stack);
+	res.status(500).send('Something went wrong!');
+});
 
 // server
 app.listen(port, () => {
