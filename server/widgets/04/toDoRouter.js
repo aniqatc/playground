@@ -31,8 +31,10 @@ router.get('/:userId', async (req, res) => {
 	try {
 		const userId = req.params.userId;
 		const user = await User.findOne({ userId: userId });
+		if (!user) {
+			return res.status(404).json({ message: 'User not found' });
+		}
 		const todos = await ToDo.find({ userRef: user._id });
-
 		res.status(200).json(todos);
 	} catch (error) {
 		console.error('Error retrieving todo list:', error);
@@ -48,7 +50,6 @@ router.get('/find/:todoId', async (req, res) => {
 		if (!todo) {
 			return res.status(404).json({ message: 'Todo not found' });
 		}
-
 		res.status(200).json(todo);
 	} catch (error) {
 		console.error('Error retrieving specified task:', error);
