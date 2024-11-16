@@ -6,6 +6,7 @@ const useragent = require('express-useragent');
 const app = express();
 const port = process.env.PORT || 3000;
 const db = process.env.DB_URI.replace('<PASSWORD>', process.env.DB_PW);
+const cron = require('node-cron');
 
 // connect widget db
 mongoose
@@ -39,6 +40,12 @@ app.use((req, res, next) => {
 	}
 	next();
 });
+
+// widget 5: daily market refresh
+const marketData = require('./server/widgets/05/marketData');
+cron.schedule('0 10 * * 1-5', async () => {
+	await marketData.updateFeaturedStocks();
+}, { timezone: "America/New_York" })
 
 // server
 app.listen(port, () => {
