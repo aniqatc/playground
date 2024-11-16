@@ -14,7 +14,8 @@
 
 **Relevant file(s)**: [/client/src/widgets/05/\*](../../client/src/widgets/05/), [/server/widgets/05/\*](../../server/widgets/05/)
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-05_v1.png"></a>
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-05_v1-1.png"></a>
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-05_v1-2.png"></a>
 
 A financial markets widget that delivers real-time currency exchange rates against USD and stock market data through interactive 7-day price history graphs, color-coded trend indicators, and detailed metrics for market monitoring.
 
