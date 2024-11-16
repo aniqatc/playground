@@ -67,9 +67,9 @@
 [![HTML Badge](https://img.shields.io/badge/HTML-0A0A0A)](https://github.com/aniqatc/playground)
 [![SCSS Badge](https://img.shields.io/badge/SCSS-0A0A0A)](https://github.com/aniqatc/playground)
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-01_v1.png"></a>
-
 A card showcasing the purpose of the webpage with animated SVG logos of the technologies used, a GitHub activity grid of the creator, and links to source code and social media.
+
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-01_v1.png"></a>
 
 #### Widget 02: Calculator ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/02-calculator.md))
 
@@ -79,9 +79,9 @@ A card showcasing the purpose of the webpage with animated SVG logos of the tech
 [![Function Plot Badge](https://img.shields.io/badge/FunctionPlot-B81717)](https://github.com/mauriciopoppe/function-plot)
 [![HTML2Canvas Badge](https://img.shields.io/badge/HTML2Canvas-B81717)](https://github.com/niklasvh/html2canvas)
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-02_v2.png"></a>
-
 A dual-mode calculator that can handle evaluating different arithmetic expressions and provides the ability to graph select functions, accessed through a minimalistic user interface. The calculator allows users to keep track of their previously inputted expressions and allows them to save a `.png` file of the calculator's display and history.
+
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-02_v2.png"></a>
 
 #### Widget 03: Digital Footprint ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/03-digital-footprint.md))
 
@@ -93,9 +93,9 @@ A dual-mode calculator that can handle evaluating different arithmetic expressio
 [![MapBox Badge](https://img.shields.io/badge/MapBox-D27334)](https://www.mapbox.com/)
 [![IP API Badge](https://img.shields.io/badge/IP%20API-D27334)](https://ip-api.com/)
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-03_v1.png"></a>
-
 A mini dashboard that presents a user's digital footprint, including geographic location (obtained using their IP), browser details, operating system, and ISP information, all underscored by a dynamic map visualization for a quick and elegant overview of their online presence.
+
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-03_v1.png"></a>
 
 #### Widget 04: Task Tracker ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/04-todo-list.md))
 
@@ -107,10 +107,9 @@ A mini dashboard that presents a user's digital footprint, including geographic 
 [![Flatpickr Badge](https://img.shields.io/badge/Flatpickr-F4BA52)](https://github.com/aniqatc/playground)
 [![MongoDB Badge](https://img.shields.io/badge/MongoDB-F4BA52)](https://github.com/aniqatc/playground)
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-04_v1.png"></a>
-
 A user-friendly to-do list widget that lets users manage tasks with priority tags, due dates, and quick actions like edit, delay, archive, or delete.
 
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-04_v1.png"></a>
 
 #### Widget 04: Financial Markets Monitor ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/05-fin-market.md))
 
@@ -125,10 +124,10 @@ A user-friendly to-do list widget that lets users manage tasks with priority tag
 [![AlphaVantage Badge](https://img.shields.io/badge/Alpha%20Vantage%20API-4eb247)](https://github.com/aniqatc/playground)
 [![Chart.js Badge](https://img.shields.io/badge/Chartjs-4eb247)](https://github.com/aniqatc/playground)
 
+A financial markets widget that delivers real-time currency exchange rates against USD and stock market data through interactive 7-day price history graphs, color-coded trend indicators, and detailed metrics for market monitoring.
+
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-05_v1-1.png"></a>
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-05_v1-2.png"></a>
-
-A financial markets widget that delivers real-time currency exchange rates against USD and stock market data through interactive 7-day price history graphs, color-coded trend indicators, and detailed metrics for market monitoring.
 
 ## Available Scripts
 
