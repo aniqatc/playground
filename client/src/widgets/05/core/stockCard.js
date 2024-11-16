@@ -131,22 +131,6 @@ function clearLoadingMsg(type) {
     } else {
         // tempppppp
         currencyCardGroup.classList.remove("loading");
-        currencyCardGroup.innerHTML = `                <div class="card baseline"><div class="card-head">
-                            <div class="card-heading--name">
-                                <span class="logo-wrapper">                            
-                                    <img src="https://aniqa.dev/favicon.png"/>
-                                </span>
-                                <h1 class="company-symbol">USD</h1>
-                                <span class="company-name">United States Dollar</span>
-                            </div>
-                        <div class="card-heading--price">
-                            <div>
-                                <span class="company-price--indicator"><i class="fa-solid fa-money-check-dollar"></i></span>
-                                <h1 class="company-price--value">1</h1>
-                            </div>
-                            <span class="company-price--label">Baseline Currency</span>
-                        </div>
-                    </div></div>`;
     }
 }
 
