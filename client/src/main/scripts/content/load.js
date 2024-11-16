@@ -16,22 +16,22 @@ function loadContent(entry) {
   container.insertAdjacentHTML("beforeend", markup);
 }
 
-async function loadScript(entry) {
+function loadScript(entry) {
   try {
     const module = widgetScriptContext(`./${entry}/script.js`);
     if (module && module.initializeScript) {
-      await module.initializeScript();
+      module.initializeScript();
     }
   } catch (error) {
-    console.error(`Error loading script for widget ${entry}:`, error);
+    // skip
   }
 }
 
-async function loadWidgets() {
+function loadWidgets() {
   for (let i = 1; i <= 5; i++) {
     let entry = String(i).padStart(2, "0");
     loadContent(entry);
-    await loadScript(entry);
+    loadScript(entry);
   }
 }
 

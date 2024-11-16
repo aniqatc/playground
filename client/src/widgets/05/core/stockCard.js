@@ -123,15 +123,4 @@ function toggleCardState(cardEl) {
     }
 }
 
-function clearLoadingMsg(type) {
-    const { stockCardGroup, currencyCardGroup } = marketContext;
-    if (type === "stock") {
-        stockCardGroup.classList.remove("loading");
-        stockCardGroup.innerHTML = "";
-    } else {
-        // tempppppp
-        currencyCardGroup.classList.remove("loading");
-    }
-}
-
-export { toggleCardState, clearLoadingMsg, generateStockCard };
+export { toggleCardState, generateStockCard };

@@ -24,6 +24,13 @@ class MarketContext {
     updateLastUpdated(timestamp) {
         this.messageEl.textContent = `Last Updated: ${timestamp}`;
     }
+
+    clearLoadingMsg() {
+        this.stockCardGroup.classList.remove("loading");
+        this.stockCardGroup.innerHTML = "";
+        this.currencyCardGroup.classList.remove("loading");
+        this.stockCardGroup.innerHTML = "";
+    }
 }
 
 const marketContext = new MarketContext();
