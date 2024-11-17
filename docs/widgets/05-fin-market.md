@@ -72,17 +72,17 @@ Each component is designed with specific responsibilities to maintain code organ
 ### Frontend Components
 
 **Core Directory**:
-- **charts.js**: Configures Chart.js instances for rendering 7-day price history graphs with tooltips and custom styling
-- **context.js**: Centralizes DOM element references and shared widget state for consistent access
-- **currencyCard.js**: Handles currency card UI generation and real-time updates of exchange rates
-- **data.js**: Manages API calls and returns JSON-formatted data for both stock and currency information
-- **menu.js**: Controls navigation between stock/currency views and handles mode switching
-- **stockCard.js**: Manages stock card UI rendering with real-time price updates and trends
+- [`charts.js`](/client/src/widgets/05/core/charts.js): Configures Chart.js instances for rendering 7-day price history graphs with tooltips and custom styling
+- [`context.js`](/client/src/widgets/05/core/context.js): Centralizes DOM element references and shared widget state for consistent access
+- [`currencyCard.js`](/client/src/widgets/05/core/currencyCard.js): Handles currency card UI generation and real-time updates of exchange rates
+- [`data.js`](/client/src/widgets/05/core/data.js): Manages API calls and returns JSON-formatted data for both stock and currency information
+- [`menu.js`](/client/src/widgets/05/core/menu.js): Controls navigation between stock/currency views and handles mode switching
+- [`stockCard.js`](/client/src/widgets/05/core/stockCard.js): Manages stock card UI rendering with real-time price updates and trends
 
 **Root Files**:
-- **content.js**: Defines base HTML structure and placeholder templates for the widget
-- **script.js**: Entry point that initializes components and sets up event listeners
-- **style.scss**: Widget-specific styling including dark mode, responsive layouts, animations and different states
+- [`content.js`](/client/src/widgets/05/content.js): Defines base HTML structure and placeholder templates for the widget
+- [`script.js`](/client/src/widgets/05/script.js): Entry point that initializes components and sets up event listeners
+- [`style.scss`](/client/src/widgets/05/style.scss): Widget-specific styling including dark mode, responsive layouts, animations and different states
 
 ### Backend: [/server/widgets/05/\*](../../server/widgets/05/)
 
@@ -95,19 +95,19 @@ Each component is designed with specific responsibilities to maintain code organ
 - [/server.js](/server.js): Initializes the Express.js server, handles API routing, and uses node-cron to refresh market data daily
 
 **Currency Directory**:
-- **currencyData.js**: Service layer for processing currency data from OpenExchange API
-- **currencyRouter.js**: API endpoints for currency exchange rate operations
+- [`currencyData.js`](/server/widgets/05/currency/currencyData.js): Service layer for processing currency data from OpenExchange API
+- [`currencyRouter.js`](/server/widgets/05/currency/currencyRouter.js): API endpoints for currency exchange rate operations
 
 **Market Directory**:
-- **marketData.js**: Service layer handling stock data from AlphaVantage, TwelveData and Google Favicon APIs
-- **marketRouter.js**: API endpoints for stock market operations and historical data
+- [`marketData.js`](/server/widgets/05/market/marketData.js): Service layer handling stock data from AlphaVantage, TwelveData and Google Favicon APIs
+- [`marketRouter.js`](/server/widgets/05/market/marketRouter.js): API endpoints for stock market operations and historical data
 
 **Models Directory**:
-- **companyModel.js**: Schema for storing static company information (name, logo, website)
-- **currencyInfoModel.js**: Schema for currency metadata and symbols
-- **exchangeRateModel.js**: Schema for daily currency exchange rates against USD
-- **stockModel.js**: Schema for daily stock metrics and real-time price data
-- **stockWeeklyData.js**: Schema for 7-day historical price data used in trend charts
+- [`companyModel.js`](/server/widgets/05/models/companyModel.js): Schema for storing static company information (name, logo, website)
+- [`currencyInfoModel.js`](/server/widgets/05/models/currencyInfoModel.js): Schema for currency metadata and symbols
+- [`exchangeRateModel.js`](/server/widgets/05/models/exchangeRateModel.js): Schema for daily currency exchange rates against USD
+- [`stockModel.js`](/server/widgets/05/models/stockModel.js): Schema for daily stock metrics and real-time price data
+- [`stockWeeklyData.js`](/server/widgets/05/models/stockWeeklyData.js): Schema for 7-day historical price data used in trend charts
 
 ## How to Use
 
