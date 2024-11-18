@@ -118,20 +118,26 @@
         & .input-group {
           position: relative;
 
-          & button {
+          & .stock-search-btn,
+          & .currency-search-btn {
             position: absolute;
             top: 0;
             bottom: 0;
             right: 6px;
             padding: 4px;
             color: var.$color-dark-green;
-            transition: all 150ms ease-in;
+
+            &.error {
+              color: var.$color-medium-red;
+            }
 
             &:hover {
+              transition: all 150ms ease-in;
               color: #66af60;
             }
 
             &:active {
+              transition: all 150ms ease-in;
               transform: scale(0.9);
             }
           }
@@ -144,9 +150,9 @@
             border: 1px solid #D2D2D2;
             border-radius: 2px;
             width: 100%;
-            transition: all 100ms ease-in;
+            transition: all 150ms ease-in;
 
-            &.error:focus {
+            &.error:focus, &.error {
               outline: var.$color-medium-red solid 2px;
             }
 
@@ -576,8 +582,13 @@
     & .content-body {
       & > div {
         & .input-group {
-          & button {
+          & .stock-search-btn,
+          & .currency-search-btn {
             color: var.$color-light-green;
+
+            &.error {
+              color: var.$color-medium-red;
+            }
 
             &:hover {
               color: #66af60;

@@ -42,13 +42,15 @@ class MarketContext {
         this.stockCardGroup.innerHTML = "";
     }
 
-    addInputErrorStyling(searchEl, type, example) {
+    addInputErrorStyling(searchEl, btnEl, type, example) {
+        btnEl.classList.add("error");
         searchEl.classList.add("error");
         searchEl.value = "";
-        searchEl.placeholder = `Search valid ${type} symbol (e.g. ${example})`;
+        searchEl.placeholder = `Search ${type} Symbol (e.g. ${example})`;
     }
 
-    removeInputErrorStyling(searchEl) {
+    removeInputErrorStyling(searchEl, btnEl) {
+        btnEl.classList.remove("error");
         searchEl.classList.remove("error");
     }
 

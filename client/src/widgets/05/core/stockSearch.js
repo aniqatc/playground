@@ -11,14 +11,14 @@ export function initializeStockSearch() {
             stockSearchButton.click();
         }
     });
-   stockSearch.addEventListener('input', ({target}) => removeInputErrorStyling(target));
+   stockSearch.addEventListener('input', ({target}) => removeInputErrorStyling(target, stockSearchButton));
 }
 
 async function handleSearch() {
     try {
         const symbol = stockSearch.value.toUpperCase().trim();
         if (!symbol) {
-            addInputErrorStyling(stockSearch, "company", "AAPL");
+            addInputErrorStyling(stockSearch, stockSearchButton, "Company", "AAPL");
             return;
         }
 
@@ -40,6 +40,6 @@ async function handleSearch() {
         }
         stockSearch.value = "";
     } catch (error) {
-        addInputErrorStyling(stockSearch, "company", "AAPL");
+        addInputErrorStyling(stockSearch, stockSearchButton, "Company", "AAPL");
     }
 }
