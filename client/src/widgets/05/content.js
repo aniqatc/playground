@@ -37,9 +37,8 @@ export function getMarkup() {
                 <input type="text" placeholder="Search Currency Symbol..." autocomplete="off" class="currency-input" />
                 <button class="currency-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
-            <div class="card-group loading">
-                <span>Loading today's popular stocks...</span>
-                <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+            <div class="card-group">
+                
             </div>
         </div>
     </section>

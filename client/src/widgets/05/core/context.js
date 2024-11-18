@@ -40,8 +40,6 @@ class MarketContext {
     clearLoadingMsg() {
         this.stockCardGroup.classList.remove("loading");
         this.stockCardGroup.innerHTML = "";
-        this.currencyCardGroup.classList.remove("loading");
-        this.stockCardGroup.innerHTML = "";
     }
 
     addInputErrorStyling(searchEl, type, example) {

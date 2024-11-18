@@ -8,7 +8,7 @@ export function initializeStockSearch() {
     stockSearchButton.addEventListener("click", handleSearch);
     stockSearch.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
-            marketContext.stockSearchButton.click();
+            stockSearchButton.click();
         }
     });
    stockSearch.addEventListener('input', ({target}) => removeInputErrorStyling(target));

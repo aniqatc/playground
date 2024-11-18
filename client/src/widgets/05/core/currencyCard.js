@@ -1,40 +1,66 @@
 import marketContext from "./context.js";
+const { currencyCardGroup } = marketContext;
+const batchSize = 50;
+let currentIndex = 0;
+let isLoading = false;
+let scrollHandler;
 
-export function generateCurrencyCards(data) {
-    const { currencyCardGroup } = marketContext;
-    currencyCardGroup.innerHTML = displayBaselineCurrencyCard();
+function generateCurrencyCards(data) {
+    currentIndex = 0;
+    isLoading = false;
+    currencyCardGroup.innerHTML = generateBaselineCurrencyCard();
+    loadMoreCurrencyCards(data.rates);
 
-    const cardEl = document.createElement("div");
-    cardEl.classList.add("card");
+    scrollHandler = () => {
+        if (isLoading) return;
+        const { scrollTop, scrollHeight, clientHeight } = currencyCardGroup;
+        if (scrollTop + clientHeight >= scrollHeight - 100) {
+            loadMoreCurrencyCards(data.rates, currencyCardGroup);
+        }
+    };
+    currencyCardGroup.addEventListener('scroll', scrollHandler);
+}
 
-    if (data.rates.length > 0) {
-        data.rates.forEach(currency => {
-            currencyCardGroup.innerHTML += `
-                <div class="card ${currency.rate >= 1 ? "positive" : "negative"}">
-                                <div class="card-head">
-                                    <div class="card-heading--name">
-                                        <span class="logo-wrapper">
-                                            <span class="symbol">${currency.symbol || '<i class="fa-solid fa-sack-dollar"></i>'}</span>
-                                        </span>
-                                        <h1 class="company-symbol">${currency.currencyCode}</h1>
-                                        <span class="company-name">${currency.fullName}</span>
-                                    </div>
-                                    <div class="card-heading--price">
-                                        <div>
-                                            <span class="company-price--value">
-                                                <i class="fa-solid fa-arrow-trend-${currency.rate >= 1 ? "up" : "down"}"></i>
-                                            </span>
-                                            <h1 class="company-price--indicator">${currency.rate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h1>
-                                        </div>
-                                        <span class="company-price--label">versus <strong>USD</strong></span>
-                                    </div>
-                                </div>
-                            </div>`
-        })
+function loadMoreCurrencyCards(rates) {
+    if (currentIndex >= rates.length || isLoading) return; // once we reach the end of the currencyData, no longer load cards
+
+    isLoading = true; // loading this batch just started
+    const batch = rates.slice(currentIndex, currentIndex + batchSize); // only load currency within the batch size
+    batch.forEach(currency => {
+        currencyCardGroup.innerHTML += `
+            <div class="card ${currency.rate >= 1 ? "positive" : "negative"}">
+                <div class="card-head">
+                    <div class="card-heading--name">
+                        <span class="logo-wrapper">
+                            <span class="symbol">${currency.symbol || '<i class="fa-solid fa-sack-dollar"></i>'}</span>
+                        </span>
+                            <h1 class="company-symbol">${currency.currencyCode}</h1>
+                            <span class="company-name">${currency.fullName}</span>
+                   </div>
+                   <div class="card-heading--price">
+                        <div>
+                            <span class="company-price--value">
+                                <i class="fa-solid fa-arrow-trend-${currency.rate >= 1 ? "up" : "down"}"></i>
+                            </span>
+                        <h1 class="company-price--indicator">${currency.rate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h1>
+                       </div>
+                       <span class="company-price--label">versus <strong>USD</strong></span>
+                   </div>
+                </div>
+            </div>`
+    })
+
+    currentIndex += batchSize; // update index for the currencyData
+    isLoading = false; // loading this batch is complete
+}
+
+function cleanupCurrencyCards() {
+    if (scrollHandler) {
+        currencyCardGroup.removeEventListener('scroll', scrollHandler);
     }
 }
 
-function displayBaselineCurrencyCard() {
+function generateBaselineCurrencyCard() {
     return `<div class="card baseline">
                     <div class="card-head">
                             <div class="card-heading--name">
@@ -54,3 +80,5 @@ function displayBaselineCurrencyCard() {
                     </div>
                  </div>`
 }
+
+export { generateCurrencyCards, cleanupCurrencyCards }
