@@ -19,7 +19,9 @@ class MarketContext {
         this.currencyCardGroup = this.currencyTab.querySelector(".card-group");
         // Inputs
         this.stockSearch = this.widget.querySelector(".stock-input");
+        this.stockSearchButton = this.widget.querySelector(".stock-search-btn");
         this.currencySearch = this.widget.querySelector(".currency-input");
+        this.currencySearchButton = this.widget.querySelector(".currency-search-btn");
     }
 
     updateLastUpdated(timestamp) {

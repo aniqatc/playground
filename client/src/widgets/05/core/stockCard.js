@@ -5,6 +5,7 @@ async function generateStockCard(stock, index) {
     const { stockCardGroup } = marketContext;
     const cardEl = document.createElement("div");
     cardEl.classList.add("card");
+    cardEl.setAttribute('data-symbol', stock.symbol);
     if (index !== 0) {
         cardEl.classList.add("initial");
     }
@@ -80,7 +81,6 @@ async function generateStockCard(stock, index) {
     } else {
         stockCardGroup.append(cardEl);
     }
-
     stockCardEventHandlers(cardEl, stock);
 }
 

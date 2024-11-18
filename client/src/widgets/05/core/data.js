@@ -15,4 +15,10 @@ async function fetchCurrencyData() {
     return data;
 }
 
-export { fetchMarketData, fetchChartData, fetchCurrencyData }
+async function fetchIndividualStockData(symbol) {
+    const response = await fetch(`${process.env.SERVER}/widget/markets/search/${symbol}`);
+    const { stock } = await response.json();
+    return stock;
+}
+
+export { fetchMarketData, fetchChartData, fetchCurrencyData, fetchIndividualStockData }

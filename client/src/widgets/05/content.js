@@ -25,7 +25,7 @@ export function getMarkup() {
         <div class="stock-container">
             <div class="input-group">
                 <input type="text" placeholder="Search Company Symbol..." autocomplete="off" class="stock-input" />
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="stock-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
             <div class="card-group loading">
                 <span>Loading today's popular stocks...</span>
@@ -35,7 +35,7 @@ export function getMarkup() {
         <div class="currency-container hidden">
             <div class="input-group">
                 <input type="text" placeholder="Search Currency Symbol..." autocomplete="off" class="currency-input" />
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="currency-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
             <div class="card-group loading">
                 <span>Loading today's popular stocks...</span>
