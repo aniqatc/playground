@@ -5,7 +5,7 @@ class MarketContext {
 
     initializeElements() {
         this.widget = document.querySelector("#widget-05");
-        this.timestampEl = this.widget.querySelector(".content-footer .timestamp");
+        this.timestampEl = this.widget.querySelector(".timestamp-wrapper .timestamp");
         this.descriptionEl = this.widget.querySelector(".short-description");
         // Menu
         this.stockButton = this.widget.querySelector(".stock-btn");
@@ -17,7 +17,7 @@ class MarketContext {
         // Cards
         this.stockCardGroup = this.stockTab.querySelector(".card-group");
         this.currencyCardGroup = this.currencyTab.querySelector(".card-group");
-        // Inputs
+        // Search
         this.stockSearch = this.widget.querySelector(".stock-input");
         this.stockSearchButton = this.widget.querySelector(".stock-search-btn");
         this.currencySearch = this.widget.querySelector(".currency-input");
@@ -42,6 +42,23 @@ class MarketContext {
         this.stockCardGroup.innerHTML = "";
         this.currencyCardGroup.classList.remove("loading");
         this.stockCardGroup.innerHTML = "";
+    }
+
+    addInputErrorStyling(searchEl, type, example) {
+        searchEl.classList.add("error");
+        searchEl.value = "";
+        searchEl.placeholder = `Search valid ${type} symbol (e.g. ${example})`;
+    }
+
+    removeInputErrorStyling(searchEl) {
+        searchEl.classList.remove("error");
+    }
+
+    scrollToElement(el) {
+        el.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
     }
 }
 

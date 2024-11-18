@@ -3,7 +3,14 @@ import { toggleCardState } from "./stockCard";
 import { createChart } from "./charts";
 import { generateCurrencyCards } from "./currencyCard";
 
-const { stockButton, currencyButton, expandAllButton, stockTab, currencyTab, stockCardGroup, currencyCardGroup } = marketContext;
+const { stockButton,
+    currencyButton,
+    expandAllButton,
+    stockTab,
+    currencyTab,
+    stockCardGroup,
+    currencyCardGroup,
+    scrollToElement } = marketContext;
 
 export function initializeMenu(stockData, currencyData) {
     stockButton.addEventListener("click", () => { initializeStockBtn(stockData) });
@@ -60,7 +67,7 @@ function initializeStockBtn(stockData) {
         currencyCardGroup.innerHTML = ""; // remove any currency cards when hidden
         marketContext.updateLastUpdated(stockData.lastUpdated);
         marketContext.updateDescription("stocks");
-        stockTab.scrollIntoView({ behavior: 'smooth' });
+        scrollToElement(stockTab);
     }
 }
 
@@ -73,6 +80,6 @@ function initializeCurrencyBtn(currencyData) {
         currencyTab.classList.remove("hidden");
         marketContext.updateLastUpdated(currencyData.lastUpdated);
         marketContext.updateDescription("currencies");
-        currencyTab.scrollIntoView({ behavior: 'smooth' });
+        scrollToElement(currencyTab);
     }
 }

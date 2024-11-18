@@ -146,6 +146,10 @@
             width: 100%;
             transition: all 100ms ease-in;
 
+            &.error:focus {
+              outline: var.$color-medium-red solid 2px;
+            }
+
             &::placeholder {
               font-size: 13px;
             }

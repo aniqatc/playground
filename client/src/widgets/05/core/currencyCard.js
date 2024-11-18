@@ -8,7 +8,7 @@ export function generateCurrencyCards(data) {
     cardEl.classList.add("card");
 
     if (data.rates.length > 0) {
-        data.rates.slice(0, 50).forEach(currency => {
+        data.rates.forEach(currency => {
             currencyCardGroup.innerHTML += `
                 <div class="card ${currency.rate >= 1 ? "positive" : "negative"}">
                                 <div class="card-head">
