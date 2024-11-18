@@ -60,6 +60,7 @@ function initializeStockBtn(stockData) {
         currencyCardGroup.innerHTML = ""; // remove any currency cards when hidden
         marketContext.updateLastUpdated(stockData.lastUpdated);
         marketContext.updateDescription("stocks");
+        stockTab.scrollIntoView({ behavior: 'smooth' });
     }
 }
 
@@ -72,5 +73,6 @@ function initializeCurrencyBtn(currencyData) {
         currencyTab.classList.remove("hidden");
         marketContext.updateLastUpdated(currencyData.lastUpdated);
         marketContext.updateDescription("currencies");
+        currencyTab.scrollIntoView({ behavior: 'smooth' });
     }
 }
