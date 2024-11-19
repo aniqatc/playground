@@ -23,10 +23,12 @@ class MarketData {
         let stock = await Stock.findOne({ symbol });
         if (stock) {
             const company = await Company.findOne({ symbol });
+            const stockObj = stock.toObject();
             return {
-                ...stock.toObject(),
-                logo: company.logo,
-                website: company.website
+                ...stockObj,
+                lastUpdated: this.formatDate(stockObj.lastUpdated),
+                logo: company?.logo || null,
+                website: company?.website || null
             };
         }
 
@@ -38,6 +40,7 @@ class MarketData {
 
         return {
             ...stockData,
+            lastUpdated: this.formatDate(stockData.lastUpdated),
             logo: company?.logo || null,
             website: company?.website || null
         };
@@ -64,8 +67,8 @@ class MarketData {
     }
 
     async getFeaturedStocks() {
-        const oldestStockEntry = await Stock.findOne().sort({ lastUpdated: 1});
-        if (!oldestStockEntry || Date.now() - oldestStockEntry.lastUpdated > this.cacheDurationDay) {
+        const mostRecentStockEntry = await Stock.findOne().sort({ lastUpdated: -1 });
+        if (!mostRecentStockEntry || Date.now() - mostRecentStockEntry.lastUpdated > this.cacheDurationDay) {
             await this.updateFeaturedStocks();
         }
 
@@ -74,26 +77,19 @@ class MarketData {
             symbol: { $in: stocks.map(stock => stock.symbol) }
         });
 
-        const lastUpdated = oldestStockEntry?.lastUpdated;
-        const formattedDate = new Intl.DateTimeFormat('en-US', {
-            month: 'short',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true,
-            timeZoneName: 'short'
-        }).format(lastUpdated);
-
+        const lastUpdated = mostRecentStockEntry?.lastUpdated;
         return {
             stocks: stocks.map(stock => {
                 const company = companies.find(company => company.symbol === stock.symbol);
+                const stockObj = stock.toObject();
                 return {
-                    ...stock.toObject(),
-                    logo: company?.logo,
-                    website: company?.website
+                    ...stockObj,
+                    lastUpdated: this.formatDate(stockObj.lastUpdated),
+                    logo: company?.logo || null,
+                    website: company?.website || null
                 };
             }),
-            lastUpdated: formattedDate
+            lastUpdated: this.formatDate(lastUpdated)
         };
     }
 
@@ -178,6 +174,17 @@ class MarketData {
                 { upsert: true }
             );
             return formattedData;
+    }
+
+    formatDate(date) {
+        return new Intl.DateTimeFormat('en-US', {
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+            timeZoneName: 'short'
+        }).format(date);
     }
 }
 

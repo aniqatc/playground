@@ -3,7 +3,7 @@ import { fetchMarketData, fetchCurrencyData } from "./core/data.js";
 import { generateStockCard } from "./core/stockCard.js";
 import { initializeMenu } from "./core/menu.js";
 import { initializeStockSearch } from "./core/stockSearch";
-import {initializeCurrencySearch} from "./core/currencySearch";
+import { initializeCurrencySearch } from "./core/currencySearch";
 
 export async function initializeScript() {
     const stockData = await fetchMarketData();
@@ -13,9 +13,9 @@ export async function initializeScript() {
 
     if (marketContext.stockCardGroup && stockData.stocks.length > 0 ) {
         stockData.stocks.forEach((stock, index) => generateStockCard(stock, index));
-        marketContext.updateLastUpdated(stockData.lastUpdated);
     }
 
+    marketContext.updateLastUpdated(stockData.lastUpdated);
     initializeStockSearch(stockData);
     initializeCurrencySearch(currencyData);
 }

@@ -1,7 +1,7 @@
 import marketContext from "./context.js";
 import { createChart } from "./charts";
 
-async function generateStockCard(stock, index) {
+async function generateStockCard(stock, index, userReq = false) {
     const { stockCardGroup } = marketContext;
     const cardEl = document.createElement("div");
     cardEl.classList.add("card");
@@ -80,6 +80,9 @@ async function generateStockCard(stock, index) {
         await createChart(cardEl, stock);
     } else {
         stockCardGroup.append(cardEl);
+    }
+    if (userReq === true) {
+        marketContext.updateLastUpdated(stock.lastUpdated);
     }
     stockCardEventHandlers(cardEl, stock);
 }

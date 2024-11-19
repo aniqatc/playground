@@ -39,7 +39,7 @@ async function handleSearch(data) {
         }
 
         const stock = await fetchIndividualStockData(symbol);
-        await generateStockCard(stock, 0);
+        await generateStockCard(stock, 0, true);
         const newCard = document.querySelector(`.card[data-symbol="${symbol}"]`);
         if (newCard) {
             scrollToElement(newCard);
