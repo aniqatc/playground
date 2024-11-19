@@ -1,23 +1,52 @@
 @use "../../main/styles/var";
 
+// Animations
+@keyframes blinking-dot {
+  from { opacity: 1; }
+  to { opacity: 0.5; }
+}
+
+@keyframes imageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Generate Grid Item Animations
+@for $num from 1 through 5 {
+  @keyframes translateGridItemsIn-#{$num} {
+    0% {
+      transform: translateY(-100% * (6 - $num));
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+// Base Widget Styles
 #widget-03 {
-  & .like-btn {
+  // Like Button Styles
+  .like-btn {
     &:hover {
       color: var.$color-medium-orange;
     }
   }
 
-  & .liked-color {
+  .liked-color {
     color: var.$color-medium-orange;
   }
 
-  & .content {
+  // Main Content Container
+  .content {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    & .ip-box {
+    // IP Box Styles
+    .ip-box {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -27,30 +56,21 @@
       box-shadow: var.$tight-shadow rgba(0, 0, 0, 0.1);
       border: 1px solid #eccfbc;
 
-      & .ip-title {
+      .ip-title {
         font-size: 10px;
         font-weight: 500;
 
-        & .dot {
+        .dot {
           display: inline-block;
           height: 8px;
           width: 8px;
           border-radius: 50%;
           background: #61bf4f;
           animation: blinking-dot 1s linear infinite both alternate-reverse;
-
-          @keyframes blinking-dot {
-            from {
-              opacity: 1;
-            }
-            to {
-              opacity: 0.5;
-            }
-          }
         }
       }
 
-      & .user-ip {
+      .user-ip {
         line-height: 1;
         font-size: 24px;
         font-weight: 600;
@@ -58,7 +78,8 @@
       }
     }
 
-    & i {
+    // Icon Styles
+    i {
       color: var.$color-medium-orange;
       border: var.$border-light;
       background: #eee;
@@ -71,7 +92,8 @@
       margin-left: var.$spacing-base;
     }
 
-    & .data-grid {
+    // Data Grid Layout
+    .data-grid {
       display: grid;
       height: 100%;
       grid-template-columns: 1fr;
@@ -79,115 +101,100 @@
       margin-top: var.$spacing-base;
       overflow: hidden;
 
-      & .data-item {
+      // Data Item Styles
+      .data-item {
         font-size: var.$font-size-sm;
         border-radius: var.$small-radius;
         box-shadow: var.$tight-shadow rgba(178, 87, 22, 0.15);
         background: #fff;
         border: var.$border-light;
 
+        // Apply animations to each grid item
         @for $num from 1 through 5 {
           &:nth-child(#{$num}) {
             animation: translateGridItemsIn-#{$num} 1.5s ease-in-out forwards;
           }
-
-          @keyframes translateGridItemsIn-#{$num} {
-            0% {
-              transform: translateY(-100% * (6 - $num));
-              opacity: 0;
-            }
-
-            100% {
-              transform: translateY(0);
-              opacity: 1;
-            }
-          }
         }
 
+        // First item special styling
         &:first-of-type {
           background: var.$color-medium-orange;
           grid-column: 1 / -1;
 
-          & i:first-of-type {
+          i:first-of-type {
             color: var.$color-light-orange;
             background: var.$bg-transparent-light;
             border: 1px solid var.$color-medium-orange;
           }
 
-          & li {
+          li {
             color: var.$color-light-orange;
           }
         }
 
-        & ul {
+        // List Styles
+        ul {
           margin: var.$spacing-base;
 
-          & li {
-            & span[class^="user-"] {
-              font-weight: 500;
-              font-size: var.$font-size-base;
-            }
+          li span[class^="user-"] {
+            font-weight: 500;
+            font-size: var.$font-size-base;
           }
         }
       }
 
-      & .map-box {
+      // Map Box Styles
+      .map-box {
         grid-row: 2 / 4;
         grid-column: 2 / 3;
         display: none;
 
-        & img {
+        img {
           border-radius: var.$small-radius;
           object-fit: cover;
           width: 100%;
           height: 100%;
           border: 1px solid var.$color-medium-orange;
           animation: imageFadeIn 0.75s ease-in both 1.5s;
-
-          @keyframes imageFadeIn {
-            from {
-              opacity: 0;
-            }
-            to {
-              opacity: 1;
-            }
-          }
         }
       }
     }
   }
 }
 
+// Dark Theme Styles
 .dark #widget-03 {
-  & .content {
-    & .ip-box {
+  .content {
+    // IP Box Dark Styles
+    .ip-box {
       background: #5c2c0c6d;
       border: 1px solid var.$color-dark-orange;
     }
 
-    & i {
+    // Icon Dark Styles
+    i {
       color: var.$color-medium-orange;
       border: var.$border-dark;
       background: var.$gray-dark;
     }
 
-    & .data-grid {
-      & .data-item {
+    // Data Grid Dark Styles
+    .data-grid {
+      .data-item {
         background: #141414;
         border: var.$border-dark;
 
         &:first-of-type {
           background: var.$color-medium-orange;
 
-          & i:first-of-type {
+          i:first-of-type {
             background: #5c2c0c6d;
           }
         }
       }
-      & .map-box {
-        & img {
-          border: 1px solid var.$color-dark-orange;
-        }
+
+      .map-box img {
+        border: 1px solid var.$color-dark-orange;
       }
     }
   }
