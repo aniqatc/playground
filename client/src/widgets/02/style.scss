@@ -1,49 +1,75 @@
 @use "../../main/styles/var";
 @import url("https://fonts.googleapis.com/css2?family=Recursive:CASL,MONO@0.25,0.25&display=swap");
 
+// History Animation Mixins
+@mixin history-item-transition($num) {
+  transition:
+          opacity 0.4s ease-in-out,
+          max-height 0.2s ease-in-out,
+          transform 0.3s ease-in-out;
+  transition-delay: calc((5 - #{$num}) * 0.35s);
+
+  &.active {
+    transform: translateY(-100% * $num);
+    opacity: 0;
+    max-height: 0;
+    transition:
+            opacity 0.25s ease-out,
+            max-height 0.5s ease-out,
+            transform 0.25s ease-out;
+    transition-delay: $num * 0.25s;
+  }
+}
+
+// Base Widget Styles
 #widget-02 {
-  & .like-btn {
+  // Like Button Styles
+  .like-btn {
     &:hover {
       color: var.$color-dark-red;
     }
   }
 
-  & .liked-color {
+  .liked-color {
     color: var.$color-dark-red;
   }
 
-  & .content {
+  // Main Content Container
+  .content {
     font-family: "Recursive", "Archivo", "Inter", sans-serif;
     display: grid;
     grid-template-columns: 25px minmax(250px, 1fr);
 
-    & .calc-menu {
+    // Calculator Menu
+    .calc-menu {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       color: var.$gray-light;
 
-      & .options {
+      .options {
         display: flex;
         gap: 12px;
         font-size: var.$font-size-sm;
         transform: rotate(-90deg) translateX(-95px);
         margin-left: -16px;
 
-        & li:hover,
-        & li.active {
-          color: var.$color-dark-red;
-          cursor: pointer;
+        li {
+          &:hover,
+          &.active {
+            color: var.$color-dark-red;
+            cursor: pointer;
+          }
         }
       }
 
-      & .toolbar li {
+      .toolbar li {
         display: flex;
         justify-content: center;
         margin-left: -8px;
         font-size: var.$font-size-med;
 
-        & button {
+        button {
           padding: 4px 0;
           transition: var.$short-ease-out;
 
@@ -63,7 +89,8 @@
       }
     }
 
-    & .display {
+    // Display Section
+    .display {
       margin-top: -8px;
       margin-right: -12px;
       border-radius: 0 var.$small-radius 0 var.$small-radius;
@@ -73,7 +100,7 @@
       border-top: 0;
       border-right: 0;
 
-      & .expressions {
+      .expressions {
         width: 100%;
         min-height: 200px;
         padding-right: 8px;
@@ -82,17 +109,18 @@
         flex-direction: column;
         justify-content: center;
 
-        & .graph {
+        .graph {
           min-height: 0;
           overflow: hidden;
         }
 
-        & .history {
+        // History List
+        .history {
           color: var.$gray-medium;
           font-size: var.$font-size-med;
           overflow: hidden;
 
-          & li {
+          li {
             width: 100%;
             max-height: 20px;
             white-space: nowrap;
@@ -100,28 +128,14 @@
           }
 
           @for $num from 1 through 7 {
-            & li:nth-child(#{$num}) {
-              transition:
-                opacity 0.4s ease-in-out,
-                max-height 0.2s ease-in-out,
-                transform 0.3s ease-in-out;
-              transition-delay: calc((5 - #{$num}) * 0.35s);
-            }
-
-            & li:nth-child(#{$num}).active {
-              transform: translateY(-100% * $num);
-              opacity: 0;
-              max-height: 0;
-              transition:
-                opacity 0.25s ease-out,
-                max-height 0.5s ease-out,
-                transform 0.25s ease-out;
-              transition-delay: $num * 0.25s;
+            li:nth-child(#{$num}) {
+              @include history-item-transition($num);
             }
           }
         }
 
-        & .current-val {
+        // Current Value Display
+        .current-val {
           font-size: 48px;
           font-weight: 500;
           line-height: 1.2;
@@ -132,8 +146,8 @@
           overflow-y: hidden;
           white-space: nowrap;
           transition:
-            font-size 500ms ease 200ms,
-            color 200ms ease;
+                  font-size 500ms ease 200ms,
+                  color 200ms ease;
 
           &::-webkit-scrollbar,
           &::-webkit-scrollbar-thumb {
@@ -143,16 +157,16 @@
       }
     }
 
-    // prettier-ignore
-    & .calculator {
+    // Calculator Grid
+    .calculator {
       display: grid;
       grid-template-columns: repeat(3, minmax(40px, 1fr)) repeat(3, minmax(40px, 50px));
       place-items: center;
       row-gap: var.$spacing-base;
       margin: 12px auto var.$spacing-base;
-    
 
-      & button {
+      // Base Button Styles
+      button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -162,7 +176,7 @@
         font-size: 18px;
         transition: var.$med-ease-out;
 
-        & i {
+        i {
           pointer-events: none;
         }
 
@@ -175,6 +189,7 @@
           cursor: not-allowed;
         }
 
+        // Operation Buttons
         &.operation-btns {
           color: var.$color-dark-red;
           background: var.$color-light-red;
@@ -196,7 +211,7 @@
           &[data-calc-val="^"] {
             padding-left: 5px;
 
-            & sup {
+            sup {
               font-size: 11px;
               font-weight: 800;
             }
@@ -208,6 +223,7 @@
           }
         }
 
+        // Helper Buttons
         &.operation-helper-btns {
           color: var.$gray-medium;
 
@@ -222,6 +238,7 @@
           }
         }
 
+        // Number Buttons
         &.num-btns {
           font-size: 20px;
           font-weight: 500;
@@ -231,13 +248,14 @@
           }
         }
 
+        // Graphing Buttons
         &.graphing-btns {
           font-size: 12px;
           color: var.$gray-medium;
           background: var.$color-light-red;
 
           &.active {
-              @extend .operation-btns;
+            @extend .operation-btns;
           }
 
           &[data-calc-val="x"] {
@@ -262,133 +280,116 @@
     }
   }
 
-  & .function-plot {
+  // Function Plot Styles
+  .function-plot {
     opacity: 0;
     height: 0;
     transition: all 300ms ease-out;
 
-    & .tip,
-    & .graph .line {
+    .tip,
+    .graph .line {
       stroke: var.$color-medium-red !important;
     }
 
-    & .x {
+    .x,
+    .y {
       &.origin {
         stroke: var.$gray-medium;
       }
-      & text {
+      text {
         color: var.$gray-light;
         font-family: "Recursive", "Archivo", "Inter", sans-serif;
       }
-      & path.domain {
-        stroke: var.$color-medium-red;
-      }
-    }
-
-    & .y {
-      &.origin {
-        stroke: var.$gray-medium;
-      }
-      & text {
-        color: var.$gray-light;
-        font-family: "Recursive", "Archivo", "Inter", sans-serif;
-      }
-      & path.domain {
+      path.domain {
         stroke: var.$color-medium-red;
       }
     }
   }
 }
 
+// Dark Theme Styles
 .dark #widget-02 {
-  & .like-btn {
+  .like-btn {
     &:hover {
       color: var.$color-medium-red;
     }
   }
-  & .liked-color {
+
+  .liked-color {
     color: var.$color-medium-red;
   }
 
-  & .content {
-    & .calc-menu {
+  .content {
+    .calc-menu {
       color: #797979;
 
-      & .options {
-        & li:hover,
-        & li.active {
+      .options li {
+        &:hover,
+        &.active {
           color: var.$color-medium-red;
         }
       }
 
-      & .toolbar li {
-        & button {
-          &:hover {
-            color: var.$color-medium-red;
-          }
-        }
+      .toolbar li button:hover {
+        color: var.$color-medium-red;
       }
     }
-    & .display {
+
+    .display {
       background: #131315;
       border: var.$border-dark;
 
-      & .current-val {
+      .current-val {
         color: #fff;
       }
     }
 
-    & .calculator {
-      & button {
-        &.operation-btns {
-          color: var.$color-medium-red;
-          background: #000000;
+    .calculator button {
+      &.operation-btns {
+        color: var.$color-medium-red;
+        background: #000000;
 
-          &[data-calc-val="="] {
-            color: var.$gray-light;
-            background: var.$gray-dark;
+        &[data-calc-val="="] {
+          color: var.$gray-light;
+          background: var.$gray-dark;
 
-            &.active {
-              background: #c84444;
-              color: var.$color-light-red;
-            }
-          }
-          &:hover:not(:disabled) {
-            background: var.$gray-dark;
-            color: var.$color-medium-red;
+          &.active {
+            background: #c84444;
+            color: var.$color-light-red;
           }
         }
-        &.graphing-btns {
+
+        &:hover:not(:disabled) {
+          background: var.$gray-dark;
+          color: var.$color-medium-red;
+        }
+      }
+
+      &.graphing-btns {
+        color: var.$gray-light;
+        background: #000000;
+
+        &[data-calc-val="graph"] {
           color: var.$gray-light;
-          background: #000000;
+          background: var.$gray-dark;
 
-          &[data-calc-val="graph"] {
-            color: var.$gray-light;
-            background: var.$gray-dark;
-
-            &.active {
-              background: #c84444;
-              color: var.$color-light-red;
-            }
+          &.active {
+            background: #c84444;
+            color: var.$color-light-red;
           }
+        }
 
-          &:hover:not(:disabled) {
-            background: var.$gray-dark;
-            color: var.$color-medium-red;
-          }
+        &:hover:not(:disabled) {
+          background: var.$gray-dark;
+          color: var.$color-medium-red;
         }
       }
     }
   }
-  & .function-plot {
-    & .x {
-      & text {
-        color: var.$gray-medium;
-      }
-    }
 
-    & .y {
-      & text {
+  .function-plot {
+    .x, .y {
+      text {
         color: var.$gray-medium;
       }
     }
