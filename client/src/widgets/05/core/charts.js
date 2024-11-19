@@ -15,10 +15,9 @@ export async function createChart(cardEl, stock) {
 
     const isDarkMode = document.documentElement.classList.contains('dark');
     const isPositive = stock.change > 0;
-    const positiveColor = isDarkMode ? '#88c583' : '#105718';
-    const negativeColor = isDarkMode ? '#ff6363' : '#c91b1b';
-
-    const chartColor = isPositive ? positiveColor : negativeColor;
+    const chartColor = isPositive
+        ? (isDarkMode ? '#88c583' : '#105718')
+        : (isDarkMode ? '#ff6363' : '#c91b1b');
 
     if (chartCanvas.chartInstance) {
         chartCanvas.chartInstance.destroy();
@@ -96,25 +95,16 @@ export async function createChart(cardEl, stock) {
 }
 
 const observer = new MutationObserver(() => {
-    updateExpandedCards();
-});
-
-async function updateExpandedCards() {
     const expandedCards = marketContext.widget.querySelectorAll(".card:not(.initial) .card-body--graph canvas");
-    for (const canvas of expandedCards) {
+    expandedCards.forEach(canvas => {
         const cardEl = canvas.closest('.card');
         const stock = {
             symbol: cardEl.querySelector(".company-symbol").textContent,
             change: parseFloat(cardEl.querySelector(".company-change-value").textContent),
         };
-
-        if (stock) {
-            await createChart(cardEl, stock);
-        }
-    }
-}
-
-observer.observe(document.documentElement, {
+        createChart(cardEl, stock);
+    });
+}).observe(document.documentElement, {
     attributes: true,
     attributeFilter: ['class'],
 });

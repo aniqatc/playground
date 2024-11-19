@@ -38,11 +38,11 @@ async function generateStockCard(stock, index) {
                             <span class="card-body--details_label">Volume</span>
                         </li> 
                         <li>
-                            <span class="card-body--details_value">${parseFloat(stock.changePercent).toFixed(2)}%</span>
+                            <span class="card-body--details_value company-change-value">${parseFloat(stock.changePercent).toFixed(2)}%</span>
                             <span class="card-body--details_label">Change (%)</span>
                         </li> 
                         <li>
-                            <span class="card-body--details_value company-change-value">${parseFloat(stock.change).toFixed(2)}</span>
+                            <span class="card-body--details_value">${parseFloat(stock.change).toFixed(2)}</span>
                             <span class="card-body--details_label">Change</span>  
                         </li>     
                         <li>
