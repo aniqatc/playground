@@ -1,6 +1,8 @@
 @use "../../main/styles/var";
 
 #widget-05 {
+  min-height: 480px;
+
   & .like-btn {
     &:hover {
       color: var.$color-medium-green;
@@ -118,8 +120,7 @@
         & .input-group {
           position: relative;
 
-          & .stock-search-btn,
-          & .currency-search-btn {
+          & .stock-search-btn {
             position: absolute;
             top: 0;
             bottom: 0;
@@ -168,7 +169,7 @@
         }
 
         & .card-group {
-          max-height: 375px;
+          height: 375px;
           overflow-y: auto;
           overflow-x: hidden;
           display: grid;
@@ -177,6 +178,9 @@
           scrollbar-gutter: stable;
           scrollbar-width: thin;
           scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+          align-items: start;
+          grid-auto-rows: min-content;
+
 
           @container content-parent (max-width: 340px) {
             max-height: 356px;
@@ -218,6 +222,7 @@
             background-color: #efefef;
             border-radius: 3px;
             padding: 8px;
+            height: min-content;
 
             container-type: inline-size;
             container-name: card;
@@ -582,8 +587,7 @@
     & .content-body {
       & > div {
         & .input-group {
-          & .stock-search-btn,
-          & .currency-search-btn {
+          & .stock-search-btn {
             color: var.$color-light-green;
 
             &.error {

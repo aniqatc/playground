@@ -1,7 +1,7 @@
 import marketContext from "./context.js";
 import { toggleCardState } from "./stockCard";
 import { createChart } from "./charts";
-import { generateCurrencyCards, cleanupCurrencyCards } from "./currencyCard";
+import { generateCurrencyCards } from "./currencyCard";
 
 const { stockButton,
     currencyButton,
@@ -64,8 +64,6 @@ function initializeStockBtn(stockData) {
         stockButton.classList.add("active");
         currencyTab.classList.add("hidden");
         stockTab.classList.remove("hidden");
-        cleanupCurrencyCards();
-        currencyCardGroup.innerHTML = ""; // remove any currency cards when hidden
         marketContext.updateLastUpdated(stockData.lastUpdated);
         marketContext.updateDescription("stocks");
         scrollToElement(stockTab);
@@ -76,7 +74,9 @@ function initializeCurrencyBtn(currencyData) {
     if (currencyTab.classList.contains("hidden")) {
         currencyButton.classList.add("active");
         stockButton.classList.remove("active");
-        generateCurrencyCards(currencyData); // cards generate after the currency tab is clicked on
+        if (currencyCardGroup.innerHTML === "") {
+            generateCurrencyCards(currencyData);
+        }
         stockTab.classList.add("hidden");
         currencyTab.classList.remove("hidden");
         marketContext.updateLastUpdated(currencyData.lastUpdated);

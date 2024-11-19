@@ -21,7 +21,6 @@ class MarketContext {
         this.stockSearch = this.widget.querySelector(".stock-input");
         this.stockSearchButton = this.widget.querySelector(".stock-search-btn");
         this.currencySearch = this.widget.querySelector(".currency-input");
-        this.currencySearchButton = this.widget.querySelector(".currency-search-btn");
     }
 
     updateLastUpdated(timestamp) {
@@ -43,15 +42,17 @@ class MarketContext {
     }
 
     addInputErrorStyling(searchEl, btnEl, type, example) {
-        btnEl.classList.add("error");
-        searchEl.classList.add("error");
-        searchEl.value = "";
+        btnEl?.classList.add("error");
+        searchEl?.classList.add("error");
         searchEl.placeholder = `Search ${type} Symbol (e.g. ${example})`;
+        if (!btnEl === null) {
+            searchEl.value = "";
+        }
     }
 
     removeInputErrorStyling(searchEl, btnEl) {
-        btnEl.classList.remove("error");
-        searchEl.classList.remove("error");
+        searchEl?.classList.remove("error");
+        btnEl?.classList.remove("error");
     }
 
     scrollToElement(el) {

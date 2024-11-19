@@ -1,19 +1,39 @@
 import marketContext from "./context";
 
-const { currencySearch, currencySearchButton, addInputErrorStyling, removeInputErrorStyling, scrollToElement } = marketContext;
+const { currencyCardGroup, currencySearch, addInputErrorStyling, removeInputErrorStyling } = marketContext;
 
-export function initializeCurrencySearch() {
-    currencySearch.addEventListener('input', ({target}) => removeInputErrorStyling(target, currencySearchButton));
-    currencySearch.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            currencySearchButton.click();
+export function initializeCurrencySearch(data) {
+    currencySearch.addEventListener('input', () => {
+        const input = currencySearch.value.trim().toLowerCase();
+        const cards = currencyCardGroup.querySelectorAll('.card:not(.baseline)');
+
+        if (!input) {
+            addInputErrorStyling(currencySearch, null, "Currency", "BDT");
+            cards.forEach(card => card.style.display = '');
+            return;
+        }
+
+        let matchesFound = false;
+        if (input) {
+            removeInputErrorStyling(currencySearch);
+            cards.forEach(card => {
+                const symbol = card.querySelector('.company-symbol').textContent.toLowerCase();
+                const name = card.querySelector('.company-name').textContent.toLowerCase();
+
+                if (symbol.startsWith(input) || name.startsWith(input)) {
+                    card.style.display = '';
+                    matchesFound = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (matchesFound) {
+                removeInputErrorStyling(currencySearch);
+            } else {
+                addInputErrorStyling(currencySearch, null, "Currency", "BDT");
+            }
         }
     });
-    currencySearchButton.addEventListener("click", () => {
-        const input = currencySearch.value.trim();
-        if (!input) {
-            addInputErrorStyling(currencySearch, currencySearchButton, "Currency", "BDT");
-        }
-    })
 }
 

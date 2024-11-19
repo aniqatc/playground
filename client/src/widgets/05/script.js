@@ -17,5 +17,5 @@ export async function initializeScript() {
     }
 
     initializeStockSearch();
-    initializeCurrencySearch()
+    initializeCurrencySearch(currencyData);
 }
