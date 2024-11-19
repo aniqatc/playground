@@ -20,7 +20,7 @@ export function initializeCurrencySearch(data) {
                 const symbol = card.querySelector('.company-symbol').textContent.toLowerCase();
                 const name = card.querySelector('.company-name').textContent.toLowerCase();
 
-                if (symbol.startsWith(input) || name.startsWith(input)) {
+                if (symbol.startsWith(input) || name.includes(input)) {
                     card.style.display = '';
                     matchesFound = true;
                 } else {
