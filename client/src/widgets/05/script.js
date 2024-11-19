@@ -16,6 +16,6 @@ export async function initializeScript() {
         marketContext.updateLastUpdated(stockData.lastUpdated);
     }
 
-    initializeStockSearch();
+    initializeStockSearch(stockData);
     initializeCurrencySearch(currencyData);
 }

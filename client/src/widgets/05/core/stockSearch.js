@@ -4,8 +4,8 @@ import { generateStockCard } from "./stockCard";
 
 const { stockSearch, stockSearchButton, addInputErrorStyling, removeInputErrorStyling, scrollToElement } = marketContext;
 
-export function initializeStockSearch() {
-    stockSearchButton.addEventListener("click", handleSearch);
+export function initializeStockSearch(data) {
+    stockSearchButton.addEventListener("click", () => handleSearch(data.stocks));
     stockSearch.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             stockSearchButton.click();
@@ -14,12 +14,18 @@ export function initializeStockSearch() {
    stockSearch.addEventListener('input', ({target}) => removeInputErrorStyling(target, stockSearchButton));
 }
 
-async function handleSearch() {
+async function handleSearch(data) {
     try {
-        const symbol = stockSearch.value.toUpperCase().trim();
-        if (!symbol) {
+        let input = stockSearch.value.trim();
+        let symbol = input.toUpperCase();
+        if (!input) {
             addInputErrorStyling(stockSearch, stockSearchButton, "Company", "AAPL");
             return;
+        }
+
+        const matchByName = data.find(stock => stock.name.toLowerCase() === input.toLowerCase());
+        if (matchByName) {
+            symbol = matchByName.symbol;
         }
 
         const existingCard = document.querySelector(`.card[data-symbol="${symbol}"]`);

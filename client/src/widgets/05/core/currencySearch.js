@@ -6,14 +6,14 @@ export function initializeCurrencySearch(data) {
     currencySearch.addEventListener('input', () => {
         const input = currencySearch.value.trim().toLowerCase();
         const cards = currencyCardGroup.querySelectorAll('.card:not(.baseline)');
+        let matchesFound = false;
 
         if (!input) {
-            addInputErrorStyling(currencySearch, null, "Currency", "BDT");
+            addInputErrorStyling(currencySearch, null, "Currency", "QAR");
             cards.forEach(card => card.style.display = '');
             return;
         }
 
-        let matchesFound = false;
         if (input) {
             removeInputErrorStyling(currencySearch);
             cards.forEach(card => {
@@ -31,7 +31,7 @@ export function initializeCurrencySearch(data) {
             if (matchesFound) {
                 removeInputErrorStyling(currencySearch);
             } else {
-                addInputErrorStyling(currencySearch, null, "Currency", "BDT");
+                addInputErrorStyling(currencySearch, null, "Currency", "QAR");
             }
         }
     });
