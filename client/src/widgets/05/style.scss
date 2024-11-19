@@ -1,28 +1,50 @@
 @use "../../main/styles/var";
 
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Animations
+@keyframes blinking-message {
+  0% { opacity: 1.0; }
+  100% { opacity: 0.5; }
+}
+
+// Base Widget Styles
 #widget-05 {
   min-height: 480px;
 
-  & .like-btn {
+  // Like Button Styles
+  .like-btn {
     &:hover {
       color: var.$color-medium-green;
     }
   }
 
-  & .liked-color {
+  .liked-color {
     color: var.$color-medium-green;
   }
 
-  & .content {
+  // Main Content Container
+  .content {
     container-type: inline-size;
     container-name: content-parent;
     font-size: 14px;
 
-    & .content-head {
+    // Header Section
+    .content-head {
       margin-left: -6px;
       display: flex;
 
-      & button {
+      button {
         padding: 4px 6px;
         margin-right: 4px;
         letter-spacing: 0.15px;
@@ -47,20 +69,22 @@
           transform: scale(0.95);
         }
 
-        & i {
+        i {
           color: var.$color-dark-green;
         }
       }
     }
 
-    & .content-body {
-      & > div {
+    // Content Body
+    .content-body {
+      > div {
+        // Currency Container Styles
         &.currency-container {
           container-type: inline-size;
           container-name: card-parent;
 
           @container card-parent (max-width: 385px) {
-            & .card-group .card.initial .card-head {
+            .card-group .card.initial .card-head {
               .card-heading--price > div .company-price--indicator,
               .card-heading--name .company-symbol {
                 font-size: 18px;
@@ -70,46 +94,32 @@
           }
 
           @container card-parent (max-width: 340px) {
-            & .card-group .card.initial {
-              display: flex;
-              align-items: center;
-              justify-content: center;
+            .card-group .card.initial {
+              @include flex-center;
 
               .card-head {
-                flex-direction: column;
-                display: flex;
+                @include flex-column;
 
-                .card-heading--price {
-                  flex-direction: column;
-                  display: flex;
+                .card-heading--price,
+                .card-heading--name {
+                  @include flex-column;
                   gap: 2px;
                   justify-content: center;
                   align-items: center;
                   text-align: center;
                   margin-top: 2px;
 
-                  & > div {
+                  > div {
                     display: flex;
                     align-items: center;
-
-                    .company-price--value {
-                      display: block;
-                    }
                   }
-                }
 
-                .card-heading--name {
-                  flex-direction: column;
-                  display: flex;
-                  gap: 2px;
-                  justify-content: center;
-                  align-items: center;
-                  text-align: center;
-                  margin-top: 2px;
+                  .company-price--value {
+                    display: block;
+                  }
 
                   .company-name {
-                    flex-direction: column;
-                    display: flex;
+                    @include flex-column;
                   }
                 }
               }
@@ -117,10 +127,11 @@
           }
         }
 
-        & .input-group {
+        // Input Group Styles
+        .input-group {
           position: relative;
 
-          & .stock-search-btn {
+          .stock-search-btn {
             position: absolute;
             top: 0;
             bottom: 0;
@@ -143,7 +154,7 @@
             }
           }
 
-          & input {
+          input {
             outline-color: var.$color-medium-green;
             padding: 4px 8px;
             margin: 6px 0px;
@@ -153,7 +164,8 @@
             width: 100%;
             transition: all 150ms ease-in;
 
-            &.error:focus, &.error {
+            &.error:focus,
+            &.error {
               outline: var.$color-medium-red solid 2px;
             }
 
@@ -168,7 +180,8 @@
           }
         }
 
-        & .card-group {
+        // Card Group Styles
+        .card-group {
           height: 375px;
           overflow-y: auto;
           overflow-x: hidden;
@@ -181,11 +194,11 @@
           align-items: start;
           grid-auto-rows: min-content;
 
-
           @container content-parent (max-width: 340px) {
             max-height: 356px;
           }
 
+          // Scrollbar Styles
           &::-webkit-scrollbar {
             width: 2px;
           }
@@ -199,23 +212,23 @@
             border-radius: 4px;
           }
 
+          // Loading State
           &.loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            @include flex-center;
+            @include flex-column;
             height: 375px;
             gap: 12px;
             color: var.$color-dark-green;
             animation: blinking-message infinite 800ms linear alternate;
 
-            & i {
+            i {
               font-size: 48px;
               color: var.$color-medium-green;
             }
           }
 
-          & .card {
+          // Card Styles
+          .card {
             grid-column: 1 / -1;
             width: 100%;
             border: 1px solid #D2D2D2;
@@ -223,71 +236,61 @@
             border-radius: 3px;
             padding: 8px;
             height: min-content;
-
             container-type: inline-size;
             container-name: card;
             position: relative;
 
+            // Card States
             &.initial {
               grid-column: unset;
 
-              & .card-head {
-                & .card-heading--name {
-                  & .company-name {
-                    display: none;
-                  }
+              .card-head {
+                .card-heading--name .company-name {
+                  display: none;
                 }
 
-                & .card-heading--price {
-                  & > div {
+                .card-heading--price {
+                  > div {
                     display: block;
                     font-size: 16px;
 
-                    & .company-price--indicator {
+                    .company-price--indicator {
                       opacity: 0.8;
                       font-size: 22px;
                       margin-bottom: -6px;
                       display: block;
                     }
 
-                    & .company-price--value {
+                    .company-price--value {
                       display: none;
                     }
                   }
 
-                  & .company-price--label {
+                  .company-price--label {
                     display: block;
                     white-space: nowrap;
-
                   }
                 }
               }
 
-              & .card-body {
-                & .card-body--details {
-                  display: flex;
-                  flex-direction: column;
+              .card-body {
+                .card-body--details {
+                  @include flex-column;
 
-                  & li:nth-child(n + 4):nth-child(-n + 9) {
+                  li:nth-child(n + 4):nth-child(-n + 9) {
                     display: none;
                   }
                 }
 
-                & .card-body--graph {
+                .card-body--graph {
                   display: none;
                 }
               }
 
-              & .card-footer {
-                & .expand-btn {
-                  &:hover {
-                    & i {
-                      padding-left: 4px;
-                      transform: scaleX(1.25);
-                      transform-origin: left;
-                    }
-                  }
-                }
+              .card-footer .expand-btn:hover i {
+                padding-left: 4px;
+                transform: scaleX(1.25);
+                transform-origin: left;
               }
             }
 
@@ -295,40 +298,24 @@
               border: 1px solid #AFE0B4;
               background-color: var.$color-light-green;
 
-              & .card-head {
-                & .card-heading--name {
-                  & .logo-wrapper {
-                    background-color: #87C482FF;
-                  }
+              .card-head {
+                .card-heading--name .logo-wrapper {
+                  background-color: #87C482FF;
                 }
 
-                & .card-heading--price {
-                  & > div {
-                    & .company-price--indicator {
-                      color: var.$color-dark-green;
-                    }
-
-                    & .company-price--value {
-                      color: var.$color-dark-green;
-                    }
+                .card-heading--price > div {
+                  .company-price--indicator,
+                  .company-price--value {
+                    color: var.$color-dark-green;
                   }
                 }
               }
             }
 
-            &.negative {
-             & .card-head {
-               & .card-heading--price {
-                  & > div {
-                    & .company-price--indicator {
-                      color: #c91b1b
-                    }
-
-                    & .company-price--value {
-                      color: #c91b1b;
-                    }
-                  }
-                }
+            &.negative .card-head .card-heading--price > div {
+              .company-price--indicator,
+              .company-price--value {
+                color: #c91b1b;
               }
             }
 
@@ -339,96 +326,89 @@
               z-index: 10;
               top: 0;
 
-              & .card-head {
-                & .card-heading--name {
-                  & .logo-wrapper {
+              .card-head {
+                .card-heading--name {
+                  .logo-wrapper {
                     background-color: var.$color-dark-green;
                     color: var.$color-light-green;
                   }
-                  & .company-name {
+                  .company-name {
                     color: var.$color-dark;
                   }
                 }
 
-                & .card-heading--price {
-                  & > div {
-                    & .company-price--indicator {
-                      color: var.$color-dark;
-                    }
-
-                    & .company-price--value {
-                      color: var.$color-dark;
-                    }
-                  }
-                  & .company-price--label {
+                .card-heading--price {
+                  > div .company-price--indicator,
+                  > div .company-price--value,
+                  .company-price--label {
                     color: var.$color-dark;
+                  }
+
+                  .company-price--label {
                     font-weight: 500;
                   }
                 }
               }
             }
 
-            & .card-head {
+            // Card Components
+            .card-head {
               display: flex;
               justify-content: space-between;
 
-              & .card-heading--name {
+              .card-heading--name {
                 display: flex;
                 align-items: center;
                 gap: 5px;
 
-                & .logo-wrapper {
+                .logo-wrapper {
                   width: 28px;
                   height: 28px;
                   aspect-ratio: 1/1;
                   border-radius: 50%;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
+                  @include flex-center;
                   background-color: #d3d3d3;
 
-                  & .symbol {
+                  .symbol {
                     font-weight: 600;
                     width: 28px;
                     height: 28px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+                    @include flex-center;
 
-                    & i {
+                    i {
                       font-size: 18px;
                     }
                   }
 
-                  & img {
+                  img {
                     width: 16px;
                     filter: grayscale(100%) saturate(100%) contrast(100%);
                   }
                 }
 
-                & .company-symbol {
+                .company-symbol {
                   font-size: 19px;
                   text-transform: uppercase;
                 }
 
-                & .company-name {
+                .company-name {
                   font-size: 11px;
                   color: var.$gray-medium-dark;
                   margin-bottom: -4px;
                 }
               }
 
-              & .card-heading--price {
+              .card-heading--price {
                 text-align: end;
 
-                & > div {
+                > div {
                   display: flex;
                   justify-content: flex-end;
                   gap: 6px;
                   font-size: 19px;
                 }
 
-                & .company-price--label {
+                .company-price--label {
                   font-size: 11px;
                   color: var.$gray-medium;
                   margin-top: -6px;
@@ -437,34 +417,31 @@
               }
             }
 
-            & .card-body {
+            .card-body {
               display: grid;
               grid-template-columns: 4fr 3fr;
               gap: 2px;
 
               @container card (max-width: 315px) {
-                & {
-                  grid-template-columns: 1fr;
-                  gap: 10px;
-                }
+                grid-template-columns: 1fr;
+                gap: 10px;
               }
 
-              & .card-body--details {
+              .card-body--details {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 align-content: center;
                 justify-items: stretch;
                 gap: 5px;
 
-                & li {
-                  display: flex;
-                  flex-direction: column;
+                li {
+                  @include flex-column;
 
-                  & .card-body--details_value {
+                  .card-body--details_value {
                     font-size: 15px;
                   }
 
-                  & .card-body--details_label {
+                  .card-body--details_label {
                     font-size: 11px;
                     color: var.$gray-medium;
                     display: block;
@@ -474,7 +451,7 @@
                 }
               }
 
-              & .card-body--graph {
+              .card-body--graph {
                 display: block;
                 max-width: 100%;
                 margin-bottom: 16px;
@@ -484,10 +461,10 @@
               }
             }
 
-            & .card-footer {
+            .card-footer {
               margin-top: -16px;
 
-              & .expand-btn {
+              .expand-btn {
                 display: flex;
                 align-items: center;
                 margin-left: auto;
@@ -498,7 +475,7 @@
                 color: var.$gray-medium-dark;
                 transition: var.$short-ease-out;
 
-                & i {
+                i {
                   margin-left: -2px;
                   padding-left: 6px;
                   transition: var.$short-ease-out;
@@ -506,7 +483,7 @@
 
                 &:hover {
                   color: var.$gray-dark;
-                  & i {
+                  i {
                     padding-left: 9px;
                     transform: scaleX(1.25);
                     transform-origin: right;
@@ -517,22 +494,23 @@
                   transform: scale(0.95);
                 }
 
-                &:focus, &:active {
+                &:focus,
+                &:active {
                   outline: none;
                 }
               }
-
             }
           }
         }
 
-        & .hidden {
+        .hidden {
           display: none;
         }
       }
     }
 
-    & .content-footer {
+    // Footer Styles
+    .content-footer {
       padding-top: 3px;
       padding-bottom: 3px;
       font-size: 12px;
@@ -540,226 +518,188 @@
       justify-content: space-between;
 
       @container content-parent (max-width: 340px) {
-        flex-direction: column;
+        @include flex-column;
         gap: 1px;
         justify-content: center;
         text-align: center;
       }
 
-      & .short-description {
+      .short-description {
         font-weight: 500;
         color: var.$color-dark;
       }
 
-      & .timestamp-wrapper {
+      .timestamp-wrapper {
         color: var.$color-dark-green;
         animation: blinking-message infinite 800ms linear alternate;
 
-        & i {
+        i {
           padding-right: 3px;
         }
       }
     }
   }
-
-  @keyframes blinking-message {
-    0% {
-      opacity: 1.0;
-    }
-    100% {
-      opacity: 0.5;
-    }
-  }
 }
 
+
+// Dark Theme Styles
 .dark #widget-05 {
-  & .content {
-    & .content-head {
-      & button {
-        &.expandAll-btn {
-          & i {
-            color: var.$color-medium-green;
-          }
-        }
+  .content {
+    // Header Section
+    .content-head {
+      button.expandAll-btn i {
+        color: var.$color-medium-green;
       }
     }
 
-    & .content-body {
-      & > div {
-        & .input-group {
-          & .stock-search-btn {
-            color: var.$color-light-green;
+    // Content Body
+    .content-body > div {
+      // Input Group Dark Styles
+      .input-group {
+        .stock-search-btn {
+          color: var.$color-light-green;
 
-            &.error {
-              color: var.$color-medium-red;
+          &.error {
+            color: var.$color-medium-red;
+          }
+
+          &:hover {
+            color: #66af60;
+          }
+        }
+
+        input {
+          background-color: #3B3B3B;
+          border: 1px solid #4E4E4E;
+        }
+      }
+
+      // Card Group Dark Styles
+      .card-group {
+        &.loading {
+          color: var.$color-light-green;
+        }
+
+        // Card Dark Styles
+        .card {
+          border: 1px solid #4E4E4E;
+          background-color: #3b3b3b;
+
+          // Card States Dark Styles
+          &.initial {
+            .card-footer .expand-btn:hover i {
+              padding-left: 4px;
+              transform: scaleX(1.25);
+              transform-origin: left;
             }
+          }
+
+          &.positive {
+            border: 1px solid #26722E;
+            background-color: #334b32;
+
+            .card-head {
+              .card-heading--name {
+                .logo-wrapper {
+                  background-color: #87c482;
+                }
+                .company-name {
+                  color: var.$gray-light;
+                }
+              }
+
+              .card-heading--price > div {
+                .company-price--indicator,
+                .company-price--value {
+                  color: var.$color-light-green;
+                }
+              }
+            }
+          }
+
+          &.negative .card-head .card-heading--price > div {
+            .company-price--indicator,
+            .company-price--value {
+              color: #ff6363;
+            }
+          }
+
+          &.baseline {
+            border: 1px solid var.$gray-dark;
+            background-color: var.$color-dark;
+
+            .card-head {
+              .card-heading--name {
+                .logo-wrapper {
+                  background-color: #000;
+                  .symbol i {
+                    color: var.$color-light-green;
+                  }
+                }
+                .company-name {
+                  color: var.$gray-light;
+                }
+              }
+
+              .card-heading--price {
+                > div {
+                  .company-price--indicator,
+                  .company-price--value {
+                    color: #fffdf6;
+                  }
+                }
+                .company-price--label {
+                  color: var.$gray-light;
+                }
+              }
+            }
+          }
+
+          // Card Components Dark Styles
+          .card-head {
+            .card-heading--name {
+              .logo-wrapper {
+                background-color: #959595;
+                .symbol {
+                  color: var.$color-dark;
+                }
+              }
+              .company-name {
+                color: var.$gray-light;
+              }
+            }
+
+            .card-heading--price {
+              .company-price--label {
+                color: var.$gray-light;
+              }
+            }
+          }
+
+          .card-body {
+            .card-body--details li .card-body--details_label {
+              color: var.$gray-light;
+            }
+          }
+
+          .card-footer .expand-btn {
+            color: var.$gray-light;
 
             &:hover {
-              color: #66af60;
-            }
-          }
-
-          & input {
-            background-color: #3B3B3B;
-            border: 1px solid #4E4E4E;
-          }
-        }
-
-        & .card-group {
-          &.loading {
-            color: var.$color-light-green;
-          }
-
-          & .card {
-            &.initial {
-              & .card-footer {
-                & .expand-btn {
-                  &:hover {
-                    & i {
-                      padding-left: 4px;
-                      transform: scaleX(1.25);
-                      transform-origin: left;
-                    }
-                  }
-                }
-              }
-            }
-
-            &.positive {
-              border: 1px solid #26722E;
-              background-color: #334b32;
-
-              & .card-head {
-                & .card-heading--name {
-                  & .logo-wrapper {
-                    background-color: #87c482;
-                  }
-                  & .company-name {
-                    color: var.$gray-light;
-                  }
-                }
-                & .card-heading--price {
-                  & > div {
-                    & .company-price--indicator {
-                      color: var.$color-light-green;
-                    }
-
-                    & .company-price--value {
-                      color: var.$color-light-green;
-                    }
-                  }
-                }
-              }
-            }
-
-            &.negative {
-              & .card-head {
-                & .card-heading--price {
-                  & > div {
-                    & .company-price--indicator {
-                      color: #ff6363;
-                    }
-
-                    & .company-price--value {
-                      color: #ff6363;
-                    }
-                  }
-                }
-              }
-            }
-            border: 1px solid #4E4E4E;
-            background-color: #3b3b3b;
-
-            &.baseline {
-              border: 1px solid var.$gray-dark;
-              background-color: var.$color-dark;
-
-              & .card-head {
-                & .card-heading--name {
-                  & .logo-wrapper {
-                    background-color: #000;
-                    & .symbol {
-                      & i {
-                        color: var.$color-light-green;
-                      }
-                    }
-                  }
-                  & .company-name {
-                    color: var.$gray-light;
-                  }
-                }
-
-                & .card-heading--price {
-                  & > div {
-                    & .company-price--indicator {
-                      color: #fffdf6;
-                    }
-
-                    & .company-price--value {
-                      color: #fffdf6;
-                    }
-                  }
-                  & .company-price--label {
-                    color: var.$gray-light;
-                  }
-                }
-
-
-              }
-            }
-
-            & .card-head {
-              & .card-heading--name {
-                  & .logo-wrapper {
-                    background-color: #959595;
-                    & .symbol {
-                      color: var.$color-dark;
-                    }
-                }
-                & .company-name {
-                  color: var.$gray-light;
-                }
-              }
-
-              & .card-heading--price {
-                & .company-price--label {
-                  color: var.$gray-light;
-                }
-              }
-            }
-
-            & .card-body {
-              & .card-body--details {
-                & li {
-                  & .card-body--details_label {
-                    color: var.$gray-light;
-                  }
-                }
-              }
-
-              & .card-body--graph {
-              }
-            }
-
-            & .card-footer {
-              & .expand-btn {
-                color: var.$gray-light;
-
-                &:hover {
-                  color: #fff;
-                }
-              }
+              color: #fff;
             }
           }
         }
       }
     }
-    & .content-footer {
-      & .short-description {
+
+    // Footer Dark Styles
+    .content-footer {
+      .short-description {
         color: var.$gray-light;
       }
 
-      & .timestamp-wrapper {
+      .timestamp-wrapper {
         color: var.$color-medium-green;
       }
     }
