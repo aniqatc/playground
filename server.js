@@ -27,6 +27,7 @@ const ipHandler = require('./server/widgets/03/ipHandler');
 const toDoRouter = require('./server/widgets/04/toDoRouter');
 const marketRouter = require('./server/widgets/05/market/marketRouter');
 const currencyRouter = require('./server/widgets/05/currency/currencyRouter');
+const lotteryRouter = require('./server/widgets/06/lotteryRouter');
 
 app.use('/users/', userRouter);
 app.use('/likes/', likeRouter);
@@ -34,14 +35,17 @@ app.get('/widget/user-ip-data/', ipHandler.collectUserData, ipHandler.getUserInf
 app.use('/widget/todos/', toDoRouter);
 app.use('/widget/markets/', marketRouter);
 app.use('/widget/currencies/', currencyRouter);
+app.use('/widget/lottery/', lotteryRouter);
 
-// widget 5: daily market refresh
+// daily data refresh
 const marketData = require('./server/widgets/05/market/marketData');
 const currencyData = require("./server/widgets/05/currency/currencyData");
 cron.schedule('0 11 * * 1-5', async () => {
 	await marketData.getFeaturedStocks();
 	await currencyData.fetchExchangeRate();
 }, { timezone: "America/New_York" })
+
+// weekly data refresh
 
 // redirect backend host to frontend
 app.use((req, res, next) => {
