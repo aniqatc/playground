@@ -1,56 +1,76 @@
 @use "../../main/styles/var";
 
+// Animations
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Mixins
+@mixin scrollbar-thin {
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@mixin priority-tag {
+  color: var.$gray-medium;
+  font-size: 10px;
+}
+
+// Base Widget Styles
 #widget-04 {
   min-height: 450px;
 
-  & .like-btn {
+  // Like Button Styles
+  .like-btn {
     &:hover {
       color: var.$color-medium-yellow;
     }
   }
 
-  & .liked-color {
+  .liked-color {
     color: var.$color-medium-yellow;
   }
 
-  & .content {
+  // Main Content Container
+  .content {
     height: 100%;
     font-size: var.$font-size-base;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    & .untagged-color {
-      color: var.$gray-medium;
-      font-size: 10px;
-    }
-
-    & .high-color {
+    // Priority Colors
+    .untagged-color { @include priority-tag; }
+    .high-color {
+      @extend .untagged-color;
       color: var.$color-dark-red;
-      font-size: 10px;
     }
-
-    & .medium-color {
+    .medium-color {
+      @extend .untagged-color;
       color: var.$color-medium-yellow;
-      font-size: 10px;
     }
-
-    & .low-color {
+    .low-color {
+      @extend .untagged-color;
       color: green;
-      font-size: 10px;
     }
 
-    & .content-head {
+    // Header Section
+    .content-head {
       position: relative;
       border: var.$border-light;
       transition:
-        outline 100ms ease-in,
-        height 200ms ease;
+              outline 100ms ease-in,
+              height 200ms ease;
       height: 40px;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
       border-radius: 2px;
 
-      & .todo-temp-btn {
+      // Temp Button
+      .todo-temp-btn {
         position: absolute;
         right: 6px;
         bottom: 4px;
@@ -65,11 +85,12 @@
         pointer-events: none;
       }
 
+      // Focus States
       &.focused {
         outline: 2px solid var.$color-medium-yellow;
         height: 72px;
 
-        & .todo-temp-btn {
+        .todo-temp-btn {
           display: none;
         }
 
@@ -78,24 +99,24 @@
         }
       }
 
-      & .todo-input {
-        & textarea {
-          font-family: inherit;
-          display: inline-block;
-          background-color: transparent;
-          border: none;
-          resize: none;
-          width: 100%;
-          height: 32px;
-          border-radius: 2px;
-          overflow-wrap: break-word;
-          overflow: hidden;
-          padding: 8px 8px;
-          outline: none;
-        }
+      // Input Area
+      .todo-input textarea {
+        font-family: inherit;
+        display: inline-block;
+        background-color: transparent;
+        border: none;
+        resize: none;
+        width: 100%;
+        height: 32px;
+        border-radius: 2px;
+        overflow-wrap: break-word;
+        overflow: hidden;
+        padding: 8px 8px;
+        outline: none;
       }
 
-      & .todo-taskbar {
+      // Task Bar
+      .todo-taskbar {
         position: absolute;
         bottom: 12px;
         right: 0;
@@ -108,15 +129,16 @@
         opacity: 0;
         max-height: 0;
         transition:
-          opacity 300ms ease-in,
-          max-height 150ms ease;
+                opacity 300ms ease-in,
+                max-height 150ms ease;
 
         &.focused {
           opacity: 1;
           display: flex;
         }
 
-        & .todo-taskbar--select {
+        // Select Dropdown
+        .todo-taskbar--select {
           position: relative;
           border-radius: 4px;
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -129,7 +151,7 @@
             transform: translateY(0);
           }
 
-          & .filter--selected-option {
+          .filter--selected-option {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -138,12 +160,12 @@
             cursor: pointer;
             transition: all 250ms ease;
 
-            & .select-arrow-icon {
+            .select-arrow-icon {
               font-size: 12px;
             }
           }
 
-          & .filter--options-list {
+          .filter--options-list {
             position: absolute;
             width: 100%;
             opacity: 0;
@@ -153,7 +175,7 @@
             pointer-events: none;
             transform: translateY(25%);
 
-            & .filter--option {
+            .filter--option {
               display: flex;
               justify-content: center;
               align-items: center;
@@ -171,42 +193,42 @@
           }
         }
 
-        & .todo---selected-date {
+        .todo---selected-date {
           margin-left: auto;
           margin-right: 8px;
           color: var.$gray-dark;
         }
 
-        & .todo-taskbar--buttons {
-          & button {
-            margin-left: 2px;
-            margin-bottom: 4px;
-            height: 30px;
-            width: 30px;
-            background-color: var.$color-medium-yellow;
-            color: #fff;
-            border-radius: 50%;
-            transition: all 200ms ease;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            font-size: 16px;
+        // Action Buttons
+        .todo-taskbar--buttons button {
+          margin-left: 2px;
+          margin-bottom: 4px;
+          height: 30px;
+          width: 30px;
+          background-color: var.$color-medium-yellow;
+          color: #fff;
+          border-radius: 50%;
+          transition: all 200ms ease;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+          font-size: 16px;
 
-            &:hover {
-              color: var.$color-medium-yellow;
-              background-color: #fff;
-            }
+          &:hover {
+            color: var.$color-medium-yellow;
+            background-color: #fff;
+          }
 
-            &:active {
-              transform: scale(0.9);
-            }
+          &:active {
+            transform: scale(0.9);
           }
         }
       }
     }
 
-    & .content-body {
+    // Main Content Body
+    .content-body {
       overflow-y: auto;
       min-height: 0;
-      scrollbar-width: thin;
+      @include scrollbar-thin;
       flex: 1;
       margin-top: 4px;
       margin-bottom: 6px;
@@ -215,24 +237,20 @@
         width: 4px;
       }
 
-      &::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      & input[type="checkbox"] {
+      // Checkbox Styles
+      input[type="checkbox"] {
         appearance: none;
         min-width: 17px;
         min-height: 17px;
         border-radius: 50%;
         border: 1px solid var.$color-medium-yellow;
         outline: 1px solid transparent;
-        align-self: center;
+        align-self: flex-start;
+        margin-top: 2px;
         transition: all 200ms ease-in;
         cursor: pointer;
         position: relative;
         display: block;
-        align-self: flex-start;
-        margin-top: 2px;
 
         & ~ label {
           cursor: pointer;
@@ -274,12 +292,13 @@
           opacity: 0;
           transform: rotate(45deg) scale(0.5);
           transition:
-            opacity 200ms ease,
-            transform 400ms ease;
+                  opacity 200ms ease,
+                  transform 400ms ease;
         }
       }
 
-      & button {
+      // Action Buttons
+      button {
         color: var.$color-dark-yellow;
         transition: all 250ms ease;
 
@@ -292,10 +311,12 @@
         }
       }
 
-      & .todo-list {
+      // Todo List
+      .todo-list {
         margin-top: -4px;
 
-        & .todo-item {
+        // Todo Item
+        .todo-item {
           display: flex;
           flex-direction: column;
           gap: 6px;
@@ -310,25 +331,17 @@
             animation: fade 1s ease forwards;
           }
 
-          @keyframes fade {
-            from {
-              opacity: 0;
-            }
-            to {
-              opacity: 1;
-            }
-          }
-
-          & .todo-item--details {
+          // Item Details
+          .todo-item--details {
             display: flex;
             align-items: flex-start;
             min-width: 100%;
 
-            & .todo-item--details-desc {
+            .todo-item--details-desc {
               margin: 0 8px;
               font-size: var.$font-size-base;
 
-              & textarea {
+              textarea {
                 width: 100%;
                 max-width: 100%;
                 background-color: #fffdf6;
@@ -339,34 +352,36 @@
                 padding: 1px;
               }
 
-              & .todo-item--date {
+              .todo-item--date {
                 display: block;
                 font-size: 11px;
                 color: #626262;
 
-                & i {
+                i {
                   font-size: 12px;
                 }
               }
             }
 
-            & .todo-item-expand-btn {
+            .todo-item-expand-btn {
               margin-left: auto;
               font-size: 16px;
             }
           }
 
-          & .todo-item--actions {
+          // Item Actions
+          .todo-item--actions {
             display: none;
             align-self: flex-end;
             gap: 16px;
             font-size: 11px;
           }
 
+          // Item States
           &.active {
             border: 1px solid var.$color-medium-light-yellow;
 
-            & .todo-item--actions {
+            .todo-item--actions {
               display: flex;
             }
           }
@@ -376,22 +391,23 @@
             border: 1px solid var.$color-medium-light-yellow;
           }
 
+          // Archived State
           &.archived {
             background-color: #efefef;
             border: 1px solid transparent;
             cursor: not-allowed;
 
-            & .todo-item--details {
+            .todo-item--details {
               align-items: center;
             }
 
-            & .todo-item-expand-btn,
+            .todo-item-expand-btn,
             .todo-item--actions,
             .todo-item--details-desc .todo-item--date {
               display: none;
             }
 
-            & .delete-btn {
+            .delete-btn {
               margin-left: auto;
               color: var.$gray-medium;
               transition: all 200ms ease-in;
@@ -403,7 +419,7 @@
               }
             }
 
-            & input[type="checkbox"] {
+            input[type="checkbox"] {
               border: 1px solid transparent;
               margin-top: 0;
 
@@ -435,12 +451,13 @@
       }
     }
 
-    & .content-footer {
+    // Footer
+    .content-footer {
       display: flex;
       overflow-x: auto;
       gap: 4px;
       margin-top: auto;
-      scrollbar-width: thin;
+      @include scrollbar-thin;
       margin-bottom: -12px;
       padding-bottom: 8px;
 
@@ -448,11 +465,7 @@
         height: 4px;
       }
 
-      &::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      & button {
+      button {
         flex-shrink: 0;
         border: 1px solid #e0e0e0;
         padding: 1px 2px;
@@ -460,7 +473,7 @@
         font-size: var.$font-size-sm;
         transition: all 200ms ease-in;
 
-        & i {
+        i {
           margin-right: 1px;
         }
 
@@ -478,25 +491,30 @@
   }
 }
 
+// Dark Theme Styles
 .dark #widget-04 {
-  & .content {
-    & .content-head {
+  .content {
+    // Header Section
+    .content-head {
       border: 1px solid var.$gray-dark;
 
-      & .todo-temp-btn {
+      // Temp Button
+      .todo-temp-btn {
         background-color: var.$color-medium-yellow;
         color: var.$color-dark;
       }
 
-      & .todo-taskbar {
-        & .todo-taskbar--select {
+      // Task Bar
+      .todo-taskbar {
+        // Select Dropdown
+        .todo-taskbar--select {
           border: 1px solid var.$gray-dark;
           background-color: #494949;
 
-          & .filter--options-list {
+          .filter--options-list {
             background-color: #494949;
 
-            & .filter--option {
+            .filter--option {
               background-color: #494949;
 
               &:hover {
@@ -506,26 +524,27 @@
           }
         }
 
-        & .todo---selected-date {
+        .todo---selected-date {
           color: var.$gray-light;
         }
 
-        & .todo-taskbar--buttons {
-          & button {
-            color: var.$color-dark;
+        // Action Buttons
+        .todo-taskbar--buttons button {
+          color: var.$color-dark;
 
-            &:hover {
-              color: var.$color-medium-yellow;
-              background-color: var.$color-dark;
-              border: 1px solid var.$gray-dark;
-            }
+          &:hover {
+            color: var.$color-medium-yellow;
+            background-color: var.$color-dark;
+            border: 1px solid var.$gray-dark;
           }
         }
       }
     }
 
-    & .content-body {
-      & input[type="checkbox"] {
+    // Content Body
+    .content-body {
+      // Checkbox Styles
+      input[type="checkbox"] {
         border: 1px solid var.$color-medium-yellow;
 
         & ~ label {
@@ -537,14 +556,13 @@
           border-width: 0 2px 2px 0;
         }
 
-        &:checked {
-          & ~ label {
-            color: #bbbbbb;
-          }
+        &:checked ~ label {
+          color: #bbbbbb;
         }
       }
 
-      & button {
+      // Action Buttons
+      button {
         color: #e1c48e;
 
         &:hover {
@@ -552,34 +570,32 @@
         }
       }
 
-      & .todo-list {
-        & .todo-item {
+      // Todo List
+      .todo-list {
+        .todo-item {
           background-color: rgba(136, 115, 45, 0.5);
 
-          & .todo-item--details {
-            & .todo-item--details-desc {
-              & textarea {
-                background-color: #6e664b;
-              }
+          .todo-item--details-desc {
+            textarea {
+              background-color: #6e664b;
+            }
 
-              & .todo-item--date {
-                color: #c8c8c8;
-              }
+            .todo-item--date {
+              color: #c8c8c8;
             }
           }
 
-          &.active {
-            border: 1px solid rgba(135, 117, 58, 1);
-          }
-
+          // Active & Hover States
+          &.active,
           &:hover {
             border: 1px solid rgba(135, 117, 58, 1);
           }
 
+          // Archived State
           &.archived {
             background-color: #444444;
 
-            & .todo-item--details-desc {
+            .todo-item--details-desc {
               color: #999999;
             }
 
@@ -587,22 +603,18 @@
               border: 1px solid transparent;
             }
 
-            & .delete-todo-btn {
-              &:hover {
-                color: #bababa;
-              }
+            .delete-todo-btn:hover {
+              color: #bababa;
             }
 
-            & input[type="checkbox"] {
+            input[type="checkbox"] {
               &::after {
                 border: solid var.$gray-dark;
                 border-width: 0 2px 2px 0;
               }
 
-              &:checked {
-                & ~ label {
-                  color: #919191;
-                }
+              &:checked ~ label {
+                color: #919191;
               }
             }
           }
@@ -610,15 +622,12 @@
       }
     }
 
-    & .content-footer {
-      & button {
+    // Footer
+    .content-footer {
+      button {
         border: 1px solid #434343;
 
-        &:hover {
-          border: 1px solid var.$gray-medium;
-          background: #4f4f4f;
-        }
-
+        &:hover,
         &.active {
           border: 1px solid var.$gray-medium;
           background: #4f4f4f;
