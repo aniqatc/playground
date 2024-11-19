@@ -39,23 +39,29 @@ MongoDB Collections:
 
 - **Dual-Mode Interface**: Toggle between stocks and currency exchange rates
 - **Real-Time Market Data**:
-    - Stock metrics including price, volume, open/close values, and yearly highs/lows
-    - Currency exchange rates against USD baseline
-    - Dynamic percentage changes and price movements
+  - Stock metrics including price, volume, open/close values, and yearly highs/lows
+  - Currency exchange rates against USD baseline
+  - Dynamic percentage changes and price movements
 - **Interactive Visualizations**:
-    - 7-day trend graphs with interactive tooltips
-    - Color-coded indicators (green for positive, red for negative trends)
+  - 7-day trend graphs with interactive tooltips
+  - Color-coded indicators (green for positive, red for negative trends)
 - **Company Information**: Direct links to official websites and company logos for brand recognition
-- **Smart Search**: Quick lookup with suggestions for both stocks and currencies
+- **Smart Search**:
+  - Stock lookup with suggestions for both company names and symbols
+  - Live currency filtering as you type with support for currency codes and full names
 - **Responsive Design & Dark Mode**: Adaptive layouts and theme support
 - **Automated Updates**: Scheduled data refresh using node-cron
+- **Dynamic Stock Pool**:
+  - Initial display of top 8 actively traded stocks for that given day
+  - Pool expands organically as users search for additional stocks
+  - 24-hour collective cache: newly requested stocks become visible to all users
 
 ## Limitations
 
 - API rate limits require caching strategies; real-time user requests are replaced with scheduled daily updates
 - Historical data limited to 7 days due to widget size constraints
 - Weekly updates for historical price data
-- Potential delays in market data based on API provider limitations
+- Potential delays in market data based on API rate limitations
 
 ## Widget Architecture
 
@@ -64,7 +70,7 @@ Each component is designed with specific responsibilities to maintain code organ
 ### Frontend: [/client/src/widgets/05/\*](../../client/src/widgets/05/)
 
 1. **Market Display**: Handles the visualization of stock and currency data
-2. **Search Interface**: Manages the user queries and provides filtered data
+2. **Search & Filtering Interface**: Manages the user queries and provides filtered data 
 3. **Graph Generation**: Chart.js implementation for trend visualization
 4. **Requests to Backend**: Sends requests to the backend for data and handles how data will be displayed
 5. **State Management**: Tracks active view mode and selected items
@@ -74,10 +80,12 @@ Each component is designed with specific responsibilities to maintain code organ
 **Core Directory**:
 - [`charts.js`](/client/src/widgets/05/core/charts.js): Configures Chart.js instances for rendering 7-day price history graphs with tooltips and custom styling
 - [`context.js`](/client/src/widgets/05/core/context.js): Centralizes DOM element references and shared widget state for consistent access
-- [`currencyCard.js`](/client/src/widgets/05/core/currencyCard.js): Handles currency card UI generation and real-time updates of exchange rates
+- [`currencyCard.js`](/client/src/widgets/05/core/currencyCard.js): Handles currency card UI generation, batched loading for performance, and real-time updates of exchange rates
 - [`data.js`](/client/src/widgets/05/core/data.js): Manages API calls and returns JSON-formatted data for both stock and currency information
 - [`menu.js`](/client/src/widgets/05/core/menu.js): Controls navigation between stock/currency views and handles mode switching
-- [`stockCard.js`](/client/src/widgets/05/core/stockCard.js): Manages stock card UI rendering with real-time price updates and trends
+- [`stockCard.js`](/client/src/widgets/05/core/stockCard.js): Manages stock card UI rendering with real-time price updates, trends, and expandable graphs
+- [`stockSearch.js`](/client/src/widgets/05/core/stockSearch.js): Implements stock search with support for both company names and symbols, handling existing and new stock requests
+- [`currencySearch.js`](/client/src/widgets/05/core/currencySearch.js): Provides live filtering of displayed currencies with support for both currency codes and full names
 
 **Root Files**:
 - [`content.js`](/client/src/widgets/05/content.js): Defines base HTML structure and placeholder templates for the widget
@@ -112,7 +120,22 @@ Each component is designed with specific responsibilities to maintain code organ
 ## How to Use
 
 1. **View Market Data**: Toggle between stocks and currencies using the top navigation menu
-2. **Search**: Use the search bar to find specific stocks or currencies which will be displayed at the top of all the cards
-3. **Detailed Views**: Click details or the arrow at the top of the widget to expand or minimize stock and currency cards to reveal more details or charts
-4. **Analyze Trends**: Hover over the chart to view detailed price points for a given stock
-5. **Monitor Changes**: Track real-time updates with color-coded indicators
+
+2. **Search**:
+   - **Stocks**: Enter either the exact company symbol (e.g., "AAPL" for Apple Inc) or full company name (e.g., "Tesla Inc"). Note that partial names like "Tesla" won't work
+   - **Currencies**: Type to filter in real-time - matches will show for both currency codes (e.g., "EUR") and names (e.g., "Euro")
+
+3. **Detailed Views**:
+   - Stocks: Click "Details" to expand cards and view the 7-day price chart
+   - Currencies: Click "Details" to reveal additional exchange rate information
+   - Use the "Expand All" button to view all cards' details simultaneously
+
+4. **Analyze Trends**:
+   - Hover over stock charts to view price points for specific dates
+   - Color indicators show positive (green) or negative (red) trends
+   - Track percentage changes against previous values
+
+5. **Monitor Updates**:
+   - Data refreshes every 24 hours
+   - Last updated timestamp shown at the bottom of the widget
+   - New stocks are added to the pool as users search for them
