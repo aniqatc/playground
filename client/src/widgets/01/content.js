@@ -207,8 +207,6 @@ export function getMarkup() {
             <a href="https://github.com/aniqatc" target="_blank">
               <p>
                 <i class="fa-brands fa-github"></i>
-                <br />
-                github
               </p>
               <img
                 src="https://ghchart.rshah.org/211e1f/aniqatc"
