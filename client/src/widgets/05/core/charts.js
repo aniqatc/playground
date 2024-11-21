@@ -14,7 +14,7 @@ export async function createChart(cardEl, stock) {
     const dates = chartData.map(data => new Date(data.date).toLocaleDateString());
 
     const isDarkMode = document.documentElement.classList.contains('dark');
-    const isPositive = stock.change > 0;
+    const isPositive = stock.change >= 0;
     const chartColor = isPositive
         ? (isDarkMode ? '#88c583' : '#105718')
         : (isDarkMode ? '#ff6363' : '#c91b1b');

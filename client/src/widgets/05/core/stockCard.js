@@ -25,7 +25,7 @@ async function generateStockCard(stock, index, userReq = false) {
                             </div></a>
                         <div class="card-heading--price">
                             <div>
-                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-${stock.change > 0 ? 'up' : 'down'}"></i></span>
+                                <span class="company-price--indicator"><i class="fa-solid fa-arrow-trend-${stock.change >= 0 ? 'up' : 'down'}"></i></span>
                                 <h1 class="company-price--value">$${parseFloat(stock.price).toFixed(2)}</h1>
                             </div>
                             <span class="company-price--label">Price</span>
