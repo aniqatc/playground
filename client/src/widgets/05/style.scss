@@ -78,6 +78,8 @@
     // Content Body
     .content-body {
       > div {
+        margin-right: -12px;
+
         // Currency Container Styles
         &.currency-container {
           container-type: inline-size;
@@ -130,6 +132,7 @@
         // Input Group Styles
         .input-group {
           position: relative;
+          margin-right: 12px;
 
           .stock-search-btn {
             position: absolute;
@@ -182,6 +185,7 @@
 
         // Card Group Styles
         .card-group {
+          margin-right: 12px;
           height: 375px;
           overflow-y: auto;
           overflow-x: hidden;
