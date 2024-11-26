@@ -38,7 +38,7 @@ export function getMarkup() {
 
     <!-- Main content -->
     <main class="content-body">
-      <h2 class="lottery-title">Check if your numbers ever hit the jackpot</h2>
+      <h2 class="lottery-title">Check if your numbers ever hit the <strong>jackpot</strong></h2>
 
       <div class="lottery-search-range">
         <i class="fa-regular fa-calendar"></i>
@@ -142,6 +142,9 @@ export function getMarkup() {
       <button class="lottery-info-btn" aria-label="Show lottery information">
         <i class="fa-solid fa-circle-info"></i>
       </button>
+      <button class="lottery-reset-btn" aria-label="Reset lottery results">
+        <i class="fa-solid fa-rotate"></i>
+       </button>
     </footer>
   </div>
 </section>`

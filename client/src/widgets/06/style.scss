@@ -309,13 +309,18 @@
         }
       }
 
-      .lottery-info-btn {
+      .lottery-info-btn, .lottery-reset-btn {
         font-size: 14px;
         color: var.$gray-medium;
 
         &:hover {
           color: var.$color-medium-aqua-blue;
         }
+      }
+
+      .lottery-info-btn {
+        margin-right: 8px;
+        margin-left: auto;
       }
     }
   }
