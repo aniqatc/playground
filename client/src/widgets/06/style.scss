@@ -1,4 +1,5 @@
 @use "../../main/styles/var";
+@import url("https://fonts.googleapis.com/css2?family=Recursive:CASL,MONO@0.25,0.25&display=swap");
 
 // Mixins
 
@@ -6,7 +7,7 @@
 
 // Base Widget Styles
 #widget-06 {
-  min-height: 100%;
+  height: 480px;
 
   // Like Button Styles
   .like-btn {
@@ -19,10 +20,310 @@
     color: var.$color-medium-aqua-blue;
   }
 
+  .hidden {
+    display: none !important;
+  }
+
   // Main Content Container
-  .content {}
+  .content {
+    font-size: 13px;
+    color: var.$color-dark;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    // Header
+    .content-header {
+      text-align: end;
+      margin-bottom: var.$spacing-base;
+
+      .lottery-logo {
+        max-height: 62px;
+      }
+    }
+
+    // Main Content
+    .content-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+
+      .lottery-title {
+        font-family: inherit;
+        text-align: center;
+        margin-bottom: 4px;
+        font-size: 14px;
+      }
+
+      // Input Container
+      .lottery-input-container {
+        margin-bottom: 16px;
+
+        .lottery-inputs {
+          display: flex;
+          justify-content: center;
+          gap: 6px;
+
+          .lottery-main-numbers {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+
+            .number-input-wrapper {
+              flex: 1;
+              position: relative;
+              text-align: center;
+
+              .lottery-number-input {
+                width: 50px;
+                height: 50px;
+                border-radius: 4px;
+                border: 2px solid var.$color-medium-aqua-blue;
+                background-color: var.$color-light-aqua-blue;
+                text-align: center;
+                font-size: 18px;
+                color: var.$color-dark;
+                font-family: "Recursive", "Archivo", "Inter", sans-serif;
+                transition: all 200ms ease-in;
+
+                &:focus {
+                  outline: none;
+                  border-color: var.$color-dark-aqua-blue;
+
+                  & + .input-hint {
+                    bottom: -16px;
+                  }
+                }
+
+                &:not(:placeholder-shown) + .input-hint {
+                  opacity: 0;
+                }
+
+                // Remove spinners
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                  -webkit-appearance: none;
+                  margin: 0;
+                }
+              }
+
+              .input-hint {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 2px;
+                font-size: 9px;
+                color: var.$gray-medium;
+                pointer-events: none;
+                transition: all 200ms ease-in;
+              }
+            }
+          }
+
+          .lottery-special-wrapper {
+            .number-input-wrapper {
+              position: relative;
+              text-align: center;
+
+              .lottery-number-input.special-ball {
+                width: 50px;
+                height: 50px;
+                border-radius: 4px;
+                border: 2px solid var.$color-medium-aqua-blue;
+                background-color: var.$color-medium-aqua-blue;
+                text-align: center;
+                font-size: 18px;
+                color: var.$color-dark;
+                font-family: "Recursive", "Archivo", "Inter", sans-serif;
+                transition: all 200ms ease-in;
+
+                &:focus {
+                  outline: none;
+                  border-color: var.$color-dark-aqua-blue;
+
+                  & + .input-hint {
+                    bottom: -16px;
+                    color: var.$gray-medium;
+                  }
+
+                  & ~ .special-ball-label {
+                    top: -16px;
+                    font-weight: 500;
+                    color: var.$color-dark-aqua-blue;
+                  }
+                }
+
+                &:not(:placeholder-shown) + .input-hint {
+                  opacity: 0;
+                }
+
+                // Remove spinners
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                  -webkit-appearance: none;
+                  margin: 0;
+                }
+              }
+
+              .input-hint {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 2px;
+                font-size: 9px;
+                pointer-events: none;
+                transition: all 200ms ease-in;
+                color: var.$color-light-aqua-blue;
+              }
+
+              .special-ball-label {
+                font-size: 10px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 1px;
+                pointer-events: none;
+                transform: rotate(0);
+                color: var.$color-light-aqua-blue;
+                transition: all 200ms ease-in;
+              }
+            }
+          }
+        }
+      }
+
+      // Action Buttons
+      .lottery-actions {
+        display: flex;
+        margin-bottom: 12px;
+        gap: 8px;
+
+        .lottery-btn {
+          font-size: 12px;
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          border-radius: 4px;
+          padding: 6px;
+          background-color: var.$color-muted-aqua-blue;
+          transition: all 200ms ease;
+
+          &.btn-search {
+            background-color: var.$color-medium-aqua-blue;
+            color: var.$color-light-aqua-blue;
+          }
+
+          &:hover {
+            background-color: darken(var.$color-medium-aqua-blue, 10%);
+            color: white;
+          }
+        }
+      }
+
+      // Search Range
+      .lottery-search-range {
+        text-align: center;
+        color: var.$gray-medium-dark;
+        font-size: 11px;
+        margin-bottom: var.$spacing-base;
+
+        i {
+          margin-right: 4px;
+        }
+      }
+
+      // Results Section
+      .lottery-results {
+        margin-top: auto;
+        margin-bottom: var.$spacing-base;
+        border: 1px solid #DDEDF0;
+        padding: 4px;
+        border-radius: 4px;
+        min-height: 100px;
+
+        .lottery-tabs {
+          display: flex;
+          gap: 16px;
+          margin-bottom: 4px;
+
+          .lottery-tab {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 4px;
+            border-radius: 4px;
+            transition: all 200ms ease;
+
+            & i {
+              font-size: 11px;
+            }
+
+            &.active {
+              color: var.$color-dark-aqua-blue;
+              font-weight: 600;
+            }
+
+            &:hover {
+              color: var.$color-dark-aqua-blue;
+            }
+          }
+        }
+
+        .lottery-results-content {
+          border-radius: 4px;
+          padding: 4px;
+          color: #727272;
+          background-color: #F0F0F0;
+          font-size: 11px;
+          margin: 2px 8px;
+          border: 1px solid #BCD3D7;
+
+          .lottery-locked-message {
+            padding: 2px 6px;
+          }
+        }
+      }
+    }
+
+    // Footer
+    .content-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      margin-bottom: -5px;
+      margin-top: auto;
+
+      .lottery-switch-link {
+        color: var.$color-muted-dark-aqua-blue;
+        text-decoration: none;
+        font-weight: 600;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .lottery-info-btn {
+        font-size: 14px;
+        color: var.$gray-medium;
+
+        &:hover {
+          color: var.$color-medium-aqua-blue;
+        }
+      }
+    }
+  }
 }
 
-
 // Dark Theme Styles
-.dark #widget-06 {}
+.dark #widget-06 {
+  * {
+    color: var.$color-light;
+  }
+}

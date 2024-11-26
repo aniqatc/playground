@@ -18,53 +18,78 @@ export function getMarkup() {
     <span class="like-value font-archivo" id="likes-06"></span>
   </div>
 
-  <div class="content">
+  <div class="content" data-game="megamillions">
     <!-- Header -->
     <header class="content-header">
+      <!-- Game-specific logos -->
       <img 
         src="${MegamillionsLogo}" 
         alt="Mega Millions logo" 
-        class="lottery-logo"
+        class="lottery-logo megaball-content"
         aria-label="Mega Millions Lottery"
+      >
+      <img 
+        src="${PowerballLogo}" 
+        alt="Powerball logo" 
+        class="lottery-logo powerball-content hidden"
+        aria-label="Powerball Lottery"
       >
     </header>
 
     <!-- Main content -->
     <main class="content-body">
-      <h2 class="lottery-title">Check if your lucky numbers ever hit the jackpot</h2>
+      <h2 class="lottery-title">Check if your numbers ever hit the jackpot</h2>
 
+      <div class="lottery-search-range">
+        <i class="fa-regular fa-calendar"></i>
+        <span>Search Range: 02/23/1980 - 11/14/2024</span>
+      </div>
+      
       <!-- Lottery number inputs -->
       <div class="lottery-input-container" aria-label="Enter lottery numbers">
         <div class="lottery-inputs" role="group" aria-label="Main lottery numbers">
           <div class="lottery-main-numbers" role="group" aria-label="Pick 5 numbers">
             <div class="number-input-wrapper">
-              <input type="number" min="1" max="70" class="lottery-number-input" aria-label="Number 1">
-              <span class="input-hint">Max. 70</span>
+              <input type="number" placeholder=" " min="1" max="70" class="lottery-number-input" aria-label="Number 1">
+              <span class="input-hint megaball-content">Max. 70</span>
+              <span class="input-hint powerball-content hidden">Max. 69</span>
             </div>
             <div class="number-input-wrapper">
-              <input type="number" min="1" max="70" class="lottery-number-input" aria-label="Number 2">
-              <span class="input-hint">Max. 70</span>
+              <input type="number" placeholder=" " min="1" max="70" class="lottery-number-input" aria-label="Number 2">
+              <span class="input-hint megaball-content">Max. 70</span>
+              <span class="input-hint powerball-content hidden">Max. 69</span>
             </div>
             <div class="number-input-wrapper">
-              <input type="number" min="1" max="70" class="lottery-number-input" aria-label="Number 3">
-              <span class="input-hint">Max. 70</span>
+              <input type="number" placeholder=" " min="1" max="70" class="lottery-number-input" aria-label="Number 3">
+              <span class="input-hint megaball-content">Max. 70</span>
+              <span class="input-hint powerball-content hidden">Max. 69</span>
             </div>
             <div class="number-input-wrapper">
-              <input type="number" min="1" max="70" class="lottery-number-input" aria-label="Number 4">
-              <span class="input-hint">Max. 70</span>
+              <input type="number" placeholder=" " min="1" max="70" class="lottery-number-input" aria-label="Number 4">
+              <span class="input-hint megaball-content">Max. 70</span>
+              <span class="input-hint powerball-content hidden">Max. 69</span>
             </div>
             <div class="number-input-wrapper">
-              <input type="number" min="1" max="70" class="lottery-number-input" aria-label="Number 5">
-              <span class="input-hint">Max. 70</span>
+              <input type="number" placeholder=" " min="1" max="70" class="lottery-number-input" aria-label="Number 5">
+              <span class="input-hint megaball-content">Max. 70</span>
+              <span class="input-hint powerball-content hidden">Max. 69</span>
             </div>
           </div>
           
-          <div class="lottery-megaball-wrapper" role="group" aria-label="Pick Mega Ball number">
+          <div class="lottery-special-wrapper" role="group">
             <div class="number-input-wrapper">
-              <input type="number" min="1" max="25" class="lottery-number-input megaball" aria-label="Mega Ball">
-              <span class="input-hint">Max. 25</span>
+              <input 
+                type="number" 
+                placeholder=" "
+                class="lottery-number-input special-ball" 
+                id="special-ball-number"
+                aria-label="Special Ball"
+              >
+              <span class="input-hint megaball-content">Max. 25</span>
+              <span class="input-hint powerball-content hidden">Max. 26</span>
+              <label class="special-ball-label megaball-content" for="special-ball-number">Megaball</label>
+              <label class="special-ball-label powerball-content hidden" for="special-ball-number">Powerball</label>
             </div>
-            <label class="megaball-label">Megaball</label>
           </div>
         </div>
       </div>
@@ -79,11 +104,6 @@ export function getMarkup() {
           <span>Find Matches</span>
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
-      </div>
-
-      <div class="lottery-search-range">
-        <i class="fa-regular fa-calendar"></i>
-        <span>Current Search Range: 02/23/1980 - 11/14/2024</span>
       </div>
 
       <!-- Results section -->
@@ -101,8 +121,7 @@ export function getMarkup() {
 
         <div class="lottery-results-content">
           <div class="lottery-locked-message">
-            <i class="fa-solid fa-lock"></i>
-            <p>Search to unlock historical lottery results.</p>
+            <i class="fa-solid fa-lock"></i> Search to unlock historical lottery results.
           </div>
         </div>
       </div>
@@ -110,13 +129,15 @@ export function getMarkup() {
 
     <!-- Footer -->
     <footer class="content-footer">
-      <p>
+      <p class="megaball-content">
         Switch to 
         <a href="#" class="lottery-switch-link" aria-label="Switch to Powerball Lottery">
-          <i class="fa-solid fa-arrow-right-arrow-left"></i>
-          <span>Powerball Lottery</span>
-        </a>
-        Results
+          <span>Powerball</span></a> Results
+      </p>
+      <p class="powerball-content hidden">
+        Switch to 
+        <a href="#" class="lottery-switch-link" aria-label="Switch to Mega Millions Lottery">
+          <span>Mega Millions</span></a> Results
       </p>
       <button class="lottery-info-btn" aria-label="Show lottery information">
         <i class="fa-solid fa-circle-info"></i>
