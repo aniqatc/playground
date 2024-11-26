@@ -51,18 +51,20 @@ class MarketData {
             symbol,
             name: data.name,
             price: parseFloat(data.close),
-            change: parseFloat(data.change),
-            changePercent: parseFloat(data.percent_change),
-            volume: parseInt(data.volume),
+            change: parseFloat(data.change || 0),
+            changePercent: parseFloat(data.percent_change || 0),
+            volume: parseInt(data.volume || 0),
             exchange: data.exchange || 'N/A',
-            open: parseFloat(data.open),
-            close: parseFloat(data.previous_close),
-            yearHigh: parseFloat(data.fifty_two_week?.high || "N/A"),
-            yearLow: parseFloat(data.fifty_two_week?.low || "N/A"),
+            open: parseFloat(data.open || 0),
+            close: parseFloat(data.previous_close || 0),
+            yearHigh: parseFloat(data.fifty_two_week?.high || 0),
+            yearLow: parseFloat(data.fifty_two_week?.low || 0),
             lastUpdated: new Date()
         };
 
-        await Stock.findOneAndUpdate({ symbol }, stockData, { upsert: true, new: true });
+        if (!isNaN(stockData.price)) {
+            await Stock.findOneAndUpdate({ symbol }, stockData, { upsert: true, new: true });
+        }
         return stockData;
     }
 

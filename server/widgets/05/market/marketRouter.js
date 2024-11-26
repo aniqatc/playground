@@ -10,8 +10,8 @@ router.get('/featured', async (req, res) => {
 router.get('/search/:symbol', async (req, res) => {
     const { symbol } = req.params;
     const stock = await marketData.getIndividualStock(req.params.symbol);
-    if (!stock) {
-        return res.status(404).json({ message: 'No stock found.' });
+    if (!stock || isNaN(stock.price)) {
+        return res.status(404).json({ message: 'No valid stock data found.' });
     }
     res.json({ stock });
 })
