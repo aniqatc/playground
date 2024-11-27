@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @use "../../main/styles/var";
 @import url("https://fonts.googleapis.com/css2?family=Recursive:CASL,MONO@0.25,0.25&display=swap");
 
@@ -348,7 +350,7 @@
           }
 
           &:hover {
-            background-color: darken(var.$color-medium-aqua-blue, 10%);
+            background-color: color.adjust(var.$color-medium-aqua-blue, $lightness: -10%, $space: hsl);
             color: #fff;
           }
         }
