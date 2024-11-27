@@ -373,7 +373,6 @@
         border: 1px solid #DDEDF0;
         padding: 4px;
         border-radius: 4px;
-        min-height: 100px;
 
         .lottery-tabs {
           display: flex;
@@ -405,16 +404,173 @@
         }
 
         .lottery-results-content {
-          border-radius: 4px;
-          padding: 4px;
-          color: #727272;
-          background-color: #F0F0F0;
-          border: 1px solid #BCD3D7;
-          font-size: 11px;
-          margin: 2px 8px;
+          margin: 2px 4px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          min-height: 100px;
+          max-height: 160px;
+          overflow: auto;
 
           .lottery-locked-message {
-            padding: 2px 6px;
+            border-radius: 4px;
+            padding: 4px;
+            color: #727272;
+            background-color: #F0F0F0;
+            border: 1px solid #BCD3D7;
+            font-size: 11px;
+          }
+
+          .lottery-matches, .lottery-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+
+            h3 {
+              font-weight: 600;
+              margin-bottom: 6px;
+              border-bottom: 1px solid #BCD3D7;
+              color: var.$color-dark-aqua-blue;
+              font-family: "DM Sans", "system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif";
+
+              i {
+                margin-right: 2px;
+              }
+
+              .match-date {
+                font-weight: 800;
+              }
+            }
+
+            .lottery-match-card {
+              background-color: #F0F0F0;
+              border: 1px solid #BCD3D7;
+              border-radius: 4px;
+              padding: 4px;
+
+              .match-content {
+                .match-numbers {
+                  display: flex;
+                  gap: 6px;
+
+                  .number, .special-number {
+                    font-family: 'Recursive', 'Archivo', 'Inter', sans-serif;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: var.$color-light-aqua-blue;
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 50%;
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                  }
+
+                  .number.not-a-match {
+                    background-color: #b4b4b4;
+                    color: #4f4f4f;
+                  }
+
+                  .special-number {
+                    background-color: var.$color-medium-aqua-blue;
+                    color: var.$color-light-aqua-blue;
+
+                    &.not-a-match {
+                      background-color: #7c7c7c;
+                      color: #cecece;
+                    }
+                  }
+                }
+
+                .match-details {
+                  margin-top: 4px;
+                  display: flex;
+                  justify-content: space-between;
+
+                  div span {
+                    font-weight: 600;
+                  }
+                }
+              }
+            }
+
+            .lottery-stat-card {
+              background-color: #F0F0F0;
+              border: 1px solid #BCD3D7;
+              border-radius: 4px;
+              padding: 4px;
+
+              .stats-overview {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+                margin-bottom: 8px;
+
+                .stat-item {
+                  background-color: #f5f5f5;
+                  border-radius: 4px;
+                  padding: 6px;
+                  text-align: center;
+
+                  .stat-label {
+                    display: block;
+                    color: var.$gray-medium;
+                    font-size: 10px;
+                    margin-bottom: 2px;
+                  }
+
+                  .stat-value {
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: var.$color-dark;
+                  }
+                }
+              }
+
+              // Number Analysis
+              .number-analysis {
+                .number-stats {
+                  display: grid;
+                  grid-template-columns: repeat(3, 1fr);
+                  gap: 6px;
+
+                  .number-stat {
+                    background-color: #f5f5f5;
+                    border-radius: 4px;
+                    padding: 6px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+
+                    .number {
+                      flex-shrink: 0;
+                      font-family: 'Recursive', 'Archivo', 'Inter', sans-serif;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      background-color: var.$color-light-aqua-blue;
+                      width: 24px;
+                      height: 24px;
+                      border-radius: 50%;
+                      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                    }
+
+                    .stat-details {
+                      font-size: 10px;
+
+                      .frequency {
+                        color: var.$color-dark;
+                        font-weight: 500;
+                      }
+
+                      .percentage {
+                        color: var.$gray-medium;
+                        font-size: 9px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

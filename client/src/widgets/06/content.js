@@ -146,6 +146,109 @@ export function getMarkup() {
           <div class="lottery-locked-message">
             <i class="fa-solid fa-lock"></i> Search to <strong>unlock</strong> historical lottery results.
           </div>
+          <div class="lottery-matches hidden">
+            <div class="lottery-match-card">
+                <h3><i class="fa-solid fa-check-double"></i> Perfect Match on <span class="match-date">Jan 15, 2024</span></h3>
+                <div class="match-content">
+                  <div class="match-numbers">
+                    <span class="number">12</span>
+                    <span class="number">24</span>
+                    <span class="number">45</span>
+                    <span class="number">56</span>
+                    <span class="number">69</span>
+                    <span class="special-number">23</span>
+                  </div>
+                  <div class="match-details">
+                    <div class="jackpot">Jackpot: <span>$785M</span></div>
+                    <div class="multiplier">Multiplier: <span>3x</span></div>
+                  </div>
+                </div>
+            </div>
+            <div class="lottery-match-card">
+                <h3><i class="fa-solid fa-check"></i> Partial Match on <span class="match-date">Jan 15, 2024</span></h3>
+                <div class="match-content">
+                  <div class="match-numbers">
+                    <span class="number">12</span>
+                    <span class="number">24</span>
+                    <span class="number">45</span>
+                    <span class="number not-a-match">56</span>
+                    <span class="number not-a-match">69</span>
+                    <span class="special-number not-a-match">23</span>
+                  </div>
+                  <div class="match-details">
+                    <div class="jackpot">Jackpot: <span>$10K</span></div>
+                    <div class="multiplier">Multiplier: <span>N/A</span></div>
+                  </div>
+                </div>
+            </div>
+         </div>
+         <div class="lottery-stats hidden">
+            <div class="lottery-stat-card">
+                <h3>
+                <i class="fa-solid fa-magnifying-glass-arrow-right"></i>
+                Your Search Analysis
+                </h3>
+              <div class="stats-overview">
+                <div class="stat-item">
+                  <span class="stat-label">Drawings Searched</span>
+                  <span class="stat-value">1,245</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Search Period</span>
+                  <span class="stat-value">2010-2024</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Largest Jackpot</span>
+                  <span class="stat-value">$1.2B</span>
+                </div>
+              </div>
+              <div class="number-analysis">
+                <h3>
+                <i class="fa-solid fa-chart-line"></i>
+                Your Numbers Analysis
+                </h3>
+                   <div class="number-stats">
+                    <div class="number-stat">
+                    <span class="number">24</span>
+                    <div class="stat-details">
+                        <div class="frequency">Appeared: 156 times</div>
+                        <div class="percentage">In 12.5% of drawings</div>
+                    </div>
+                </div><div class="number-stat">
+                    <span class="number">24</span>
+                    <div class="stat-details">
+                        <div class="frequency">Appeared: 156 times</div>
+                        <div class="percentage">In 12.5% of drawings</div>
+                    </div>
+                </div><div class="number-stat">
+                    <span class="number">24</span>
+                    <div class="stat-details">
+                        <div class="frequency">Appeared: 156 times</div>
+                        <div class="percentage">In 12.5% of drawings</div>
+                    </div>
+                </div><div class="number-stat">
+                    <span class="number">24</span>
+                    <div class="stat-details">
+                        <div class="frequency">Appeared: 156 times</div>
+                        <div class="percentage">In 12.5% of drawings</div>
+                    </div>
+                </div><div class="number-stat">
+                    <span class="number">24</span>
+                    <div class="stat-details">
+                        <div class="frequency">Appeared: 156 times</div>
+                        <div class="percentage">In 12.5% of drawings</div>
+                    </div>
+                </div><div class="number-stat">
+                    <span class="number">24</span>
+                    <div class="stat-details">
+                        <div class="frequency">Appeared: 156 times</div>
+                        <div class="percentage">In 12.5% of drawings</div>
+                    </div>
+                </div>
+</div>
+                </div>
+            </div>
+        </div>
         </div>
       </div>
     </main>
