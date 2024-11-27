@@ -526,7 +526,6 @@
                 }
               }
 
-              // Number Analysis
               .number-analysis {
                 .number-stats {
                   display: grid;
@@ -609,7 +608,226 @@
 
 // Dark Theme Styles
 .dark #widget-06 {
-  * {
+  .content {
     color: var.$color-light;
+
+    // Header
+    .content-header {
+      .logo-wrapper {
+        .tooltip {
+          color: #98ABB4;
+          background-color: #202729;
+          border-color: #2F4448;
+
+          .tooltip-link {
+            color: var.$color-light-aqua-blue;
+          }
+
+          &::before {
+            background-color: #202729;
+            border-right-color: #2F4448;
+            border-top-color: #2F4448;
+          }
+        }
+      }
+    }
+
+    .content-body {
+      .lottery-input-container {
+        .lottery-inputs {
+          .lottery-main-numbers {
+            .number-input-wrapper {
+              .lottery-number-input {
+                border-color: var.$color-medium-aqua-blue;
+                background-color: var.$color-muted-dark-aqua-blue;
+                color: var.$color-light;
+
+                &:invalid,
+                &:out-of-range {
+                  border-color: #FF3B3B;
+                  background-color: #3d2424;
+                  color: #ff6b6b;
+                }
+
+                &:focus {
+                  border-color: var.$color-dark-aqua-blue;
+                }
+              }
+
+              .input-hint {
+                color: #98ABB4;
+              }
+            }
+          }
+
+          .lottery-special-wrapper {
+            .number-input-wrapper {
+              .lottery-number-input.special-ball {
+                border-color: var.$color-medium-aqua-blue;
+                background-color: var.$color-medium-aqua-blue;
+                color: var.$color-light;
+
+                &:focus ~ .special-ball-label {
+                  color: var.$color-medium-aqua-blue;
+                }
+
+                &:invalid,
+                &:out-of-range {
+                  border-color: #FF3B3B;
+                  background-color: #FF3B3B;
+                  color: #FFF2F2;
+                }
+              }
+
+              .input-hint {
+                color: var.$color-light-aqua-blue;
+              }
+
+              .special-ball-label {
+                color: var.$color-light-aqua-blue;
+              }
+            }
+          }
+        }
+      }
+
+      // Action Buttons
+      .lottery-actions {
+        .lottery-btn {
+          background-color: var.$color-muted-dark-aqua-blue;
+
+          &.btn-search {
+            background-color: var.$color-medium-aqua-blue;
+            color: var.$color-dark;
+          }
+
+          &:hover {
+            background-color: var.$color-dark-aqua-blue;
+            color: var.$color-light;
+          }
+        }
+      }
+
+      // Search Range
+      .lottery-search-range {
+        color: #98ABB4;
+      }
+
+      // Results Section
+      .lottery-results {
+        border: var.$border-dark;
+        background-color: var.$color-dark;
+
+        .lottery-tabs {
+          .lottery-tab {
+            color: #98ABB4;
+
+            &.active {
+              color: var.$color-light-aqua-blue;
+            }
+
+            &:hover {
+              color: var.$color-light-aqua-blue;
+            }
+          }
+        }
+
+        .lottery-results-content {
+          .lottery-locked-message {
+            color: #98ABB4;
+            border-color: #2F4448;
+            background-color: #202729;
+          }
+
+          .lottery-matches, .lottery-stats {
+            h3 {
+              border-bottom-color: #2F4448;
+              color: var.$color-light-aqua-blue;
+            }
+
+            .lottery-match-card {
+              border-color: #2F4448;
+              background-color: #202729;
+
+              .match-numbers {
+                .number {
+                  background-color: #2F4448;
+                  color: var.$color-light;
+
+                  &.not-a-match {
+                    background-color: #757575;
+                    color: #c2c2c2;
+                  }
+                }
+
+                .special-number {
+                  background-color: var.$color-medium-aqua-blue;
+                  color: var.$color-dark;
+
+                  &.not-a-match {
+                    background-color: #505050;
+                    color: #bbbbbb;
+                  }
+                }
+              }
+            }
+
+            .lottery-stat-card {
+              background-color: #202729;
+              border-color: #2F4448;
+
+              .stat-item {
+                background-color: #2F4448;
+
+                .stat-label {
+                  color: #98ABB4;
+                }
+
+                .stat-value {
+                  color: var.$color-light;
+                }
+              }
+
+              .number-analysis {
+                .number-stats {
+                  .number-stat {
+                    background-color: #3a494d;
+
+                    .number {
+                      background-color: var.$color-light;
+                      color: #2F4448;
+                    }
+
+                    .stat-details {
+                      .frequency {
+                        color: var.$color-light;
+                      }
+
+                      .percentage {
+                        color: var.$gray-light;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .content-footer {
+      .lottery-switch-link {
+        color: var.$color-muted-aqua-blue;
+      }
+
+      .lottery-reset-btn {
+        color: #98ABB4;
+
+        &:hover {
+          color: var.$color-medium-aqua-blue;
+        }
+      }
+    }
   }
 }
