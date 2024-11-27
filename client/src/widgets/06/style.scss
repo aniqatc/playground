@@ -665,7 +665,7 @@
               .lottery-number-input.special-ball {
                 border-color: var.$color-medium-aqua-blue;
                 background-color: var.$color-medium-aqua-blue;
-                color: var.$color-light;
+                color: #fff;
 
                 &:focus ~ .special-ball-label {
                   color: var.$color-medium-aqua-blue;

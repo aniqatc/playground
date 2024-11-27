@@ -18,6 +18,10 @@ class LotteryContext {
         this.randomButton = this.widget.querySelector(".btn-random");
         this.searchButton = this.widget.querySelector(".btn-search");
         this.resetButton = this.widget.querySelector(".lottery-reset-btn");
+        // Results
+        this.matchesContainer = this.widget.querySelector(".lottery-matches");
+        this.statsContainer = this.widget.querySelector(".lottery-stats");
+        this.lockedMessageContainer = this.widget.querySelector(".lottery-locked-message");
     }
 }
 
