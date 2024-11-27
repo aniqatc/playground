@@ -15,9 +15,9 @@ class LotteryContext {
         this.specialBall = this.widget.querySelector(".special-ball");
         // Action buttons
         this.switchGameLinks = this.widget.querySelectorAll(".lottery-switch-link");
-        this.resetButton = this.widget.querySelector(".lottery-reset-btn");
         this.randomButton = this.widget.querySelector(".btn-random");
         this.searchButton = this.widget.querySelector(".btn-search");
+        this.resetButton = this.widget.querySelector(".lottery-reset-btn");
     }
 }
 
