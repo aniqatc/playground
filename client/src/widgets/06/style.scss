@@ -159,7 +159,7 @@
                 font-family: "Recursive", "Archivo", "Inter", sans-serif;
                 transition: all 200ms ease-in;
 
-                &:not(:placeholder-shown) + .input-hint {
+                &:not(:placeholder-shown) ~ .input-hint {
                   opacity: 0;
                 }
 
@@ -170,7 +170,7 @@
                   background-color: #FFF2F2;
                   color: #FF3B3B;
 
-                  & + .input-hint {
+                  & ~ .input-hint {
                     color: #FF3B3B;
                     opacity: 1;
                     bottom: -16px;
@@ -181,7 +181,7 @@
                   outline: none;
                   border-color: var.$color-dark-aqua-blue;
 
-                  & + .input-hint {
+                  & ~ .input-hint {
                     bottom: -16px;
                   }
 
@@ -189,7 +189,7 @@
                   &:out-of-range {
                     border-color: #FF3B3B;
 
-                    & + .input-hint {
+                    & ~ .input-hint {
                       color: #FF3B3B;
                     }
                   }
@@ -241,7 +241,7 @@
                 font-family: "Recursive", "Archivo", "Inter", sans-serif;
                 transition: all 200ms ease-in;
 
-                &:not(:placeholder-shown) + .input-hint {
+                &:not(:placeholder-shown) ~ .input-hint {
                   opacity: 0;
                 }
 
@@ -252,7 +252,7 @@
                   background-color: #FF3B3B;
                   color: #FFF2F2;
 
-                  & + .input-hint {
+                  & ~ .input-hint {
                     color: #FF3B3B;
                     opacity: 1;
                     bottom: -16px;
@@ -263,7 +263,7 @@
                   outline: none;
                   border-color: var.$color-dark-aqua-blue;
 
-                  & + .input-hint {
+                  & ~ .input-hint {
                     bottom: -16px;
                     color: var.$gray-medium;
                   }
@@ -278,7 +278,7 @@
                   &:out-of-range {
                     border-color: #FF3B3B;
 
-                    & + .input-hint, & ~ .special-ball-label {
+                    & ~ .input-hint, & ~ .special-ball-label {
                       color: #FF3B3B;
                     }
                   }
