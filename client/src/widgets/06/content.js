@@ -21,20 +21,40 @@ export function getMarkup() {
   <div class="content" data-game="megamillions">
     <!-- Header -->
     <header class="content-header">
-      <!-- Game-specific logos -->
-      <img 
-        src="${MegamillionsLogo}" 
-        alt="Mega Millions logo" 
-        class="lottery-logo megaball-content"
-        aria-label="Mega Millions Lottery"
-      >
-      <img 
-        src="${PowerballLogo}" 
-        alt="Powerball logo" 
-        class="lottery-logo powerball-content hidden"
-        aria-label="Powerball Lottery"
-      >
-    </header>
+  <!-- Game-specific logos -->
+  <div class="logo-wrapper" role="tooltip">
+    <img 
+      src="${MegamillionsLogo}" 
+      alt="Mega Millions logo" 
+      class="lottery-logo megaball-content"
+      aria-label="Mega Millions Lottery"
+    >
+    <div class="tooltip megaball-content">
+      <p>Drawings: <strong>Tues & Fri @ 11pm ET</strong></p>
+      <p>5 numbers <strong>(1-70)</strong> & 1 Mega Ball <strong>(1-25)</strong></p>
+      <a href="https://www.megamillions.com" target="_blank" rel="noopener noreferrer" class="tooltip-link">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        Visit Official Site
+      </a>
+    </div>
+  </div>
+  <div class="logo-wrapper" role="tooltip">
+    <img 
+      src="${PowerballLogo}" 
+      alt="Powerball logo" 
+      class="lottery-logo powerball-content hidden"
+      aria-label="Powerball Lottery"
+    >
+    <div class="tooltip powerball-content hidden">
+      <p>Drawings: <strong>Mon, Wed & Sat @ 10:59pm ET</strong></p>
+      <p>5 numbers <strong>(1-69)</strong> + 1 Powerball <strong>(1-26)</strong></p>
+      <a href="https://www.powerball.com" target="_blank" rel="noopener noreferrer" class="tooltip-link">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        Visit Official Site
+      </a>
+    </div>
+  </div>
+</header>
 
     <!-- Main content -->
     <main class="content-body">
@@ -123,7 +143,7 @@ export function getMarkup() {
 
         <div class="lottery-results-content">
           <div class="lottery-locked-message">
-            <i class="fa-solid fa-lock"></i> Search to unlock historical lottery results.
+            <i class="fa-solid fa-lock"></i> Search to <strong>unlock</strong> historical lottery results.
           </div>
         </div>
       </div>
@@ -141,9 +161,6 @@ export function getMarkup() {
         <a href="#" class="lottery-switch-link" aria-label="Switch to Mega Millions Lottery">
           <span>Mega Millions</span></a> Results
       </p>
-      <button class="lottery-info-btn" aria-label="Show lottery information">
-        <i class="fa-solid fa-circle-info"></i>
-      </button>
       <button class="lottery-reset-btn" aria-label="Reset lottery results">
         <i class="fa-solid fa-rotate"></i>
        </button>
