@@ -70,27 +70,27 @@ export function getMarkup() {
         <div class="lottery-inputs" role="group" aria-label="Main lottery numbers">
           <div class="lottery-main-numbers" role="group" aria-label="Pick 5 numbers">
             <div class="number-input-wrapper">
-              <input type="number" placeholder=" " min="1" max="70" class="lottery-number-input" aria-label="Number 1">
+              <input type="number" placeholder=" " min="1" max="70" maxlength="2" class="lottery-number-input" aria-label="Number 1">
               <span class="input-hint megaball-content">Max. 70</span>
               <span class="input-hint powerball-content hidden">Max. 69</span>
             </div>
             <div class="number-input-wrapper">
-              <input type="number" placeholder=" " min="1" max="70" class="lottery-number-input" aria-label="Number 2">
+              <input type="number" placeholder=" " min="1" max="70" maxlength="2" class="lottery-number-input" aria-label="Number 2">
               <span class="input-hint megaball-content">Max. 70</span>
               <span class="input-hint powerball-content hidden">Max. 69</span>
             </div>
             <div class="number-input-wrapper">
-              <input type="number" placeholder=" " min="1" max="70" class="lottery-number-input" aria-label="Number 3">
+              <input type="number" placeholder=" " min="1" max="70" maxlength="2" class="lottery-number-input" aria-label="Number 3">
               <span class="input-hint megaball-content">Max. 70</span>
               <span class="input-hint powerball-content hidden">Max. 69</span>
             </div>
             <div class="number-input-wrapper">
-              <input type="number" placeholder=" " min="1" max="70" class="lottery-number-input" aria-label="Number 4">
+              <input type="number" placeholder=" " min="1" max="70" maxlength="2" class="lottery-number-input" aria-label="Number 4">
               <span class="input-hint megaball-content">Max. 70</span>
               <span class="input-hint powerball-content hidden">Max. 69</span>
             </div>
             <div class="number-input-wrapper">
-              <input type="number" placeholder=" " min="1" max="70" class="lottery-number-input" aria-label="Number 5">
+              <input type="number" placeholder=" " min="1" max="70" maxlength="2" class="lottery-number-input" aria-label="Number 5">
               <span class="input-hint megaball-content">Max. 70</span>
               <span class="input-hint powerball-content hidden">Max. 69</span>
             </div>
@@ -103,6 +103,7 @@ export function getMarkup() {
                 placeholder=" "
                 min="1" 
                 max="25" 
+                maxlength="2"
                 class="lottery-number-input special-ball" 
                 id="special-ball-number"
                 aria-label="Special Ball"

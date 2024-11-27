@@ -1,3 +1,7 @@
+import initializeInputsAutocomplete from "./core/inputAutocomplete";
+import initializeSwitchLink from "./core/switchGameMode";
+
 export function initializeScript() {
-    console.log("Hello World from Widget 6")
+    initializeInputsAutocomplete();
+    initializeSwitchLink();
 }
