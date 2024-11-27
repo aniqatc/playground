@@ -81,6 +81,8 @@ export function getMarkup() {
               <input 
                 type="number" 
                 placeholder=" "
+                min="1" 
+                max="25" 
                 class="lottery-number-input special-ball" 
                 id="special-ball-number"
                 aria-label="Special Ball"
@@ -98,7 +100,7 @@ export function getMarkup() {
       <div class="lottery-actions">
         <button class="lottery-btn btn-random" aria-label="Generate random numbers">
           <i class="fa-solid fa-shuffle"></i>
-          <span>Search Random</span>
+          <span>Quick Pick</span>
         </button>
         <button class="lottery-btn btn-search" aria-label="Search for matches">
           <span>Find Matches</span>
