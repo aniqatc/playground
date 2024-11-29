@@ -132,11 +132,11 @@ export function getMarkup() {
       <!-- Results section -->
       <div class="lottery-results" role="tabpanel">
         <div class="lottery-tabs" role="tablist">
-          <button class="lottery-tab active" role="tab" aria-selected="true">
+          <button class="lottery-tab active" role="tab">
             <i class="fa-solid fa-trophy"></i>
             <span>Matches</span>
           </button>
-          <button class="lottery-tab" role="tab" aria-selected="false">
+          <button class="lottery-tab" role="tab">
             <i class="fa-solid fa-chart-simple"></i>
             <span>Stats</span>
           </button>

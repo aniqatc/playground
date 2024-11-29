@@ -22,6 +22,8 @@ class LotteryContext {
         this.matchesContainer = this.widget.querySelector(".lottery-matches");
         this.statsContainer = this.widget.querySelector(".lottery-stats");
         this.lockedMessageContainer = this.widget.querySelector(".lottery-locked-message");
+        // Tabs
+        this.tabs = this.widget.querySelectorAll(".lottery-tab");
         // Search Dates
         this.searchDateStart = this.widget.querySelector(".search-date-start");
         this.searchDateEnd = this.widget.querySelector(".search-date-end");
