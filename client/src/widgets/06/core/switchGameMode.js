@@ -1,6 +1,6 @@
 import lotteryContext from "./context";
 
-const { switchGameLinks, content, megaballContent, powerballContent, mainNumbers, specialBall, statsContainer, matchesContainer, searchPrompt, noDataPrompt } = lotteryContext;
+const { switchGameLinks, content, megaballContent, powerballContent, mainNumbers, specialBall, statsContainer, matchesContainer } = lotteryContext;
 
 export default async function initializeSwitchLink() {
     switchGameLinks.forEach(link => {
@@ -8,8 +8,7 @@ export default async function initializeSwitchLink() {
             event.preventDefault();
             switchGameMode();
             lotteryContext.updateSearchRange();
-            searchPrompt.classList.remove("hidden");
-            noDataPrompt.classList.add("hidden");
+            lotteryContext.updateLockedMessage(false);
         })
     })
 }

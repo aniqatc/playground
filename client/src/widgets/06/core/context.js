@@ -24,10 +24,8 @@ class LotteryContext {
         // Results
         this.matchesContainer = this.widget.querySelector(".lottery-matches");
         this.statsContainer = this.widget.querySelector(".lottery-stats");
-        // Messages
+        // Locked Message
         this.lockedMessageContainer = this.widget.querySelector(".lottery-locked-message");
-        this.searchPrompt = this.lockedMessageContainer.querySelector(".search-message");
-        this.noDataPrompt = this.lockedMessageContainer.querySelector(".no-data-message");
         // Tabs
         this.tabs = this.widget.querySelectorAll(".lottery-tab");
         // Search Dates
@@ -39,6 +37,12 @@ class LotteryContext {
         const dates = await fetchSearchRange(this.content.dataset.game);
         this.searchDateStart.textContent = dates.startDate;
         this.searchDateEnd.textContent = dates.endDate;
+    }
+
+    updateLockedMessage(boolean) {
+        boolean
+            ? this.lockedMessageContainer.innerHTML = "<i class=\"fa-solid fa-circle-exclamation\"></i> <strong>No matching tickets found</strong>. To see partial matches, you need <strong>at least 4</strong> matching numbers. Please try adjusting your search criteria."
+            : this.lockedMessageContainer.innerHTML = "<i class=\"fa-solid fa-lock\"></i> Search to <strong>unlock</strong> historical lottery results."
     }
 }
 

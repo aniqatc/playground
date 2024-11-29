@@ -1,5 +1,5 @@
 import lotteryContext from "./context";
-const { searchButton, numberInputs, matchesContainer, lockedMessageContainer, content, mainNumbers, specialBall, searchPrompt, noDataPrompt } = lotteryContext;
+const { searchButton, numberInputs, matchesContainer, lockedMessageContainer, content, mainNumbers, specialBall } = lotteryContext;
 import { fetchPerfectMatches } from "./data";
 
 export default function initializeSearchButton() {
@@ -35,8 +35,7 @@ async function handleSearch() {
         matchesContainer.classList.remove("hidden");
         // render matches here
     } else {
-        searchPrompt.classList.add("hidden");
-        noDataPrompt.classList.remove("hidden");
+        lotteryContext.updateLockedMessage(true);
     }
 }
 

@@ -144,8 +144,7 @@ export function getMarkup() {
 
         <div class="lottery-results-content">
           <div class="lottery-locked-message">
-            <span class="search-message"><i class="fa-solid fa-lock"></i> Search to <strong>unlock</strong> historical lottery results.</span>
-            <span class="no-data-message hidden"><i class="fa-solid fa-circle-exclamation"></i> <strong>No matching tickets found</strong>. To see partial matches, you need <strong>at least 4</strong> matching numbers. Please try adjusting your search criteria.</span>
+            <i class="fa-solid fa-lock"></i> Search to <strong>unlock</strong> historical lottery results.
           </div>
           <div class="lottery-matches hidden">
             <div class="lottery-match-card">
