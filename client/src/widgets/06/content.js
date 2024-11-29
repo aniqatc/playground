@@ -62,7 +62,7 @@ export function getMarkup() {
 
       <div class="lottery-search-range">
         <i class="fa-regular fa-calendar"></i>
-        <span class="search-range-date">Search Range: 02/23/1980 - 11/14/2024</span>
+        <span>Search Range: <span class="search-date-start">05/17/2002</span> - <span class="search-date-end">11/15/2024</span></span>
       </div>
       
       <!-- Lottery number inputs -->

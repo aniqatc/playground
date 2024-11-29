@@ -4,6 +4,8 @@ const { numberInputs } = lotteryContext;
 export default function initializeInputsAutocomplete() {
     numberInputs.forEach((input, index) => {
         input.addEventListener("input", () => {
+            input.classList.remove("error");
+            
             if (input.value.length > 2) {
                 input.value = input.value.slice(0, 2);
             }

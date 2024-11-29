@@ -1,6 +1,6 @@
 import lotteryContext from "./context";
 
-const { switchGameLinks, content, megaballContent, powerballContent, mainNumbers, specialBall } = lotteryContext;
+const { switchGameLinks, content, megaballContent, powerballContent, mainNumbers, specialBall, searchDateStart, searchDateEnd } = lotteryContext;
 
 export default function initializeSwitchLink() {
     switchGameLinks.forEach(link => {
@@ -25,6 +25,8 @@ function switchGameMode() {
         });
         specialBall.max = 26;
         specialBall.value = "";
+        searchDateStart.textContent = "04/22/1992";
+        searchDateEnd.textContent = "11/16/2024";
     } else {
         mainNumbers.forEach(input => {
             input.max = 70;
@@ -32,5 +34,7 @@ function switchGameMode() {
         });
         specialBall.max = 25;
         specialBall.value = "";
+        searchDateStart.textContent = "05/17/2002";
+        searchDateEnd.textContent = "11/15/2024";
     }
 }

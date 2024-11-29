@@ -1,8 +1,9 @@
 import lotteryContext from "./context";
-const { randomButton, content, mainNumbers, specialBall } = lotteryContext;
+const { randomButton, content, mainNumbers, specialBall, numberInputs } = lotteryContext;
 
 export default function initializeRandomButton() {
     randomButton.addEventListener("click", () => {
+        numberInputs.forEach(input => input.classList.remove("error"));
         generateRandomNumbers();
     })
 }
