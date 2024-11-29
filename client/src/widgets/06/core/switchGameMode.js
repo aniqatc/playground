@@ -1,6 +1,6 @@
 import lotteryContext from "./context";
 
-const { switchGameLinks, content, megaballContent, powerballContent, mainNumbers, specialBall, searchDateStart, searchDateEnd } = lotteryContext;
+const { switchGameLinks, content, megaballContent, powerballContent, mainNumbers, specialBall, searchDateStart, searchDateEnd, statsContainer, matchesContainer } = lotteryContext;
 
 export default function initializeSwitchLink() {
     switchGameLinks.forEach(link => {
@@ -16,6 +16,8 @@ function switchGameMode() {
     content.dataset.game = currentGame === 'megamillions' ? 'powerball' : 'megamillions';
     megaballContent.forEach(el => el.classList.toggle('hidden'));
     powerballContent.forEach(el => el.classList.toggle('hidden'));
+    statsContainer.innerHTML = "";
+    matchesContainer.innerHTML = "";
 
     // Update limits
     if (content.dataset.game === 'powerball') {

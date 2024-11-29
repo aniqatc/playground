@@ -31,7 +31,7 @@
 
 // Base Widget Styles
 #widget-06 {
-  height: 100%;
+  min-height: 500px;
 
   // Like Button Styles
   .like-btn {
@@ -130,11 +130,10 @@
 
     // Main Content
     .content-body {
+      container-type: inline-size;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-      container-type: inline-size;
+      height: 392px;
 
       .lottery-title {
         font-family: inherit;
@@ -392,7 +391,7 @@
       // Results Section
       .lottery-results {
         margin-top: auto;
-        margin-bottom: var.$spacing-base;
+        margin-bottom: 4px;
         border: 1px solid #DDEDF0;
         padding: 4px;
         border-radius: 4px;
@@ -432,7 +431,7 @@
           flex-direction: column;
           gap: 4px;
           min-height: 90px;
-          max-height: 164px;
+          max-height: 170px;
           overflow: auto;
 
           .lottery-locked-message {

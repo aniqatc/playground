@@ -21,7 +21,6 @@ function handleSearch() {
     if (hasInvalid) return;
 
     // Valid values
-    alert("Validation passed!");
     lockedMessageContainer.classList.add("hidden");
     matchesContainer.classList.remove("hidden");
 }
