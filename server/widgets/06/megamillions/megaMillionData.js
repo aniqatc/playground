@@ -10,6 +10,19 @@ class MegaMillionData {
             endDate: end.drawingDate.toLocaleDateString()
         }
     }
+
+    async fetchPerfectMatches(body) {
+        const { game, mainNumbers, specialNumber } = body;
+        const matches = await MegaMillions.find({
+            numbers: { $all: mainNumbers },
+            megaBall: specialNumber
+        }).sort({ drawingDate: -1 });
+        return matches;
+    }
+
+    async fetchPartialMatches(body) {
+
+    }
 }
 
 module.exports = new MegaMillionData();

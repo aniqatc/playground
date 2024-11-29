@@ -1,5 +1,5 @@
 import lotteryContext from "./context";
-const { tabs, matchesContainer, statsContainer } = lotteryContext;
+const { tabs, matchesContainer, statsContainer, searchPrompt, noDataPrompt } = lotteryContext;
 
 export default function initializeTabs() {
     tabs.forEach(tab => {

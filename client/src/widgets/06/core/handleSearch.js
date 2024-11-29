@@ -1,11 +1,12 @@
 import lotteryContext from "./context";
-const { searchButton, numberInputs, matchesContainer, lockedMessageContainer } = lotteryContext;
+const { searchButton, numberInputs, matchesContainer, lockedMessageContainer, content, mainNumbers, specialBall, searchPrompt, noDataPrompt } = lotteryContext;
+import { fetchPerfectMatches } from "./data";
 
 export default function initializeSearchButton() {
     searchButton.addEventListener("click", handleSearch);
 }
 
-function handleSearch() {
+async function handleSearch() {
     resetErrorStyles();
 
     // Empty inputs
@@ -21,8 +22,22 @@ function handleSearch() {
     if (hasInvalid) return;
 
     // Valid values
-    lockedMessageContainer.classList.add("hidden");
-    matchesContainer.classList.remove("hidden");
+    const userNumbers = {
+        game: content.dataset.game,
+        mainNumbers: mainNumbers.map(input => input.value),
+        specialNumber: specialBall.value
+    };
+    const matches = await fetchPerfectMatches(userNumbers);
+
+    if (matches.length > 0) {
+        console.log(matches);
+        lockedMessageContainer.classList.add("hidden");
+        matchesContainer.classList.remove("hidden");
+        // render matches here
+    } else {
+        searchPrompt.classList.add("hidden");
+        noDataPrompt.classList.remove("hidden");
+    }
 }
 
 function resetErrorStyles() {
