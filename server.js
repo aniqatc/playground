@@ -28,6 +28,8 @@ const toDoRouter = require('./server/widgets/04/toDoRouter');
 const marketRouter = require('./server/widgets/05/market/marketRouter');
 const currencyRouter = require('./server/widgets/05/currency/currencyRouter');
 const lotteryRouter = require('./server/widgets/06/lotteryRouter');
+const megaMillionRouter = require('./server/widgets/06/megamillions/megaMillionRouter');
+const powerballRouter = require('./server/widgets/06/powerball/powerballRouter');
 
 app.use('/users/', userRouter);
 app.use('/likes/', likeRouter);
@@ -36,6 +38,8 @@ app.use('/widget/todos/', toDoRouter);
 app.use('/widget/markets/', marketRouter);
 app.use('/widget/currencies/', currencyRouter);
 app.use('/widget/lottery/', lotteryRouter);
+app.use('/widget/lottery/megamillion/', megaMillionRouter);
+app.use('/widget/lottery/powerball/', powerballRouter);
 
 // daily data refresh
 const marketData = require('./server/widgets/05/market/marketData');
@@ -46,6 +50,10 @@ cron.schedule('0 11 * * 1-5', async () => {
 }, { timezone: "America/New_York" })
 
 // weekly data refresh
+const lotteryData = require('./server/widgets/06/lotteryData');
+cron.schedule('0 0 1 * *', async () => {
+	await lotteryData.updateLotteryData();
+}, { timezone: "America/New_York" })
 
 // redirect backend host to frontend
 app.use((req, res, next) => {
