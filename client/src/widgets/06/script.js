@@ -5,7 +5,7 @@ import initializeResetButton from "./core/handleReset";
 import initializeSearchButton from "./core/handleSearch";
 import initializeTabs from "./core/handleTabs";
 
-export function initializeScript() {
+export async function initializeScript() {
     initializeInputsAutocomplete();
     initializeSwitchLink();
     initializeRandomButton();

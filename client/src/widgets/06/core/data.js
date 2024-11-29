@@ -1,19 +1,13 @@
-async function fetchAllPowerballData() {
-    const response = await fetch(`${process.env.SERVER}/widget/lottery/powerball/all`);
+async function fetchAllData(game) {
+    const response = await fetch(`${process.env.SERVER}/widget/lottery/${game}/all`);
     const data = await response.json();
     return data.data;
 }
 
-async function fetchAllMegamillionData() {
-    const response = await fetch(`${process.env.SERVER}/widget/lottery/megamillion/all`);
+async function fetchSearchRange(game) {
+    const response = await fetch(`${process.env.SERVER}/widget/lottery/${game}/range`);
     const data = await response.json();
-    return data.data;
+    return data.dates;
 }
 
-async function fetchMegamillionSearchRange() {
-
-}
-
-async function fetchPowerballSearchRange() {
-
-}
+export { fetchSearchRange };

@@ -12,4 +12,9 @@ router.get('/all', async (req, res) => {
     });
 });
 
+router.get('/range', async (req, res) => {
+    const dates = await megaMillionData.fetchSearchRange();
+    res.json({ success: true, dates });
+})
+
 module.exports = router;

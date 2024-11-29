@@ -18,7 +18,7 @@ export function getMarkup() {
     <span class="like-value font-archivo" id="likes-06"></span>
   </div>
 
-  <div class="content" data-game="megamillions">
+  <div class="content" data-game="megamillion">
     <!-- Header -->
     <header class="content-header">
   <!-- Game-specific logos -->
@@ -62,7 +62,7 @@ export function getMarkup() {
 
       <div class="lottery-search-range">
         <i class="fa-regular fa-calendar"></i>
-        <span>Search Range: <span class="search-date-start">05/17/2002</span> - <span class="search-date-end">11/15/2024</span></span>
+        <span>Search Range: <span class="search-date-start"></span> - <span class="search-date-end"></span></span>
       </div>
       
       <!-- Lottery number inputs -->

@@ -1,6 +1,9 @@
+import { fetchSearchRange } from "./data";
+
 class LotteryContext {
     constructor() {
         this.initializeElements();
+        this.updateSearchRange();
     }
 
     initializeElements() {
@@ -27,6 +30,12 @@ class LotteryContext {
         // Search Dates
         this.searchDateStart = this.widget.querySelector(".search-date-start");
         this.searchDateEnd = this.widget.querySelector(".search-date-end");
+    }
+
+    async updateSearchRange() {
+        const dates = await fetchSearchRange(this.content.dataset.game);
+        this.searchDateStart.textContent = dates.startDate;
+        this.searchDateEnd.textContent = dates.endDate;
     }
 }
 
