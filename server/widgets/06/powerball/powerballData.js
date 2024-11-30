@@ -1,4 +1,5 @@
 const Powerball = require('../models/powerballModel');
+const MegaMillions = require("../models/megaMillionsModel");
 
 class PowerballData {
     async fetchSearchRange() {
@@ -46,15 +47,15 @@ class PowerballData {
 
     async fetchStats(body) {
         const { mainNumbers, specialNumber } = body;
-        const allResults = await Powerball.find().select('drawingDate jackpot');
-        let numberStats = [];
+        const totalDrawings = await Powerball.countDocuments();
 
+        let numberStats = [];
         for (let num of mainNumbers) {
             const count = await Powerball.countDocuments({ numbers: parseInt(num) });
             numberStats.push({
                 number: num,
                 frequency: count,
-                percentage: ((count / allResults.length) * 100)
+                percentage: ((count / totalDrawings ) * 100)
             });
         }
 
@@ -62,17 +63,20 @@ class PowerballData {
         numberStats.push({
             number: specialNumber,
             frequency: specialBallCount,
-            percentage: ((specialBallCount / allResults.length) * 100),
+            percentage: ((specialBallCount / totalDrawings ) * 100),
             isSpecialBall: true
         });
 
-        const maxJackpot = allResults.reduce((max, game) => {
+        const jackpotResults = await Powerball.find({
+            $or: [{ numbers: { $in: mainNumbers } }, { powerBall: specialNumber }]}).select('jackpot');
+
+        const maxJackpot = jackpotResults.reduce((max, game) => {
             const amount = parseInt(game.jackpot.replace(/\D/g, ''));
             return amount > max ? amount : max;
         }, 0);
 
         return {
-            drawingsSearched: allResults.length.toLocaleString(),
+            drawingsSearched: totalDrawings.toLocaleString(),
             largestJackpot: new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD',

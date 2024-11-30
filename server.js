@@ -49,7 +49,7 @@ cron.schedule('0 11 * * 1-5', async () => {
 	await currencyData.fetchExchangeRate();
 }, { timezone: "America/New_York" })
 
-// weekly data refresh
+// monthly data refresh
 const lotteryData = require('./server/widgets/06/lotteryData');
 cron.schedule('0 0 1 * *', async () => {
 	await lotteryData.updateLotteryData();

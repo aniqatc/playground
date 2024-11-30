@@ -44,7 +44,7 @@ class MegaMillionData {
 
     async fetchStats(body) {
         const { mainNumbers, specialNumber } = body;
-        const allResults = await MegaMillions.find().select('drawingDate jackpot');
+        const totalDrawings = await MegaMillions.countDocuments();
 
         let numberStats = [];
         for (let num of mainNumbers) {
@@ -52,7 +52,7 @@ class MegaMillionData {
             numberStats.push({
                 number: num,
                 frequency: count,
-                percentage: ((count / allResults.length) * 100)
+                percentage: ((count / totalDrawings ) * 100)
             });
         }
 
@@ -60,17 +60,20 @@ class MegaMillionData {
         numberStats.push({
             number: specialNumber,
             frequency: specialBallCount,
-            percentage: ((specialBallCount / allResults.length) * 100),
+            percentage: ((specialBallCount / totalDrawings ) * 100),
             isSpecialBall: true
         });
 
-        const maxJackpot = allResults.reduce((max, game) => {
+        const jackpotResults = await MegaMillions.find({
+            $or: [{ numbers: { $in: mainNumbers } }, { megaBall: specialNumber }]}).select('jackpot');
+
+        const maxJackpot = jackpotResults.reduce((max, game) => {
             const amount = parseInt(game.jackpot.replace(/\D/g, ''));
             return amount > max ? amount : max;
         }, 0);
 
         return {
-            drawingsSearched: allResults.length.toLocaleString(),
+            drawingsSearched: totalDrawings.toLocaleString(),
             largestJackpot: new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD',
