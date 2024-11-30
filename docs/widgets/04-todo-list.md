@@ -46,28 +46,28 @@ A fully interactive To-Do List widget allowing users to create, edit, archive, a
 
 **Frontend Components**
 
-- [/client/../widgets/04/style.scss](../../client/src/widgets/04/style.scss): Handles the styling for the widget, including the subtle animation that occurs when page is loaded
-- [/client/../widgets/04/content.js](../../client/src/widgets/04/content.js): Contains the HTML structure for the widget (including placeholder values if there is an error getting the user's digital footprint)
-- [/client/../widgets/04/script.js](../../client/src/widgets/04/script.js): Initializes and loads the widget components, handles default task display and manages user data retrieval
-- [/client/../widgets/04/core/*](../../client/src/widgets/04/core): 
-  - **Calendar** ([../calendar.js](../../client/src/widgets/04/core/calendar.js) & [../calendar.scss](../../client/src/widgets/04/core/calendar.scss)): Handles the initialization and styling of the Flatpickr calendar instance
-  - **Context** ([../context.js](../../client/src/widgets/04/core/context.js)): Initializes and manages key DOM elements
-  - **Examples** ([../examples.js](../../client/src/widgets/04/core/examples.js)): Asynchronous function to create sample to-do tasks for new users or users without any to-dos listed in their database already
-  - **Filtering** ([../filter.js](../../client/src/widgets/04/core/filter.js)): Handles filtering the to-do tasks based on the filter option selected
-  - **User Input** ([../input.js](../../client/src/widgets/04/core/input.js)): Handles user input by adding a new to-do task to the database or showing error if an incorrect input is provided
-  - **Textarea Initialization** ([../textarea.js](../../client/src/widgets/04/core/textarea.js)): Handles the initialization of the textarea, the priority dropdown, and applying focused styling to elements 
-  - **To Do Actions** ([../toDoActions.js](../../client/src/widgets/04/core/toDoActions.js)): Class that handles the retrieval and displaying of any existing to-dos, adding individual items to the database and consequentially, the DOM, initializes individual to-do task actions (archive, delay, edit and delete buttons), toggles completion status, along with a few helper functions
+- [`style.scss`](../../client/src/widgets/04/style.scss): Handles the styling for the widget, including the subtle animation that occurs when page is loaded
+- [`content.js`](../../client/src/widgets/04/content.js): Contains the HTML structure for the widget (including placeholder values if there is an error getting the user's digital footprint)
+- [`script.js`](../../client/src/widgets/04/script.js): Initializes and loads the widget components, handles default task display and manages user data retrieval
+- [`core/*`](../../client/src/widgets/04/core): 
+  - **Calendar** ([`calendar.js`](../../client/src/widgets/04/core/calendar.js) & [../calendar.scss](../../client/src/widgets/04/core/calendar.scss)): Handles the initialization and styling of the Flatpickr calendar instance
+  - **Context** ([`context.js`](../../client/src/widgets/04/core/context.js)): Initializes and manages key DOM elements
+  - **Examples** ([`examples.js`](../../client/src/widgets/04/core/examples.js)): Asynchronous function to create sample to-do tasks for new users or users without any to-dos listed in their database already
+  - **Filtering** ([`filter.js`](../../client/src/widgets/04/core/filter.js)): Handles filtering the to-do tasks based on the filter option selected
+  - **User Input** ([`input.js`](../../client/src/widgets/04/core/input.js)): Handles user input by adding a new to-do task to the database or showing error if an incorrect input is provided
+  - **Textarea Initialization** ([`textarea.js`](../../client/src/widgets/04/core/textarea.js)): Handles the initialization of the textarea, the priority dropdown, and applying focused styling to elements 
+  - **To Do Actions** ([`toDoActions.js`](../../client/src/widgets/04/core/toDoActions.js)): Class that handles the retrieval and displaying of any existing to-dos, adding individual items to the database and consequentially, the DOM, initializes individual to-do task actions (archive, delay, edit and delete buttons), toggles completion status, along with a few helper functions
 
 **Backend**
 
-1. Task Model ([/server/widgets/04/toDoModel.js](/server/widgets/04/toDoModel.js)): MongoDB schema defining task attributes (task description, due date, priority and archived/completion status)
-2. Task Router ([/server/widgets/04/toDoRouter.js](/server/widgets/04/toDoRouter.js)): Provides API endpoints for creating, updating, retrieving, and deleting tasks
+1. Task Model ([`toDoModel.js`](/server/widgets/04/toDoModel.js)): MongoDB schema defining task attributes (task description, due date, priority and archived/completion status)
+2. Task Router ([`toDoRouter.js`](/server/widgets/04/toDoRouter.js)): Provides API endpoints for creating, updating, retrieving, and deleting tasks
 
 **Backend Components**
 
-- [/server.js](/server.js): Initializes the Express.js server & handles API routing
-- [/server/widgets/04/toDoModel.js](/server/widgets/04/toDoModel.js): Defines Mongoose schema and data structure for storing tasks
-- [/server/widgets/04/toDoRouter.js](/server/widgets/04/toDoRouter.js): API endpoint routes for routing CRUD operations for tasks
+- [`server.js`](/server.js): Initializes the Express.js server & handles API routing
+- [`toDoModel.js`](/server/widgets/04/toDoModel.js): Defines Mongoose schema and data structure for storing tasks
+- [`toDoRouter.js`](/server/widgets/04/toDoRouter.js): API endpoint routes for routing CRUD operations for tasks
 
 ## How to Use
 

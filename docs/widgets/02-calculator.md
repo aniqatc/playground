@@ -35,25 +35,25 @@ A dual-mode calculator that can handle evaluating different arithmetic expressio
 
 **User Interface (UI)**
 
-- [../widgets/02/style.css](../../client/src/widgets/02/style.css): Provides the visual appearance of the calculator, including the animations of the expression history and the different active states
-- [../widgets/02/core/ui.js](../../client/src/widgets/02/core/ui.js): Manages initialization of all the interactive elements (event handlers), displaying updates, and resets
-- [../widgets/02/core/styles.js](../../client/src/widgets/02/core/styles.js): Handles style updates when switching between scientific and graphing modes
+- [`style.css`](../../client/src/widgets/02/style.css): Provides the visual appearance of the calculator, including the animations of the expression history and the different active states
+- [`core/ui.js`](../../client/src/widgets/02/core/ui.js): Manages initialization of all the interactive elements (event handlers), displaying updates, and resets
+- [`core/styles.js`](../../client/src/widgets/02/core/styles.js): Handles style updates when switching between scientific and graphing modes
 
 **Context**
 
-- [../widgets/02/core/context.js](../../client/src/widgets/02/core/context.js): Initializes and manages key DOM elements, making it easy for other classes (such as `UI`, `Logic`, and `Storage`) to consistently access and utilize the same elements throughout the application
+- [`core/context.js`](../../client/src/widgets/02/core/context.js): Initializes and manages key DOM elements, making it easy for other classes (such as `UI`, `Logic`, and `Storage`) to consistently access and utilize the same elements throughout the application
 
 **Logic**
 
-- [../widgets/02/core/logic.js](../../client/src/widgets/02/core/logic.js): generates the graph for the graphing mode and contains the core logic for evaluating arithmetic expressions for the scientific mode
+- [`core/logic.js`](../../client/src/widgets/02/core/logic.js): generates the graph for the graphing mode and contains the core logic for evaluating arithmetic expressions for the scientific mode
 
 **User Input**
 
-- [../widgets/02/core/input.js](../../client/src/widgets/02/core/input.js): Handles various inputs from the user (e.g., numbers, operators, graphing commands) and determines the appropriate `Logic` method to execute from the `logic.js` file
+- [`core/input.js`](../../client/src/widgets/02/core/input.js): Handles various inputs from the user (e.g., numbers, operators, graphing commands) and determines the appropriate `Logic` method to execute from the `logic.js` file
 
 **Storage**
 
-- [../widgets/02/core/storage.js](../../client/src/widgets/02/core/storage.js): Manages saving and retrieving the calculator's display and input history to and from `localStorage`
+- [`core/storage.js`](../../client/src/widgets/02/core/storage.js): Manages saving and retrieving the calculator's display and input history to and from `localStorage`
 
 ## Core Classes
 
