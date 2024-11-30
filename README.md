@@ -111,7 +111,7 @@ A user-friendly to-do list widget that lets users manage tasks with priority tag
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-04_v1.png"></a>
 
-#### Widget 04: Financial Markets Monitor ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/05-fin-market.md))
+#### Widget 05: Financial Markets Monitor ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/05-fin-market.md))
 
 [![HTML Badge](https://img.shields.io/badge/HTML-4eb247)](https://github.com/aniqatc/playground)
 [![SCSS Badge](https://img.shields.io/badge/SCSS-4eb247)](https://github.com/aniqatc/playground)
@@ -129,6 +129,21 @@ A financial markets widget that delivers real-time currency exchange rates again
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-05_v1-1.png"></a>
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-05_v1-2.png"></a>
+
+#### Widget 06: Historical Lottery Search ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/06-lottery.md))
+
+[![HTML Badge](https://img.shields.io/badge/HTML-38C4DC)](https://github.com/aniqatc/playground)
+[![SCSS Badge](https://img.shields.io/badge/SCSS-38C4DC)](https://github.com/aniqatc/playground)
+[![JavaScript Badge](https://img.shields.io/badge/JavaScript-38C4DC)](https://github.com/aniqatc/playground)
+[![Node Badge](https://img.shields.io/badge/Node-38C4DC)](https://github.com/aniqatc/playground)
+[![Express Badge](https://img.shields.io/badge/Express-38C4DC)](https://github.com/aniqatc/playground)
+[![MongoDB Badge](https://img.shields.io/badge/MongoDB-38C4DC)](https://github.com/aniqatc/playground)
+[![AvoraTech Powerball Badge](https://img.shields.io/badge/AvoraTech%20Powerball%20API-38C4DC)](https://github.com/aniqatc/playground)
+[![AvoraTech Megamillions Badge](https://img.shields.io/badge/AvoraTech%20Megamillions%20API-38C4DC)](https://github.com/aniqatc/playground)
+
+A lottery analysis tool that helps players analyze historical Powerball and Mega Millions drawings, featuring quick number generation, detailed match statistics, and visual indicators to easily spot winning combinations - all searchable across 20+ years of drawing history.
+
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-06_v1.png"></a>
 
 ## Available Scripts
 
