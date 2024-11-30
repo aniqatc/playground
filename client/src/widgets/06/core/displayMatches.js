@@ -47,6 +47,7 @@ function generateMatchCard(match) {
 function getMatchDescription(match, game) {
     const { matchedNumbers, megaBallMatch } = match;
     const mainMatches = matchedNumbers.length;
+
     if (mainMatches === 5 && megaBallMatch) {
         return "Perfect Match";
     }

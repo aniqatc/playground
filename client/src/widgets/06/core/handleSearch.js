@@ -1,8 +1,9 @@
 import lotteryContext from "./context";
 const { searchButton, numberInputs, content, mainNumbers, specialBall } = lotteryContext;
-import { fetchMatches } from "./data";
+import { fetchMatches, fetchStats } from "./data";
 import { getActiveTab } from "./handleTabs";
 import displayMatches from "./displayMatches"
+import displayStats from "./displayStats";
 
 export default function initializeSearchButton() {
     searchButton.addEventListener("click", handleSearch);
@@ -36,7 +37,8 @@ async function handleSearch() {
     }
 
     if (getActiveTab().textContent.includes("Stats")) {
-        alert("coming soon!!!! :)");
+        const stats = await fetchStats(userNumbers);
+        displayStats(stats);
     }
 }
 

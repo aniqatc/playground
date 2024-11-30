@@ -18,6 +18,8 @@ function switchGameMode() {
     content.dataset.game = currentGame === 'megamillion' ? 'powerball' : 'megamillion';
     megaballContent.forEach(el => el.classList.toggle('hidden'));
     powerballContent.forEach(el => el.classList.toggle('hidden'));
+    matchesContainer.innerHTML = "";
+    statsContainer.innerHTML = "";
     statsContainer.classList.add("hidden");
     matchesContainer.classList.add("hidden");
 

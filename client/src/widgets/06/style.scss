@@ -525,7 +525,7 @@
 
               .stats-overview {
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: 1fr 2fr;
                 gap: 8px;
                 margin-bottom: 8px;
 
@@ -553,7 +553,7 @@
               .number-analysis {
                 .number-stats {
                   display: grid;
-                  grid-template-columns: repeat(3, 1fr);
+                  grid-template-columns: repeat(2, 1fr);
                   gap: 6px;
 
                   .number-stat {
@@ -578,7 +578,7 @@
                     }
 
                     .stat-details {
-                      font-size: 10px;
+                      font-size: 11px;
 
                       .frequency {
                         color: var.$color-dark;
@@ -587,7 +587,7 @@
 
                       .percentage {
                         color: var.$gray-medium;
-                        font-size: 9px;
+                        font-size: 10px;
                       }
                     }
                   }
