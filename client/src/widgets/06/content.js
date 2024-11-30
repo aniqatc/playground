@@ -142,13 +142,14 @@ export function getMarkup() {
           </button>
         </div>
 
+       <div class="scrollable-container">
         <div class="lottery-results-content">
           <div class="lottery-locked-message">
             <i class="fa-solid fa-lock"></i> Search to <strong>unlock</strong> historical lottery results.
           </div>
           <div class="lottery-matches hidden"></div>
          <div class="lottery-stats hidden"></div>
-        </div>
+        </div></div>
       </div>
     </main>
 
