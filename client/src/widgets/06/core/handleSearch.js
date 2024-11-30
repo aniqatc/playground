@@ -47,12 +47,9 @@ function displayMatches(matches, userNumbers) {
     matchesContainer.classList.remove("hidden");
     matchesContainer.innerHTML = "";
 
-    const template = document.createElement('div');
     matches.forEach(match => {
-        template.innerHTML += generateMatchCard(match);
+        matchesContainer.innerHTML += generateMatchCard(match);
     });
-
-    matchesContainer.appendChild(template);
 }
 
 function generateMatchCard(match) {
