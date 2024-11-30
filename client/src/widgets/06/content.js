@@ -146,25 +146,7 @@ export function getMarkup() {
           <div class="lottery-locked-message">
             <i class="fa-solid fa-lock"></i> Search to <strong>unlock</strong> historical lottery results.
           </div>
-          <div class="lottery-matches hidden">
-            <div class="lottery-match-card">
-                <h3><i class="fa-solid fa-check"></i> Partial Match on <span class="match-date">Jan 15, 2024</span></h3>
-                <div class="match-content">
-                  <div class="match-numbers">
-                    <span class="number">12</span>
-                    <span class="number">24</span>
-                    <span class="number">45</span>
-                    <span class="number not-a-match">56</span>
-                    <span class="number not-a-match">69</span>
-                    <span class="special-number not-a-match">23</span>
-                  </div>
-                  <div class="match-details">
-                    <div class="jackpot">Jackpot: <span>$10K</span></div>
-                    <div class="multiplier">Multiplier: <span>N/A</span></div>
-                  </div>
-                </div>
-            </div>
-         </div>
+          <div class="lottery-matches hidden"></div>
          <div class="lottery-stats hidden">
             <div class="lottery-stat-card">
                 <h3>
@@ -228,7 +210,7 @@ export function getMarkup() {
                         <div class="percentage">In 12.5% of drawings</div>
                     </div>
                 </div>
-</div>
+                    </div>
                 </div>
             </div>
         </div>

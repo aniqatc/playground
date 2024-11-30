@@ -11,6 +11,7 @@ async function fetchSearchRange(game) {
 }
 
 async function fetchMatches(numbers) {
+    console.log(`Fetching ${numbers.game} data...`)
     const response = await fetch(`${process.env.SERVER}/widget/lottery/${numbers.game}/matches`, {
         method: 'POST',
         headers: {

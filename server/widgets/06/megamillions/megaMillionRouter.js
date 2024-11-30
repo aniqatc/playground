@@ -18,4 +18,9 @@ router.post('/matches', async (req, res) => {
     res.json({ success: true, matches });
 })
 
+router.post('/stats', async (req, res) => {
+    const stats = await megaMillionData.fetchStats(req.body);
+    res.json({ success: true, stats });
+})
+
 module.exports = router;

@@ -1,6 +1,8 @@
 import lotteryContext from "./context";
-const { searchButton, numberInputs, matchesContainer, lockedMessageContainer, content, mainNumbers, specialBall } = lotteryContext;
+const { searchButton, numberInputs, content, mainNumbers, specialBall } = lotteryContext;
 import { fetchMatches } from "./data";
+import { getActiveTab } from "./handleTabs";
+import displayMatches from "./displayMatches"
 
 export default function initializeSearchButton() {
     searchButton.addEventListener("click", handleSearch);
@@ -28,70 +30,14 @@ async function handleSearch() {
         specialNumber: specialBall.value,
     };
 
-    try {
+    if (getActiveTab().textContent.includes("Matches")) {
         const matches = await fetchMatches(userNumbers);
-        displayMatches(matches, userNumbers);
-    } catch (error) {
-        console.error('Error fetching matches:', error);
-        lotteryContext.updateLockedMessage(true);
-    }
-}
-
-function displayMatches(matches, userNumbers) {
-    if (matches.length === 0) {
-        lotteryContext.updateLockedMessage(true);
-        return;
+        displayMatches(matches);
     }
 
-    lockedMessageContainer.classList.add("hidden");
-    matchesContainer.classList.remove("hidden");
-    matchesContainer.innerHTML = "";
-
-    matches.forEach(match => {
-        matchesContainer.innerHTML += generateMatchCard(match);
-    });
-}
-
-function generateMatchCard(match) {
-    const drawingDate = new Date(match.drawingDate).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric'
-    });
-
-    const numbersHTML = match.numbers.map(num =>
-        `<span class="number${match.matchedNumbers.includes(num) ? '' : ' not-a-match'}">${num}</span>`
-    ).join('');
-
-    return `
-        <div class="lottery-match-card">
-            <h3>
-                <i class="fa-solid fa-check-double"></i>
-                ${getMatchDescription(match)} on 
-                <span class="match-date">${drawingDate}</span>
-            </h3>
-            <div class="match-content">
-                <div class="match-numbers">
-                    ${numbersHTML}
-                    <span class="special-number${match.megaBallMatch ? '' : ' not-a-match'}">${match.megaBall}</span>
-                </div>
-                <div class="match-details">
-                    <div class="jackpot">Jackpot: <span>${match.jackpot}</span></div>
-                    <div class="multiplier">Multiplier: <span>${match.megaplier}x</span></div>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-function getMatchDescription({ matchedNumbers, megaBallMatch }) {
-    const mainMatches = matchedNumbers.length;
-
-    if (mainMatches === 5 && megaBallMatch) {
-        return "Perfect Match";
+    if (getActiveTab().textContent.includes("Stats")) {
+        alert("coming soon!!!! :)");
     }
-
-    return `Matched ${mainMatches} number${mainMatches !== 1 ? 's' : ''}${megaBallMatch ? ' + Mega Ball' : ''}`;
 }
 
 function resetErrorStyles() {
