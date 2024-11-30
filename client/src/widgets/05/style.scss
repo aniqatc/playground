@@ -186,7 +186,9 @@
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 5px;
-          scrollbar-gutter: stable outside;
+          width: calc(100% + 10px);
+          padding-right: 10px;
+          scrollbar-gutter: stable;
           scrollbar-width: thin;
           scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
           align-items: start;
