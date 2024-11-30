@@ -54,4 +54,55 @@ MongoDB Collections:
 - To reduce the load on the website, only matches with 3 or more matching numbers are shown
 - Data is limited to only two types of lottery games
 - Data is updated periodically as opposed to daily
-  
+
+## Widget Architecture
+
+### Frontend: [/client/src/widgets/06/\*](../../client/src/widgets/06/)
+
+1. **Search Interface**: Inputs fields for main numbers, special ball value with clear indication of range for each respective game and clear visual cues for any errors
+2. **Quick Pick**: Generates randomized numbers within the valid range for each game
+3. **Results Display: Matches**: Match cards showing drawing details (matched vs unmatched numbers, jackpot value, multiplier value and description)
+4. **Results Display: Stats**: Statistics dashboard with frequency information for each number, highest jackpot that includes the user-inputted numbers and number of drawings searched
+5. **Switch Game Modes & Result Display Views**: Megamillions/Powerball game; Matches/Stats views
+
+### Frontend Components
+
+**Core Directory**:
+
+**Root Files**:
+- [`content.js`](/client/src/widgets/06/content.js): Defines base HTML structure and placeholder templates for the widget
+- [`script.js`](/client/src/widgets/06/script.js): Entry point that initializes relevant components 
+- [`style.scss`](/client/src/widgets/06/style.scss): Widget-specific styling including dark mode, responsive layouts, animations and different states
+
+### Backend: [/server/widgets/06/\*](../../server/widgets/06/)
+
+1. **Node-cron Job**: Scheduled task for a data refresh on the lottery data about once a month (but will change to weekly)
+2. **Lottery Router**: API endpoint for data refresh
+3. **Powerball & MegaMillion Routers**: API endpoints to retrieve data from the backend (matches, stats and search date ranges)
+4. **Powerball & MegaMillion Helpers**: Helper class that holds functions that handle finding perfect/partial matches and calculating relevant statistics
+5. **MongoDB/Mongoose Models**: Schemas for lottery data
+
+### Backend Components
+
+- [/server.js](/server.js): Initializes the Express.js server, handles API routing, and uses node-cron to refresh the historical lottery data (as new numbers are added weekly)
+
+**Base Directory**:
+**Megamillions Directory**:
+**Powerball Directory**:
+
+## How to Use
+
+1. **Select game type**: Choose between Powerball or Mega Millions lottery
+
+2. **Enter your numbers**:
+    - **5 numbers + 1 special ball value** that must be within the indicated range
+    - **Quick pick numbers**: Click the "quick pick" button in order to generate numbers that are within the required range for search
+
+3. **Find matches**:
+   - View matching drawings and details in the `Matches` tab
+   - See search statistics in the `Stats` tab
+
+4. **Review color-coded results**:
+   - Matches numbers appear highlighted
+   - Unmatched numbers appear faded (greyed out)
+   - Perfect matches are shown first
