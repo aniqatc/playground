@@ -11,17 +11,31 @@ class MegaMillionData {
         }
     }
 
-    async fetchPerfectMatches(body) {
-        const { game, mainNumbers, specialNumber } = body;
-        const matches = await MegaMillions.find({
+    async fetchMatches(body) {
+        const { mainNumbers, specialNumber } = body;
+
+        // Find perfect matches
+        const perfectMatches = await MegaMillions.find({
             numbers: { $all: mainNumbers },
             megaBall: specialNumber
-        }).sort({ drawingDate: -1 });
-        return matches;
-    }
+        })
+            .sort({ drawingDate: -1 })
+            .exec();
 
-    async fetchPartialMatches(body) {
+        // Find partial matches
+        const partialMatches = await MegaMillions.find({
+            numbers: { $in: mainNumbers },
+            megaBall: specialNumber
+        })
+            .sort({ drawingDate: -1 })
+            .exec();
 
+        const filteredPartialMatches = partialMatches.filter(match => {
+            const matchedNumbers = match.numbers.filter(num => mainNumbers.includes(num));
+            return matchedNumbers.length < mainNumbers.length;
+        });
+
+        return [...perfectMatches, ...filteredPartialMatches];
     }
 }
 

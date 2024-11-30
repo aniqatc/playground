@@ -10,8 +10,8 @@ async function fetchSearchRange(game) {
     return data.dates;
 }
 
-async function fetchPerfectMatches(numbers) {
-    const response = await fetch(`${process.env.SERVER}/widget/lottery/${numbers.game}/perfect`, {
+async function fetchMatches(numbers) {
+    const response = await fetch(`${process.env.SERVER}/widget/lottery/${numbers.game}/matches`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -22,4 +22,4 @@ async function fetchPerfectMatches(numbers) {
     return matches;
 }
 
-export { fetchSearchRange, fetchPerfectMatches };
+export { fetchSearchRange, fetchMatches };

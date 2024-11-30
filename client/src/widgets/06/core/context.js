@@ -40,8 +40,9 @@ class LotteryContext {
     }
 
     updateLockedMessage(boolean) {
+        this.lockedMessageContainer.classList.remove("hidden");
         boolean
-            ? this.lockedMessageContainer.innerHTML = "<i class=\"fa-solid fa-circle-exclamation\"></i> <strong>No matching tickets found</strong>. To see partial matches, you need <strong>at least 4</strong> matching numbers. Please try adjusting your search criteria."
+            ? this.lockedMessageContainer.innerHTML = "<i class=\"fa-solid fa-circle-exclamation\"></i> <strong>No matching tickets found</strong>. Please try adjusting your search criteria."
             : this.lockedMessageContainer.innerHTML = "<i class=\"fa-solid fa-lock\"></i> Search to <strong>unlock</strong> historical lottery results."
     }
 }

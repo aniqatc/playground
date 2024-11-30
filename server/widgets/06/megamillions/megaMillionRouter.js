@@ -13,13 +13,8 @@ router.get('/range', async (req, res) => {
     res.json({ success: true, dates });
 })
 
-router.post('/perfect', async (req, res) => {
-    const matches = await megaMillionData.fetchPerfectMatches(req.body);
-    res.json({ success: true, matches });
-})
-
-router.post('/partial', async (req, res) => {
-    const matches = await megaMillionData.fetchPartialMatches(req.body);
+router.post('/matches', async (req, res) => {
+    const matches = await megaMillionData.fetchMatches(req.body);
     res.json({ success: true, matches });
 })
 

@@ -1,6 +1,6 @@
 import lotteryContext from "./context";
 const { searchButton, numberInputs, matchesContainer, lockedMessageContainer, content, mainNumbers, specialBall } = lotteryContext;
-import { fetchPerfectMatches } from "./data";
+import { fetchMatches } from "./data";
 
 export default function initializeSearchButton() {
     searchButton.addEventListener("click", handleSearch);
@@ -25,18 +25,49 @@ async function handleSearch() {
     const userNumbers = {
         game: content.dataset.game,
         mainNumbers: mainNumbers.map(input => input.value),
-        specialNumber: specialBall.value
+        specialNumber: specialBall.value,
     };
-    const matches = await fetchPerfectMatches(userNumbers);
 
+    const matches = await fetchMatches(userNumbers);
     if (matches.length > 0) {
-        console.log(matches);
         lockedMessageContainer.classList.add("hidden");
         matchesContainer.classList.remove("hidden");
-        // render matches here
+        matchesContainer.innerHTML = "";
+        matches.forEach(match => {
+            matchesContainer.innerHTML += generateMatchCard(match);
+        })
     } else {
         lotteryContext.updateLockedMessage(true);
     }
+}
+
+function generateMatchCard(match) {
+    const drawingDate = new Date(match.drawingDate);
+    const formattedDate = drawingDate.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+    });
+
+    return `
+                <div class="lottery-match-card">
+                <h3><i class="fa-solid fa-check-double"></i> Perfect Match on <span class="match-date">${formattedDate}</span></h3>
+                <div class="match-content">
+                  <div class="match-numbers">
+                    <span class="number">${match.numbers[0]}</span>
+                    <span class="number">${match.numbers[1]}</span>
+                    <span class="number">${match.numbers[2]}</span>
+                    <span class="number">${match.numbers[3]}</span>
+                    <span class="number">${match.numbers[4]}</span>
+                    <span class="special-number">${match.megaBall}</span>
+                  </div>
+                  <div class="match-details">
+                    <div class="jackpot">Jackpot: <span>${match.jackpot}</span></div>
+                    <div class="multiplier">Multiplier: <span>${match.megaplier}x</span></div>
+                  </div>
+                </div>
+               </div>
+    `
 }
 
 function resetErrorStyles() {

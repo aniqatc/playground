@@ -148,23 +148,6 @@ export function getMarkup() {
           </div>
           <div class="lottery-matches hidden">
             <div class="lottery-match-card">
-                <h3><i class="fa-solid fa-check-double"></i> Perfect Match on <span class="match-date">Jan 15, 2024</span></h3>
-                <div class="match-content">
-                  <div class="match-numbers">
-                    <span class="number">12</span>
-                    <span class="number">24</span>
-                    <span class="number">45</span>
-                    <span class="number">56</span>
-                    <span class="number">69</span>
-                    <span class="special-number">23</span>
-                  </div>
-                  <div class="match-details">
-                    <div class="jackpot">Jackpot: <span>$785M</span></div>
-                    <div class="multiplier">Multiplier: <span>3x</span></div>
-                  </div>
-                </div>
-            </div>
-            <div class="lottery-match-card">
                 <h3><i class="fa-solid fa-check"></i> Partial Match on <span class="match-date">Jan 15, 2024</span></h3>
                 <div class="match-content">
                   <div class="match-numbers">
