@@ -28,46 +28,73 @@ async function handleSearch() {
         specialNumber: specialBall.value,
     };
 
-    const matches = await fetchMatches(userNumbers);
-    if (matches.length > 0) {
-        lockedMessageContainer.classList.add("hidden");
-        matchesContainer.classList.remove("hidden");
-        matchesContainer.innerHTML = "";
-        matches.forEach(match => {
-            matchesContainer.innerHTML += generateMatchCard(match);
-        })
-    } else {
+    try {
+        const matches = await fetchMatches(userNumbers);
+        displayMatches(matches, userNumbers);
+    } catch (error) {
+        console.error('Error fetching matches:', error);
         lotteryContext.updateLockedMessage(true);
     }
 }
 
+function displayMatches(matches, userNumbers) {
+    if (matches.length === 0) {
+        lotteryContext.updateLockedMessage(true);
+        return;
+    }
+
+    lockedMessageContainer.classList.add("hidden");
+    matchesContainer.classList.remove("hidden");
+    matchesContainer.innerHTML = "";
+
+    const template = document.createElement('div');
+    matches.forEach(match => {
+        template.innerHTML += generateMatchCard(match);
+    });
+
+    matchesContainer.appendChild(template);
+}
+
 function generateMatchCard(match) {
-    const drawingDate = new Date(match.drawingDate);
-    const formattedDate = drawingDate.toLocaleDateString('en-US', {
+    const drawingDate = new Date(match.drawingDate).toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric',
         year: 'numeric'
     });
 
+    const numbersHTML = match.numbers.map(num =>
+        `<span class="number${match.matchedNumbers.includes(num) ? '' : ' not-a-match'}">${num}</span>`
+    ).join('');
+
     return `
-                <div class="lottery-match-card">
-                <h3><i class="fa-solid fa-check-double"></i> Perfect Match on <span class="match-date">${formattedDate}</span></h3>
-                <div class="match-content">
-                  <div class="match-numbers">
-                    <span class="number">${match.numbers[0]}</span>
-                    <span class="number">${match.numbers[1]}</span>
-                    <span class="number">${match.numbers[2]}</span>
-                    <span class="number">${match.numbers[3]}</span>
-                    <span class="number">${match.numbers[4]}</span>
-                    <span class="special-number">${match.megaBall}</span>
-                  </div>
-                  <div class="match-details">
+        <div class="lottery-match-card">
+            <h3>
+                <i class="fa-solid fa-check-double"></i>
+                ${getMatchDescription(match)} on 
+                <span class="match-date">${drawingDate}</span>
+            </h3>
+            <div class="match-content">
+                <div class="match-numbers">
+                    ${numbersHTML}
+                    <span class="special-number${match.megaBallMatch ? '' : ' not-a-match'}">${match.megaBall}</span>
+                </div>
+                <div class="match-details">
                     <div class="jackpot">Jackpot: <span>${match.jackpot}</span></div>
                     <div class="multiplier">Multiplier: <span>${match.megaplier}x</span></div>
-                  </div>
                 </div>
-               </div>
-    `
+            </div>
+        </div>
+    `;
+}
+
+function getMatchDescription({ matchedNumbers, megaBallMatch }) {
+    const mainMatches = matchedNumbers.length;
+
+    if (mainMatches === 5 && megaBallMatch) {
+        return "Perfect Match";
+    }
+
+    return `Matched ${mainMatches} number${mainMatches !== 1 ? 's' : ''}${megaBallMatch ? ' + Mega Ball' : ''}`;
 }
 
 function resetErrorStyles() {
@@ -84,7 +111,7 @@ function checkEmpty() {
             input.classList.add("error");
             hasEmpty = true;
         }
-    })
+    });
     return hasEmpty;
 }
 
@@ -106,7 +133,6 @@ function checkDuplicates() {
 
 function checkInvalid() {
     let hasInvalid = false;
-
     numberInputs.forEach(input => {
         const value = parseInt(input.value);
         const min = parseInt(input.min);
@@ -116,6 +142,6 @@ function checkInvalid() {
             input.classList.add("error");
             hasInvalid = true;
         }
-    })
+    });
     return hasInvalid;
 }

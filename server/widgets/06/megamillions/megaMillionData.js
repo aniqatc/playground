@@ -2,8 +2,8 @@ const MegaMillions = require('../models/megaMillionsModel');
 
 class MegaMillionData {
     async fetchSearchRange() {
-        const start = await MegaMillions.findOne().sort({ drawingDate: 1}).select('drawingDate');
-        const end = await MegaMillions.findOne().sort({drawingDate: -1}).select('drawingDate');
+        const start = await MegaMillions.findOne().sort({ drawingDate: 1 }).select('drawingDate');
+        const end = await MegaMillions.findOne().sort({ drawingDate: -1 }).select('drawingDate');
 
         return {
             startDate: start.drawingDate.toLocaleDateString(),
@@ -14,28 +14,36 @@ class MegaMillionData {
     async fetchMatches(body) {
         const { mainNumbers, specialNumber } = body;
 
-        // Find perfect matches
-        const perfectMatches = await MegaMillions.find({
-            numbers: { $all: mainNumbers },
-            megaBall: specialNumber
+        // Limit to recent matches and only fetch necessary fields
+        const recentMatches = await MegaMillions.find({
+            $or: [
+                { numbers: { $in: mainNumbers } },
+                { megaBall: specialNumber }
+            ]
         })
+            .select('numbers megaBall megaplier jackpot drawingDate')
             .sort({ drawingDate: -1 })
-            .exec();
+            .limit(50); // Limit to 50 most recent matches
 
-        // Find partial matches
-        const partialMatches = await MegaMillions.find({
-            numbers: { $in: mainNumbers },
-            megaBall: specialNumber
-        })
-            .sort({ drawingDate: -1 })
-            .exec();
+        // Process matches more efficiently
+        const processedMatches = recentMatches.map(drawing => {
+            const matchedNumbers = drawing.numbers.filter(num =>
+                mainNumbers.includes(num.toString())
+            );
 
-        const filteredPartialMatches = partialMatches.filter(match => {
-            const matchedNumbers = match.numbers.filter(num => mainNumbers.includes(num));
-            return matchedNumbers.length < mainNumbers.length;
+            return {
+                drawingDate: drawing.drawingDate,
+                numbers: drawing.numbers,
+                megaBall: drawing.megaBall,
+                megaplier: drawing.megaplier,
+                jackpot: drawing.jackpot,
+                matchCount: matchedNumbers.length + (drawing.megaBall.toString() === specialNumber ? 1 : 0),
+                matchedNumbers: matchedNumbers,
+                megaBallMatch: drawing.megaBall.toString() === specialNumber
+            };
         });
 
-        return [...perfectMatches, ...filteredPartialMatches];
+        return processedMatches.sort((a, b) => b.matchCount - a.matchCount);
     }
 }
 
