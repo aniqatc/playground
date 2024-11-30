@@ -1,0 +1,42 @@
+{
+  "icons": [
+    {
+      "src": "/icons/icon_512x512.e7d89cfb09221c20f66f200b8730152f.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon_384x384.e869af4b59e1e561ebb9e5565ce43791.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon_256x256.c8f74bcb1914d37176492c22afcd974c.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon_192x192.3ac758b8611d67cc57d8172836a88c92.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon_128x128.14392418496c963054784f53fdf503e8.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon_96x96.2d83068926cd15147d81bafda99266ea.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "Interactive Widget Playground",
+  "short_name": "Playground",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "/",
+  "description": "Explore interactive widgets featuring calculators, task tracking, financial monitoring, lottery analysis and more.",
+  "theme_color": "#211e1f",
+  "background_color": "#d3d3d3"
+}
