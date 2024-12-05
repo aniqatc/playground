@@ -1,6 +1,5 @@
 import lotteryContext from "./context";
-
-const { switchGameLinks, content, megaballContent, powerballContent, mainNumbers, specialBall, statsContainer, matchesContainer, lockedMessageContainer } = lotteryContext;
+const { switchGameLinks, content, megaballContent, powerballContent, mainNumbers, specialBall, resetButton } = lotteryContext;
 
 export default async function initializeSwitchLink() {
     switchGameLinks.forEach(link => {
@@ -8,7 +7,6 @@ export default async function initializeSwitchLink() {
             event.preventDefault();
             switchGameMode();
             lotteryContext.updateSearchRange();
-            lotteryContext.updateLockedMessage(false);
         })
     })
 }
@@ -18,10 +16,7 @@ function switchGameMode() {
     content.dataset.game = currentGame === 'megamillion' ? 'powerball' : 'megamillion';
     megaballContent.forEach(el => el.classList.toggle('hidden'));
     powerballContent.forEach(el => el.classList.toggle('hidden'));
-    matchesContainer.innerHTML = "";
-    statsContainer.innerHTML = "";
-    statsContainer.classList.add("hidden");
-    matchesContainer.classList.add("hidden");
+    resetButton.click();
 
     // Update limits
     if (content.dataset.game === 'powerball') {

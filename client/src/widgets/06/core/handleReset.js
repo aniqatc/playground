@@ -11,8 +11,12 @@ function resetElements() {
         input.classList.remove("error");
     })
 
-    statsContainer.classList.add("hidden");
-    matchesContainer.classList.add("hidden");
-    lockedMessageContainer.classList.remove("hidden");
-    lotteryContext.updateLockedMessage(false);
+    const visibleContainer = statsContainer.classList.contains("hidden") ? matchesContainer : statsContainer;
+    visibleContainer.classList.add("exit");
+    setTimeout(() => {
+        visibleContainer.classList.add("hidden");
+        visibleContainer.classList.remove("exit");
+        lockedMessageContainer.classList.remove("hidden");
+        lotteryContext.updateLockedMessage(false);
+    }, 700);
 }

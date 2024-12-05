@@ -11,17 +11,19 @@ function switchTab(event) {
     tabs.forEach(tab => tab.classList.remove('active'));
     const clickedTab = event.currentTarget;
     clickedTab.classList.add("active");
-    searchButton.click();
 
-    if (clickedTab.textContent.includes('Matches')) {
-        matchesContainer.classList.remove('hidden');
-        statsContainer.classList.add('hidden');
-        statsContainer.innerHTML = "";
-    } else {
-        statsContainer.classList.remove('hidden');
-        matchesContainer.classList.add('hidden');
-        matchesContainer.innerHTML = "";
-    }
+    const currentContainer = statsContainer.classList.contains("hidden") ? matchesContainer : statsContainer;
+    const nextContainer = clickedTab.textContent.includes('Matches') ? matchesContainer : statsContainer;
+
+    currentContainer.classList.add("exit");
+    setTimeout(() => {
+        currentContainer.classList.add("hidden");
+        currentContainer.classList.remove("exit");
+        currentContainer.innerHTML = "";
+        nextContainer.innerHTML = "";
+        nextContainer.classList.remove("hidden");
+        searchButton.click();
+    }, 500);
 }
 
 function getActiveTab() {
