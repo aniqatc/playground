@@ -1,0 +1,24 @@
+@use "../../main/styles/var";
+
+// Mixins
+// Animations
+
+// Base Widget Styles
+#widget-07 {
+  min-height: 500px;
+
+  // Like Button Styles
+  .like-btn {
+    &:hover {
+      color: var.$color-medium-blue;
+    }
+  }
+
+  .liked-color {
+    color: var.$color-medium-blue;
+  }
+}
+
+// Dark Theme Styles
+.dark #widget-07 {
+}
