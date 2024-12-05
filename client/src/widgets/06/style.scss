@@ -477,7 +477,7 @@
               display: flex;
               flex-direction: column;
               gap: 6px;
-              animation: container-fade-in 500ms ease-in forwards;
+              animation: container-fade-in 700ms ease-in forwards;
 
               h3 {
                 font-weight: 600;
@@ -501,7 +501,7 @@
                 border-radius: 4px;
                 padding: 4px;
                 opacity: 0;
-                animation: card-fade-in 475ms ease-in forwards;
+                animation: card-fade-in 500ms ease-in forwards;
 
                 .match-content {
                   .match-numbers {
