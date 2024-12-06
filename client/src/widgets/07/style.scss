@@ -6,7 +6,7 @@
 // Base Widget Styles
 #widget-07 {
   min-height: 500px;
-  font-size: var.$font-size-med;
+  font-size: var.$font-size-base;
 
   // Like Button Styles
   .like-btn {
@@ -27,10 +27,10 @@
         border: 2px solid var.$color-x-light-indigo;
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
         border-radius: 2px;
-        padding: 8px 8px;
+        padding: 6px 8px;
         margin: 6px 0px;
         width: 100%;
-        font-size: var.$font-size-med;
+        font-size: var.$font-size-sm;
         transition: all 200ms ease-in;
 
         &::placeholder {
@@ -47,12 +47,13 @@
       .search-btn {
         color: var.$color-light-indigo;
         background-color: var.$color-medium-dark-indigo;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
         border-radius: 50%;
-        height: 30px;
-        width: 30px;
+        height: 26px;
+        width: 26px;
         position: absolute;
-        top: 11px;
-        right: 6px;
+        top: 10px;
+        right: 5px;
         transition: all 250ms ease-out;
 
         &:hover {
@@ -74,15 +75,16 @@
         padding: 10px;
         display: flex;
         flex-direction: column;
-        gap: var.$spacing-base;
+        gap: 6px;
+        min-height: 100%;
 
         .repo-header {
           display: flex;
           gap: 8px;
 
           &--img {
-            width: 56px;
-            height: 56px;
+            width: 50px;
+            height: 50px;
             object-fit: cover;
             border-radius: 4px;
             border: 2px solid #E3E8F9;
@@ -108,19 +110,20 @@
           }
         }
 
-        .repo-description {}
+        .repo-description {
+        }
 
         .repo-tags {
           display: flex;
-          flex-wrap: wrap;
-          gap: 6px;
+          gap: 5px;
+          white-space: nowrap;
 
           .tag {
             background-color: var.$color-medium-indigo;
             color: #F5F7FF;
             border-radius: 4px;
             padding: 2px 8px;
-            font-size: var.$font-size-sm;
+            font-size: 11px;
           }
         }
 
@@ -157,30 +160,94 @@
         }
 
         .repo-languages {
-          margin-top: -4px;
+          margin-top: -2px;
 
           h3 {
             font-family: inherit;
-            font-size: var.$font-size-med;
+            font-size: var.$font-size-base;
             font-weight: 500;
+            display: inline-block;
+            margin-bottom: 4px;
           }
 
           .language-item {
+            margin-bottom: 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 4px;
+            font-size: var.$font-size-sm;
+
             .language {
-              &-name {}
+              &-name {
+              }
 
-              &-bar {}
+              &-bar {
+                height: 8px;
+                width: 100%;
+                background-color: var.$color-x-light-indigo;
+                border: 1px solid #c4ceed;
+                border-radius: 2px;
 
-              &-count {}
+                .bar {
+                  height: 100%;
+                  background-color: var.$color-dark-indigo;
+                  border-radius: 0 2px 2px 0;
+                }
+              }
+
+              &-count {
+                white-space: nowrap;
+
+                .slash {
+                  color: var.$gray-medium;
+                }
+              }
             }
           }
         }
       }
     }
 
-    .content-footer {}
+    .content-footer {
+      display: flex;
+      gap: var.$spacing-base;
+      margin-top: 6px;
+      container-type: inline-size;
+      container-name: repo-card;
+
+      button {
+        flex: 1 0;
+        border-radius: 3px;
+        padding: 4px 6px;
+        font-size: var.$font-size-base;
+
+        &.btn-random {
+          background-color: #c2cce8;
+          border: 1px solid var.$color-x-light-indigo;
+          color: #282828;
+        }
+
+        &.btn-save {
+          background-color: var.$color-medium-indigo;
+          border: 1px solid var.$color-x-light-indigo;
+          color: #fff;
+
+          span {
+            font-size: 10px;
+            color: #f5f5f5;
+
+            @container repo-card (max-width: 250px) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
   }
 }
+
+
 
 // Dark Theme Styles
 .dark #widget-07 {

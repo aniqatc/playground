@@ -77,25 +77,35 @@ export function getMarkup() {
                 <h3>Language Breakdown</h3>
                 <div class="language-item">
                     <span class="language-name">JavaScript</span>
-                    <div class="language-bar"></div>
+                    <div class="language-bar"><div class="bar" style="width: 18%"></div></div>
                     <span class="language-count">350 lines <span class="slash">/</span> 34 bytes</span>
                 </div>
                 <div class="language-item">
                     <span class="language-name">CSS</span>
-                    <div class="language-bar"></div>
+                    <div class="language-bar"><div class="bar" style="width: 25%"></div></div>
                     <span class="language-count">140 lines <span class="slash">/</span> 22 bytes</span>
                 </div>
                 <div class="language-item">
                     <span class="language-name">Python</span>
-                    <div class="language-bar"></div>
+                    <div class="language-bar"><div class="bar" style="width: 45%"></div></div>
                     <span class="language-count">503 lines <span class="slash">/</span> 43 bytes</span>
+                </div>
+                <div class="language-item">
+                    <span class="language-name">TypeScript</span>
+                    <div class="language-bar"><div class="bar" style="width: 12%"></div></div>
+                    <span class="language-count">49 lines <span class="slash">/</span> 10 bytes</span>
+                </div>
+                <div class="language-item">
+                    <span class="language-name">HTML</span>
+                    <div class="language-bar"><div class="bar" style="width: 5%"></div></div>
+                    <span class="language-count">10 lines <span class="slash">/</span> 1 byte</span>
                 </div>
             </div>
         </div>
     </section>
     <section class="content-footer">
-        <button class="btn-random">View Random</button>
-        <button class="btn-save">Save Card</button>
+        <button class="btn-random"><i class="fa-solid fa-shuffle"></i> Random Repo</button>
+        <button class="btn-save"><i class="fa-solid fa-download"></i> Download Card <span>.png</span></button>
     </section>
   </div>
 </section>`
