@@ -6,16 +6,179 @@
 // Base Widget Styles
 #widget-07 {
   min-height: 500px;
+  font-size: var.$font-size-med;
 
   // Like Button Styles
   .like-btn {
     &:hover {
-      color: var.$color-medium-blue;
+      color: var.$color-medium-dark-indigo;
     }
   }
 
   .liked-color {
-    color: var.$color-medium-blue;
+    color: var.$color-medium-dark-indigo;
+  }
+
+  .content {
+    .content-header {
+      position: relative;
+
+      .search-input {
+        border: 2px solid var.$color-x-light-indigo;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
+        border-radius: 2px;
+        padding: 8px 8px;
+        margin: 6px 0px;
+        width: 100%;
+        font-size: var.$font-size-med;
+        transition: all 200ms ease-in;
+
+        &::placeholder {
+          color: var.$gray-medium;
+          font-size: var.$font-size-sm;
+        }
+
+        &:focus {
+          outline: 1px solid var.$color-medium-indigo;
+          border: 2px solid var.$color-medium-indigo;
+        }
+      }
+
+      .search-btn {
+        color: var.$color-light-indigo;
+        background-color: var.$color-medium-dark-indigo;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        top: 11px;
+        right: 6px;
+        transition: all 250ms ease-out;
+
+        &:hover {
+          background-color: var.$color-dark-indigo;
+        }
+
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+    }
+
+    .content-body {
+      .repo-card {
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
+        background-color: var.$color-light-indigo;
+        border: 1px solid var.$color-x-light-indigo;
+        border-radius: 2px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: var.$spacing-base;
+
+        .repo-header {
+          display: flex;
+          gap: 8px;
+
+          &--img {
+            width: 56px;
+            height: 56px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 2px solid #E3E8F9;
+          }
+
+          &--title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            h2 {
+              font-weight: 600;
+              font-family: inherit;
+              font-size: var.$font-size-lg;
+              line-height: 1.2;
+            }
+
+            span {
+              color: var.$gray-medium-dark;
+              font-size: var.$font-size-base;
+              line-height: 1;
+            }
+          }
+        }
+
+        .repo-description {}
+
+        .repo-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+
+          .tag {
+            background-color: var.$color-medium-indigo;
+            color: #F5F7FF;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: var.$font-size-sm;
+          }
+        }
+
+        .repo-stats {
+          &--item {
+            display: flex;
+            align-items: center;
+            gap: var.$spacing-base;
+            font-size: var.$font-size-base;
+            margin-bottom: 3px;
+
+            & i {
+              color: var.$color-medium-indigo;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 16px;
+            }
+
+            &--title {
+              color: var.$gray-dark;
+            }
+
+            &--line {
+              display: block;
+              flex: 1;
+              border-bottom: 1px solid #C2C8DC;
+              height: 1px;
+              width: 100%;
+            }
+
+            &--value {}
+          }
+        }
+
+        .repo-languages {
+          margin-top: -4px;
+
+          h3 {
+            font-family: inherit;
+            font-size: var.$font-size-med;
+            font-weight: 500;
+          }
+
+          .language-item {
+            .language {
+              &-name {}
+
+              &-bar {}
+
+              &-count {}
+            }
+          }
+        }
+      }
+    }
+
+    .content-footer {}
   }
 }
 
