@@ -695,7 +695,6 @@
   .content {
     color: var.$color-light;
 
-    // Header
     .content-header {
       .logo-wrapper {
         .tooltip {
@@ -732,10 +731,30 @@
                   border-color: #FF3B3B;
                   background-color: #3d2424;
                   color: #ff6b6b;
+
+                  & ~ .input-hint {
+                    color: #FF3B3B;
+                    opacity: 1;
+                    bottom: -16px;
+                  }
                 }
 
                 &:focus {
                   border-color: var.$color-dark-aqua-blue;
+
+                  & ~ .input-hint {
+                    bottom: -16px;
+                  }
+
+                  &:invalid,
+                  &:out-of-range,
+                  &.error {
+                    border-color: #FF3B3B;
+
+                    & ~ .input-hint {
+                      color: #FF3B3B;
+                    }
+                  }
                 }
               }
 
@@ -752,16 +771,42 @@
                 background-color: var.$color-medium-aqua-blue;
                 color: #fff;
 
-                &:focus ~ .special-ball-label {
-                  color: var.$color-medium-aqua-blue;
-                }
-
                 &:invalid,
                 &:out-of-range,
                 &.error {
                   border-color: #FF3B3B;
                   background-color: #FF3B3B;
                   color: #FFF2F2;
+
+                  & ~ .input-hint {
+                    color: #FF3B3B;
+                    opacity: 1;
+                    bottom: -16px;
+                  }
+                }
+
+                &:focus {
+                  border-color: var.$color-dark-aqua-blue;
+
+                  & ~ .input-hint {
+                    bottom: -16px;
+                    color: #98ABB4;
+                  }
+
+                  & ~ .special-ball-label {
+                    color: var.$color-medium-aqua-blue;
+                  }
+
+                  &:invalid,
+                  &:out-of-range,
+                  &.error {
+                    border-color: #FF3B3B;
+
+                    & ~ .input-hint,
+                    & ~ .special-ball-label {
+                      color: #FF3B3B;
+                    }
+                  }
                 }
               }
 
@@ -777,7 +822,6 @@
         }
       }
 
-      // Action Buttons
       .lottery-actions {
         .lottery-btn {
           background-color: var.$color-muted-dark-aqua-blue;
@@ -794,12 +838,10 @@
         }
       }
 
-      // Search Range
       .lottery-search-range {
         color: #98ABB4;
       }
 
-      // Results Section
       .lottery-results {
         border: var.$border-dark;
         background-color: var.$color-dark;
@@ -818,79 +860,86 @@
           }
         }
 
-        .lottery-results-content {
-          .lottery-locked-message {
-            color: #98ABB4;
-            border-color: #2F4448;
-            background-color: #202729;
-          }
-
-          .lottery-matches, .lottery-stats {
-            h3 {
-              border-bottom-color: #2F4448;
-              color: var.$color-light-aqua-blue;
-            }
-
-            .lottery-match-card {
+        .scrollable-container {
+          .lottery-results-content {
+            .lottery-locked-message {
+              color: #98ABB4;
               border-color: #2F4448;
               background-color: #202729;
-
-              .match-numbers {
-                .number {
-                  background-color: #2F4448;
-                  color: var.$color-light;
-
-                  &.not-a-match {
-                    background-color: #757575;
-                    color: #c2c2c2;
-                  }
-                }
-
-                .special-number {
-                  background-color: var.$color-medium-aqua-blue;
-                  color: var.$color-dark;
-
-                  &.not-a-match {
-                    background-color: #505050;
-                    color: #bbbbbb;
-                  }
-                }
-              }
             }
 
-            .lottery-stat-card {
-              background-color: #202729;
-              border-color: #2F4448;
-
-              .stat-item {
-                background-color: #2F4448;
-
-                .stat-label {
-                  color: #98ABB4;
-                }
-
-                .stat-value {
-                  color: var.$color-light;
-                }
+            .lottery-matches,
+            .lottery-stats {
+              h3 {
+                border-bottom-color: #2F4448;
+                color: var.$color-light-aqua-blue;
               }
 
-              .number-analysis {
-                .number-stats {
-                  .number-stat {
-                    background-color: #3a494d;
+              .lottery-match-card {
+                border-color: #2F4448;
+                background-color: #202729;
 
+                .match-content {
+                  .match-numbers {
                     .number {
-                      background-color: var.$color-light;
-                      color: #2F4448;
+                      background-color: #2F4448;
+                      color: var.$color-light;
+
+                      &.not-a-match {
+                        background-color: #757575;
+                        color: #c2c2c2;
+                      }
                     }
 
-                    .stat-details {
-                      .frequency {
-                        color: var.$color-light;
+                    .special-number {
+                      background-color: var.$color-medium-aqua-blue;
+                      color: var.$color-dark;
+
+                      &.not-a-match {
+                        background-color: #505050;
+                        color: #bbbbbb;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .lottery-stat-card {
+                background-color: #202729;
+                border-color: #2F4448;
+
+                .stats-overview {
+                  .stat-item {
+                    background-color: #2F4448;
+
+                    .stat-label {
+                      color: #98ABB4;
+                    }
+
+                    .stat-value {
+                      color: var.$color-light;
+                    }
+                  }
+                }
+
+                .number-analysis {
+                  .number-stats {
+                    .number-stat {
+                      background-color: #3a494d;
+
+                      .number {
+                        background-color: var.$color-light;
+                        color: #2F4448;
                       }
 
-                      .percentage {
-                        color: var.$gray-light;
+                      .stat-details {
+                        .frequency {
+                          color: var.$color-light;
+                        }
+
+                        .percentage {
+                          color: var.$gray-light;
+                        }
                       }
                     }
                   }
