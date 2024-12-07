@@ -58,6 +58,7 @@
 
       .search-input {
         border: 2px solid var.$color-x-light-indigo;
+        background-color: transparent;
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
         border-radius: 2px;
         padding: 6px 8px;
@@ -296,8 +297,6 @@
       display: flex;
       gap: var.$spacing-base;
       margin-top: 6px;
-      container-type: inline-size;
-      container-name: repo-card;
 
       button {
         flex: 1 0;
@@ -347,4 +346,127 @@
 
 // Dark Theme Styles
 .dark #widget-07 {
+  .content {
+    .content-header {
+      .search-input {
+        border-color: var.$color-dark-indigo;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+
+        &::placeholder {
+          color: var.$gray-medium;
+        }
+
+        &:focus {
+          outline-color: var.$color-medium-indigo;
+          border-color: var.$color-medium-indigo;
+        }
+      }
+
+      .search-btn {
+        color: var.$color-light-indigo;
+        background-color: var.$color-medium-dark-indigo;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+
+        &:hover {
+          background-color: var.$color-dark-indigo;
+        }
+      }
+    }
+
+    .content-body {
+      .repo-card {
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+        background-color: var.$color-dark;
+        border-color: var.$color-dark-indigo;
+
+        .repo-header {
+          &--img {
+            border-color: var.$color-dark-indigo;
+          }
+
+          &--title {
+            span {
+              color: var.$gray-medium;
+            }
+          }
+        }
+
+        .repo-tags {
+          .tag {
+            background-color: var.$color-medium-indigo;
+            color: #F5F7FF;
+          }
+        }
+
+        .repo-stats {
+          &--item {
+            i {
+              color: var.$color-medium-indigo;
+            }
+
+            &--title {
+              color: var.$gray-light;
+            }
+
+            &--line {
+              border-bottom-color: var.$color-dark-indigo;
+            }
+          }
+        }
+
+        .repo-languages {
+          .language-item {
+            .tooltip {
+              box-shadow: 0 0 3px rgba(0,0,0,0.25);
+              background-color: var.$color-dark;
+              border-color: var.$color-dark-indigo;
+            }
+
+            .language-bar {
+              background-color: var.$color-dark-indigo;
+              border-color: var.$color-dark-indigo;
+
+              .bar {
+                background-color: var.$color-medium-indigo;
+              }
+            }
+
+            .language-count {
+              .slash {
+                color: var.$color-dark-indigo;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .content-footer {
+      button {
+        &.btn-random {
+          background-color: var.$color-dark-indigo;
+          border-color: var.$color-dark-indigo;
+          color: var.$gray-light;
+
+          &:hover {
+            background-color: color.adjust(var.$color-dark-indigo, $lightness: -5%, $space: hsl);
+          }
+        }
+
+        &.btn-save {
+          background-color: var.$color-medium-indigo;
+          border-color: var.$color-dark-indigo;
+          color: var.$color-light;
+
+          &:hover {
+            background-color: color.adjust(var.$color-medium-indigo, $lightness: -5%, $space: hsl);
+          }
+
+          span {
+            color: var.$color-light;
+          }
+        }
+      }
+    }
+  }
 }
