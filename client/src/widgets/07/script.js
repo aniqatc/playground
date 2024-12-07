@@ -29,8 +29,6 @@ export async function initializeScript() {
     const repoCard = widget.querySelector('.content-body');
     saveButton.addEventListener("click", () => {
         toPng(repoCard, {
-            canvasWidth: repoCard.offsetWidth,
-            canvasHeight: repoCard.offsetHeight,
             quality: 1,
             pixelRatio: window.devicePixelRatio,
         }).then((dataUrl) => {
