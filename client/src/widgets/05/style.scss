@@ -20,6 +20,8 @@
 
 // Base Widget Styles
 #widget-05 {
+  height: inherit;
+
   // Like Button Styles
   .like-btn {
     &:hover {
@@ -180,7 +182,7 @@
 
         // Card Group Styles
         .card-group {
-          height: 395px;
+          height: 420px;
           overflow-y: auto;
           overflow-x: hidden;
           display: grid;
@@ -193,7 +195,7 @@
           grid-auto-rows: min-content;
 
           @container content-parent (max-width: 340px) {
-            max-height: 376px;
+            max-height: 404px;
           }
 
           // Scrollbar Styles
@@ -509,8 +511,9 @@
 
     // Footer Styles
     .content-footer {
+      margin-top: auto;
       padding-top: 3px;
-      padding-bottom: 3px;
+      margin-bottom: -3px;
       font-size: 12px;
       display: flex;
       justify-content: space-between;

@@ -5,7 +5,7 @@
 
 // Base Widget Styles
 #widget-07 {
-  min-height: 500px;
+  height: inherit;
   font-size: var.$font-size-base;
 
   // Like Button Styles
@@ -20,6 +20,10 @@
   }
 
   .content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
     .content-header {
       position: relative;
 
@@ -67,7 +71,12 @@
     }
 
     .content-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
       .repo-card {
+        flex: 1;
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
         background-color: var.$color-light-indigo;
         border: 1px solid var.$color-x-light-indigo;
@@ -76,7 +85,6 @@
         display: flex;
         flex-direction: column;
         gap: 6px;
-        min-height: 100%;
 
         .repo-header {
           display: flex;
@@ -115,8 +123,8 @@
 
         .repo-tags {
           display: flex;
+          flex-wrap: wrap;
           gap: 5px;
-          white-space: nowrap;
 
           .tag {
             background-color: var.$color-medium-indigo;
@@ -160,7 +168,7 @@
         }
 
         .repo-languages {
-          margin-top: -2px;
+          margin-top: auto;
 
           h3 {
             font-family: inherit;

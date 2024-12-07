@@ -24,14 +24,14 @@
   }
   100% {
     opacity: 1;
-    max-height: 170px;
+    max-height: 196px;
   }
 }
 
 @keyframes container-exit {
   0% {
     opacity: 1;
-    max-height: 170px;
+    max-height: 196px;
   }
   100% {
     opacity: 0;
@@ -63,7 +63,7 @@
 
 // Base Widget Styles
 #widget-06 {
-  min-height: 500px;
+  height: inherit;
 
   // Like Button Styles
   .like-btn {
@@ -165,7 +165,7 @@
       container-type: inline-size;
       display: flex;
       flex-direction: column;
-      height: 392px;
+      height: 420px;
 
       .lottery-title {
         font-family: inherit;
@@ -482,7 +482,7 @@
             flex-direction: column;
             gap: 4px;
             min-height: 90px;
-            max-height: 170px;
+            max-height: 196px;
             width: 100%;
 
             .lottery-locked-message {

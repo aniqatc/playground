@@ -104,8 +104,8 @@ export function getMarkup() {
         </div>
     </section>
     <section class="content-footer">
-        <button class="btn-random"><i class="fa-solid fa-shuffle"></i> Random Repo</button>
-        <button class="btn-save"><i class="fa-solid fa-download"></i> Download Card <span>.png</span></button>
+        <button class="btn-random"><i class="fa-solid fa-shuffle"></i> Random</button>
+        <button class="btn-save"><i class="fa-solid fa-download"></i> Download <span>.png</span></button>
     </section>
   </div>
 </section>`
