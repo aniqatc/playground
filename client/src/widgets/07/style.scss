@@ -349,16 +349,16 @@
   .content {
     .content-header {
       .search-input {
-        border-color: var.$color-dark-indigo;
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+        border-color: var.$color-x-dark-indigo;
+        color: var.$color-light;
 
         &::placeholder {
           color: var.$gray-medium;
         }
 
         &:focus {
-          outline-color: var.$color-medium-indigo;
-          border-color: var.$color-medium-indigo;
+          outline: 1px solid var.$color-dark-indigo;
+          border: 2px solid var.$color-dark-indigo;
         }
       }
 
@@ -377,11 +377,11 @@
       .repo-card {
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
         background-color: var.$color-dark;
-        border-color: var.$color-dark-indigo;
+        border-color: var.$color-x-dark-indigo;
 
         .repo-header {
           &--img {
-            border-color: var.$color-dark-indigo;
+            border-color: var.$color-medium-dark-indigo;
           }
 
           &--title {
@@ -393,8 +393,8 @@
 
         .repo-tags {
           .tag {
-            background-color: var.$color-medium-indigo;
-            color: #F5F7FF;
+            background-color: var.$color-dark-indigo;
+            color: #fff;
           }
         }
 
@@ -409,7 +409,7 @@
             }
 
             &--line {
-              border-bottom-color: var.$color-dark-indigo;
+              border-bottom-color: var.$color-medium-indigo;
             }
           }
         }
@@ -419,11 +419,11 @@
             .tooltip {
               box-shadow: 0 0 3px rgba(0,0,0,0.25);
               background-color: var.$color-dark;
-              border-color: var.$color-dark-indigo;
+              border-color: var.$color-x-dark-indigo;
             }
 
             .language-bar {
-              background-color: var.$color-dark-indigo;
+              background-color: var.$color-x-dark-indigo;
               border-color: var.$color-dark-indigo;
 
               .bar {
@@ -433,7 +433,7 @@
 
             .language-count {
               .slash {
-                color: var.$color-dark-indigo;
+                color: var.$color-medium-indigo;
               }
             }
           }
@@ -444,26 +444,26 @@
     .content-footer {
       button {
         &.btn-random {
-          background-color: var.$color-dark-indigo;
-          border-color: var.$color-dark-indigo;
-          color: var.$gray-light;
-
-          &:hover {
-            background-color: color.adjust(var.$color-dark-indigo, $lightness: -5%, $space: hsl);
-          }
-        }
-
-        &.btn-save {
           background-color: var.$color-medium-indigo;
           border-color: var.$color-dark-indigo;
-          color: var.$color-light;
+          color: var.$color-dark;
 
           &:hover {
             background-color: color.adjust(var.$color-medium-indigo, $lightness: -5%, $space: hsl);
           }
+        }
+
+        &.btn-save {
+          background-color: var.$color-dark-indigo;
+          border-color: var.$color-dark-indigo;
+          color: var.$color-light;
+
+          &:hover {
+            background-color: color.adjust(var.$color-dark-indigo, $lightness: -5%, $space: hsl);
+          }
 
           span {
-            color: var.$color-light;
+            color: var.$gray-light;
           }
         }
       }
