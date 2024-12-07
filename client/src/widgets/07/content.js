@@ -79,26 +79,31 @@ export function getMarkup() {
                     <span class="language-name">JavaScript</span>
                     <div class="language-bar"><div class="bar" style="width: 18%"></div></div>
                     <span class="language-count">350 lines <span class="slash">/</span> 34 bytes</span>
+                    <div class="tooltip"><strong>18%</strong> of 3500 LOC</div>
                 </div>
                 <div class="language-item">
                     <span class="language-name">CSS</span>
                     <div class="language-bar"><div class="bar" style="width: 25%"></div></div>
                     <span class="language-count">140 lines <span class="slash">/</span> 22 bytes</span>
+                    <div class="tooltip"><strong>25%</strong> of 3500 LOC</div>
                 </div>
                 <div class="language-item">
                     <span class="language-name">Python</span>
                     <div class="language-bar"><div class="bar" style="width: 45%"></div></div>
                     <span class="language-count">503 lines <span class="slash">/</span> 43 bytes</span>
+                    <div class="tooltip"><strong>45%</strong> of 3500 LOC</div>
                 </div>
                 <div class="language-item">
                     <span class="language-name">TypeScript</span>
                     <div class="language-bar"><div class="bar" style="width: 12%"></div></div>
                     <span class="language-count">49 lines <span class="slash">/</span> 10 bytes</span>
+                    <div class="tooltip"><strong>12%</strong> of 3500 LOC</div>
                 </div>
                 <div class="language-item">
                     <span class="language-name">HTML</span>
                     <div class="language-bar"><div class="bar" style="width: 5%"></div></div>
                     <span class="language-count">10 lines <span class="slash">/</span> 1 byte</span>
+                    <div class="tooltip"><strong>5%</strong> of 3500 LOC</div>
                 </div>
             </div>
         </div>
