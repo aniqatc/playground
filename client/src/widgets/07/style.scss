@@ -33,14 +33,11 @@
 }
 
 @keyframes pop {
-  0%, 90%, 100% {
+  0%, 85%, 100% {
     transform: scale(1);
   }
   75% {
     transform: scale(1.05);
-  }
-  85% {
-    transform: scale(0.975);
   }
 }
 
@@ -108,6 +105,16 @@
 
         &:active {
           transform: scale(0.9);
+        }
+
+        &.disabled {
+          background-color: #c2c2c2;
+          color: #696767;
+          cursor: not-allowed;
+
+          &:hover {
+            background-color: #c2c2c2;
+          }
         }
       }
     }
@@ -355,6 +362,10 @@
           color: #696767;
           cursor: not-allowed;
 
+          &:hover {
+            background-color: #c2c2c2;
+          }
+
           span {
             color: #696767;
           }
@@ -388,6 +399,16 @@
         color: var.$color-light-indigo;
         background-color: var.$color-medium-dark-indigo;
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+
+        &.disabled {
+          background-color: #545454;
+          border-color: var.$color-x-dark-indigo;
+          color: #a9a9a9;
+
+          &:hover {
+            background-color: #545454;
+          }
+        }
 
         &:hover {
           background-color: var.$color-dark-indigo;
@@ -497,6 +518,10 @@
 
           span {
             color: #919191;
+          }
+
+          &:hover {
+            background-color: #545454;
           }
         }
       }

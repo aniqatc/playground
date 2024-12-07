@@ -193,6 +193,9 @@
           scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
           align-items: start;
           grid-auto-rows: min-content;
+          padding-right: 4px;
+          margin-right: -4px;
+          box-sizing: content-box;
 
           @container content-parent (max-width: 340px) {
             max-height: 404px;
@@ -201,6 +204,8 @@
           // Scrollbar Styles
           &::-webkit-scrollbar {
             width: 2px;
+            position: absolute;
+            right: 0;
           }
 
           &::-webkit-scrollbar-track {
@@ -210,6 +215,7 @@
           &::-webkit-scrollbar-thumb {
             background: rgba(0, 0, 0, 0.25);
             border-radius: 4px;
+            background-clip: padding-box;
           }
 
           // Loading State

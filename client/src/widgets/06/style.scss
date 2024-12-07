@@ -462,10 +462,14 @@
           scrollbar-gutter: stable both-edges;
           scrollbar-width: thin;
           scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+          padding-right: 4px;
+          margin-right: -4px;
 
           // Scrollbar Styles
           &::-webkit-scrollbar {
             width: 2px;
+            position: absolute;
+            right: 0;
           }
 
           &::-webkit-scrollbar-track {
@@ -475,6 +479,7 @@
           &::-webkit-scrollbar-thumb {
             background: rgba(0, 0, 0, 0.25);
             border-radius: 4px;
+            background-clip: padding-box;
           }
 
           .lottery-results-content {

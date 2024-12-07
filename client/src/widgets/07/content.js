@@ -18,7 +18,7 @@ export function getMarkup() {
   <div class="content">
     <section class="content-header">
         <input class="search-input" type="text" placeholder="https://github.com/facebook/react" />
-        <button class="search-btn"><i class="fas fa-search"></i></button>
+        <button class="search-btn disabled" disabled="true"><i class="fas fa-search"></i></button>
     </section>
     <section class="content-body">
         <div class="repo-card">

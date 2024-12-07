@@ -1,8 +1,8 @@
 import repoContext from "./context";
 
 export default function initializeButtonState() {
-    const { saveButton, randomButton, lastAnimatedEl } = repoContext;
-    const buttons = [saveButton, randomButton];
+    const { saveButton, randomButton, searchButton, lastAnimatedEl } = repoContext;
+    const buttons = [saveButton, randomButton, searchButton];
 
     lastAnimatedEl.addEventListener('animationend', () => {
         buttons.forEach(btn => {
