@@ -32,6 +32,15 @@
   }
 }
 
+@keyframes pop {
+  0%, 85%, 100% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+}
+
 // Base Widget Styles
 #widget-07 {
   height: inherit;
@@ -169,6 +178,7 @@
             border-radius: 4px;
             padding: 2px 8px;
             font-size: 11px;
+            white-space: nowrap;
           }
         }
 
@@ -223,6 +233,7 @@
             font-weight: 500;
             display: inline-block;
             margin-bottom: 4px;
+            white-space: nowrap;
           }
 
           .language-item {
@@ -324,13 +335,20 @@
             background-color: color.adjust(var.$color-medium-indigo, $lightness: -10%, $space: hsl);
           }
 
+          &.disabled {
+            background-color: #c2c2c2;
+            border: 1px solid var.$color-x-light-indigo;
+            color: #696767;
+            cursor: not-allowed;
+
+            span {
+              color: #696767;
+            }
+          }
+
           span {
             font-size: 10px;
             color: #f5f5f5;
-
-            @container repo-card (max-width: 250px) {
-              display: none;
-            }
           }
         }
 
@@ -460,6 +478,16 @@
 
           &:hover {
             background-color: color.adjust(var.$color-dark-indigo, $lightness: -5%, $space: hsl);
+          }
+
+          &.disabled {
+            background-color: #545454;
+            border-color: var.$color-x-dark-indigo;
+            color: #a9a9a9;
+
+            span {
+              color: #919191;
+            }
           }
 
           span {

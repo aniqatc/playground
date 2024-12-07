@@ -101,7 +101,7 @@ export function getMarkup() {
                 </div>
                 <div class="language-item">
                     <span class="language-name">HTML</span>
-                    <div class="language-bar"><div class="bar" style="--final-width: 5%"></div></div>
+                    <div class="language-bar"><div class="bar last-animated-el" style="--final-width: 5%"></div></div>
                     <span class="language-count">10 lines <span class="slash">/</span> 1 byte</span>
                     <div class="tooltip"><strong>5%</strong> of 3500 LOC</div>
                 </div>
@@ -110,7 +110,7 @@ export function getMarkup() {
     </section>
     <section class="content-footer">
         <button class="btn-random"><i class="fa-solid fa-shuffle"></i> Random</button>
-        <button class="btn-save"><i class="fa-solid fa-download"></i> Download <span>.png</span></button>
+        <button class="btn-save disabled" disabled="true"><i class="fa-solid fa-download"></i> Download <span>.png</span></button>
     </section>
   </div>
 </section>`
