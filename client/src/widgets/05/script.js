@@ -18,4 +18,14 @@ export async function initializeScript() {
     marketContext.updateLastUpdated(stockData.lastUpdated);
     initializeStockSearch(stockData);
     initializeCurrencySearch(currencyData);
+
+    // Windows Scrollbar Issue
+    const { stockCardGroup, currencyCardGroup } = marketContext;
+    const cardGroups = [stockCardGroup, currencyCardGroup];
+    const isWindows = navigator.platform.includes('Win');
+    cardGroups.forEach(group => {
+        if (isWindows) {
+            group.classList.add('windows-scrollbar');
+        }
+    })
 }
