@@ -193,9 +193,19 @@
           scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
           align-items: start;
           grid-auto-rows: min-content;
-          padding-right: 4px;
-          margin-right: -4px;
+          margin-right: -6px;
+          padding-right: 6px;
           box-sizing: content-box;
+
+          // Windows-specific override
+          @supports (-ms-overflow-style: none) {
+            padding-right: 0;
+          }
+
+          // Force padding on Mac/Safari
+          @supports (-webkit-overflow-scrolling: touch) {
+            padding-right: 6px !important;
+          }
 
           @container content-parent (max-width: 340px) {
             max-height: 404px;
