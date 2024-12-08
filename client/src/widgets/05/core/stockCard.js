@@ -94,11 +94,7 @@ function stockCardEventHandlers(cardEl, stock) {
 
     expandBtn.addEventListener("click", async function () {
         toggleCardState(cardEl);
-
-        cardEl.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+        marketContext.scrollToElement(cardEl);
 
         if (!cardEl.classList.contains("initial")) {
             graphDiv.innerHTML = '<canvas></canvas>';

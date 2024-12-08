@@ -56,9 +56,13 @@ class MarketContext {
     }
 
     scrollToElement(el) {
-        el.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+        const cardGroup = el.closest('.card-group');
+        if (!cardGroup) return;
+
+        const elementOffset = el.offsetTop - cardGroup.offsetTop;
+        cardGroup.scrollTo({
+            top: elementOffset,
+            behavior: 'smooth'
         });
     }
 }
