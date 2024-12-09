@@ -49,20 +49,7 @@ function calculateLangStats(languages) {
 
 function cardHTML(data) {
     const { details, owner } = data;
-    const tagsHTML = details.topics.map(topic =>
-        `<li class="tag">${topic}</li>`
-    ).join('');
-
     const languages = calculateLangStats(data.languages);
-    const languagesHTML = languages.stats.map((lang, index) =>
-        `<div class="language-item">
-        <span class="language-name">${lang.name}</span>
-        <div class="language-bar"><div class="bar ${index === languages.stats.length - 1 ? ' last-animated' : ''}"
-                           style="--final-width: ${lang.percentage}%"></div></div>
-        <span class="language-count">${lang.lines} lines <span class="slash">/</span> ${lang.bytes} bytes</span>
-        <div class="tooltip"><strong>${lang.percentage.toFixed(2)}%</strong> of ${languages.totalLines} LOC</div>
-    </div>`
-    ).join('');
 
     return `
           <div class="repo-card">
@@ -77,7 +64,9 @@ function cardHTML(data) {
             </div>
             <div class="repo-description">${details.description}</div>
             <ul class="repo-tags">
-                 ${tagsHTML}
+                 ${details.topics.map(topic =>
+                    `<li class="tag">${topic}</li>`
+                ).join('')}
             </ul>
             <div class="repo-stats">
             ${details.stars ? `<div class="repo-stats--item">
@@ -119,7 +108,15 @@ function cardHTML(data) {
             </div>
             <div class="repo-languages">
                 <h3>Language Breakdown</h3>
-                ${languagesHTML}
+                ${languages.stats.map((lang, index) =>
+        `<div class="language-item">
+        <span class="language-name">${lang.name}</span>
+        <div class="language-bar"><div class="bar ${index === languages.stats.length - 1 ? ' last-animated' : ''}"
+                           style="--final-width: ${lang.percentage}%"></div></div>
+        <span class="language-count">${lang.lines} lines <span class="slash">/</span> ${lang.bytes} bytes</span>
+        <div class="tooltip"><strong>${lang.percentage.toFixed(2)}%</strong> of ${languages.totalLines} LOC</div>
+    </div>`
+    ).join('')}
             </div>
         </div>
     `

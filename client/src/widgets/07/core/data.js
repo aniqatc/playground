@@ -1,16 +1,18 @@
 async function fetchRepositoryDetails(owner, repo = null) {
-    try {
-        const url = repo ? `${process.env.SERVER}/widget/gh/${owner}/${repo}` : `${process.env.SERVER}/widget/gh/${owner}`
-        const response = await fetch(url);
-        return await response.json();
-    } catch (error) {
-        throw error;
+    const url = repo ? `${process.env.SERVER}/widget/gh/${owner}/${repo}` : `${process.env.SERVER}/widget/gh/${owner}`
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.message);
     }
+    return data;
 }
 
 async function fetchRandomRepository() {
     const response = await fetch(`${process.env.SERVER}/widget/gh/random`);
-    const { owner, repo }= await response.json();
+    const { owner, repo } = await response.json();
+
     return await fetchRepositoryDetails(owner, repo);
 }
 

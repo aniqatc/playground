@@ -1,7 +1,7 @@
 import repoContext from "./context";
 import { fetchRepositoryDetails } from "./data";
 import displayCard from "./displayCard";
-import { disableButtons } from "./buttonState";
+import { disableButtons, enableButtons } from "./buttonState";
 
 export default function initializeSearch() {
     const { searchInput, searchButton } = repoContext;
@@ -10,7 +10,6 @@ export default function initializeSearch() {
         if (event.key === "Enter") {
             event.preventDefault();
             searchButton.click();
-            disableButtons();
         }
     })
 
@@ -34,13 +33,14 @@ export default function initializeSearch() {
                 return;
             }
 
+            disableButtons();
             const [ owner, repo ] = userInput.split(".com/")[1].split("/");
             const data = await fetchRepositoryDetails(owner, repo);
-            disableButtons();
             displayCard(data);
         } catch (error) {
             searchInput.classList.add("error");
-            searchInput.placeholder = "Enter valid GitHub repository or profile URL"
+            searchInput.placeholder = "Enter valid GitHub repository or profile URL";
+            enableButtons();
         }
     })
 }

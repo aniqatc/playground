@@ -28,4 +28,4 @@ function disableButtons() {
     })
 }
 
-export { initializeButtonState, disableButtons };
+export { initializeButtonState, disableButtons, enableButtons };
