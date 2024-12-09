@@ -43,7 +43,7 @@
 
 // Base Widget Styles
 #widget-07 {
-  height: inherit;
+  min-height: 100%;
   font-size: var.$font-size-base;
 
   // Like Button Styles
@@ -128,6 +128,7 @@
       flex: 1;
       display: flex;
       flex-direction: column;
+      min-height: 420px;
 
       .repo-card {
         flex: 1;

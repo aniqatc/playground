@@ -3,7 +3,7 @@ import repoContext from "./context";
 const { saveButton, randomButton, searchButton, lastAnimatedEl } = repoContext;
 const buttons = [saveButton, randomButton, searchButton];
 
-export default function initializeButtonState() {
+function initializeButtonState() {
     lastAnimatedEl.addEventListener('animationend', () => {
         buttons.forEach(btn => {
             btn.disabled = false;
@@ -12,3 +12,13 @@ export default function initializeButtonState() {
         })
     });
 }
+
+function disableButtons() {
+    buttons.forEach(btn => {
+        btn.disabled = true;
+        btn.classList.add('disabled');
+        btn.style.animation = "none";
+    })
+}
+
+export { initializeButtonState, disableButtons };
