@@ -24,6 +24,7 @@
 		"url": "https://github.com/aniqatc/playground.git"
 	},
 	"dependencies": {
+		"@octokit/rest": "^21.0.2",
 		"cors": "^2.8.5",
 		"dotenv": "^16.3.1",
 		"express": "^4.18.2",
