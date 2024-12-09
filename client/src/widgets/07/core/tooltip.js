@@ -1,7 +1,8 @@
 import repoContext from "./context";
 
 export default function initializeTooltips() {
-    const { languageItems } = repoContext;
+    const { repoContainer } = repoContext;
+    const languageItems = repoContainer.querySelectorAll('.language-item');
 
     languageItems.forEach(item => {
         const tooltip = item.querySelector('.tooltip');

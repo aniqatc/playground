@@ -8,6 +8,10 @@ const router = express.Router();
     router.get('/:owner/:repo?', async (req, res) => {
         let { owner, repo } = req.params;
 
+        if (!owner) {
+            return res.status(404).json({ message: "User not found." })
+        }
+
         if (!repo) {
             const ownerRepos = await octokit.repos.listForUser({
                 username: owner,

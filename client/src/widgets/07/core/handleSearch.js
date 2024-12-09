@@ -1,6 +1,5 @@
 import repoContext from "./context";
 import fetchRepositoryDetails from "./data";
-import { disableButtons } from "./buttonState";
 import displayCard from "./displayCard";
 
 export default function initializeSearch() {
@@ -18,25 +17,28 @@ export default function initializeSearch() {
     })
 
     searchButton.addEventListener("click", async () => {
-        const userInput = searchInput.value.trim().toLowerCase();
-        searchInput.value = "";
-        if (!userInput) {
-            searchInput.classList.add("error");
-            return;
-        }
+        try {
+            const userInput = searchInput.value.trim().toLowerCase();
+            searchInput.value = "";
+            if (!userInput) {
+                searchInput.classList.add("error");
+                return;
+            }
 
-        const string = userInput.startsWith('http') ? userInput : `https://${userInput}`;
-        const url = new URL(string);
-        if (!url.hostname.includes('github.com')) {
-            searchInput.classList.add("error");
-            return;
-        }
+            const string = userInput.startsWith('http') ? userInput : `https://${userInput}`;
+            const url = new URL(string);
+            if (!url.hostname.includes('github.com')) {
+                searchInput.classList.add("error");
+                return;
+            }
 
-        const [ owner, repo ] = userInput.split(".com/")[1].split("/");
-        const data = await fetchRepositoryDetails(owner, repo);
-        searchInput.placeholder = data.details.url;
-        disableButtons();
-        displayCard(data);
-        console.log(data);
+            const [ owner, repo ] = userInput.split(".com/")[1].split("/");
+            const data = await fetchRepositoryDetails(owner, repo);
+            searchInput.placeholder = data.details.url;
+            displayCard(data);
+        } catch (error) {
+            searchInput.classList.add("error");
+            searchInput.placeholder = "Enter valid GitHub repository or profile URL."
+        }
     })
 }

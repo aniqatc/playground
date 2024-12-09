@@ -8,6 +8,12 @@ export default function initializeSaveButton() {
         toPng(repoContainer, {
             quality: 1,
             pixelRatio: window.devicePixelRatio,
+            style: {
+                maxHeight: 'none',
+                overflow: 'visible',
+            },
+            width: repoContainer.scrollWidth,
+            height: repoContainer.scrollHeight,
         }).then((dataUrl) => {
             const link = document.createElement("a");
             link.download = "repo-card.png";

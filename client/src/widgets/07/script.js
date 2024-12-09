@@ -1,11 +1,17 @@
 import initializeSaveButton from "./core/saveImage";
-import { initializeButtonState } from "./core/buttonState";
-import initializeTooltips from "./core/tooltip";
 import initializeSearch from "./core/handleSearch";
+import fetchRepositoryDetails from "./core/data";
+import displayCard from "./core/displayCard";
+import repoContext from "./core/context";
 
 export async function initializeScript() {
-    initializeButtonState();
+    displayCard( await fetchRepositoryDetails("facebook", "react"));
     initializeSaveButton();
-    initializeTooltips();
     initializeSearch();
+
+    // Scrollbar Issue
+    const isWindows = navigator.platform.includes('Win');
+    if (isWindows) {
+        repoContext.repoContainer.classList.add('.windows-scrollbar');
+    }
 }
