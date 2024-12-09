@@ -94,7 +94,7 @@ MongoDB Collections:
 
 ### Backend Components
 
-- [/server.js](/server.js): Initializes the Express.js server, handles API routing, and uses node-cron to refresh the historical lottery data (as new numbers are added weekly)
+- [`/server.js`](/server.js): Initializes the Express.js server, handles API routing, and uses node-cron to refresh the historical lottery data (as new numbers are added weekly)
 
 **Base Directory**:
 - [`lotteryData.js`](/server/widgets/06/lotteryData.js): Base class for shared lottery data operations

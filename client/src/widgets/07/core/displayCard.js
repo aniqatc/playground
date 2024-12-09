@@ -14,7 +14,7 @@ export default function displayCard(data) {
         repoContainer.innerHTML = cardHTML(data);
         initializeTooltips();
         initializeButtonState();
-    }, repoCard ? 300 : 0);
+    }, repoCard ? 200 : 0);
 }
 
 function removePreviousCard() {
