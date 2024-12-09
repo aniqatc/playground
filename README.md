@@ -145,7 +145,7 @@ A lottery analysis tool that helps players analyze historical Powerball and Mega
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-06_v1.png"></a>
 
-#### Widget 07: GitHub Repository Card ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/07-gh-card.md))
+#### Widget 07: GitHub Repository Search ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/07-gh-card.md))
 
 [![HTML Badge](https://img.shields.io/badge/HTML-6366F1)](https://github.com/aniqatc/playground)
 [![SCSS Badge](https://img.shields.io/badge/SCSS-6366F1)](https://github.com/aniqatc/playground)

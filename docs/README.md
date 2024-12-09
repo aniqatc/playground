@@ -21,3 +21,4 @@ Notes regarding individual widgets:
 - <a href="/docs/widgets/04-todo-list.md">Widget 04: Task Tracker</a>
 - <a href="/docs/widgets/05-fin-market.md">Widget 05: Financial Market Monitor</a>
 - <a href="/docs/widgets/06-lottery.md">Widget 06: Historical Lottery Search</a>
+- <a href="/docs/widgets/07-gh-card.md">Widget 07: GitHub Repository Search</a>
