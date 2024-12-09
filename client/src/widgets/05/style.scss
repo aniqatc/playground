@@ -226,7 +226,7 @@
           &.loading {
             @include flex-center;
             @include flex-column;
-            height: 375px;
+            height: 400px;
             gap: 12px;
             color: var.$color-dark-green;
             animation: blinking-message infinite 800ms linear alternate;
