@@ -22,48 +22,114 @@
 
   .content {
     .content-body {
+      margin-bottom: 4px;
+
       .bookmark-container {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 14px;
         overflow-y: scroll;
-        height: 480px;
+        height: 470px;
 
         .bookmark {
-          display: flex;
-          border: 1px solid var.$color-light-purple;
-          background-color: var.$color-x-light-purple;
-          border-radius: 2px;
-          padding: var.$spacing-base;
-          justify-content: space-between;
-          gap: var.$spacing-base;
-          transition: all 300ms ease-in-out;
-
-          &:hover {
-            background-color: color.adjust(var.$color-x-light-purple, $lightness: -10%, $space: hsl);
-          }
+          position: relative;
 
           &-content {
-            display: block;
+            display: flex;
+            flex: 1;
+            border: 1px solid var.$color-light-purple;
+            background-color: var.$color-x-light-purple;
+            border-radius: 2px;
+            padding: var.$spacing-base;
+            transition: all 300ms ease-in-out;
+            gap: 8px;
 
-            &--header {}
+            &:hover {
+              background-color: color.adjust(var.$color-x-light-purple, $lightness: -5%, $space: hsl);
+            }
 
-            &--description {}
+            .bookmark-content--container {
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+            }
 
-            &--topics {}
+            &--header {
+              display: flex;
+              gap: 4px;
+              align-items: center;
+
+              h2 {
+                font-family: inherit;
+                font-weight: 600;
+                font-size: var.$font-size-med;
+              }
+
+              span {
+                font-size: var.$font-size-sm;
+                color: var.$gray-medium-dark;
+              }
+            }
+
+            &--description {
+              line-height: 1.2;
+              margin-bottom: 8px;
+              font-size: var.$font-size-sm;
+              max-width: 320px;
+            }
+
+            &--topics {
+              color: var.$color-muted-purple;
+              margin-top: auto;
+              line-height: 1.2;
+              font-size: var.$font-size-sm;
+            }
+
+            &--img {
+              img {
+                min-width: 72px;
+                min-height: 72px;
+                max-width: 86px;
+                max-height: 86px;
+                object-fit: contain;
+                aspect-ratio: 1 / 1;
+                border: 2px solid #e4d9f1;
+                border-radius: 4px;
+                background-color: #fff;
+              }
+            }
           }
 
           &-sidebar {
-            a img {
-              width: 85px;
-              height: 85px;
-              object-fit: contain;
-            }
+            position: absolute;
+            bottom: -8px;
+            right: 11px;
 
             .sidebar--actions {
-              &--likes {}
+              font-size: var.$font-size-sm;
+              display: flex;
+              gap: 8px;
+              justify-content: space-evenly;
+              border: 1px solid var.$color-light-purple;
+              background-color: var.$color-x-light-purple;
+              border-radius: 2px;
+              padding: 4px;
+              box-shadow: 0 0 2px rgba(0,0,0,0.25);
 
-              &--dislikes {}
+              &--likes, &--dislikes {
+                transition: all 300ms ease-in-out;
+                display: block;
+
+                &:hover {
+                  background-color: color.adjust(var.$color-x-light-purple, $lightness: -5%, $space: hsl);
+                }
+              }
+
+              &--likes {
+              }
+
+              &--dislikes {
+              }
             }
           }
         }
@@ -71,9 +137,22 @@
     }
 
     .content-footer {
-      .add-input {}
+      position: relative;
+      margin-top: 6px;
 
-      .add-btn {}
+      .add-input {
+        width: 100%;
+        padding: 6px 12px 6px 6px;
+        border-radius: 2px;
+        border: 2px solid var.$color-x-light-purple;
+      }
+
+      .add-btn {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 6px;
+      }
     }
   }
 }
