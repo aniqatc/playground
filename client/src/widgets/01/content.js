@@ -220,30 +220,6 @@ export function getMarkup() {
               />
             </a>
           </div>
-          <div class="card-container flex-col">
-            <div
-              class="card-tile rounded  bg-stone-50 px-3 py-2 shadow-md  dark:bg-zinc-800"
-            >
-              <a href="https://twitter.com/aniqatc" target="_blank">
-                <p>
-                  <i class="fa-brands fa-twitter"></i>
-                  <br />
-                  twitter
-                </p>
-              </a>
-            </div>
-            <div
-              class="card-tile rounded  bg-stone-50 px-3 py-2 shadow-md  dark:bg-zinc-800"
-            >
-              <a href="https://aniqa.dev" target="_blank">
-                <p>
-                  <i class="fa-solid fa-laptop"></i>
-                  <br />
-                  projects
-                </p>
-              </a>
-            </div>
-          </div>
         </div>
         <div
           class="card-tile card-footer mt-2 rounded bg-stone-50 px-3 py-2 shadow-md dark:bg-zinc-800"
