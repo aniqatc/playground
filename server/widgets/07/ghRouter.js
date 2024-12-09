@@ -5,6 +5,22 @@ const router = express.Router();
     const { Octokit } = await import ('@octokit/rest');
     const octokit = new Octokit({ auth: process.env.GH_API_KEY });
 
+    router.get('/random', async (req, res) => {
+        const { data } = await octokit.search.repos({
+            q: 'stars:>5000',
+            sort: 'stars',
+            order: 'desc',
+            per_page: 50,
+            page: Math.floor(Math.random() * 10 + 1)
+        });
+
+        const randomRepo = data.items[Math.floor(Math.random() * data.items.length)];
+        res.json({
+            owner: randomRepo.owner.login,
+            repo: randomRepo.name,
+        });
+    })
+
     router.get('/:owner/:repo?', async (req, res) => {
         let { owner, repo } = req.params;
 

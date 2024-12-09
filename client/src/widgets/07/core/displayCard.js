@@ -1,17 +1,16 @@
 import repoContext from "./context";
-import { initializeButtonState, disableButtons } from "./buttonState";
+import { initializeButtonState } from "./buttonState";
 import initializeTooltips from "./tooltip";
-const { repoContainer } = repoContext;
+const { repoContainer, searchInput } = repoContext;
 
 export default function displayCard(data) {
-    disableButtons();
-
     const repoCard = repoContainer.querySelector(".repo-card");
     if (repoCard) {
         removePreviousCard();
     }
 
     setTimeout(() => {
+        searchInput.placeholder = data.details.url;
         repoContainer.innerHTML = cardHTML(data);
         initializeTooltips();
         initializeButtonState();

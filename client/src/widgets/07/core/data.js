@@ -1,4 +1,4 @@
-export default async function fetchRepositoryDetails(owner, repo = null) {
+async function fetchRepositoryDetails(owner, repo = null) {
     try {
         const url = repo ? `${process.env.SERVER}/widget/gh/${owner}/${repo}` : `${process.env.SERVER}/widget/gh/${owner}`
         const response = await fetch(url);
@@ -7,3 +7,11 @@ export default async function fetchRepositoryDetails(owner, repo = null) {
         throw error;
     }
 }
+
+async function fetchRandomRepository() {
+    const response = await fetch(`${process.env.SERVER}/widget/gh/random`);
+    const { owner, repo }= await response.json();
+    return await fetchRepositoryDetails(owner, repo);
+}
+
+export { fetchRepositoryDetails, fetchRandomRepository };

@@ -71,7 +71,7 @@
   .content {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 510px;
 
     .content-header {
       position: relative;
@@ -139,13 +139,13 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      max-height: 430px;
       overflow: scroll;
       scrollbar-gutter: stable;
       scrollbar-width: thin;
       scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
       margin-right: -8px;
       padding-right: 8px;
+      height: 430px;
 
       // Scrollbar Styles
       &.windows-scrollbar {
