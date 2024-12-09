@@ -4,7 +4,7 @@ export function getMarkup() {
     return `<!-- Widget 05: Financial Markets -->
 <section
   id="widget-05"
-  class="relative h-min rounded bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
+  class="relative rounded bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
 >
   <div
     class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"

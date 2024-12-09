@@ -44,11 +44,11 @@
 }
 
 @keyframes pop {
-  0%, 85%, 100% {
+  0%, 90%, 100% {
     transform: scale(1);
   }
   75% {
-    transform: scale(1.05);
+    transform: scale(1.075);
   }
 }
 
