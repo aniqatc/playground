@@ -1,4 +1,5 @@
 @use "../../main/styles/var";
+@use "sass:color";
 
 // Mixins
 // Animations
@@ -22,10 +23,29 @@
   .content {
     .content-body {
       .bookmark-container {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        overflow-y: scroll;
+        height: 480px;
+
         .bookmark {
           display: flex;
+          border: 1px solid var.$color-light-purple;
+          background-color: var.$color-x-light-purple;
+          border-radius: 2px;
+          padding: var.$spacing-base;
+          justify-content: space-between;
+          gap: var.$spacing-base;
+          transition: all 300ms ease-in-out;
+
+          &:hover {
+            background-color: color.adjust(var.$color-x-light-purple, $lightness: -10%, $space: hsl);
+          }
 
           &-content {
+            display: block;
+
             &--header {}
 
             &--description {}
@@ -34,7 +54,7 @@
           }
 
           &-sidebar {
-            img {
+            a img {
               width: 85px;
               height: 85px;
               object-fit: contain;
