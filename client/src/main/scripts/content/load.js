@@ -28,7 +28,7 @@ function loadScript(entry) {
 }
 
 function loadWidgets() {
-  for (let i = 1; i <= 7; i++) {
+  for (let i = 1; i <= 8; i++) {
     let entry = String(i).padStart(2, "0");
     loadContent(entry);
     loadScript(entry);

@@ -1,0 +1,26 @@
+@use "../../main/styles/var";
+
+// Mixins
+// Animations
+
+// Base Widget Styles
+#widget-08 {
+  min-height: 100%;
+  font-size: var.$font-size-base;
+
+  // Like Button Styles
+  .like-btn {
+    &:hover {
+      color: var.$color-medium-purple;
+    }
+  }
+
+  .liked-color {
+    color: var.$color-medium-purple;
+  }
+
+  .content {}
+}
+
+// Dark Theme Styles
+.dark #widget-08 {}
