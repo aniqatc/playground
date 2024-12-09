@@ -145,28 +145,50 @@ A lottery analysis tool that helps players analyze historical Powerball and Mega
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-06_v1.png"></a>
 
+#### Widget 07: GitHub Repository Card ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/07-gh-card.md))
+
+[![HTML Badge](https://img.shields.io/badge/HTML-6366F1)](https://github.com/aniqatc/playground)
+[![SCSS Badge](https://img.shields.io/badge/SCSS-6366F1)](https://github.com/aniqatc/playground)
+[![HTML-to-Image Badge](https://img.shields.io/badge/html2image-6366F1)](https://github.com/aniqatc/playground)
+[![JavaScript Badge](https://img.shields.io/badge/JavaScript-6366F1)](https://github.com/aniqatc/playground)
+[![Node Badge](https://img.shields.io/badge/Node-6366F1)](https://github.com/aniqatc/playground)
+[![Express Badge](https://img.shields.io/badge/Express-6366F1)](https://github.com/aniqatc/playground)
+[![Octokit Badge](https://img.shields.io/badge/Octokit-6366F1)](https://github.com/aniqatc/playground)
+
+A GitHub repository visualization tool that generates cards displaying repository statistics and language breakdowns. Features include random repository discovery, search functionality, and PNG export capabilities.
+
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-07_v1.png"></a>
+
 ## Available Scripts
 
 **To be used at root directory for server-side development**:
 
-#### `npm run start:dev`
+```
+npm run start:dev
+```
 
 - Starts the backend server
 - Sets `NODE_ENV` variable to `development` (sets a different CORS origin so that requests can be made from the frontend development localhost)
 
-#### `npm run start`
+```
+npm run start
+```
 
 - Starts the backend server, used for production
 - Sets `NODE_ENV` variable to `production` (sets a different CORS origin so that requests can be made from the hosted frontend)
 
 **To be used within the `/client` directory for client-side development**:
 
-#### `npm run start`
+```
+npm run start
+```
 
 - Starts the development server
 - Sets `NODE_ENV` variable to `development`
 
-#### `npm run build`
+```
+npm run build
+```
 
 - Build in production mode
 - Sets `NODE_ENV` variable to `production`
