@@ -62,7 +62,7 @@ function cardHTML(data) {
                     <a href="${owner.url}" target="_blank">${owner.username}</a>
                 </div>
             </div>
-            <div class="repo-description">${details.description}</div>
+            ${details.description ? `<div class="repo-description">${details.description}</div>`: ""}
             <ul class="repo-tags">
                  ${details.topics.map(topic =>
                     `<li class="tag">${topic}</li>`
