@@ -1,7 +1,7 @@
-export function initializeScript() {
-    console.log("Handling Widget 8...");
-    const widget = document.querySelector("#widget-08");
+import bookmarkContext from "./core/context";
+const { widget } = bookmarkContext;
 
+export function initializeScript() {
     // Temp
     const input = widget.querySelector(".add-input");
     const button = widget.querySelector(".add-btn");

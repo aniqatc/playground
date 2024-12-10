@@ -31,6 +31,7 @@ const lotteryRouter = require('./server/widgets/06/lotteryRouter');
 const megaMillionRouter = require('./server/widgets/06/megamillions/megaMillionRouter');
 const powerballRouter = require('./server/widgets/06/powerball/powerballRouter');
 const ghRouter = require('./server/widgets/07/ghRouter');
+const bookmarkRouter = require('./server/widgets/08/bookmarkRouter');
 
 app.use('/users/', userRouter);
 app.use('/likes/', likeRouter);
@@ -42,6 +43,7 @@ app.use('/widget/lottery/', lotteryRouter);
 app.use('/widget/lottery/megamillion/', megaMillionRouter);
 app.use('/widget/lottery/powerball/', powerballRouter);
 app.use('/widget/gh/', ghRouter);
+app.use('/widget/bookmark/', bookmarkRouter);
 
 // daily data refresh
 const marketData = require('./server/widgets/05/market/marketData');

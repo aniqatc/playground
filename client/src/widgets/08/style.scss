@@ -4,8 +4,6 @@
 
 // Mixins
 // Animations
-// * add fade-in animation for new cards
-// [optional] - add the fade-in animation to all cards on initial load? maybe
 
 // Base Widget Styles
 #widget-08 {
@@ -337,16 +335,6 @@
 
         &::placeholder {
           color: var.$gray-medium;
-        }
-
-        &:focus {
-          outline-color: var.$color-medium-purple;
-          border-color: var.$color-medium-purple;
-        }
-
-        &.error {
-          outline-color: var.$color-medium-red;
-          border-color: var.$color-medium-red;
         }
       }
 
