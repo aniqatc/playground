@@ -4,7 +4,7 @@ const { saveButton, randomButton, searchButton, widget } = repoContext;
 const buttons = [saveButton, randomButton, searchButton];
 
 function initializeButtonState() {
-    const lastAnimatedEl = widget.querySelector(".bar.last-animated");
+    const lastAnimatedEl = widget.querySelector(".last-animated");
     if (lastAnimatedEl) {
         lastAnimatedEl.addEventListener('animationend', () => {
             enableButtons();

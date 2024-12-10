@@ -49,7 +49,8 @@ function calculateLangStats(languages) {
 
 function cardHTML(data) {
     const { details, owner } = data;
-    const languages = calculateLangStats(data.languages);
+    const hasLanguages = data.languages && Object.keys(data.languages).length > 0;
+    const languages = hasLanguages ? calculateLangStats(data.languages) : null;
 
     return `
           <div class="repo-card">
@@ -106,18 +107,24 @@ function cardHTML(data) {
                     <span class="repo-stats--item--value">${details.size}KB</span>
                 </div>` : ""}
             </div>
-            <div class="repo-languages">
-                <h3>Language Breakdown</h3>
-                ${languages.stats.map((lang, index) =>
+            ${languages ? `
+    <div class="repo-languages">
+        <h3>Language Breakdown</h3>
+        ${languages.stats.map((lang, index) =>
         `<div class="language-item">
-        <span class="language-name">${lang.name}</span>
-        <div class="language-bar"><div class="bar ${index === languages.stats.length - 1 ? ' last-animated' : ''}"
-                           style="--final-width: ${lang.percentage}%"></div></div>
-        <span class="language-count">${lang.lines} lines <span class="slash">/</span> ${lang.bytes} bytes</span>
-        <div class="tooltip"><strong>${lang.percentage.toFixed(2)}%</strong> of ${languages.totalLines} LOC</div>
-    </div>`
+                <span class="language-name">${lang.name}</span>
+                <div class="language-bar"><div class="bar ${index === languages.stats.length - 1 ? ' last-animated' : ''}"
+                    style="--final-width: ${lang.percentage}%"></div></div>
+                <span class="language-count">${lang.lines} lines <span class="slash">/</span> ${lang.bytes} bytes</span>
+                <div class="tooltip"><strong>${lang.percentage.toFixed(2)}%</strong> of ${languages.totalLines} LOC</div>
+            </div>`
     ).join('')}
-            </div>
-        </div>
-    `
+    </div>
+` : `
+    <div class="repo-languages last-animated">
+        <h3>Language Breakdown</h3>
+        <p class="no-languages"><i class="fa-solid fa-ban"></i> No language data available</p>
+    </div>
+`}
+</div>`
 }
