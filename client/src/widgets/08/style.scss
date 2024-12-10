@@ -118,6 +118,7 @@
               gap: 3px;
 
               li {
+                border: 1px solid #a9a0bb;
                 background-color: var.$color-light-purple;
                 color: var.$color-muted-purple;
                 border-radius: 4px;
@@ -154,8 +155,8 @@
               border: 1px solid var.$color-light-purple;
               background-color: rgba(255, 255, 255, 0.6);
               backdrop-filter: blur(2px);
-              border-radius: 2px;
-              padding: 1px 2px;
+              border-radius: 3px;
+              padding: 1px 3px;
               box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
 
               &--likes, &--dislikes {
@@ -257,4 +258,89 @@
 }
 
 // Dark Theme Styles
-.dark #widget-08 {}
+.dark #widget-08 {
+  .content {
+    .content-body {
+      .bookmark-container {
+        .bookmark {
+          &-content {
+            border-color: var.$gray-dark;
+            background-color: var.$gray-dark;
+
+            &:hover {
+              background-color: color.adjust(var.$gray-dark, $lightness: -5%);
+            }
+
+            &--header {
+              span {
+                color: var.$gray-light;
+              }
+            }
+
+            &--topics {
+              li {
+                background-color: var.$color-muted-purple;
+                color: var.$color-light-purple;
+                border: 1px solid #785293;
+              }
+            }
+
+            &--img {
+              img {
+                background-color: #212121;
+                border-color: var.$gray-medium-dark;
+              }
+            }
+          }
+
+          &-sidebar {
+            .sidebar--actions {
+              border-color: var.$gray-medium-dark;
+              background-color: rgba(0, 0, 0, 0.7);
+
+              &--likes, &--dislikes {
+                &-btn {
+                  color: var.$color-light-purple;
+
+                  &:hover {
+                    color: var.$color-medium-purple;
+                  }
+                }
+
+                &-count {
+                  color: var.$gray-light;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .content-footer {
+      .add-input {
+        border-color: var.$gray-dark;
+        color: var.$gray-light;
+
+        &::placeholder {
+          color: var.$gray-medium;
+        }
+
+        &:focus {
+          outline-color: var.$color-medium-purple;
+          border-color: var.$color-medium-purple;
+        }
+
+        &.error {
+          outline-color: var.$color-medium-red;
+          border-color: var.$color-medium-red;
+        }
+      }
+
+      .add-btn {
+        color: var.$color-x-light-purple;
+        background-color: var.$color-medium-purple;
+      }
+    }
+  }
+}
