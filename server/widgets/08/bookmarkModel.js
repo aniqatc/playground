@@ -10,6 +10,7 @@ const BookmarkSchema = new mongoose.Schema({
     icon: String,
     domain: String,
     topics: [String],
+    author: String,
     // Storing IDs of user's likes/dislikes + count
     likes: [{
         type: mongoose.Schema.Types.ObjectId,

@@ -17,6 +17,7 @@ class BookmarkData {
         if (await this.isNotSafe(url)) {
             throw new Error("URL has been flagged by Google's Safe Browsing API.")
         }
+        const metadata = await this.extractMetaData(url);
     }
 
     hasBadWords(url) {
@@ -41,6 +42,27 @@ class BookmarkData {
         })
         const data = await response.json();
         return data.matches ? true : false;
+    }
+
+    async extractMetaData(url) {
+        const response = await fetch(url);
+        const html = await response.text();
+        const $ = cheerio.load(html);
+
+        const metadata = {
+            url,
+            title: $('title').text() || $('meta[property="og:title"]').attr('content'),
+            description: $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content'),
+            icon: $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href'),
+            domain: new URL(url).hostname,
+            topics: $('meta[name="keywords"]').attr("content")?.split(",") || [],
+            author: $('meta[name="author"]').attr("content") || new URL(url).hostname || "",
+        }
+
+        if (metadata.icon && !metadata.icon.startsWith('https')) {
+            metadata.icon = new URL(metadata.icon, url).href;
+        }
+        return metadata;
     }
 }
 
