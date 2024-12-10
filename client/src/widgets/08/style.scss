@@ -1,5 +1,6 @@
 @use "../../main/styles/var";
 @use "sass:color";
+@import url("https://fonts.googleapis.com/css2?family=Recursive:CASL,MONO@0.25,0.25&display=swap");
 
 // Mixins
 // Animations
@@ -27,10 +28,36 @@
       .bookmark-container {
         display: flex;
         flex-direction: column;
-        gap: 14px;
-        overflow-y: scroll;
+        gap: var.$spacing-base;
         height: 470px;
+        overflow-y: scroll;
+        scrollbar-gutter: stable;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+        margin-right: -8px;
+        padding-right: 8px;
 
+        // Scrollbar Styles
+        &.windows-scrollbar {
+          padding-right: 0;
+        }
+
+        &::-webkit-scrollbar {
+          width: 2px;
+          position: absolute;
+          right: 0;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.25);
+          border-radius: 8px;
+        }
+
+        // Bookmark cards
         .bookmark {
           position: relative;
 
@@ -76,21 +103,35 @@
               margin-bottom: 8px;
               font-size: var.$font-size-sm;
               max-width: 320px;
+
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              text-overflow: ellipsis;
+              overflow: hidden;
             }
 
             &--topics {
-              color: var.$color-muted-purple;
               margin-top: auto;
-              line-height: 1.2;
-              font-size: var.$font-size-sm;
+              display: flex;
+              flex-wrap: wrap;
+              gap: 3px;
+
+              li {
+                background-color: var.$color-light-purple;
+                color: var.$color-muted-purple;
+                border-radius: 4px;
+                padding: 1px 4px;
+                font-size: 11.5px;
+                line-height: 1.2;
+                white-space: nowrap;
+              }
             }
 
             &--img {
               img {
-                min-width: 72px;
-                min-height: 72px;
-                max-width: 86px;
-                max-height: 86px;
+                width: 72px;
+                height: 72px;
                 object-fit: contain;
                 aspect-ratio: 1 / 1;
                 border: 2px solid #e4d9f1;
@@ -102,33 +143,65 @@
 
           &-sidebar {
             position: absolute;
-            bottom: -8px;
-            right: 11px;
+            bottom: 6px;
+            right: 6px;
 
             .sidebar--actions {
               font-size: var.$font-size-sm;
               display: flex;
-              gap: 8px;
+              gap: 4px;
               justify-content: space-evenly;
               border: 1px solid var.$color-light-purple;
-              background-color: var.$color-x-light-purple;
+              background-color: rgba(255, 255, 255, 0.6);
+              backdrop-filter: blur(2px);
               border-radius: 2px;
-              padding: 4px;
-              box-shadow: 0 0 2px rgba(0,0,0,0.25);
+              padding: 1px 2px;
+              box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
 
               &--likes, &--dislikes {
-                transition: all 300ms ease-in-out;
-                display: block;
+                display: flex;
+                align-items: center;
+                gap: 1px;
 
-                &:hover {
-                  background-color: color.adjust(var.$color-x-light-purple, $lightness: -5%, $space: hsl);
+                &-btn {
+                  font-size: 14px;
+                  padding: 0 2px;
+                  color: var.$color-dark-purple;
+
+                  i {
+                    transition: all 200ms ease-in;
+                  }
+
+                  .fa-regular.fa-thumbs-up:hover::before {
+                    content: "\f164";
+                    font-family: "Font Awesome 6 Free";
+                    font-weight: 900;
+                  }
+
+                  .fa-regular.fa-thumbs-down:hover::before {
+                    content: "\f165";
+                    font-family: "Font Awesome 6 Free";
+                    font-weight: 900;
+                  }
+                }
+
+                &-count {
+                  font-size: 11px;
+                  font-family: "Recursive", "Archivo", "Inter", sans-serif;
+                  text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
                 }
               }
 
               &--likes {
+                &-btn {}
+
+                &-count {}
               }
 
               &--dislikes {
+                &-btn {}
+
+                &-count {}
               }
             }
           }
@@ -145,13 +218,39 @@
         padding: 6px 12px 6px 6px;
         border-radius: 2px;
         border: 2px solid var.$color-x-light-purple;
+        background-color: transparent;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
+        transition: all 250ms ease-in;
+
+        &::placeholder {
+          color: var.$gray-medium;
+          font-size: var.$font-size-sm;
+          letter-spacing: 0.25px;
+        }
+
+        &:focus {
+          outline: 1px solid var.$color-medium-purple;
+          border: 2px solid var.$color-medium-purple;
+        }
+
+        &.error {
+          outline: 1px solid var.$color-medium-red;
+          border: 2px solid var.$color-medium-red;
+        }
       }
 
       .add-btn {
         position: absolute;
-        top: 0;
+        top: 5px;
         bottom: 0;
         right: 6px;
+        color: var.$color-x-light-purple;
+        background-color: var.$color-dark-purple;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+        border-radius: 50%;
+        height: 26px;
+        width: 26px;
+        font-size: 16px;
       }
     }
   }
