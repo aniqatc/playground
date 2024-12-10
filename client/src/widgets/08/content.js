@@ -49,7 +49,7 @@ export function getMarkup() {
                     <span class="sidebar--actions--likes-count">245</span>
                 </div>
                 <div class="sidebar--actions--dislikes">
-                    <button class="sidebar--actions--dislikes-btn">
+                    <button class="sidebar--actions--dislikes-btn active">
                         <i class="fa-regular fa-thumbs-down"></i>
                     </button>
                     <span class="sidebar--actions--dislikes-count">12</span>
@@ -82,7 +82,7 @@ export function getMarkup() {
         <div class="bookmark-sidebar">
             <div class="sidebar--actions">
                 <div class="sidebar--actions--likes">
-                    <button class="sidebar--actions--likes-btn">
+                    <button class="sidebar--actions--likes-btn active">
                         <i class="fa-regular fa-thumbs-up"></i>
                     </button>
                     <span class="sidebar--actions--likes-count">389</span>
@@ -121,7 +121,7 @@ export function getMarkup() {
         <div class="bookmark-sidebar">
             <div class="sidebar--actions">
                 <div class="sidebar--actions--likes">
-                    <button class="sidebar--actions--likes-btn">
+                    <button class="sidebar--actions--likes-btn active">
                         <i class="fa-regular fa-thumbs-up"></i>
                     </button>
                     <span class="sidebar--actions--likes-count">167</span>

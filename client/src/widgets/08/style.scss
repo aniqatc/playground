@@ -4,6 +4,8 @@
 
 // Mixins
 // Animations
+// * add fade-in animation for new cards
+// [optional] - add the fade-in animation to all cards on initial load? maybe
 
 // Base Widget Styles
 #widget-08 {
@@ -197,15 +199,23 @@
               }
 
               &--likes {
-                &-btn {}
-
-                &-count {}
+                &-btn.active {
+                  .fa-regular.fa-thumbs-up::before {
+                    content: "\f164";
+                    font-family: "Font Awesome 6 Free";
+                    font-weight: 900;
+                  }
+                }
               }
 
               &--dislikes {
-                &-btn {}
-
-                &-count {}
+                &-btn.active {
+                  .fa-regular.fa-thumbs-down::before {
+                    content: "\f165";
+                    font-family: "Font Awesome 6 Free";
+                    font-weight: 900;
+                  }
+                }
               }
             }
           }
