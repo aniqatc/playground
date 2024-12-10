@@ -24,26 +24,12 @@ async function displayDefaultTodos() {
         isCompleted: false
       },
       {
-        task: "Create example tasks for new users to view",
-        dueDate: new Date().toISOString(),
-        priority: "low",
-        isArchived: false,
-        isCompleted: true
-      },
-      {
         task: "Create a digital footprint widget with a map from MapBox",
         dueDate: new Date().toISOString(),
         priority: "low",
         isArchived: true,
         isCompleted: true
       },
-      {
-        task: "Build a simple scientific and graphic calculator",
-        dueDate: new Date().toISOString(),
-        priority: "low",
-        isArchived: true,
-        isCompleted: true
-      }
     ];
 
     for (const todo of exampleTodos) {
