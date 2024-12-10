@@ -15,6 +15,6 @@ export async function initializeScript() {
     // Scrollbar Issue
     const isWindows = navigator.platform.includes('Win');
     if (isWindows) {
-        repoContext.repoContainer.classList.add('.windows-scrollbar');
+        repoContext.repoContainer.classList.add('windows-scrollbar');
     }
 }
