@@ -41,7 +41,6 @@ class BookmarkData {
         if (!url.startsWith('http')) {
             url = `https://${url}`;
         }
-
         if (!new URL(url).hostname.includes('.')) {
             throw new Error("Invalid URL.");
         }
@@ -97,8 +96,7 @@ class BookmarkData {
         }
 
         // Check content before returning
-        const body = $('body').text().replace(/\s+/g, ' ').toLowerCase().slice(0, 1000);
-        const content = [metadata.title, metadata.description, ...metadata.topics, body].join(" ").toLowerCase();
+        const content = [metadata.title, metadata.description, ...metadata.topics].join(" ").toLowerCase();
         const words = content.split(/[\s\W]+/);
 
         if (words.some(word => this.filter.check(word))) {
@@ -126,8 +124,9 @@ class BookmarkData {
     }
 
     hasBadWords(url) {
-        const words = decodeURIComponent(url).toLowerCase().replace(/[^a-z0-9]+/g, '-').trim().split("-");
-        return words.some(word => this.filter.check(word));
+        const urlText = decodeURIComponent(url).toLowerCase();
+        const restrictedList = this.filter.list();
+        return restrictedList.some(explicit => urlText.includes(explicit));
     }
 
     async isNotSafe(url) {
