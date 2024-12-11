@@ -24,7 +24,7 @@ function bookmarkHTML(bookmark) {
                 </ul>
             </div>
             <div class="bookmark-content--img">
-                <img src="${bookmark.icon}" alt="${bookmark.title} icon"/>
+                <img src="${bookmark.icon}" alt="${bookmark.title} icon" onerror="this.style.display='none';"/>
             </div>
         </a>
         <div class="bookmark-sidebar">
