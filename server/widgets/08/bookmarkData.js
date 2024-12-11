@@ -25,7 +25,7 @@ class BookmarkData {
                 }
             }
 
-            const hasLiked = bookmark.likes.include(user._id);
+            const hasLiked = bookmark.likes.includes(user._id);
             const hasDisliked = bookmark.dislikes.includes(user._id);
 
             return {
@@ -74,11 +74,12 @@ class BookmarkData {
         const response = await fetch(url);
         const html = await response.text();
         const $ = cheerio.load(html);
+        const parsedURL = new URL(url);
 
         const metadata = {
-            title: $('title').text() || $('meta[property="og:title"]').attr('content'),
-            description: $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content'),
-            icon: $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href') || `${url.origin}/favicon.ico`,
+            title: $('title').text() || $('meta[property="og:title"]').attr('content') || parsedURL.hostname,
+            description: $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content') || "",
+            icon: $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href') || `https://${parsedURL.hostname}/favicon.ico`,
             domain: new URL(url).hostname,
             topics: $('meta[name="keywords"]').attr("content")?.split(",").map(word => word.trim()) || [],
             author: $('meta[name="author"]').attr("content") || new URL(url).hostname || "",

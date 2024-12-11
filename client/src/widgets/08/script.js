@@ -1,8 +1,10 @@
 import bookmarkContext from "./core/context";
 import initializeAddBookmark from "./core/addBookmark";
 const { widget, bookmarkContainer } = bookmarkContext;
+import loadBookmarks from "./core/loadBookmarks";
 
 export async function initializeScript() {
+    loadBookmarks();
     initializeAddBookmark();
 
     // Scrollbar fix

@@ -150,7 +150,7 @@
                 aspect-ratio: 1 / 1;
                 border: 2px solid #e4d9f1;
                 border-radius: 4px;
-                background-color: #fff;
+                background-color: transparent;
               }
             }
           }
@@ -308,7 +308,6 @@
 
             &--img {
               img {
-                background-color: #212121;
                 border-color: #4b444e;
               }
             }

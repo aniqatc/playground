@@ -34,6 +34,5 @@ async function addBookmark() {
     } catch (error) {
         addInput.classList.add("error");
         addInput.placeholder = error.message;
-        console.log(error);
     }
 }
