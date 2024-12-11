@@ -3,7 +3,6 @@ const { currencyCardGroup } = marketContext;
 const batchSize = 50;
 let currentIndex = 0;
 let isLoading = false;
-let scrollHandler;
 
 function generateCurrencyCards(data) {
     currentIndex = 0;
