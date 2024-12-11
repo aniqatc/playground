@@ -9,6 +9,7 @@ class BookmarkData {
         this.apiKey = process.env.GOOGLE_API_KEY;
         this.safeBrowsingURL = `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${this.apiKey}`;
         this.filter = Filter;
+        this.filter.add(this.filter.getDictionary('en'));
     }
 
     async getBookmarks(userId) {
@@ -96,19 +97,20 @@ class BookmarkData {
             author: $('meta[name="author"]').attr("content") || new URL(url).hostname || "",
         }
 
+        // Check content before returning
+        const content = [metadata.title, metadata.description, ...metadata.topics].join(" ").toLowerCase();
+        const words = content.split(/[\s\W]+/);
+
+        if (words.some(word => this.filter.check(word))) {
+            throw new Error("Page contains inappropriate content.");
+        }
+
         if (metadata.icon && !metadata.icon.startsWith('https')) {
             metadata.icon = new URL(metadata.icon, url).href;
         }
 
         if (!metadata.topics || metadata.topics.length === 0) {
             metadata.topics = await this.extractTopics(metadata.title, metadata.description);
-        }
-
-        // Check content before returning
-        const content = [metadata.title, metadata.description, ...metadata.topics].join(" ").toLowerCase();
-        const words = content.split(/[\s\W]+/);
-        if (words.some(word => this.filter.check(word))) {
-            throw new Error("Page contains inappropriate content.")
         }
 
         // Return metadata object if clean
