@@ -8,7 +8,7 @@ router.post('/add', async (req, res) => {
         const bookmark = await BookmarkData.processBookmark(url);
         res.json(bookmark);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({ message: error.message });
     }
 });
 
@@ -19,7 +19,7 @@ router.post('/:vote', async (req, res) => {
         const voteCount = await BookmarkData.handleVote(userId, bookmarkId, vote);
         res.json(voteCount);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({ message: error.message });
     }
 });
 
@@ -29,7 +29,7 @@ router.get('/all', async (req, res) => {
        const bookmarks = await BookmarkData.getBookmarks(userId);
        res.json({ bookmarks });
    } catch (error) {
-       res.status(400).json({ error: error.message });
+       res.status(400).json({ message: error.message });
    }
 });
 
@@ -39,7 +39,7 @@ router.get('/count', async (req, res) => {
         const userVotes = await BookmarkData.getUserVoteCount(userId, bookmarkId);
         res.json({ count: userVotes.length });
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({ message: error.message });
     }
 })
 

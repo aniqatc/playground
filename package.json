@@ -32,6 +32,7 @@
 		"express-useragent": "^1.0.15",
 		"leo-profanity": "^1.7.0",
 		"mongoose": "^8.0.3",
+		"natural": "^8.0.1",
 		"node-cron": "^3.0.3"
 	}
 }

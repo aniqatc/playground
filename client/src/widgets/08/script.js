@@ -1,20 +1,10 @@
 import bookmarkContext from "./core/context";
+import initializeAddBookmark from "./core/addBookmark";
 const { widget, bookmarkContainer } = bookmarkContext;
 
 export async function initializeScript() {
-    // Temp
-    const input = widget.querySelector(".add-input");
-    const button = widget.querySelector(".add-btn");
-
-    button.addEventListener("click", () => {
-        input.classList.add("error");
-    })
-    input.addEventListener("input", () => {
-        input.classList.remove("error");
-    })
+    initializeAddBookmark();
 
     // Scrollbar fix
-    if (navigator.platform.includes('Win')) {
-        bookmarkContainer.classList.add("windows-scrollbar");
-    }
+    navigator.platform.includes('Win') ? bookmarkContainer.classList.add("windows-scrollbar") : null;
 }

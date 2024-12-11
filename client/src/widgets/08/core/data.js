@@ -4,14 +4,20 @@ async function fetchBookmarks() {
     const response = await fetch(`${process.env.SERVER}/widget/bookmark/all?userId=${userId}`);
     const data = await response.json();
 
-    return !response.ok ? throw new Error(data.message) : data.bookmarks;
+    if (!response.ok) {
+        throw new Error(data.error);
+    }
+    return data.bookmarks;
 }
 
 async function fetchUserVoteCount(bookmarkId) {
     const response = await fetch(`${process.env.SERVER}/widget/bookmark/all?userId=${userId}?bookmarkId=${bookmarkId}`);
     const data = await response.json();
 
-    return !response.ok ? throw new Error(data.message) : data;
+    if (!response.ok) {
+        throw new Error(data.message);
+    }
+    return data;
 }
 
 async function addNewBookmark(url) {
@@ -23,7 +29,10 @@ async function addNewBookmark(url) {
         body: JSON.stringify({ url: url })
     });
     const data = await response.json();
-    return !response.ok ? throw new Error(data.message) : data;
+    if (!response.ok) {
+        throw new Error(data.message);
+    }
+    return data;
 }
 
 async function addVote(userId, bookmarkId, vote) {
@@ -35,5 +44,10 @@ async function addVote(userId, bookmarkId, vote) {
         body: JSON.stringify({ userId: userId, bookmarkId: bookmarkId})
     });
     const data = await response.json();
-    return !response.ok ? throw new Error(data.message) : data;
+    if (!response.ok) {
+        throw new Error(data.message);
+    }
+    return data;
 }
+
+export { addVote, addNewBookmark, fetchBookmarks, fetchUserVoteCount };
