@@ -11,7 +11,7 @@ async function fetchBookmarks() {
 }
 
 async function fetchUserVoteCount(bookmarkId) {
-    const response = await fetch(`${process.env.SERVER}/widget/bookmark/all?userId=${userId}&bookmarkId=${bookmarkId}`);
+    const response = await fetch(`${process.env.SERVER}/widget/bookmark/count?userId=${userId}&bookmarkId=${bookmarkId}`);
     const data = await response.json();
 
     if (!response.ok) {
@@ -38,7 +38,7 @@ async function addNewBookmark(url) {
     return data;
 }
 
-async function addVote(userId, bookmarkId, vote) {
+async function addVote(bookmarkId, vote) {
     const response = await fetch(`${process.env.SERVER}/widget/bookmark/${vote}`, {
         method: 'POST',
         headers: {

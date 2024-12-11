@@ -1,14 +1,15 @@
 import bookmarkContext from "./context";
+import initializeVoteButtons from "./voteButtons";
 const { bookmarkContainer } = bookmarkContext;
 
 export default function displayBookmark(bookmark) {
     const bookmarkEl = bookmarkHTML(bookmark);
     bookmarkContainer.insertAdjacentHTML('afterbegin', bookmarkEl);
-    console.log(bookmark);
+    initializeVoteButtons(bookmark);
 }
 
 function bookmarkHTML(bookmark) {
-    return `<div class="bookmark">
+    return `<div class="bookmark" id="id-${bookmark._id}">
         <a class="bookmark-content" href="${bookmark.url}" target="_blank">
             <div class="bookmark-content--container">
                 <div class="bookmark-content--header">
@@ -29,13 +30,13 @@ function bookmarkHTML(bookmark) {
         <div class="bookmark-sidebar">
             <div class="sidebar--actions">
                 <div class="sidebar--actions--likes">
-                    <button class="sidebar--actions--likes-btn ${bookmark._id} ${bookmark.userVote === "like" ? "active" : ""}">
+                    <button class="sidebar--actions--likes-btn ${bookmark.userVote === "like" ? "active" : ""}">
                         <i class="fa-regular fa-thumbs-up"></i>
                     </button>
                     <span class="sidebar--actions--likes-count">${bookmark.likeCount || bookmark.likes.length}</span>
                 </div>
                 <div class="sidebar--actions--dislikes">
-                    <button class="sidebar--actions--dislikes-btn ${bookmark._id} ${bookmark.userVote === "dislike" ? "active" : ""}">
+                    <button class="sidebar--actions--dislikes-btn ${bookmark.userVote === "dislike" ? "active" : ""}">
                         <i class="fa-regular fa-thumbs-down"></i>
                     </button>
                     <span class="sidebar--actions--dislikes-count">${bookmark.dislikeCount || bookmark.dislikes.length}</span>
