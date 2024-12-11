@@ -37,7 +37,7 @@ router.get('/count', async (req, res) => {
     try {
         const { userId, bookmarkId } = req.query;
         const userVotes = await BookmarkData.getUserVoteCount(userId, bookmarkId);
-        res.json({ count: userVotes.length });
+        res.json(userVotes);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }

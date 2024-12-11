@@ -71,7 +71,18 @@ class BookmarkData {
     }
 
     async extractMetaData(url) {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                // Headers that bypass error on some websites
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                'Upgrade-Insecure-Requests': '1',
+                'Sec-Fetch-Dest': 'document',
+                'Sec-Fetch-Mode': 'navigate',
+                'Sec-Fetch-Site': 'none',
+                'Sec-Fetch-User': '?1',
+                }
+            });
         const html = await response.text();
         const $ = cheerio.load(html);
         const parsedURL = new URL(url);
@@ -79,7 +90,7 @@ class BookmarkData {
         const metadata = {
             title: $('title').text() || $('meta[property="og:title"]').attr('content') || parsedURL.hostname,
             description: $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content') || "",
-            icon: $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href') || `https://${parsedURL.hostname}/favicon.ico`,
+            icon: $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href') || `https://www.google.com/s2/favicons?domain=${parsedURL.hostname}&sz=128`,
             domain: new URL(url).hostname,
             topics: $('meta[name="keywords"]').attr("content")?.split(",").map(word => word.trim()) || [],
             author: $('meta[name="author"]').attr("content") || new URL(url).hostname || "",
@@ -165,7 +176,10 @@ class BookmarkData {
         const bookmark = await Bookmark.findOne({ _id: bookmarkId });
         const user = await User.findOne({ userId: userId });
 
-        return [...bookmark.likes, ...bookmark.dislikes].filter(id => id.toString() === user._id.toString());
+        const likeCount = bookmark.likes.filter(id => id.toString() === user._id.toString()).length;
+        const dislikeCount = bookmark.dislikes.filter(id => id.toString() === user._id.toString()).length;
+
+        return { likeCount, dislikeCount };
     }
 }
 

@@ -91,7 +91,7 @@
                 font-family: inherit;
                 font-weight: 600;
                 font-size: var.$font-size-base;
-                line-height: 1;
+                margin-bottom: -2px;
 
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
@@ -144,13 +144,15 @@
               flex-shrink: 0;
 
               img {
+                padding: 4px;
                 width: 82px;
                 height: 82px;
                 object-fit: contain;
                 aspect-ratio: 1 / 1;
                 border: 2px solid #e4d9f1;
                 border-radius: 4px;
-                background-color: transparent;
+                background-color: #e4d9f1;
+                box-shadow: 0 0 2px rgba(0,0,0,0.1);
               }
             }
           }
@@ -308,6 +310,7 @@
 
             &--img {
               img {
+                background-color: #4b444e;
                 border-color: #4b444e;
               }
             }

@@ -1,7 +1,7 @@
 import bookmarkContext from "./context";
 import { addNewBookmark } from "./data";
 import displayBookmark from "./displayBookmark";
-const { addButton, addInput } = bookmarkContext;
+const { addButton, addInput, bookmarkContainer } = bookmarkContext;
 
 export default function initializeAddButton() {
     addButton.addEventListener("click", addBookmark);
@@ -31,6 +31,12 @@ async function addBookmark() {
         const bookmark = await addNewBookmark(url);
         displayBookmark(bookmark);
         addInput.placeholder = "Bookmark successfully added.";
+
+        bookmarkContainer.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        })
+
     } catch (error) {
         addInput.classList.add("error");
         addInput.placeholder = error.message;

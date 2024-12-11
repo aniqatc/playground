@@ -11,13 +11,16 @@ async function fetchBookmarks() {
 }
 
 async function fetchUserVoteCount(bookmarkId) {
-    const response = await fetch(`${process.env.SERVER}/widget/bookmark/all?userId=${userId}?bookmarkId=${bookmarkId}`);
+    const response = await fetch(`${process.env.SERVER}/widget/bookmark/all?userId=${userId}&bookmarkId=${bookmarkId}`);
     const data = await response.json();
 
     if (!response.ok) {
         throw new Error(data.message);
     }
-    return data;
+    return {
+        likeCount: data.likeCount || 0,
+        dislikeCount: data.dislikeCount || 0
+    };
 }
 
 async function addNewBookmark(url) {
