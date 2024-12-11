@@ -6,6 +6,7 @@ export default function displayBookmark(bookmark) {
     const bookmarkEl = bookmarkHTML(bookmark);
     bookmarkContainer.insertAdjacentHTML('afterbegin', bookmarkEl);
     initializeVoteButtons(bookmark);
+    console.log(bookmark);
 }
 
 function bookmarkHTML(bookmark) {

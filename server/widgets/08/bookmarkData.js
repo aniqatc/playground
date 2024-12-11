@@ -90,7 +90,7 @@ class BookmarkData {
 
         const metadata = {
             title: $('title').text() || $('meta[property="og:title"]').attr('content') || parsedURL.hostname,
-            description: $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content') || "",
+            description: $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content'),
             icon: $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href') || `https://www.google.com/s2/favicons?domain=${parsedURL.hostname}&sz=128`,
             domain: new URL(url).hostname,
             topics: $('meta[name="keywords"]').attr("content")?.split(",").map(word => word.trim()) || [],
