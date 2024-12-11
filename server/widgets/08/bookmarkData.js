@@ -1,13 +1,39 @@
 const Bookmark = require('./bookmarkModel');
 const User = require('../../main/models/userModel');
-const cheerio = require('cheerio');
 const Filter = require('leo-profanity');
+const cheerio = require('cheerio');
 
 class BookmarkData {
     constructor() {
         this.apiKey = process.env.GOOGLE_API_KEY;
         this.safeBrowsingURL = `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${this.apiKey}`;
         this.filter = Filter;
+    }
+
+    async getBookmarks(userId) {
+        const bookmarks = await Bookmark.find().sort({ createdAt: -1 }); // newest first
+        const user = await User.findOne({ userId: userId });
+
+        return bookmarks.map(bookmark => {
+            if (!userId || !user) {
+                return {
+                    ...bookmark.toObject(),
+                    userVote: null,
+                    likeCount: bookmark.likes.length,
+                    dislikeCount: bookmark.dislikes.length,
+                }
+            }
+
+            const hasLiked = bookmark.likes.include(user._id);
+            const hasDisliked = bookmark.dislikes.includes(user._id);
+
+            return {
+                ...bookmark.toObject(),
+                userVote: hasLiked ? 'like' : (hasDisliked ? 'dislike' : null),
+                likeCount: bookmark.likes.length,
+                dislikeCount: bookmark.dislikes.length,
+            }
+        })
     }
 
     async processBookmark(url) {
@@ -39,30 +65,6 @@ class BookmarkData {
         return bookmark;
     }
 
-    hasBadWords(url) {
-        const words = decodeURIComponent(url).toLowerCase().replace(/[^a-z0-9]+/g, '-').trim().split("-");
-        return words.some(word => this.filter.check(word));
-    }
-
-    async isNotSafe(url) {
-        const response = await fetch(this.safeBrowsingURL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                threatInfo: {
-                    threatTypes: ["MALWARE", "SOCIAL_ENGINEERING", "UNWANTED_SOFTWARE", "POTENTIALLY_HARMFUL_APPLICATION", "THREAT_TYPE_UNSPECIFIED"],
-                    platformTypes: ["ANY_PLATFORM"],
-                    threatEntryTypes: ["URL"],
-                    threatEntries: [{url: url}]
-                }
-            })
-        })
-        const data = await response.json();
-        return data.matches ? true : false;
-    }
-
     async extractMetaData(url) {
         const response = await fetch(url);
         const html = await response.text();
@@ -90,6 +92,62 @@ class BookmarkData {
 
         // Return metadata object if clean
         return metadata;
+    }
+
+    hasBadWords(url) {
+        const words = decodeURIComponent(url).toLowerCase().replace(/[^a-z0-9]+/g, '-').trim().split("-");
+        return words.some(word => this.filter.check(word));
+    }
+
+    async isNotSafe(url) {
+        const response = await fetch(this.safeBrowsingURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                threatInfo: {
+                    threatTypes: ["MALWARE", "SOCIAL_ENGINEERING", "UNWANTED_SOFTWARE", "POTENTIALLY_HARMFUL_APPLICATION", "THREAT_TYPE_UNSPECIFIED"],
+                    platformTypes: ["ANY_PLATFORM"],
+                    threatEntryTypes: ["URL"],
+                    threatEntries: [{url: url}]
+                }
+            })
+        })
+        const data = await response.json();
+        return data.matches ? true : false;
+    }
+
+    async handleVote(userId, bookmarkId, vote) {
+        const bookmark = await Bookmark.findOne({ _id: bookmarkId });
+        const user = await User.findOne({ userId: userId });
+
+        if (!bookmark || !user) {
+            throw new Error("User or bookmark not found.");
+        }
+
+        if (vote === "like") {
+            bookmark.likes.push(user._id);
+            bookmark.dislikes.pull(user._id);
+        }
+        if (vote === "dislike") {
+            bookmark.dislikes.push(user._id);
+            bookmark.likes.pull(user._id);
+        }
+
+        await bookmark.save();
+        return {
+            likeCount: bookmark.likes.length,
+            dislikeCount: bookmark.dislikes.length,
+            userVote: vote
+        };
+    }
+
+    async getUserVoteCount(userId, bookmarkId) {
+        const bookmark = await Bookmark.findOne({ _id: bookmarkId });
+        const user = await User.findOne({ userId: userId });
+
+        return [...bookmark.likes, ...bookmark.dislikes].filter(id => id.toString() === user._id.toString());
     }
 }
 

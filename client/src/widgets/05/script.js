@@ -22,9 +22,8 @@ export async function initializeScript() {
     // Windows Scrollbar Issue
     const { stockCardGroup, currencyCardGroup } = marketContext;
     const cardGroups = [stockCardGroup, currencyCardGroup];
-    const isWindows = navigator.platform.includes('Win');
     cardGroups.forEach(group => {
-        if (isWindows) {
+        if (navigator.platform.includes('Win')) {
             group.classList.add('windows-scrollbar');
         }
     })

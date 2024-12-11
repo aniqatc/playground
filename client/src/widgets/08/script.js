@@ -1,5 +1,5 @@
 import bookmarkContext from "./core/context";
-const { widget } = bookmarkContext;
+const { widget, bookmarkContainer } = bookmarkContext;
 
 export async function initializeScript() {
     // Temp
@@ -14,10 +14,7 @@ export async function initializeScript() {
     })
 
     // Scrollbar fix
-    const scrollableContainer = widget.querySelector(".bookmark-container");
-    const isWindows = navigator.platform.includes('Win');
-
-    if (isWindows) {
-        scrollableContainer.classList.add("windows-scrollbar");
+    if (navigator.platform.includes('Win')) {
+        bookmarkContainer.classList.add("windows-scrollbar");
     }
 }

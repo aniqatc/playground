@@ -15,13 +15,12 @@ export function getMarkup() {
     </button>
     <span class="like-value font-archivo" id="likes-08"></span>
   </div>
-  <div class="content">
+<div class="content">
     <section class="content-body">
         <div class="bookmark-container">
-            <div class="bookmark-container">
-    <div class="bookmark">
-        <a class="bookmark-content" href="https://css-tricks.com" target="_blank">
-            <div class="bookmark-content--container">
+            <div class="bookmark">
+                <a class="bookmark-content" href="https://css-tricks.com" target="_blank">
+                    <div class="bookmark-content--container">
                 <div class="bookmark-content--header">
                     <h2>CSS-Tricks</h2>
                     <span>css-tricks.com</span>
@@ -214,7 +213,6 @@ export function getMarkup() {
         </div>
     </div>
 </div>
-        </div>
     </section>
     <section class="content-footer">
         <input class="add-input" type="text" placeholder="Share a resource with the community">

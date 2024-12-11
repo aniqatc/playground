@@ -13,8 +13,7 @@ export async function initializeScript() {
     initializeSearch();
 
     // Scrollbar Issue
-    const isWindows = navigator.platform.includes('Win');
-    if (isWindows) {
+    if (navigator.platform.includes('Win')) {
         repoContext.repoContainer.classList.add('windows-scrollbar');
     }
 }
