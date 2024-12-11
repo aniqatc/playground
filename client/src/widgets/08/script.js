@@ -1,7 +1,7 @@
 import bookmarkContext from "./core/context";
 const { widget } = bookmarkContext;
 
-export function initializeScript() {
+export async function initializeScript() {
     // Temp
     const input = widget.querySelector(".add-input");
     const button = widget.querySelector(".add-btn");
