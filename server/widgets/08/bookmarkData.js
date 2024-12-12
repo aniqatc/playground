@@ -53,7 +53,11 @@ class BookmarkData {
         if (await this.isNotSafe(url)) {
             throw new Error("URL is flagged by Google's Safe Browsing API")
         }
+
         const metadata = await this.extractMetaData(url);
+        if (!metadata.title || !metadata.description) {
+            throw new Error("Content extraction blocked by the site provided");
+        }
         const bookmark = new Bookmark({
             url,
             title: metadata.title,
@@ -88,7 +92,7 @@ class BookmarkData {
 
         const metadata = {
             title: $('title').text() || $('meta[property="og:title"]').attr('content') || parsedURL.hostname,
-            description: $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content') || $('title').text(),
+            description: $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content'),
             icon: $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href') || `https://www.google.com/s2/favicons?domain=${parsedURL.hostname}&sz=128`,
             domain: new URL(url).hostname,
             topics: $('meta[name="keywords"]').attr("content")?.split(",").map(word => word.trim()) || [],
