@@ -15,7 +15,7 @@ function bookmarkHTML(bookmark) {
             <div class="bookmark-content--container">
                 <div class="bookmark-content--header">
                     <h2>${bookmark.title}</h2>
-                    <span>${!bookmark.author.includes(".") ? `@${bookmark.author.toLowerCase()}` : bookmark.author}</span>
+                    <span>${!bookmark.author.includes(".") ? `@${bookmark.author.toLowerCase()}` : bookmark.author.toLowerCase()}</span>
                 </div>
                 <div class="bookmark-content--description">
                     <p>${bookmark.description}</p>

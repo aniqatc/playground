@@ -12,7 +12,7 @@ class BookmarkData {
     }
 
     async getBookmarks(userId) {
-        const bookmarks = await Bookmark.find().sort({ createdAt: -1 }); // newest first
+        const bookmarks = await Bookmark.find().sort({ createdAt: 1 }); // newest first
         const user = await User.findOne({ userId: userId });
 
         return bookmarks.map(bookmark => {
@@ -42,16 +42,16 @@ class BookmarkData {
             url = `https://${url}`;
         }
         if (!new URL(url).hostname.includes('.')) {
-            throw new Error("Invalid URL.");
+            throw new Error("Invalid URL");
         }
         if (await Bookmark.findOne({ url: url })) {
-            throw new Error("Bookmark already exists.");
+            throw new Error("Bookmark already exists");
         }
         if (this.hasBadWords(url)) {
-            throw new Error("URL contains inappropriate content.");
+            throw new Error("URL contains inappropriate content");
         }
         if (await this.isNotSafe(url)) {
-            throw new Error("URL has been flagged by Google's Safe Browsing API.")
+            throw new Error("URL is flagged by Google's Safe Browsing API")
         }
         const metadata = await this.extractMetaData(url);
         const bookmark = new Bookmark({
@@ -100,7 +100,7 @@ class BookmarkData {
         const words = content.split(/[\s\W]+/);
 
         if (words.some(word => this.filter.check(word))) {
-            throw new Error("Page contains inappropriate content.");
+            throw new Error("Page contains inappropriate content");
         }
 
         if (metadata.icon && !metadata.icon.startsWith('https')) {
@@ -153,7 +153,7 @@ class BookmarkData {
         const user = await User.findOne({ userId: userId });
 
         if (!bookmark || !user) {
-            throw new Error("User or bookmark not found.");
+            throw new Error("User or bookmark not found");
         }
 
         if (vote === "like") {

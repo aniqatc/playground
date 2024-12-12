@@ -70,7 +70,7 @@
             border: 1px solid var.$color-light-purple;
             background-color: var.$color-x-light-purple;
             border-radius: 2px;
-            padding: var.$spacing-base;
+            padding: 4px 8px;
             transition: all 300ms ease-in-out;
             gap: 8px;
             height: 136px;
@@ -108,7 +108,7 @@
             }
 
             &--description {
-              line-height: 1.2;
+              line-height: 1.1;
               margin-bottom: 8px;
               font-size: 11.5px;
               max-width: 320px;
@@ -122,10 +122,10 @@
 
             &--topics {
               margin-top: auto;
+              padding-bottom: 4px;
               display: flex;
               flex-wrap: wrap;
               gap: 3px;
-              max-height: 18px;
               overflow: hidden;
 
               li {
@@ -133,20 +133,20 @@
                 background-color: var.$color-light-purple;
                 color: var.$color-muted-purple;
                 border-radius: 4px;
-                padding: 1px 4px;
-                font-size: 11px;
-                line-height: 1.2;
+                padding: 0px 3px;
+                font-size: 10.5px;
                 white-space: nowrap;
               }
             }
 
             &--img {
+              align-self: center;
               flex-shrink: 0;
 
               img {
-                padding: 4px;
-                width: 82px;
-                height: 82px;
+                padding: 4px 6px;
+                width: 84px;
+                height: 96px;
                 object-fit: contain;
                 aspect-ratio: 1 / 1;
                 border: 2px solid #e4d9f1;
@@ -159,28 +159,28 @@
 
           &-sidebar {
             position: absolute;
-            bottom: 7px;
-            right: 9px;
+            bottom: 8px;
+            right: 8px;
 
             .sidebar--actions {
               font-size: var.$font-size-sm;
               display: flex;
-              gap: 4px;
+              gap: 8px;
               justify-content: space-evenly;
               border: 1px solid var.$color-light-purple;
-              background-color: rgba(255, 255, 255, 0.6);
-              backdrop-filter: blur(2px);
+              background-color: rgba(255, 255, 255, 0.5);
+              backdrop-filter: blur(3px);
               border-radius: 3px;
-              padding: 1px 3px;
+              padding: 2px 6px;
               box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
 
               &--likes, &--dislikes {
                 display: flex;
                 align-items: center;
-                gap: 1px;
+                gap: 2px;
 
                 &-btn {
-                  font-size: 14px;
+                  font-size: 15px;
                   padding: 0 2px;
                   color: var.$color-dark-purple;
 
@@ -202,7 +202,7 @@
                 }
 
                 &-count {
-                  font-size: 12px;
+                  font-size: 12.5px;
                   font-family: "Recursive", "Archivo", "Inter", sans-serif;
                   text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
                 }
@@ -239,7 +239,7 @@
 
       .add-input {
         width: 100%;
-        padding: 6px 12px 6px 6px;
+        padding: 6px 36px 6px 6px;
         border-radius: 2px;
         border: 2px solid var.$color-x-light-purple;
         background-color: transparent;
@@ -319,19 +319,19 @@
           &-sidebar {
             .sidebar--actions {
               border-color: #414141;
-              background-color: rgb(44, 34, 54);
+              background-color: rgb(44, 34, 54, 0.6);
 
               &--likes, &--dislikes {
                 &-btn {
                   color: var.$color-light-purple;
 
                   &:hover {
-                    color: var.$color-medium-purple;
+                    color: var.$color-x-light-purple;
                   }
                 }
 
                 &-count {
-                  color: var.$gray-light;
+                  color: var.$color-x-light-purple;
                 }
               }
             }
