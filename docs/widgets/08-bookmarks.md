@@ -91,11 +91,11 @@ A community-driven bookmark platform that processes submitted URLs to extract me
    - `/widget/bookmark/:vote` => handles a user's vote on a specific bookmark (bookmark ID is provided via a query string)
    - `/widget/bookmark/count` => provides the current count of a user's votes in order to enforce limits and certain styles in the frontend
 4. **Error Handling**: Clear error messaging provided to the user in the input element's placeholder
-   - "Page contains inappropriate content" is returned in `leo-profanity` detects any inappropriate content in the website's key metadata elements
-   - "Invalid URL" is returned if a string is passed through without a TLD to identify it as a website
-   - "Bookmark already exists" is returned to avoid creating duplicate bookmarks with the same URLs
-   - "URL contains inappropriate content" is returned if the URL itself contains any inappropriate or explicit content
-   - "URL is flagged by Google's Safe Browsing API" is returned if a URL is considered unsafe based on the criteria passed in the code (for e.g. `http://testsafebrowsing.appspot.com/s/malware.html` is flagged)
+   - "`Page contains inappropriate content`" is returned in `leo-profanity` detects any inappropriate content in the website's key metadata elements
+   - "`Invalid URL`" is returned if a string is passed through without a TLD to identify it as a website
+   - "`Bookmark already exists`" is returned to avoid creating duplicate bookmarks with the same URLs
+   - "`URL contains inappropriate content`" is returned if the URL itself contains any inappropriate or explicit content
+   - "`URL is flagged by Google's Safe Browsing API`" is returned if a URL is considered unsafe based on the criteria passed in the code (for e.g. `http://testsafebrowsing.appspot.com/s/malware.html` is flagged)
 
 ### Backend Components
 
