@@ -77,11 +77,11 @@
           position: relative;
           animation: fade-in 0.5s ease-out forwards;
           opacity: 0;
+          container-type: inline-size;
 
           &-content {
             display: flex;
             justify-content: space-between;
-            flex: 1;
             border: 1px solid var.$color-light-purple;
             background-color: var.$color-x-light-purple;
             border-radius: 2px;
@@ -133,6 +133,10 @@
               -webkit-line-clamp: 3;
               text-overflow: ellipsis;
               overflow: hidden;
+
+              @container (max-width: 325px) {
+                -webkit-line-clamp: 2;
+              }
             }
 
             &--topics {
@@ -141,7 +145,6 @@
               display: flex;
               flex-wrap: wrap;
               gap: 4px;
-              overflow: hidden;
 
               li {
                 border: 1px solid #a9a0bb;
@@ -168,6 +171,12 @@
                 border-radius: 4px;
                 background-color: #e4d9f1;
                 box-shadow: 0 0 2px rgba(0,0,0,0.1);
+
+                @container (max-width: 325px) {
+                  padding: 2px 4px;
+                  width: 74px;
+                  height: 82px;
+                }
               }
             }
           }
@@ -186,7 +195,7 @@
               background-color: rgba(255, 255, 255, 0.5);
               backdrop-filter: blur(3px);
               border-radius: 3px;
-              padding: 2px 6px;
+              padding: 0 4px;
               box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
 
               &--likes, &--dislikes {
@@ -196,23 +205,28 @@
 
                 &-btn {
                   font-size: 15px;
-                  padding: 0 2px;
+                  padding: 2px 4px;
                   color: var.$color-dark-purple;
+                  transition: all 200ms ease-in;
 
-                  i {
-                    transition: all 200ms ease-in;
+                  &:hover i {
+                    transform: scale(1.1);
                   }
 
-                  .fa-regular.fa-thumbs-up:hover::before {
+                  &:hover .fa-regular.fa-thumbs-up::before {
                     content: "\f164";
                     font-family: "Font Awesome 6 Free";
                     font-weight: 900;
                   }
 
-                  .fa-regular.fa-thumbs-down:hover::before {
+                  &:hover .fa-regular.fa-thumbs-down::before {
                     content: "\f165";
                     font-family: "Font Awesome 6 Free";
                     font-weight: 900;
+                  }
+
+                  &:active i {
+                    transform: scale(0.95);
                   }
                 }
 
