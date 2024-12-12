@@ -56,7 +56,7 @@ A community-driven bookmark platform that processes submitted URLs to extract me
 - Metadata extraction depends on the website's HTML structure and can sometimes be incomplete
 - Topic generation may not be accurate as it depends on the website's title and description to find key words
 - Limited to public websites that allow scraping and can return empty data for websites that block content extraction
-- [No *true* user authentication system](/docs/main/handlingUsers.md)
+- [No user authentication system](/docs/main/handlingUsers.md)
 
 ## Widget Architecture
 
@@ -69,12 +69,12 @@ A community-driven bookmark platform that processes submitted URLs to extract me
 ### Frontend Components
 
 **Core Directory**:
-- [`core/context.js`](): Manages DOM elements and widget state
-- [`core/data.js`](): Handles API requests to the backend
-- [`core/displayBookmark.js`](): Manages bookmark card rendering
-- [`core/voteButtons.js`](): Manages voting functionality
-- [`core/addBookmark.js`](): Processes new bookmark submissions
-- [`core/loadBookmarks.js`](): Loads all the bookmarks that have been saved previously
+- [`core/context.js`](../../client/src/widgets/08/core/context.js): Manages DOM elements and widget state
+- [`core/data.js`](../../client/src/widgets/08/core/data.js): Handles API requests to the backend
+- [`core/displayBookmark.js`](../../client/src/widgets/08/core/displayBookmark.js): Manages bookmark card rendering
+- [`core/voteButtons.js`](../../client/src/widgets/08/core/voteButtons.js): Manages voting functionality
+- [`core/addBookmark.js`](../../client/src/widgets/08/core/addBookmark.js): Processes new bookmark submissions
+- [`core/loadBookmarks.js`](../../client/src/widgets/08/core/loadBookmarks.js): Loads all the bookmarks that have been saved previously
 
 **Root Files**:
 - [`content.js`](/client/src/widgets/08/content.js): Defines base HTML structure
@@ -88,7 +88,7 @@ A community-driven bookmark platform that processes submitted URLs to extract me
 3. **API Endpoints**: Express routes for bookmark operations
    - `/widget/bookmark/add` => processes URLs and creates bookmarks; has safety checks that returns errors in case of unsafe links, inappropriate content, incomplete metadata extraction and invalid URLs
    - `/widget/bookmark/all` => returns all bookmarks saved in the database; takes userId as additional query in case there is any vote count by the user to display (for e.g. active state on the like/dislike button that they clicked)
-   - `/widget/bookmark/:vote` => handles a user's vote on a specific bookmark
+   - `/widget/bookmark/:vote` => handles a user's vote on a specific bookmark (bookmark ID is provided via a query string)
    - `/widget/bookmark/count` => provides the current count of a user's votes in order to enforce limits and certain styles in the frontend
 4. **Error Handling**: Clear error messaging provided to the user in the input element's placeholder
    - "Page contains inappropriate content" is returned in `leo-profanity` detects any inappropriate content in the website's key metadata elements
@@ -99,12 +99,20 @@ A community-driven bookmark platform that processes submitted URLs to extract me
 
 ### Backend Components
 
-- [/server.js](/server.js): Initializes the Express.js server, handles API routing
+- [`/server.js`](/server.js): Initializes the Express.js server, handles API routing
 
 **Base Directory**:
-- [`bookmarkModel.js`](): MongoDB schema for bookmarks
-- [`bookmarkRouter.js`](): Express routes for bookmark operations
-- [`BookmarkData.js`](): Core class handling bookmark processing
+- [`bookmarkModel.js`](../../server/widgets/08/bookmarkModel.js): MongoDB schema for bookmarks
+- [`bookmarkRouter.js`](../../server/widgets/08/bookmarkRouter.js): Express routes for bookmark operations
+- [`BookmarkData.js`](../../server/widgets/08/bookmarkData.js): Core class handling bookmark processing
+  - `getBookmarks()` => handles retrieving bookmarks that were successfully saved to the database and packages it with the current like and dislike count, including the user's last vote
+  - `processBookmark()` => processes the URL provided by the end-user; validates the URL, goes through filtering and safety checks and is then saved to the database
+  - `extractMetadata()` => helper function to extract metadata from the URL using Cheerio
+  - `extractTopics()` => helper function to extract topic tags from the webpage metadata using the Natural NLP library
+  - `hasBadWords()` => helper function check the URL for any inappropriate content using Leo-Profanity library
+  - `isNotSafe()` => helper function to check if the URL is flagged by Google's Safe Browsing API
+  - `handleVote()` => handles a user's vote and saves it to the database to track overall like/dislike count
+  - `getUserVoteCount()` => function that provides an individual user's last selected vote for a specific bookmark
 
 ## How to Use
 
