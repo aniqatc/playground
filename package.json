@@ -1,7 +1,7 @@
 {
 	"name": "playground",
 	"version": "1.0.0",
-	"description": "🕹️ A place to showcase a variety of independent widgets with different functionalities.",
+	"description": "🕹️ A showcase of interactive web widgets demonstrating modern full-stack development capabilities, from data visualization to utility tools, built with Node.js, Express, MongoDB, and Webpack.",
 	"private": true,
 	"scripts": {
 		"start:dev": "NODE_ENV=development nodemon server.js",
@@ -10,7 +10,19 @@
 	"keywords": [
 		"widgets",
 		"javascript widgets",
-		"mini components"
+		"mini apps",
+		"interactive widgets",
+		"calculator app",
+		"task tracker",
+		"financial dashboard",
+		"digital footprint",
+		"lottery analysis",
+		"github visualization",
+		"bookmark manager",
+		"full stack",
+		"node express",
+		"mongodb",
+		"webpack"
 	],
 	"author": {
 		"name": "Aniqa",

@@ -36,7 +36,7 @@
   "orientation": "portrait",
   "display": "standalone",
   "start_url": "/",
-  "description": "Explore interactive widgets featuring calculators, task tracking, financial monitoring, lottery analysis and more.",
+  "description": "Collection of interactive web tools featuring a graphing calculator, financial dashboard, task manager, digital footprint analyzer, and more built with modern web technologies.",
   "theme_color": "#211e1f",
   "background_color": "#d3d3d3"
 }

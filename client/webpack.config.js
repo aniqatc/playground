@@ -54,22 +54,22 @@ module.exports = {
       template: "./src/main/index.html",
       favicon: "./src/main/assets/favicon.png",
       meta: {
-        description:
-            "Explore a collection of interactive widgets showcasing various functionalities from calculators to financial markets monitoring, task tracking, lottery analysis and more - all built with modern frontend and backend technologies.",
-        keywords:
-            "interactive widgets, calculator, task tracker, digital footprint, financial markets, lottery tracker, mongodb, express, node, javascript",
+        description: "Explore a collection of interactive web tools including a graphing calculator, real-time financial dashboard, task manager, digital footprint analyzer, lottery data tool, GitHub visualizer, and community bookmarks platform.",
+        keywords: "interactive widgets, graphing calculator, financial dashboard, task management, digital footprint, lottery analysis, github visualization, bookmark platform, mongodb, express, nodejs, webpack, tailwind, sass",
         author: "Aniqa",
         "og:type": "website",
-        "og:title": "Interactive Widget Playground",
-        "og:description":
-            "Explore a collection of interactive widgets showcasing various functionalities from calculators to financial markets monitoring, task tracking, lottery analysis and more.",
+        "og:title": "Interactive Widget Playground | Modern Web Development Showcase",
+        "og:description": "Discover a collection of interactive web tools showcasing modern full-stack development: from data visualization to utility applications, built with Node.js, Express, MongoDB, and Webpack.",
         "og:url": "https://playground.aniqa.dev",
         "og:image": "",
-        "twitter:title": "Interactive Widget Playground",
+        "twitter:title": "Interactive Widget Playground | Full-Stack Web Development",
         "twitter:card": "summary_large_image",
         "twitter:image": "",
-        "twitter:image:alt": "Screenshot of interactive widget collection",
+        "twitter:image:alt": "Collection of interactive web widgets and tools",
         "twitter:site": "@aniqatc",
+        "twitter:description": "Explore interactive web tools: graphing calculator, financial dashboard, task manager, digital footprint analyzer, lottery data tool, and more.",
+        "robots": "index, follow",
+        "googlebot": "index, follow",
       },
     }),
     new MiniCssExtractPlugin({
@@ -89,7 +89,7 @@ module.exports = {
           new WebpackPwaManifest({
             name: "Interactive Widget Playground",
             short_name: "Playground",
-            description: "Explore interactive widgets featuring calculators, task tracking, financial monitoring, lottery analysis and more.",
+            description: "Collection of interactive web tools featuring a graphing calculator, financial dashboard, task manager, digital footprint analyzer, and more built with modern web technologies.",
             theme_color: "#211e1f",
             background_color: "#d3d3d3",
             display: "standalone",
