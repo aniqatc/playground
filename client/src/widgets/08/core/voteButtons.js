@@ -17,7 +17,6 @@ export default async function initializeVoteButtons(bookmark) {
             dislikesCount.textContent = updatedCount.dislikeCount;
             likeButton.classList.add('active');
             dislikeButton.classList.remove('active');
-            console.log(userVote);
         }
     })
 
@@ -25,7 +24,6 @@ export default async function initializeVoteButtons(bookmark) {
         const userVote = await fetchUserVoteCount(bookmark._id);
         if (userVote.dislikeCount === 0) {
             const updatedCount = await addVote(bookmark._id, 'dislike');
-            console.log(updatedCount);
             dislikesCount.textContent = updatedCount.dislikeCount;
             likesCount.textContent = updatedCount.likeCount;
             dislikeButton.classList.add('active');

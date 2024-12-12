@@ -2,15 +2,14 @@ import bookmarkContext from "./context";
 import initializeVoteButtons from "./voteButtons";
 const { bookmarkContainer } = bookmarkContext;
 
-export default function displayBookmark(bookmark) {
-    const bookmarkEl = bookmarkHTML(bookmark);
-    bookmarkContainer.insertAdjacentHTML('afterbegin', bookmarkEl);
+export default function displayBookmark(bookmark, index = 0) {
+    const markup = bookmarkHTML(bookmark, index);
+    bookmarkContainer.insertAdjacentHTML('beforeend', markup);
     initializeVoteButtons(bookmark);
-    console.log(bookmark);
 }
 
-function bookmarkHTML(bookmark) {
-    return `<div class="bookmark" id="id-${bookmark._id}">
+function bookmarkHTML(bookmark, index) {
+    return `<div class="bookmark" id="id-${bookmark._id}" ${index ? `style="animation-delay: ${index * 200}ms"` : ""}>
         <a class="bookmark-content" href="${bookmark.url}" target="_blank">
             <div class="bookmark-content--container">
                 <div class="bookmark-content--header">

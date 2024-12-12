@@ -1,7 +1,7 @@
-import bookmarkContext from "./core/context";
 import initializeAddBookmark from "./core/addBookmark";
-const { bookmarkContainer } = bookmarkContext;
 import loadBookmarks from "./core/loadBookmarks";
+import bookmarkContext from "./core/context";
+const { bookmarkContainer } = bookmarkContext;
 
 export async function initializeScript() {
     loadBookmarks();

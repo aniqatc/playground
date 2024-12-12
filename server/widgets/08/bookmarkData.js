@@ -88,11 +88,11 @@ class BookmarkData {
 
         const metadata = {
             title: $('title').text() || $('meta[property="og:title"]').attr('content') || parsedURL.hostname,
-            description: $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content'),
+            description: $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content') || $('title').text(),
             icon: $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href') || `https://www.google.com/s2/favicons?domain=${parsedURL.hostname}&sz=128`,
             domain: new URL(url).hostname,
             topics: $('meta[name="keywords"]').attr("content")?.split(",").map(word => word.trim()) || [],
-            author: $('meta[name="author"]').attr("content") || new URL(url).hostname || "",
+            author: $('meta[name="author"]').attr("content") || new URL(url).hostname,
         }
 
         // Check content before returning
@@ -111,7 +111,6 @@ class BookmarkData {
             metadata.topics = await this.extractTopics(metadata.title, metadata.description);
         }
 
-        // Return metadata object if clean
         return metadata;
     }
 
@@ -177,8 +176,12 @@ class BookmarkData {
         const bookmark = await Bookmark.findOne({ _id: bookmarkId });
         const user = await User.findOne({ userId: userId });
 
-        const likeCount = bookmark.likes.filter(id => id.toString() === user._id.toString()).length;
-        const dislikeCount = bookmark.dislikes.filter(id => id.toString() === user._id.toString()).length;
+        if (!bookmark || !user) {
+            return { likeCount: 0, dislikeCount: 0 };
+        }
+
+        const likeCount = bookmark.likes.includes(user._id) ? 1 : 0;
+        const dislikeCount = bookmark.dislikes.includes(user._id) ? 1 : 0;
 
         return { likeCount, dislikeCount };
     }

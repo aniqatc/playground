@@ -33,10 +33,9 @@ async function addBookmark() {
         addInput.placeholder = "Bookmark successfully added.";
 
         bookmarkContainer.scrollTo({
-            top: 0,
+            top: bookmarkContainer.scrollHeight,
             behavior: "smooth",
         })
-
     } catch (error) {
         addInput.classList.add("error");
         addInput.placeholder = error.message;

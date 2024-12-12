@@ -1,7 +1,7 @@
 import './style.scss';
 
 export function getMarkup() {
-    return `<!-- Widget 08: Template -->
+    return `<!-- Widget 08: Community Bookmarks -->
 <section
   id="widget-08"
   class="relative rounded bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"

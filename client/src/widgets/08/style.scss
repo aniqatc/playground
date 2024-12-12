@@ -4,6 +4,19 @@
 
 // Mixins
 // Animations
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  75% {
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 // Base Widget Styles
 #widget-08 {
@@ -62,6 +75,8 @@
         // Bookmark cards
         .bookmark {
           position: relative;
+          animation: fade-in 0.5s ease-out forwards;
+          opacity: 0;
 
           &-content {
             display: flex;
@@ -90,8 +105,8 @@
               h2 {
                 font-family: inherit;
                 font-weight: 600;
-                font-size: var.$font-size-base;
-                margin-bottom: -2px;
+                font-size: var.$font-size-med;
+                margin-bottom: -4px;
 
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
@@ -102,16 +117,16 @@
               }
 
               span {
-                font-size: 11px;
+                font-size: 11.5px;
                 color: var.$gray-medium-dark;
               }
             }
 
             &--description {
-              line-height: 1.1;
+              line-height: 1.2;
               margin-bottom: 8px;
-              font-size: 11.5px;
-              max-width: 320px;
+              font-size: 12px;
+              max-width: 100%;
 
               display: -webkit-box;
               -webkit-box-orient: vertical;
@@ -125,7 +140,7 @@
               padding-bottom: 4px;
               display: flex;
               flex-wrap: wrap;
-              gap: 3px;
+              gap: 4px;
               overflow: hidden;
 
               li {
@@ -134,7 +149,7 @@
                 color: var.$color-muted-purple;
                 border-radius: 4px;
                 padding: 0px 3px;
-                font-size: 10.5px;
+                font-size: 11px;
                 white-space: nowrap;
               }
             }
