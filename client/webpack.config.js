@@ -27,21 +27,35 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       {
-        test: /\.scss$/i,
+        test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true,
+              import: true,
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true
+            }
+          },
           {
             loader: 'sass-loader',
             options: {
-              implementation: require('sass'),
+              sourceMap: true,
               sassOptions: {
-                fiber: false,
-              },
-            },
-          },
-        ],
+                outputStyle: 'expanded',
+                charset: true,
+                escapeUnicode: false
+              }
+            }
+          }
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,

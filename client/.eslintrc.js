@@ -10,10 +10,6 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    'script-src': 'off',
-    'default-src': 'off',
-    'unsafe-inline': 'off',
-    'no-script-url': 'off',
     // Potential Errors
     'no-console': 'warn',
     'no-debugger': 'warn',
@@ -32,10 +28,6 @@ module.exports = {
 
     // ES6
     'arrow-body-style': ['error', 'as-needed'],
-  },
-  globals: {
-    FontAwesome: 'readonly',
-    fa: 'readonly'
   },
   ignorePatterns: ['node_modules/', 'public/'],
 };
