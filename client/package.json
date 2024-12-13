@@ -32,7 +32,7 @@
     "email": "hello@aniqa.io",
     "url": "https://aniqa.dev"
   },
-  "license": "MIT",
+  "license": "GPL-3.0",
   "homepage": "https://playground.aniqa.dev",
   "repository": {
     "type": "git",
