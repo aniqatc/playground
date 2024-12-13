@@ -1,31 +1,25 @@
 import functionPlot from "function-plot";
+import { evaluate } from 'mathjs';
 
 class CalculatorLogic {
   constructor() {
-    this.regexExponent = /(\d+(?:\.\d+)?)\^(\d+(?:\.\d+)?)/;
+    this.graphableFunctions = ["log", "sin", "cos", "x"];
   }
 
   evaluateExpression(expression) {
-    if (
-      expression.includes("log") ||
-      expression.includes("sin") ||
-      expression.includes("cos") ||
-      expression.includes("x")
-    ) {
+    if (this.graphableFunctions.some(func => expression.includes(func))) {
       return "0";
     }
-    expression = this.evaluateExponent(expression);
-    expression = eval(expression);
-    return expression;
-  }
 
-  evaluateExponent(expression) {
-    let match;
-    while ((match = this.regexExponent.exec(expression))) {
-      const result = Math.pow(+match[1], +match[2]).toString();
-      expression = expression.replace(match[0], result);
+    try {
+      const result = evaluate(expression);
+      if (Number.isInteger(result)) {
+        return result.toString();
+      }
+      return Number(result.toString());
+    } catch (error) {
+      return "Error";
     }
-    return expression;
   }
 
   graphFunction(expression = "x") {
@@ -42,19 +36,10 @@ class CalculatorLogic {
   }
 
   renderDefaultGraph(calcValue = "") {
-    if (
-      calcValue.includes("log") ||
-      calcValue.includes("sin") ||
-      calcValue.includes("cos") ||
-      calcValue.includes("x")
-    ) {
-      this.graphFunction(calcValue);
-    } else {
-      this.graphFunction();
-    }
+    this.graphableFunctions.some(fn => calcValue.includes(fn)) ?
+      this.graphFunction(calcValue) : this.graphFunction();
   }
 }
 
 const Logic = new CalculatorLogic();
-
 export { Logic };

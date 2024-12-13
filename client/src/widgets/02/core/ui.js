@@ -68,11 +68,12 @@ class CalculatorUI extends CalculatorContext {
 
   setupCalculatorButtons() {
     this.calculatorEl.addEventListener("click", (event) => {
-      this.resetDisplay();
+      const calcValue = event.target.dataset.calcVal;
+      if (!calcValue) return;
 
-      try {
-        executeCalculatorAction(event.target.dataset.calcVal);
-      } catch (error) {
+      this.resetDisplay();
+      const result = executeCalculatorAction(calcValue);
+      if (result === "Error") {
         this.displayError();
       }
 
@@ -103,14 +104,14 @@ class CalculatorUI extends CalculatorContext {
   addToHistory(expression) {
     this.pastEntries = this.pastEntriesParent.querySelectorAll("li");
 
-    if (expression.length > 0) {
+    if (expression && expression.length > 0) {
       if (this.pastEntries.length >= 7) {
         this.pastEntriesParent.removeChild(this.pastEntries[0]);
       }
 
       const li = document.createElement("li");
-      const formattedExp = expression.replace(/(\+|\-|\/|\*)/g, " $1 ");
-      li.textContent = formattedExp;
+      const formattedExpression = expression.replace(/(\+|\-|\/|\^|\*\*|\*)/g, " $1 ");  // adds spacing between mathematical operators for readability
+      li.textContent = formattedExpression;
       this.pastEntriesParent.appendChild(li);
       this.pastEntries = this.pastEntriesParent.querySelectorAll("li");
     }

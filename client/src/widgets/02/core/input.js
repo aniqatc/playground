@@ -2,27 +2,44 @@ import { Logic } from "./logic";
 import { UI } from "./ui";
 
 function executeCalculatorAction(calcValue) {
-  if (calcValue === "ac") {
-    UI.displayValue.textContent = "0";
-  } else if (calcValue === "trim") {
-    UI.displayValue.textContent = Math.round(+UI.displayValue.textContent);
-  } else if (calcValue === "graph") {
-    Logic.graphFunction(UI.displayValue.textContent);
-  } else if (calcValue === "%") {
-    UI.displayValue.textContent =
-      Logic.evaluateExpression(UI.displayValue.textContent) / 100;
-  } else if (calcValue === "√") {
-    UI.displayValue.textContent = Math.sqrt(
-      Logic.evaluateExpression(UI.displayValue.textContent),
-    );
-  } else if (calcValue === "=") {
-    UI.addToHistory(UI.displayValue.textContent);
-    UI.displayValue.textContent = Logic.evaluateExpression(
-      UI.displayValue.textContent,
-    );
-  } else if (calcValue !== undefined) {
-    UI.displayValue.textContent += calcValue;
-    UI.displayValue.scrollLeft = UI.displayValue.scrollWidth;
+  try {
+    if (!calcValue) return;
+
+    switch (calcValue) {
+      case "ac":
+        UI.displayValue.textContent = "0";
+        break;
+
+      case "trim":
+        const trimValue = Logic.evaluateExpression(UI.displayValue.textContent);
+        UI.displayValue.textContent = Math.round(trimValue);
+        break;
+
+      case "graph":
+        Logic.graphFunction(UI.displayValue.textContent);
+        break;
+
+      case "%":
+        const percentValue = Logic.evaluateExpression(UI.displayValue.textContent);
+        UI.displayValue.textContent = percentValue / 100;
+        break;
+
+      case "√":
+        const sqrtValue = Logic.evaluateExpression(UI.displayValue.textContent);
+        UI.displayValue.textContent = Math.sqrt(sqrtValue);
+        break;
+
+      case "=":
+        UI.addToHistory(UI.displayValue.textContent);
+        UI.displayValue.textContent = Logic.evaluateExpression(UI.displayValue.textContent);
+        break;
+
+      default:
+        UI.displayValue.textContent += calcValue;
+        UI.displayValue.scrollLeft = UI.displayValue.scrollWidth;
+    }
+  } catch (error) {
+      return "Error";
   }
 }
 
