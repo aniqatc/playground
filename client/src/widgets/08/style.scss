@@ -2,7 +2,6 @@
 @use 'sass:color';
 @import url('https://fonts.googleapis.com/css2?family=Recursive:CASL,MONO@0.25,0.25&display=swap');
 
-// Mixins
 // Animations
 @keyframes fade-in {
   0% {
@@ -216,21 +215,11 @@
 
                   &:hover i {
                     transform: scale(1.1);
-                  }
-
-                  &:hover .fa-regular.fa-thumbs-up::before {
-                    content: '\f164';
-                    font-family: 'Font Awesome 6 Free';
-                    font-weight: 900;
-                  }
-
-                  &:hover .fa-regular.fa-thumbs-down::before {
-                    content: '\f165';
-                    font-family: 'Font Awesome 6 Free';
                     font-weight: 900;
                   }
 
                   &:active i {
+                    font-weight: 900;
                     transform: scale(0.95);
                   }
                 }
@@ -239,26 +228,6 @@
                   font-size: 12.5px;
                   font-family: 'Recursive', 'Archivo', 'Inter', sans-serif;
                   text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-                }
-              }
-
-              &--likes {
-                &-btn.active {
-                  .fa-regular.fa-thumbs-up::before {
-                    content: '\f164';
-                    font-family: 'Font Awesome 6 Free';
-                    font-weight: 900;
-                  }
-                }
-              }
-
-              &--dislikes {
-                &-btn.active {
-                  .fa-regular.fa-thumbs-down::before {
-                    content: '\f165';
-                    font-family: 'Font Awesome 6 Free';
-                    font-weight: 900;
-                  }
                 }
               }
             }

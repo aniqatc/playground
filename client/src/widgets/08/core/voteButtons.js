@@ -8,6 +8,8 @@ export default async function initializeVoteButtons(bookmark) {
   const dislikeButton = el.querySelector('.sidebar--actions--dislikes-btn');
   const likesCount = el.querySelector('.sidebar--actions--likes-count');
   const dislikesCount = el.querySelector('.sidebar--actions--dislikes-count');
+  const likeIcon = likeButton.querySelector('i');
+  const dislikeIcon = dislikeButton.querySelector('i');
 
   likeButton.addEventListener('click', async () => {
     const userVote = await fetchUserVoteCount(bookmark._id);
@@ -15,8 +17,9 @@ export default async function initializeVoteButtons(bookmark) {
       const updatedCount = await addVote(bookmark._id, 'like');
       likesCount.textContent = updatedCount.likeCount;
       dislikesCount.textContent = updatedCount.dislikeCount;
-      likeButton.classList.add('active');
-      dislikeButton.classList.remove('active');
+
+      likeIcon.classList.replace('fa-regular', 'fa-solid');
+      dislikeIcon.classList.replace('fa-solid', 'fa-regular');
     }
   });
 
@@ -26,8 +29,9 @@ export default async function initializeVoteButtons(bookmark) {
       const updatedCount = await addVote(bookmark._id, 'dislike');
       dislikesCount.textContent = updatedCount.dislikeCount;
       likesCount.textContent = updatedCount.likeCount;
-      dislikeButton.classList.add('active');
-      likeButton.classList.remove('active');
+
+      dislikeIcon.classList.replace('fa-regular', 'fa-solid');
+      likeIcon.classList.replace('fa-solid', 'fa-regular');
     }
   });
 }
