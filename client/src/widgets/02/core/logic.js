@@ -1,9 +1,10 @@
 import functionPlot from "function-plot";
-import { evaluate } from 'mathjs';
+import { Parser } from "expr-eval";
 
 class CalculatorLogic {
   constructor() {
     this.graphableFunctions = ["log", "sin", "cos", "x"];
+    this.parser = new Parser();
   }
 
   evaluateExpression(expression) {
@@ -12,7 +13,7 @@ class CalculatorLogic {
     }
 
     try {
-      const result = evaluate(expression);
+      const result = this.parser.evaluate(expression);
       if (Number.isInteger(result)) {
         return result.toString();
       }

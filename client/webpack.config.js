@@ -64,10 +64,10 @@ module.exports = {
         "og:title": "Interactive Widget Playground | Modern Web Development Showcase",
         "og:description": "Discover a collection of interactive web tools showcasing modern full-stack development: from data visualization to utility applications, built with Node.js, Express, MongoDB, and Webpack.",
         "og:url": "https://playground.aniqa.dev",
-        "og:image": "",
+        "og:image": "https://github.com/aniqatc/playground/blob/main/docs/screenshots/playground-light.png",
         "twitter:title": "Interactive Widget Playground | Full-Stack Web Development",
         "twitter:card": "summary_large_image",
-        "twitter:image": "",
+        "twitter:image": "https://github.com/aniqatc/playground/blob/main/docs/screenshots/playground-light.png",
         "twitter:image:alt": "Collection of interactive web widgets and tools",
         "twitter:site": "@aniqatc",
         "twitter:description": "Explore interactive web tools: graphing calculator, financial dashboard, task manager, digital footprint analyzer, lottery data tool, and more.",
@@ -120,12 +120,6 @@ module.exports = {
       maxSize: 250000,
       cacheGroups: {
         // Splitting large packages into separate chunks
-        mathjs: {
-          test: /[\\/]node_modules[\\/]mathjs[\\/]/,
-          name: 'vendor.mathjs',
-          priority: 20,
-          chunks: 'all',
-        },
         chartjs: {
           test: /[\\/]node_modules[\\/]chart.js[\\/]/,
           name: 'vendor.chartjs',

@@ -4,7 +4,7 @@
 [![SCSS Badge](https://img.shields.io/badge/SCSS-B81717)](https://github.com/aniqatc/playground)
 [![JavaScript Badge](https://img.shields.io/badge/JavaScript-B81717)](https://github.com/aniqatc/playground)
 [![Function Plot Badge](https://img.shields.io/badge/FunctionPlot-B81717)](https://github.com/mauriciopoppe/function-plot)
-[![Mathjs Badge](https://img.shields.io/badge/Mathjs-B81717)](https://github.com/niklasvh/html2canvas)
+[![Expr-Eval Badge](https://img.shields.io/badge/expr--eval-B81717)](https://github.com/niklasvh/html2canvas)
 [![HTML2Canvas Badge](https://img.shields.io/badge/HTML2Canvas-B81717)](https://github.com/niklasvh/html2canvas)
 
 A dual-mode calculator that can handle evaluating different arithmetic expressions **and** provides the ability to graph select functions, accessed through a minimalistic user interface. The calculator allows users to keep track of their previously inputted expressions and allows them to save a `.png` file of the calculator's display and history.
@@ -18,7 +18,7 @@ A dual-mode calculator that can handle evaluating different arithmetic expressio
 - JavaScript/HTML/SCSS: Core technologies for building and styling the widget
 - Function Plot: Library for building interactive SVG graphs
 - HTML2Canvas: library for exporting portion of the calculator display as `.png`
-- Mathjs: library used to evaluate basic arithmetic operations 
+- expr-eval: library used to evaluate basic arithmetic operations 
 
 ## Storage
 
@@ -26,7 +26,7 @@ A dual-mode calculator that can handle evaluating different arithmetic expressio
 
 ## Features
 
-- Allows for basic to intermediate **arithmetic computations** utilizing the Mathjs library and custom methods for edge cases
+- Allows for basic to intermediate **arithmetic computations** utilizing the `expr-eval` library and custom methods for edge cases
 - Switch **calculator modes** to focus on calculations based on the mode selected (either graphing or scientific)
 - Displays **interactive function graphs** using the Function-Plot library
 - **History tracking** that can be toggled, cleared, or saved in a user's browser storage for future review
@@ -47,7 +47,7 @@ A dual-mode calculator that can handle evaluating different arithmetic expressio
 
 **Logic**
 
-- [`core/logic.js`](../../client/src/widgets/02/core/logic.js): generates the graph for the graphing mode and contains the core logic for evaluating arithmetic expressions for the scientific mode
+- [`core/logic.js`](../../client/src/widgets/02/core/logic.js): generates the graph for the graphing mode and contains the core logic for evaluating arithmetic expressions for the scientific mode using the `expr-eval` library
 
 **User Input**
 
