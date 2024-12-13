@@ -1,9 +1,13 @@
-@use "../../main/styles/var";
+@use '../../main/styles/var';
 
 // Animations
 @keyframes fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 // Mixins
@@ -44,7 +48,9 @@
     justify-content: space-between;
 
     // Priority Colors
-    .untagged-color { @include priority-tag; }
+    .untagged-color {
+      @include priority-tag;
+    }
     .high-color {
       @extend .untagged-color;
       color: var.$color-dark-red;
@@ -63,8 +69,8 @@
       position: relative;
       border: var.$border-light;
       transition:
-              outline 100ms ease-in,
-              height 200ms ease;
+        outline 100ms ease-in,
+        height 200ms ease;
       height: 40px;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
       border-radius: 2px;
@@ -129,8 +135,8 @@
         opacity: 0;
         max-height: 0;
         transition:
-                opacity 300ms ease-in,
-                max-height 150ms ease;
+          opacity 300ms ease-in,
+          max-height 150ms ease;
 
         &.focused {
           opacity: 1;
@@ -238,7 +244,7 @@
       }
 
       // Checkbox Styles
-      input[type="checkbox"] {
+      input[type='checkbox'] {
         appearance: none;
         min-width: 17px;
         min-height: 17px;
@@ -280,7 +286,7 @@
         }
 
         &::after {
-          content: "";
+          content: '';
           display: block;
           width: 6px;
           height: 11px;
@@ -292,8 +298,8 @@
           opacity: 0;
           transform: rotate(45deg) scale(0.5);
           transition:
-                  opacity 200ms ease,
-                  transform 400ms ease;
+            opacity 200ms ease,
+            transform 400ms ease;
         }
       }
 
@@ -419,7 +425,7 @@
               }
             }
 
-            input[type="checkbox"] {
+            input[type='checkbox'] {
               border: 1px solid transparent;
               margin-top: 0;
 
@@ -544,7 +550,7 @@
     // Content Body
     .content-body {
       // Checkbox Styles
-      input[type="checkbox"] {
+      input[type='checkbox'] {
         border: 1px solid var.$color-medium-yellow;
 
         & ~ label {
@@ -607,7 +613,7 @@
               color: #bababa;
             }
 
-            input[type="checkbox"] {
+            input[type='checkbox'] {
               &::after {
                 border: solid var.$gray-dark;
                 border-width: 0 2px 2px 0;

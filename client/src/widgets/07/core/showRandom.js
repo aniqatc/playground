@@ -1,15 +1,15 @@
-import displayCard from "./displayCard";
-import { fetchRandomRepository } from "./data";
-import repoContext from "./context";
-import { disableButtons } from "./buttonState";
+import displayCard from './displayCard';
+import { fetchRandomRepository } from './data';
+import repoContext from './context';
+import { disableButtons } from './buttonState';
 
 export default function initializeRandomButton() {
-    const { randomButton } = repoContext;
+  const { randomButton } = repoContext;
 
-    randomButton.addEventListener("click", async () => {
-        disableButtons();
+  randomButton.addEventListener('click', async () => {
+    disableButtons();
 
-        const data = await fetchRandomRepository();
-        displayCard(data);
-    })
+    const data = await fetchRandomRepository();
+    displayCard(data);
+  });
 }

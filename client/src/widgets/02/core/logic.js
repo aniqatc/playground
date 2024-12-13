@@ -1,15 +1,15 @@
-import functionPlot from "function-plot";
-import { Parser } from "expr-eval";
+import functionPlot from 'function-plot';
+import { Parser } from 'expr-eval';
 
 class CalculatorLogic {
   constructor() {
-    this.graphableFunctions = ["log", "sin", "cos", "x"];
+    this.graphableFunctions = ['log', 'sin', 'cos', 'x'];
     this.parser = new Parser();
   }
 
   evaluateExpression(expression) {
-    if (this.graphableFunctions.some(func => expression.includes(func))) {
-      return "0";
+    if (this.graphableFunctions.some((func) => expression.includes(func))) {
+      return '0';
     }
 
     try {
@@ -19,13 +19,13 @@ class CalculatorLogic {
       }
       return Number(result.toString());
     } catch (error) {
-      return "Error";
+      return 'Error';
     }
   }
 
-  graphFunction(expression = "x") {
+  graphFunction(expression = 'x') {
     functionPlot({
-      target: "#widget-02 .graph",
+      target: '#widget-02 .graph',
       height: 175,
       grid: false,
       data: [
@@ -36,9 +36,10 @@ class CalculatorLogic {
     });
   }
 
-  renderDefaultGraph(calcValue = "") {
-    this.graphableFunctions.some(fn => calcValue.includes(fn)) ?
-      this.graphFunction(calcValue) : this.graphFunction();
+  renderDefaultGraph(calcValue = '') {
+    this.graphableFunctions.some((fn) => calcValue.includes(fn))
+      ? this.graphFunction(calcValue)
+      : this.graphFunction();
   }
 }
 

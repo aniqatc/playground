@@ -1,20 +1,18 @@
-import marketContext from "./context.js";
-import { createChart } from "./charts";
+import marketContext from './context.js';
+import { createChart } from './charts';
 
 async function generateStockCard(stock, index, userReq = false) {
-    const { stockCardGroup } = marketContext;
-    const cardEl = document.createElement("div");
-    cardEl.classList.add("card");
-    cardEl.setAttribute('data-symbol', stock.symbol);
-    if (index !== 0) {
-        cardEl.classList.add("initial");
-    }
+  const { stockCardGroup } = marketContext;
+  const cardEl = document.createElement('div');
+  cardEl.classList.add('card');
+  cardEl.setAttribute('data-symbol', stock.symbol);
+  if (index !== 0) {
+    cardEl.classList.add('initial');
+  }
 
-    stock.change > 0
-        ? cardEl.classList.add("positive")
-        : cardEl.classList.add("negative");
+  stock.change > 0 ? cardEl.classList.add('positive') : cardEl.classList.add('negative');
 
-    cardEl.innerHTML = `<div class="card-head">
+  cardEl.innerHTML = `<div class="card-head">
                            <a href="${stock.website}" target="_blank">
                             <div class="card-heading--name">
                                 <span class="logo-wrapper">                            
@@ -70,56 +68,56 @@ async function generateStockCard(stock, index, userReq = false) {
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button class="expand-btn" aria-label="Expand button to see ${stock.symbol} 7-day pricing chart">Details <i class="fa-solid fa-arrow-${cardEl.classList.contains("initial") ? "right" : "left" }-long"></i></button>
-                    </div>`
-    const graphDiv = cardEl.querySelector(".card-body--graph");
-    graphDiv.innerHTML = '<canvas></canvas>';
+                        <button class="expand-btn" aria-label="Expand button to see ${stock.symbol} 7-day pricing chart">Details <i class="fa-solid fa-arrow-${cardEl.classList.contains('initial') ? 'right' : 'left'}-long"></i></button>
+                    </div>`;
+  const graphDiv = cardEl.querySelector('.card-body--graph');
+  graphDiv.innerHTML = '<canvas></canvas>';
 
-    if (index === 0) {
-        stockCardGroup.prepend(cardEl);
-        await createChart(cardEl, stock);
-    } else {
-        stockCardGroup.append(cardEl);
-    }
-    if (userReq === true) {
-        marketContext.updateLastUpdated(stock.lastUpdated);
-    }
-    stockCardEventHandlers(cardEl, stock);
+  if (index === 0) {
+    stockCardGroup.prepend(cardEl);
+    await createChart(cardEl, stock);
+  } else {
+    stockCardGroup.append(cardEl);
+  }
+  if (userReq === true) {
+    marketContext.updateLastUpdated(stock.lastUpdated);
+  }
+  stockCardEventHandlers(cardEl, stock);
 }
 
 function stockCardEventHandlers(cardEl, stock) {
-    const expandBtn = cardEl.querySelector(".expand-btn");
-    const graphDiv = cardEl.querySelector(".card-body--graph");
-    let chart = null;
+  const expandBtn = cardEl.querySelector('.expand-btn');
+  const graphDiv = cardEl.querySelector('.card-body--graph');
+  let chart = null;
 
-    expandBtn.addEventListener("click", async function () {
-        toggleCardState(cardEl);
-        marketContext.scrollToElement(cardEl);
+  expandBtn.addEventListener('click', async function () {
+    toggleCardState(cardEl);
+    marketContext.scrollToElement(cardEl);
 
-        if (!cardEl.classList.contains("initial")) {
-            graphDiv.innerHTML = '<canvas></canvas>';
-            chart = await createChart(cardEl, stock);
-        } else {
-            if (chart) {
-                chart.destroy();
-                chart = null;
-            }
-            graphDiv.innerHTML = "";
-        }
-    });
+    if (!cardEl.classList.contains('initial')) {
+      graphDiv.innerHTML = '<canvas></canvas>';
+      chart = await createChart(cardEl, stock);
+    } else {
+      if (chart) {
+        chart.destroy();
+        chart = null;
+      }
+      graphDiv.innerHTML = '';
+    }
+  });
 }
 
 function toggleCardState(cardEl) {
-    const expandBtn = cardEl.querySelector(".expand-btn");
-    const shouldExpand = cardEl.classList.contains("initial");
+  const expandBtn = cardEl.querySelector('.expand-btn');
+  const shouldExpand = cardEl.classList.contains('initial');
 
-    if (shouldExpand) {
-        cardEl.classList.remove("initial");
-        expandBtn.innerHTML = `Details <i class="fa-solid fa-arrow-left-long"></i>`;
-    } else {
-        cardEl.classList.add("initial");
-        expandBtn.innerHTML = `Details <i class="fa-solid fa-arrow-right-long"></i>`;
-    }
+  if (shouldExpand) {
+    cardEl.classList.remove('initial');
+    expandBtn.innerHTML = 'Details <i class="fa-solid fa-arrow-left-long"></i>';
+  } else {
+    cardEl.classList.add('initial');
+    expandBtn.innerHTML = 'Details <i class="fa-solid fa-arrow-right-long"></i>';
+  }
 }
 
 export { toggleCardState, generateStockCard };

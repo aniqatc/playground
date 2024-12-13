@@ -27,6 +27,11 @@
 - Backend: Heroku
 - Database: MongoDB Atlas
 
+**Build Tools**
+- Webpack
+- ESLint
+- Prettier
+
 ## Project Files
 
 **Config** files in root directory
@@ -40,11 +45,12 @@
 - `/main` holds all database models, express routing and handlers for the overall webpage
 - `/widgets` holds individual widget database models, express routing and handlers
 
-**Client** files in `/client`
+**Client** config files in `/client`
 
-- `.prettierrc` includes a plugin to organize Tailwind utility classes in the main HTML file
-- `package.json` & `package-lock.json` refers to any dependencies relating to the frontend
-- `postcss.config.js`, `tailwind.config.js` and `webpack.config.js` are individual configuration files for PostCSS, Tailwind and Webpack
+- `.prettierrc` configures Prettier for consistent code formatting and includes a plugin to organize Tailwind utility classes in the main HTML file
+- `package.json` & `package-lock.json` refers to any dependencies relating to the frontend, including development and build tools
+- `postcss.config.js`, `tailwind.config.js`, and `webpack.config.js`: Provide individual configurations for PostCSS, Tailwind CSS, and Webpack, ensuring efficient CSS processing, utility-class management, and asset bundling
+- `.eslintrc.js` configures ESLint to enforce coding standards and identify potential errors
 
 **Inside the `/client` directory**: the `/public` directory contains all production-ready code, bundled and optimized using Webpack and the `/src` directory contains all source code, split between `/main` which represents the overall webpage & layout and `/widgets` which represents individual widgets
 
@@ -59,6 +65,9 @@
 - Handles configuring HTML with meta tags and icons
 - Handles retrieval of the relevant environmental variables from the hidden `.env` files, dependent on the environment (development vs production)
 - Handles manifest.json file required for a Progressive Web Application
+- Handles image optimization and outputs images to a dedicated assets/images folder with hashed filenames for caching
+- Handles splitting JavaScript code into optimized chunks for better performance, including separating vendor libraries and reusable code
+- Handles output of hashed filenames for JS and CSS to support long-term caching
 
 **Documentation** in `/docs`
 
@@ -216,3 +225,21 @@ npm run build
 
 - Build in production mode
 - Sets `NODE_ENV` variable to `production`
+
+```
+npm run lint
+```
+
+- Check for code errors based on the `.eslintrc.js` config file
+
+```
+npm run lint:fix
+```
+
+- Automatically fix minor syntax errors identified by ESLint
+
+```
+npm run format
+```
+
+- Format the code based on the `.prettierrc` config file

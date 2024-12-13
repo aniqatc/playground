@@ -1,35 +1,35 @@
-import { Logic } from "./logic";
-import { UI } from "./ui";
+import { Logic } from './logic';
+import { UI } from './ui';
 
 function executeCalculatorAction(calcValue) {
   try {
     if (!calcValue) return;
 
     switch (calcValue) {
-      case "ac":
-        UI.displayValue.textContent = "0";
+      case 'ac':
+        UI.displayValue.textContent = '0';
         break;
 
-      case "trim":
+      case 'trim':
         const trimValue = Logic.evaluateExpression(UI.displayValue.textContent);
         UI.displayValue.textContent = Math.round(trimValue);
         break;
 
-      case "graph":
+      case 'graph':
         Logic.graphFunction(UI.displayValue.textContent);
         break;
 
-      case "%":
+      case '%':
         const percentValue = Logic.evaluateExpression(UI.displayValue.textContent);
         UI.displayValue.textContent = percentValue / 100;
         break;
 
-      case "√":
+      case '√':
         const sqrtValue = Logic.evaluateExpression(UI.displayValue.textContent);
         UI.displayValue.textContent = Math.sqrt(sqrtValue);
         break;
 
-      case "=":
+      case '=':
         UI.addToHistory(UI.displayValue.textContent);
         UI.displayValue.textContent = Logic.evaluateExpression(UI.displayValue.textContent);
         break;
@@ -39,7 +39,7 @@ function executeCalculatorAction(calcValue) {
         UI.displayValue.scrollLeft = UI.displayValue.scrollWidth;
     }
   } catch (error) {
-      return "Error";
+    return 'Error';
   }
 }
 

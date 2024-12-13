@@ -1,6 +1,6 @@
-import todoContext from "./context";
-import flatpickr from "flatpickr";
-import "./calendar.scss";
+import todoContext from './context';
+import flatpickr from 'flatpickr';
+import './calendar.scss';
 
 function initializeCalendarEl() {
   const { todoSelectedDate, todoDateButton } = todoContext;
@@ -8,8 +8,8 @@ function initializeCalendarEl() {
   todoSelectedDate.textContent = formatDate(new Date());
 
   flatpickr(todoDateButton, {
-    dateFormat: "Y-m-d",
-    minDate: "today",
+    dateFormat: 'Y-m-d',
+    minDate: 'today',
     maxDate: new Date().fp_incr(45),
     disableMobile: true,
     static: true,
@@ -26,9 +26,9 @@ function formatDate(date) {
     date = new Date(date);
   }
 
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
   });
 }
 

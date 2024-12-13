@@ -1,12 +1,12 @@
-@use "../../main/styles/var";
-@import url("https://fonts.googleapis.com/css2?family=Recursive:CASL,MONO@0.25,0.25&display=swap");
+@use '../../main/styles/var';
+@import url('https://fonts.googleapis.com/css2?family=Recursive:CASL,MONO@0.25,0.25&display=swap');
 
 // History Animation Mixins
 @mixin history-item-transition($num) {
   transition:
-          opacity 0.4s ease-in-out,
-          max-height 0.2s ease-in-out,
-          transform 0.3s ease-in-out;
+    opacity 0.4s ease-in-out,
+    max-height 0.2s ease-in-out,
+    transform 0.3s ease-in-out;
   transition-delay: calc((5 - #{$num}) * 0.35s);
 
   &.active {
@@ -14,9 +14,9 @@
     opacity: 0;
     max-height: 0;
     transition:
-            opacity 0.25s ease-out,
-            max-height 0.5s ease-out,
-            transform 0.25s ease-out;
+      opacity 0.25s ease-out,
+      max-height 0.5s ease-out,
+      transform 0.25s ease-out;
     transition-delay: $num * 0.25s;
   }
 }
@@ -36,7 +36,7 @@
 
   // Main Content Container
   .content {
-    font-family: "Recursive", "Archivo", "Inter", sans-serif;
+    font-family: 'Recursive', 'Archivo', 'Inter', sans-serif;
     display: grid;
     grid-template-columns: 25px minmax(250px, 1fr);
 
@@ -146,8 +146,8 @@
           overflow-y: hidden;
           white-space: nowrap;
           transition:
-                  font-size 500ms ease 200ms,
-                  color 200ms ease;
+            font-size 500ms ease 200ms,
+            color 200ms ease;
 
           &::-webkit-scrollbar,
           &::-webkit-scrollbar-thumb {
@@ -194,7 +194,7 @@
           color: var.$color-dark-red;
           background: var.$color-light-red;
 
-          &[data-calc-val="="] {
+          &[data-calc-val='='] {
             grid-column: auto;
             width: 40px;
             font-size: 18px;
@@ -208,7 +208,7 @@
             }
           }
 
-          &[data-calc-val="^"] {
+          &[data-calc-val='^'] {
             padding-left: 5px;
 
             sup {
@@ -227,7 +227,7 @@
         &.operation-helper-btns {
           color: var.$gray-medium;
 
-          &[data-calc-val="."] {
+          &[data-calc-val='.'] {
             font-size: 36px;
             font-weight: 800;
             margin-top: -16px;
@@ -258,11 +258,11 @@
             @extend .operation-btns;
           }
 
-          &[data-calc-val="x"] {
+          &[data-calc-val='x'] {
             font-size: 20px;
           }
 
-          &[data-calc-val="graph"] {
+          &[data-calc-val='graph'] {
             grid-column: auto;
             width: 40px;
             font-size: 18px;
@@ -298,7 +298,7 @@
       }
       text {
         color: var.$gray-light;
-        font-family: "Recursive", "Archivo", "Inter", sans-serif;
+        font-family: 'Recursive', 'Archivo', 'Inter', sans-serif;
       }
       path.domain {
         stroke: var.$color-medium-red;
@@ -349,7 +349,7 @@
         color: var.$color-medium-red;
         background: #000000;
 
-        &[data-calc-val="="] {
+        &[data-calc-val='='] {
           color: var.$gray-light;
           background: var.$gray-dark;
 
@@ -369,7 +369,7 @@
         color: var.$gray-light;
         background: #000000;
 
-        &[data-calc-val="graph"] {
+        &[data-calc-val='graph'] {
           color: var.$gray-light;
           background: var.$gray-dark;
 
@@ -388,7 +388,8 @@
   }
 
   .function-plot {
-    .x, .y {
+    .x,
+    .y {
       text {
         color: var.$gray-medium;
       }

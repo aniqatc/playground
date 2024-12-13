@@ -1,14 +1,22 @@
-@use "../../main/styles/var";
+@use '../../main/styles/var';
 
 // Animations
 @keyframes blinking-dot {
-  from { opacity: 1; }
-  to { opacity: 0.5; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
 }
 
 @keyframes imageFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 // Generate Grid Item Animations
@@ -74,7 +82,7 @@
         line-height: 1;
         font-size: 24px;
         font-weight: 600;
-        font-family: "Archivo", "Inter", sans-serif;
+        font-family: 'Archivo', 'Inter', sans-serif;
       }
     }
 
@@ -136,7 +144,7 @@
         ul {
           margin: var.$spacing-base;
 
-          li span[class^="user-"] {
+          li span[class^='user-'] {
             font-weight: 500;
             font-size: var.$font-size-base;
           }

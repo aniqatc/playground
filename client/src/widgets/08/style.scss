@@ -1,6 +1,6 @@
-@use "../../main/styles/var";
-@use "sass:color";
-@import url("https://fonts.googleapis.com/css2?family=Recursive:CASL,MONO@0.25,0.25&display=swap");
+@use '../../main/styles/var';
+@use 'sass:color';
+@import url('https://fonts.googleapis.com/css2?family=Recursive:CASL,MONO@0.25,0.25&display=swap');
 
 // Mixins
 // Animations
@@ -91,7 +91,11 @@
             height: 136px;
 
             &:hover {
-              background-color: color.adjust(var.$color-x-light-purple, $lightness: -5%, $space: hsl);
+              background-color: color.adjust(
+                var.$color-x-light-purple,
+                $lightness: -5%,
+                $space: hsl
+              );
             }
 
             .bookmark-content--container {
@@ -170,7 +174,7 @@
                 border: 2px solid #e4d9f1;
                 border-radius: 4px;
                 background-color: #e4d9f1;
-                box-shadow: 0 0 2px rgba(0,0,0,0.1);
+                box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 
                 @container (max-width: 325px) {
                   padding: 2px 4px;
@@ -198,7 +202,8 @@
               padding: 0 4px;
               box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
 
-              &--likes, &--dislikes {
+              &--likes,
+              &--dislikes {
                 display: flex;
                 align-items: center;
                 gap: 2px;
@@ -214,14 +219,14 @@
                   }
 
                   &:hover .fa-regular.fa-thumbs-up::before {
-                    content: "\f164";
-                    font-family: "Font Awesome 6 Free";
+                    content: '\f164';
+                    font-family: 'Font Awesome 6 Free';
                     font-weight: 900;
                   }
 
                   &:hover .fa-regular.fa-thumbs-down::before {
-                    content: "\f165";
-                    font-family: "Font Awesome 6 Free";
+                    content: '\f165';
+                    font-family: 'Font Awesome 6 Free';
                     font-weight: 900;
                   }
 
@@ -232,7 +237,7 @@
 
                 &-count {
                   font-size: 12.5px;
-                  font-family: "Recursive", "Archivo", "Inter", sans-serif;
+                  font-family: 'Recursive', 'Archivo', 'Inter', sans-serif;
                   text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
                 }
               }
@@ -240,8 +245,8 @@
               &--likes {
                 &-btn.active {
                   .fa-regular.fa-thumbs-up::before {
-                    content: "\f164";
-                    font-family: "Font Awesome 6 Free";
+                    content: '\f164';
+                    font-family: 'Font Awesome 6 Free';
                     font-weight: 900;
                   }
                 }
@@ -250,8 +255,8 @@
               &--dislikes {
                 &-btn.active {
                   .fa-regular.fa-thumbs-down::before {
-                    content: "\f165";
-                    font-family: "Font Awesome 6 Free";
+                    content: '\f165';
+                    font-family: 'Font Awesome 6 Free';
                     font-weight: 900;
                   }
                 }
@@ -350,7 +355,8 @@
               border-color: #414141;
               background-color: rgb(44, 34, 54, 0.6);
 
-              &--likes, &--dislikes {
+              &--likes,
+              &--dislikes {
                 &-btn {
                   color: var.$color-light-purple;
 

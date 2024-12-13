@@ -1,5 +1,5 @@
 function getUserLikes() {
-  return JSON.parse(localStorage.getItem("userLikes")) || {};
+  return JSON.parse(localStorage.getItem('userLikes')) || {};
 }
 
 function canUserLike(id) {
@@ -10,23 +10,23 @@ function canUserLike(id) {
 function updateUserLikes(id) {
   const userLikes = getUserLikes();
   userLikes[id] = (userLikes[id] || 0) + 1;
-  localStorage.setItem("userLikes", JSON.stringify(userLikes));
+  localStorage.setItem('userLikes', JSON.stringify(userLikes));
 }
 
 function updateLikeButtonState(btnIcon, id) {
   const userLikes = getUserLikes();
   if (userLikes[id] > 0) {
-    btnIcon.classList.add("liked-color");
+    btnIcon.classList.add('liked-color');
   }
   if (userLikes[id] === 5) {
-    btnIcon.classList.remove("group-active:scale-125");
-    btnIcon.classList.add("animate-pop");
+    btnIcon.classList.remove('group-active:scale-125');
+    btnIcon.classList.add('animate-pop');
     btnIcon.addEventListener(
-      "animationend",
+      'animationend',
       () => {
-        btnIcon.classList.remove("animate-pop");
+        btnIcon.classList.remove('animate-pop');
       },
-      { once: true },
+      { once: true }
     );
     btnIcon.parentElement.disabled = true;
   }

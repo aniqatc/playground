@@ -1,9 +1,9 @@
-import "./style.scss";
-import MegamillionsLogo from "./assets/megamillions-blue.png";
-import PowerballLogo from "./assets/powerball-blue.png";
+import './style.scss';
+import MegamillionsLogo from './assets/megamillions-blue.png';
+import PowerballLogo from './assets/powerball-blue.png';
 
 export function getMarkup() {
-    return `<!-- Widget 06: Historical Lottery -->
+  return `<!-- Widget 06: Historical Lottery -->
 <section
   id="widget-06"
   class="relative rounded bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
@@ -170,5 +170,5 @@ export function getMarkup() {
        </button>
     </footer>
   </div>
-</section>`
+</section>`;
 }

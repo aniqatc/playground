@@ -1,33 +1,36 @@
-import lotteryContext from "./context";
+import lotteryContext from './context';
 const { lockedMessageContainer, matchesContainer, content } = lotteryContext;
 
 export default function displayMatches(matches) {
-    if (matches.length === 0) {
-        lotteryContext.updateLockedMessage(true);
-        return;
-    }
-    lockedMessageContainer.classList.add("hidden");
-    matchesContainer.classList.remove("hidden");
-    matchesContainer.innerHTML = "";
+  if (matches.length === 0) {
+    lotteryContext.updateLockedMessage(true);
+    return;
+  }
+  lockedMessageContainer.classList.add('hidden');
+  matchesContainer.classList.remove('hidden');
+  matchesContainer.innerHTML = '';
 
-    matches.forEach(match => {
-        matchesContainer.innerHTML += generateMatchCard(match);
-    });
+  matches.forEach((match) => {
+    matchesContainer.innerHTML += generateMatchCard(match);
+  });
 }
 
 function generateMatchCard(match) {
-    const game = content.dataset.game;
-    const drawingDate = new Date(match.drawingDate).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric'
-    });
+  const game = content.dataset.game;
+  const drawingDate = new Date(match.drawingDate).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
 
-    const numbersHTML = match.numbers.map(num =>
+  const numbersHTML = match.numbers
+    .map(
+      (num) =>
         `<span class="number ${match.matchedNumbers.includes(num) ? '' : 'not-a-match'}">${num}</span>`
-    ).join('');
+    )
+    .join('');
 
-    return `
+  return `
         <div class="lottery-match-card">
             <h3><i class="fa-solid fa-check-double"></i> ${getMatchDescription(match, game)} on <span class="match-date">${drawingDate}</span></h3>
             <div class="match-content">
@@ -45,15 +48,15 @@ function generateMatchCard(match) {
 }
 
 function getMatchDescription(match, game) {
-    const { matchedNumbers, megaBallMatch } = match;
-    const mainMatches = matchedNumbers.length;
+  const { matchedNumbers, megaBallMatch } = match;
+  const mainMatches = matchedNumbers.length;
 
-    if (mainMatches === 5 && megaBallMatch) {
-        return "Perfect Match";
-    }
-    if (game === "megamillion") {
-        return `Matched ${mainMatches} number${mainMatches !== 1 ? 's' : ''}${megaBallMatch ? ' + MegaBall' : ''}`;
-    } else {
-        return `Matched ${mainMatches} number${mainMatches !== 1 ? 's' : ''}${megaBallMatch ? ' + PowerBall' : ''}`;
-    }
+  if (mainMatches === 5 && megaBallMatch) {
+    return 'Perfect Match';
+  }
+  if (game === 'megamillion') {
+    return `Matched ${mainMatches} number${mainMatches !== 1 ? 's' : ''}${megaBallMatch ? ' + MegaBall' : ''}`;
+  } else {
+    return `Matched ${mainMatches} number${mainMatches !== 1 ? 's' : ''}${megaBallMatch ? ' + PowerBall' : ''}`;
+  }
 }

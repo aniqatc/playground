@@ -1,5 +1,5 @@
-import todoContext from "./context";
-import todoActions from "./toDoActions";
+import todoContext from './context';
+import todoActions from './toDoActions';
 
 export function initializeInput() {
   const {
@@ -13,25 +13,25 @@ export function initializeInput() {
 
   const { addToDB } = todoActions;
 
-  toDoAddButton.addEventListener("mousedown", (e) => {
+  toDoAddButton.addEventListener('mousedown', (e) => {
     e.preventDefault();
   });
 
-  toDoAddButton.addEventListener("click", () => {
+  toDoAddButton.addEventListener('click', () => {
     const dueDate = toDoSelectedDate ? toDoSelectedDate : Date.now();
     const task = textarea.value;
-    const priority = selectOptionButton.getAttribute("data-value");
+    const priority = selectOptionButton.getAttribute('data-value');
 
     if (task && priority) {
       addToDB(task, dueDate, priority);
-      textarea.value = "";
+      textarea.value = '';
       todoDateButton.blur();
     } else {
-      inputContainer.classList.add("error");
+      inputContainer.classList.add('error');
     }
   });
 
-  textarea.addEventListener("input", () => {
-    inputContainer.classList.remove("error");
+  textarea.addEventListener('input', () => {
+    inputContainer.classList.remove('error');
   });
 }

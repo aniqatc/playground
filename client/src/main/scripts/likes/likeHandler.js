@@ -1,28 +1,24 @@
-import {
-  canUserLike,
-  updateLikeButtonState,
-  updateUserLikes,
-} from "./likeHelpers";
+import { canUserLike, updateLikeButtonState, updateUserLikes } from './likeHelpers';
 
 function initializeLikeHandler() {
-  const likeValues = document.querySelectorAll(".like-value");
-  const likeButtons = document.querySelectorAll(".like-btn");
+  const likeValues = document.querySelectorAll('.like-value');
+  const likeButtons = document.querySelectorAll('.like-btn');
 
   likeValues.forEach((el) => {
     const btnIcon = el.previousElementSibling.lastElementChild;
-    const widgetId = el.id.split("-")[1];
-    handleLikes(el, widgetId, "GET");
+    const widgetId = el.id.split('-')[1];
+    handleLikes(el, widgetId, 'GET');
     updateLikeButtonState(btnIcon, widgetId);
   });
 
   likeButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener('click', () => {
       const btnIcon = btn.firstElementChild;
       const likesEl = btn.nextElementSibling;
-      const widgetId = likesEl.id.split("-")[1];
+      const widgetId = likesEl.id.split('-')[1];
 
       if (canUserLike(widgetId)) {
-        handleLikes(likesEl, widgetId, "POST");
+        handleLikes(likesEl, widgetId, 'POST');
         updateUserLikes(widgetId);
       }
       updateLikeButtonState(btnIcon, widgetId);
@@ -36,7 +32,7 @@ async function handleLikes(el, id, type) {
   let data;
 
   try {
-    if (type === "GET" && cachedLikes) {
+    if (type === 'GET' && cachedLikes) {
       data = JSON.parse(cachedLikes);
     } else {
       const serverURL = process.env.SERVER;

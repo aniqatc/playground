@@ -1,29 +1,29 @@
-import lotteryContext from "./context";
+import lotteryContext from './context';
 const { lockedMessageContainer, statsContainer } = lotteryContext;
 
 export default function displayStats(stats) {
-    if (!stats) {
-        lotteryContext.updateLockedMessage(true);
-        return;
-    }
-    lockedMessageContainer.classList.add("hidden");
-    statsContainer.classList.remove("hidden");
-    statsContainer.innerHTML = generateStatsCard(stats);
+  if (!stats) {
+    lotteryContext.updateLockedMessage(true);
+    return;
+  }
+  lockedMessageContainer.classList.add('hidden');
+  statsContainer.classList.remove('hidden');
+  statsContainer.innerHTML = generateStatsCard(stats);
 }
 
 function generateStatsCard(stats) {
-    let numberStatsHTML = "";
-    stats.numberStatistics.forEach(num => {
-        numberStatsHTML += `<div class="number-stat">
+  let numberStatsHTML = '';
+  stats.numberStatistics.forEach((num) => {
+    numberStatsHTML += `<div class="number-stat">
                     <span class="number">${num.number}</span>
                     <div class="stat-details">
                         <div class="frequency">Appeared: ${num.frequency} times</div>
                         <div class="percentage">In <strong>${num.percentage.toFixed(1)}%</strong> of drawings</div>
                     </div>
-                </div>`
-    })
+                </div>`;
+  });
 
-    return `<div class="lottery-stat-card">
+  return `<div class="lottery-stat-card">
                 <h3>
                 <i class="fa-solid fa-magnifying-glass-arrow-right"></i>
                 Your Search Analysis
@@ -48,5 +48,5 @@ function generateStatsCard(stats) {
                     </div>
                   </div>
                 </div>
-            </div>`
+            </div>`;
 }

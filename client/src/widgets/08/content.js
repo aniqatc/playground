@@ -1,7 +1,7 @@
 import './style.scss';
 
 export function getMarkup() {
-    return `<!-- Widget 08: Community Bookmarks -->
+  return `<!-- Widget 08: Community Bookmarks -->
 <section
   id="widget-08"
   class="relative rounded bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
@@ -24,5 +24,5 @@ export function getMarkup() {
         <button class="add-btn" aria-label="add bookmark to collection"><i class="fa-solid fa-plus"></i></button>
     </section>
 </div>
-</section>`
+</section>`;
 }

@@ -1,10 +1,10 @@
-import displayBookmark from "./displayBookmark";
-import { fetchBookmarks } from "./data";
+import displayBookmark from './displayBookmark';
+import { fetchBookmarks } from './data';
 
 export default async function loadBookmarks() {
-    const bookmarks = await fetchBookmarks();
+  const bookmarks = await fetchBookmarks();
 
-    bookmarks.forEach((bookmark, index) => {
-        displayBookmark(bookmark, index);
-    });
+  bookmarks.forEach((bookmark, index) => {
+    displayBookmark(bookmark, index);
+  });
 }

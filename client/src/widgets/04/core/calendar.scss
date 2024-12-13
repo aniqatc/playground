@@ -96,7 +96,7 @@
   display: block;
   pointer-events: none;
   border: solid transparent;
-  content: "";
+  content: '';
   height: 0;
   width: 0;
   left: 22px;
@@ -288,7 +288,7 @@
 }
 .numInputWrapper span:after {
   display: block;
-  content: "";
+  content: '';
   position: absolute;
 }
 .numInputWrapper span.arrowUp {
@@ -422,9 +422,7 @@
 .flatpickr-current-month .flatpickr-monthDropdown-months:hover {
   background: rgba(0, 0, 0, 0.05);
 }
-.flatpickr-current-month
-  .flatpickr-monthDropdown-months
-  .flatpickr-monthDropdown-month {
+.flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month {
   background-color: #f4ba51;
   outline: none;
   padding: 0;
@@ -714,7 +712,7 @@ span.flatpickr-weekday {
   border-radius: 0 0 5px 5px;
 }
 .flatpickr-time:after {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }

@@ -1,7 +1,7 @@
-import "./style.scss";
+import './style.scss';
 
 export function getMarkup() {
-    return `<!-- Widget 05: Financial Markets -->
+  return `<!-- Widget 05: Financial Markets -->
 <section
   id="widget-05"
   class="relative rounded bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
@@ -66,5 +66,5 @@ export function getMarkup() {
     </section>
   </div>
 </section>
-`
+`;
 }

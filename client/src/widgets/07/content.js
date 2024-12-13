@@ -1,7 +1,7 @@
 import './style.scss';
 
 export function getMarkup() {
-    return `<!-- Widget 07: GitHub Repository Card -->
+  return `<!-- Widget 07: GitHub Repository Card -->
 <section
   id="widget-07"
   class="relative rounded bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
@@ -27,5 +27,5 @@ export function getMarkup() {
         <button class="save-btn disabled" disabled="true" aria-label="Download PNG file of the repository card"><i class="fa-solid fa-download"></i> Download <span>.png</span></button>
     </section>
   </div>
-</section>`
+</section>`;
 }

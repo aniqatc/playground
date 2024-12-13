@@ -1,22 +1,22 @@
-import { UI } from "./ui";
+import { UI } from './ui';
 
 class CalculatorModeStyles {
   graphingMode() {
     this.switchStates();
-    UI.displayValue.style.fontSize = "16px";
+    UI.displayValue.style.fontSize = '16px';
 
     setTimeout(() => {
       const plot = this.getFunctionPlot();
       if (plot) {
-        plot.style.height = "auto";
-        plot.style.opacity = "1";
+        plot.style.height = 'auto';
+        plot.style.opacity = '1';
       }
     }, 1600);
   }
 
   scientificMode() {
     this.switchStates();
-    UI.displayValue.style.fontSize = "48px";
+    UI.displayValue.style.fontSize = '48px';
 
     const plot = this.getFunctionPlot();
     if (plot) {
@@ -29,7 +29,7 @@ class CalculatorModeStyles {
   }
 
   toggleActiveClass(el) {
-    el.classList.toggle("active");
+    el.classList.toggle('active');
   }
 
   switchStates() {
@@ -49,7 +49,7 @@ class CalculatorModeStyles {
   }
 
   getFunctionPlot() {
-    return document.querySelector(".function-plot");
+    return document.querySelector('.function-plot');
   }
 }
 

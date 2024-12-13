@@ -5,7 +5,10 @@
   "private": true,
   "scripts": {
     "build": "NODE_ENV=production webpack --mode production",
-    "start": "NODE_ENV=development webpack serve --open --mode development"
+    "start": "NODE_ENV=development webpack serve --open --mode development",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ."
   },
   "keywords": [
     "widgets",
@@ -39,10 +42,13 @@
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
     "dotenv-webpack": "^8.0.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
     "html-webpack-plugin": "^5.5.4",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss-loader": "^7.3.4",
-    "prettier": "^3.1.1",
+    "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.5.9",
     "sass": "^1.81.0",
     "sass-loader": "^16.0.3",
