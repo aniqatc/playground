@@ -10,10 +10,13 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 module.exports = {
-  entry: "./src/main/scripts/index.js",
+  entry: {
+    main: "./src/main/scripts/index.js",
+  },
   output: {
     path: path.resolve(__dirname, "public"),
-    filename: "bundle.js",
+    filename: "[name].[contenthash].bundle.js",
+    chunkFilename: "[name].[contenthash].chunk.js",
     publicPath: "/",
     clean: true,
   },
@@ -73,7 +76,8 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: "bundle.css",
+      filename: "[name].[contenthash].css",
+      chunkFilename: "[id].[contenthash].css",
     }),
     ...(isDevelopment
       ? [
@@ -109,5 +113,46 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      minSize: 20000,
+      maxSize: 250000,
+      cacheGroups: {
+        // Splitting large packages into separate chunks
+        mathjs: {
+          test: /[\\/]node_modules[\\/]mathjs[\\/]/,
+          name: 'vendor.mathjs',
+          priority: 20,
+          chunks: 'all',
+        },
+        chartjs: {
+          test: /[\\/]node_modules[\\/]chart.js[\\/]/,
+          name: 'vendor.chartjs',
+          priority: 20,
+          chunks: 'all',
+        },
+        functionPlot: {
+          test: /[\\/]node_modules[\\/]function-plot[\\/]/,
+          name: 'vendor.functionplot',
+          priority: 20,
+          chunks: 'all',
+        },
+        // group common vendor packages
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          priority: 10,
+          chunks: 'all',
+        },
+        // group common code between widgets
+        common: {
+          minChunks: 2,
+          priority: 5,
+          reuseExistingChunk: true,
+          name: 'common'
+        },
+      }
+    }
   },
 };
