@@ -10,13 +10,13 @@ const cron = require('node-cron');
 
 // connect widget db
 mongoose
-	.connect(db)
-	.then(() => console.log('Connected to MongoDB Database:', mongoose.connection.db.databaseName));
+  .connect(db)
+  .then(() => console.log('Connected to MongoDB Database:', mongoose.connection.db.databaseName));
 
 // middleware
 process.env.NODE_ENV === 'production'
-	? app.use(cors({ origin: process.env.FRONTEND_HOSTED }))
-	: app.use(cors({ origin: process.env.FRONTEND_LOCAL }));
+  ? app.use(cors({ origin: process.env.FRONTEND_HOSTED }))
+  : app.use(cors({ origin: process.env.FRONTEND_LOCAL }));
 app.use(express.json());
 app.use(useragent.express());
 
@@ -47,28 +47,36 @@ app.use('/widget/bookmark/', bookmarkRouter);
 
 // daily data refresh
 const marketData = require('./server/widgets/05/market/marketData');
-const currencyData = require("./server/widgets/05/currency/currencyData");
-cron.schedule('0 11 * * 1-5', async () => {
-	await marketData.getFeaturedStocks();
-	await currencyData.fetchExchangeRate();
-}, { timezone: "America/New_York" })
+const currencyData = require('./server/widgets/05/currency/currencyData');
+cron.schedule(
+  '0 11 * * 1-5',
+  async () => {
+    await marketData.getFeaturedStocks();
+    await currencyData.fetchExchangeRate();
+  },
+  { timezone: 'America/New_York' }
+);
 
 // monthly data refresh
 const lotteryData = require('./server/widgets/06/lotteryData');
-cron.schedule('0 0 1 * *', async () => {
-	await lotteryData.updateLotteryData();
-}, { timezone: "America/New_York" })
+cron.schedule(
+  '0 0 1 * *',
+  async () => {
+    await lotteryData.updateLotteryData();
+  },
+  { timezone: 'America/New_York' }
+);
 
 // redirect backend host to frontend
 app.use((req, res, next) => {
-	if (req.hostname === 'data.playground.aniqa.dev') {
-		return res.redirect(process.env.FRONTEND_HOSTED);
-	}
-	next();
+  if (req.hostname === 'data.playground.aniqa.dev') {
+    return res.redirect(process.env.FRONTEND_HOSTED);
+  }
+  next();
 });
 
 // server
 app.listen(port, () => {
-	console.log(`App running on port: ${port}...`);
-	console.log(`Environment: ${process.env.NODE_ENV}`);
+  console.log(`App running on port: ${port}...`);
+  console.log(`Environment: ${process.env.NODE_ENV}`);
 });

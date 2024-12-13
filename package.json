@@ -5,7 +5,10 @@
 	"private": true,
 	"scripts": {
 		"start:dev": "NODE_ENV=development nodemon server.js",
-		"start": "NODE_ENV=production node server.js"
+		"start": "NODE_ENV=production node server.js",
+		"lint:server": "eslint server.js server/**/*.js",
+		"lint:server:fix": "eslint server.js server/**/*.js --fix",
+		"format:server": "prettier --write '**/*.js'"
 	},
 	"keywords": [
 		"widgets",
@@ -45,6 +48,13 @@
 		"leo-profanity": "^1.7.0",
 		"mongoose": "^8.0.3",
 		"natural": "^8.0.1",
-		"node-cron": "^3.0.3"
+		"node-cron": "^3.0.3",
+		"prettier": "^3.4.2"
+	},
+	"devDependencies": {
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-import": "^2.31.0",
+		"eslint-plugin-node": "^11.1.0"
 	}
 }

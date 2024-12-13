@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const BookmarkSchema = new mongoose.Schema({
+const BookmarkSchema = new mongoose.Schema(
+  {
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     // Core bookmark details
@@ -12,14 +13,20 @@ const BookmarkSchema = new mongoose.Schema({
     topics: [String],
     author: String,
     // Storing IDs of user's likes/dislikes + count
-    likes: [{
+    likes: [
+      {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Users'
-    }],
-    dislikes: [{
+        ref: 'Users',
+      },
+    ],
+    dislikes: [
+      {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Users'
-    }]
-}, { timestamps: true });
+        ref: 'Users',
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 module.exports = mongoose.model('Bookmarks', BookmarkSchema);

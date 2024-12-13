@@ -34,11 +34,13 @@
 
 ## Project Files
 
-**Config** files in root directory
+**Server** config files in root directory
 
 - `server.js` holds backend server configuration and connection to the MongoDB database
 - `package.json` & `package-lock.json` refers to any dependencies relating to the backend
 - `Procfile` holds commands that are run by Heroku
+- `.eslintrc.js` configures ESLint to enforce coding standards and identify potential errors
+- `.prettierrc` configures Prettier for consistent code formatting
 
 **Server** files in `/server`
 
@@ -194,52 +196,40 @@ A community-driven bookmark platform that processes submitted URLs to extract me
 
 ## Available Scripts
 
-**To be used at root directory for server-side development**:
+### To be used at root directory for server-side development:
 
-```
-npm run start:dev
-```
-
+`npm run start:dev`
 - Starts the backend server
 - Sets `NODE_ENV` variable to `development` (sets a different CORS origin so that requests can be made from the frontend development localhost)
 
-```
-npm run start
-```
-
+`npm run start`
 - Starts the backend server, used for production
 - Sets `NODE_ENV` variable to `production` (sets a different CORS origin so that requests can be made from the hosted frontend)
 
-**To be used within the `/client` directory for client-side development**:
+`npm run lint:server`
+- Check for code errors based on the `.eslintrc.js` config file
 
-```
-npm run start
-```
+`npm run lint:server:fix`
+- Automatically fix minor syntax errors identified by ESLint
 
+`npm run format:server`
+- Format the code based on the `.prettierrc` config file
+
+### To be used within the `/client` directory for client-side development:
+
+`npm run start`
 - Starts the development server
 - Sets `NODE_ENV` variable to `development`
 
-```
-npm run build
-```
-
+`npm run build`
 - Build in production mode
 - Sets `NODE_ENV` variable to `production`
 
-```
-npm run lint
-```
-
+`npm run lint`
 - Check for code errors based on the `.eslintrc.js` config file
 
-```
-npm run lint:fix
-```
-
+`npm run lint:fix`
 - Automatically fix minor syntax errors identified by ESLint
 
-```
-npm run format
-```
-
+`npm run format`
 - Format the code based on the `.prettierrc` config file
