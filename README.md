@@ -233,3 +233,15 @@ A community-driven bookmark platform that processes submitted URLs to extract me
 
 `npm run format`
 - Format the code based on the `.prettierrc` config file
+
+## License and Attribution
+
+This project is licensed under the [GNU General Public License v3.0 (GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0.en.html). By using or modifying any part of the code or designs in this repository, you agree to the following terms:
+
+1. **Attribution**: You must give appropriate credit to the original creator, **Aniqa** (hello@aniqa.io), and provide a link to this [repository](https://github.com/aniqatc/playground) or [original website](https://playground.aniqa.dev). This applies to any use or distribution of the code, designs, or other materials, whether in their original form or as part of a derivative work.
+
+2. **Copyleft**: Any modifications or derivative works based on this project must also be distributed under the same GPL-3.0 license. This ensures the code and designs remain open-source and attributable to the original creator.
+
+3. **Prohibited Uses**: You may not use the name, trademarks, or other intellectual property of the original creator without their explicit permission.
+
+By following these license terms, you help maintain the open-source nature of this project and ensure that users who build upon this work also give proper credit to the original creator. If you have any questions or concerns about the license, please reach out to me.
