@@ -38,13 +38,13 @@ function bookmarkHTML(bookmark, index) {
             <div class="sidebar--actions">
                 <div class="sidebar--actions--likes">
                     <button class="sidebar--actions--likes-btn ${bookmark.userVote === 'like' ? 'active' : ''}" aria-label="like button for ${bookmark.author}">
-                        <i class="fa-regular fa-thumbs-up"></i>
+                        <i class="fa-regular fa-thumbs-up" aria-hidden="false"></i>
                     </button>
                     <span class="sidebar--actions--likes-count">${bookmark.likeCount || bookmark.likes.length}</span>
                 </div>
                 <div class="sidebar--actions--dislikes">
                     <button class="sidebar--actions--dislikes-btn ${bookmark.userVote === 'dislike' ? 'active' : ''}" aria-label="dislike button for ${bookmark.author}">
-                        <i class="fa-regular fa-thumbs-down"></i>
+                        <i class="fa-regular fa-thumbs-down" aria-hidden="false"></i>
                     </button>
                     <span class="sidebar--actions--dislikes-count">${bookmark.dislikeCount || bookmark.dislikes.length}</span>
                 </div>
