@@ -11,7 +11,7 @@ export function getMarkup() {
     class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
   >
     <p class="mr-auto">digital footprint</p>
-    <button class="like-btn group cursor-pointer" aria-label="like button">
+    <button class="like-btn group cursor-pointer" aria-label="like button for digital footprint widget">
       <i class="fa-solid fa-heart group-active:scale-125"></i>
     </button>
     <span class="like-value font-archivo" id="likes-03"></span>

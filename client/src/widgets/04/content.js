@@ -13,7 +13,7 @@ export function getMarkup() {
           <p class="mr-auto">task manager</p>
           <button
             class="like-btn group cursor-pointer"
-            aria-label="like button"
+            aria-label="like button for task manager widget"
           >
             <i class="fa-solid fa-heart group-active:scale-125"></i>
           </button>
@@ -25,8 +25,9 @@ export function getMarkup() {
               <textarea
                 placeholder="What do you need to do?"
                 maxlength="75"
+                aria-label="Enter task description"
               ></textarea>
-              <button class="todo-temp-btn">
+              <button class="todo-temp-btn" aria-label="Add new task">
                 <i class="fa-solid fa-plus"></i>
               </button>
             </div>
@@ -54,10 +55,10 @@ export function getMarkup() {
               </div>
               <div class="todo---selected-date"></div>
               <div class="todo-taskbar--buttons">
-                <button class="todo-date-btn">
+                <button class="todo-date-btn" aria-label="Select due date">
                   <i class="fa-solid fa-calendar-days"></i>
                 </button>
-                <button class="todo-add-btn">
+                <button class="todo-add-btn" aria-label="Add task">
                   <i class="fa-solid fa-plus"></i>
                 </button>
               </div>
@@ -68,14 +69,14 @@ export function getMarkup() {
             </ul>
           </section>
           <section class="content-footer">
-            <button class="active">All</button>
-            <button>Archived</button>
-            <button>Completed</button>
-            <button><i class="fa-solid fa-hashtag low-color"></i>Low</button>
-            <button>
+            <button class="active" aria-label="Show all tasks">All</button>
+            <button aria-label="Show archived tasks">Archived</button>
+            <button aria-label="Show completed tasks">Completed</button>
+            <button aria-label="Show low priority tasks"><i class="fa-solid fa-hashtag low-color"></i>Low</button>
+            <button aria-label="Show medium priority tasks">
               <i class="fa-solid fa-hashtag medium-color"></i>Medium
             </button>
-            <button><i class="fa-solid fa-hashtag high-color"></i>High</button>
+            <button aria-label="Show high priority tasks"><i class="fa-solid fa-hashtag high-color"></i>High</button>
           </section>
         </div>
       </section>

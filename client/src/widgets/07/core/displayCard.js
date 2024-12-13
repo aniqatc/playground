@@ -116,7 +116,7 @@ function cardHTML(data) {
                 <div class="language-bar"><div class="bar ${index === languages.stats.length - 1 ? ' last-animated' : ''}"
                     style="--final-width: ${lang.percentage}%"></div></div>
                 <span class="language-count">${lang.lines} lines <span class="slash">/</span> ${lang.bytes} bytes</span>
-                <div class="tooltip"><strong>${lang.percentage.toFixed(2)}%</strong> of ${languages.totalLines} LOC</div>
+                <div class="tooltip" role="tooltip"><strong>${lang.percentage.toFixed(2)}%</strong> of ${languages.totalLines} LOC</div>
             </div>`
     ).join('')}
     </div>

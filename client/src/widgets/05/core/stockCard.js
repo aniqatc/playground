@@ -70,7 +70,7 @@ async function generateStockCard(stock, index, userReq = false) {
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button class="expand-btn">Details <i class="fa-solid fa-arrow-${cardEl.classList.contains("initial") ? "right" : "left" }-long"></i></button>
+                        <button class="expand-btn" aria-label="Expand button to see ${stock.symbol} 7-day pricing chart">Details <i class="fa-solid fa-arrow-${cardEl.classList.contains("initial") ? "right" : "left" }-long"></i></button>
                     </div>`
     const graphDiv = cardEl.querySelector(".card-body--graph");
     graphDiv.innerHTML = '<canvas></canvas>';

@@ -10,7 +10,7 @@ export default function displayBookmark(bookmark, index = 0) {
 
 function bookmarkHTML(bookmark, index) {
     return `<div class="bookmark" id="id-${bookmark._id}" ${index ? `style="animation-delay: ${index * 200}ms"` : ""}>
-        <a class="bookmark-content" href="${bookmark.url}" target="_blank">
+        <a class="bookmark-content" href="${bookmark.url}" target="_blank" aria-label="Visit ${bookmark.author}" rel="noopener noreferrer">
             <div class="bookmark-content--container">
                 <div class="bookmark-content--header">
                     <h2>${bookmark.title}</h2>
@@ -30,13 +30,13 @@ function bookmarkHTML(bookmark, index) {
         <div class="bookmark-sidebar">
             <div class="sidebar--actions">
                 <div class="sidebar--actions--likes">
-                    <button class="sidebar--actions--likes-btn ${bookmark.userVote === "like" ? "active" : ""}">
+                    <button class="sidebar--actions--likes-btn ${bookmark.userVote === "like" ? "active" : ""}" aria-label="like button for ${bookmark.author}">
                         <i class="fa-regular fa-thumbs-up"></i>
                     </button>
                     <span class="sidebar--actions--likes-count">${bookmark.likeCount || bookmark.likes.length}</span>
                 </div>
                 <div class="sidebar--actions--dislikes">
-                    <button class="sidebar--actions--dislikes-btn ${bookmark.userVote === "dislike" ? "active" : ""}">
+                    <button class="sidebar--actions--dislikes-btn ${bookmark.userVote === "dislike" ? "active" : ""}" aria-label="dislike button for ${bookmark.author}">
                         <i class="fa-regular fa-thumbs-down"></i>
                     </button>
                     <span class="sidebar--actions--dislikes-count">${bookmark.dislikeCount || bookmark.dislikes.length}</span>

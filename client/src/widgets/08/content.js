@@ -10,7 +10,7 @@ export function getMarkup() {
     class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
   >
     <p class="mr-auto">community bookmarks</p>
-    <button class="like-btn group cursor-pointer" aria-label="like button">
+    <button class="like-btn group cursor-pointer" aria-label="like button for community bookmarks widget">
       <i class="fa-solid fa-heart group-active:scale-125"> </i>
     </button>
     <span class="like-value font-archivo" id="likes-08"></span>
@@ -21,7 +21,7 @@ export function getMarkup() {
     </section>
     <section class="content-footer">
         <input class="add-input" type="text" placeholder="Share a resource with the community">
-        <button class="add-btn"><i class="fa-solid fa-plus"></i></button>
+        <button class="add-btn" aria-label="add bookmark to collection"><i class="fa-solid fa-plus"></i></button>
     </section>
 </div>
 </section>`

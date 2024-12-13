@@ -83,6 +83,7 @@ class ToDoActions {
 
     toDoItem.innerHTML = `<div class="todo-item--details">
       <input type="checkbox" id="${_id}" 
+      aria-label="Mark task as ${isCompleted ? 'incomplete' : 'complete'}"
       ${isCompleted ? "checked" : ""} 
       ${isArchived ? "checked disabled" : ""} 
       />
@@ -96,28 +97,28 @@ class ToDoActions {
           </span>
         </div>
       </label>
-      <button class="todo-item-expand-btn">
+      <button class="todo-item-expand-btn" aria-label="Show task actions">
         <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
       </button>
       ${
         isArchived
-          ? `<button class="delete-btn">
+          ? `<button class="delete-btn" aria-label="Delete archived task">
        <i class="fa-solid fa-trash-can"></i>
      </button>`
           : ""
       }
     </div>
     <div class="todo-item--actions">
-      <button class="archive-btn">
+      <button class="archive-btn" aria-label="Archive task">
         <i class="fa-solid fa-box-archive"></i> Archive
       </button>
-      <button class="delay-btn">
+      <button class="delay-btn" aria-label="Delay task by one day">
         <i class="fa-solid fa-calendar-plus"></i> Delay
       </button>
-      <button class="edit-btn">
+      <button class="edit-btn" aria-label="Edit task">
         <i class="fa-solid fa-pen-to-square"></i> Edit
       </button>
-      <button class="delete-btn">
+      <button class="delete-btn" aria-label="Delete task">
         <i class="fa-solid fa-trash-can"></i> Delete
       </button>
     </div>`;
@@ -205,7 +206,7 @@ class ToDoActions {
     }
 
     toDoItem.querySelector(".todo-item--details").innerHTML +=
-      `<button class="delete-btn">
+      `<button class="delete-btn" aria-label="Delete task">
     <i class="fa-solid fa-trash-can"></i>
     </button>`;
 
