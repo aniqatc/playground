@@ -2,8 +2,7 @@
 
 [https://playground.aniqa.dev](https://playground.aniqa.dev)
 
-🕹️ A place to showcase a collection of independent, interactive widgets that each demonstrate a different functionality using both frontend and backend technologies. The collection includes a geolocation-based digital footprint analyzer, dual-mode calculator, a MongoDB-powered task management system, real-time financial markets dashboard, historical lottery data analysis tool, a GitHub repository visualizer, and a community-driven bookmark widget with automated metadata extraction. Built with a Node.js/Express backend, MongoDB database, and a Webpack-optimized frontend utilizing Tailwind CSS and Sass, each widget represents different aspects of full-stack development while maintaining a cohesive user experience.
-
+🕹️ A place to showcase a collection of independent, interactive widgets that each demonstrate a different functionality using both frontend and backend technologies. 
 <p float="left">
   <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/playground-light.png" width="49%"></a>
   <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/playground-dark.png" width="49%"></a>
