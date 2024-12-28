@@ -11,7 +11,7 @@
 ## Tech
 
 - **Frontend**: HTML5, Tailwind, Sass, JavaScript
-- **Backend**: Node, Express, MongoDB, Mongoose, RESTful API
+- **Backend**: Node, Express, MongoDB, Mongoose
 
 **Hosts**
 
@@ -229,6 +229,6 @@ A community-driven bookmark platform that processes submitted URLs to extract me
 
 ## License & Contributions
 
-📑 This project is licensed under the [GNU General Public License v3.0 (GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0.en.html). Please provide appropriate attribution to the original creator and provide a link to this [repository](https://github.com/aniqatc/playground) or original [website](https://playground.aniqa.dev) if you use or modify the code.
+📑 This project is licensed under the [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html). Please provide attribution to the creator and provide a link to this [repository](https://github.com/aniqatc/playground) or [website](https://playground.aniqa.dev) if you use or modify the code.
 
 👋🏼 Contributions for new widgets are always welcome. If interested in contributing, please feel free to reach out to me!
