@@ -10,26 +10,20 @@
 
 ## Tech
 
-- HTML5
-- Tailwind
-- Sass
-- JavaScript
-- Webpack
-- Node
-- Express
-- MongoDB
-- Mongoose
+- **Frontend**: HTML5, Tailwind, Sass, JavaScript
+- **Backend**: Node, Express, MongoDB, Mongoose, RESTful API
 
 **Hosts**
 
-- Frontend: Vercel
-- Backend: Heroku
-- Database: MongoDB Atlas
+- **Frontend**: Vercel
+- **Backend**: Heroku
+- **Database**: MongoDB Atlas
 
 **Build Tools**
-- Webpack
-- ESLint
-- Prettier
+- **Bundling & Optimization**: Webpack
+- **Tailwind Processing**: PostCSS
+- **Linter**: ESLint
+- **Formatter**: Prettier
 
 ## Project Files
 
