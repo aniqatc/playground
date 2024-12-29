@@ -30,10 +30,9 @@
 ```plaintext
 playground/
 ├── client/                 # Client-side code
-│   ├── node_modules/       # Dependencies installed for the client using npm
 │   ├── public/             # Public assets
 │   ├── src/                # Source code for the client
-│   │   ├── main/           # Main client-side scripts
+│   │   ├── main/           # Main client-side scripts and styles (relating to theme mode, styling, like system, user handling, etc)
 │   │   ├── widgets/        # Client-side logic for individual widgets
 │   │   │   ├── 01/         # Widget 01 (About)
 │   │   │   ├── 02/         # Widget 02 (Calculator)
@@ -44,26 +43,28 @@ playground/
 │   │   │   ├── 07/         # Widget 07 (GitHub Repository Visualizer)
 │   │   │   ├── 08/         # Widget 08 (Community Bookmarks)
 │   │   │   │    │          # Example structure of individual widget folders:
-│   │   │   │    ├── core/
+│   │   │   │    ├── core/  
 │   │   │   │    ├── content.js
 │   │   │   │    ├── script.js
 │   │   │   │    ├── style.scss
+│   │   │   
 │   │   ├── _border.html    # Template for animated borders (only used on Widget 01)
-│   │   ├── _card.html      # Template for each widget card
+│   │   ├── _card.html      # Template for the widget container
 │   │
-│   ├── .env                # Environment variables for client
-│   ├── .env.development    # Environment-specific variables for development mode
+│   ├── .env                # Environment variables for the client-side
+│   ├── .env.development    # Environment-specific variables for development mode in the client-side
 │   ├── .eslintrc.js        # ESLint configuration for linting client-side JavaScript
 │   ├── .prettierrc         # Prettier configuration for formatting client-side code
 │   ├── postcss.config.js   # PostCSS configuration for CSS processing
 │   ├── tailwind.config.js  # Tailwind CSS configuration
 │   ├── webpack.config.js   # Webpack configuration 
+│   ├── package.json        # Metadata and scripts for the client-side
+│   ├── package-lock.json   # Exact dependency versions for the client-side
 │
 ├── docs/                   # Documentation files for the project
 │
-├── node_modules/           # Dependencies for the server-side installed using npm
 ├── server/                 # Server-side code
-│   ├── main/               # Main server-side logic
+│   ├── main/               # Main server-side logic (handling users and widget likes)
 │   ├── widgets/            # Server-side logic for individual widgets
 │   │   ├── 03/             # Widget 03 (Digital Footprint)
 │   │   ├── 04/             # Widget 04 (Task Manager)
@@ -71,7 +72,7 @@ playground/
 │   │   ├── 06/             # Widget 06 (Historical Lottery Search)
 │   │   ├── 07/             # Widget 07 (GitHub Repository Visualizer)
 │   │   ├── 08/             # Widget 08 (Community Bookmarks)
-│   ├── _modelTemplate.js   # Template for server-side data models
+│   ├── _modelTemplate.js   # Template for server-side data models 
 │
 ├── .env                    # Environment variables for the server
 ├── .eslintrc.js            # ESLint configuration for the server-side
@@ -79,7 +80,7 @@ playground/
 ├── .prettierignore         # Prettier ignore file to exclude certain files from formatting
 ├── .prettierrc             # Prettier configuration for the server-side
 ├── package.json            # Metadata and scripts for the server-side
-├── package-lock.json       # Exact dependency versions
+├── package-lock.json       # Exact dependency versions for the server-side
 ├── Procfile                # Process file for Heroku deployment
 ├── server.js               # Entry point for the server-side application
 │
@@ -87,16 +88,16 @@ playground/
 ├── README.md               # Project README (contains notes/screenshots about the widgets, structure, and more)
 ```
 
-- **Webpack** configuration for client-side code (`client/webpack.config.js`):
-    - processes SCSS and PostCSS
-    - bundles modular JavaScript
-    - minifies CSS and JavaScript
-    - configures HTML (meta tags, icons)
-    - loads environment variables from `.env`
-    - manages `manifest.json` for PWA support
-    - optimizes images and saves them in `assets/images` with hashed filenames
-    - splits JavaScript into chunks for better performance
-    - outputs hashed filenames for JS and CSS to enable caching
+**Webpack** configuration for client-side code (`client/webpack.config.js`):
+- processes SCSS and PostCSS
+- bundles modular JavaScript
+- minifies CSS and JavaScript
+- configures HTML (meta tags, icons)
+- loads environment variables from `.env`
+- manages `manifest.json` for PWA support
+- optimizes images and saves them in `assets/images` with hashed filenames
+- splits JavaScript into chunks for better performance
+- outputs hashed filenames for JS and CSS to enable caching
 
 ## Individual Widgets
 
