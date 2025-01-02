@@ -8,6 +8,8 @@ async function fetchRepositoryDetails(owner, repo = null) {
   if (!response.ok) {
     throw new Error(data.message);
   }
+
+  localStorage.setItem('repo', JSON.stringify([data.owner.username, data.details.name]));
   return data;
 }
 
@@ -15,6 +17,7 @@ async function fetchRandomRepository() {
   const response = await fetch(`${process.env.SERVER}/widget/gh/random`);
   const { owner, repo } = await response.json();
 
+  localStorage.setItem('repo', JSON.stringify([owner, repo]));
   return await fetchRepositoryDetails(owner, repo);
 }
 
