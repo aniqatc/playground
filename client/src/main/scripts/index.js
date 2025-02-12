@@ -2,10 +2,10 @@ import '../styles/main.css';
 import { loadWidgets } from './content/load';
 import { applySavedTheme } from './ui/themeHandler';
 import { initializeLikeHandler } from './likes/likeHandler';
-import { createNewUser } from './user/userHandler';
+import { createAndFetchUser } from './user/userHandler';
 
 async function initializeApp() {
-  await createNewUser();
+  await createAndFetchUser();
   loadWidgets();
   applySavedTheme();
   initializeLikeHandler();

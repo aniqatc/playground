@@ -1,5 +1,6 @@
 import todoContext from './context';
 import { formatDate } from './calendar';
+import { createAndFetchUser } from '../../../main/scripts/user/userHandler';
 
 class ToDoActions {
   constructor() {
@@ -27,7 +28,7 @@ class ToDoActions {
   }
 
   async fetchAndDisplayToDos() {
-    const userId = localStorage.getItem('userId');
+    const userId = await createAndFetchUser();
     const response = await fetch(`${process.env.SERVER}/widget/todos/${userId}`);
 
     const todos = await response.json();
@@ -51,8 +52,7 @@ class ToDoActions {
   }
 
   addToDB = async (task, dueDate, priority, isArchived = false, isCompleted = false) => {
-    const userId = localStorage.getItem('userId');
-
+    const userId = await createAndFetchUser();
     const response = await fetch(`${process.env.SERVER}/widget/todos/`, {
       method: 'POST',
       headers: {

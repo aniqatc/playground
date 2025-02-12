@@ -1,9 +1,8 @@
 import toDoActions from './toDoActions';
-import { createNewUser } from '../../../main/scripts/user/userHandler';
+import { createAndFetchUser } from '../../../main/scripts/user/userHandler';
 
 async function displayDefaultTodos() {
-  const userId = await createNewUser();
-
+  const userId = await createAndFetchUser();
   const response = await fetch(`${process.env.SERVER}/widget/todos/${userId}`);
   const todos = await response.json();
 
