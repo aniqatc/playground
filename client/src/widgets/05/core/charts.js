@@ -1,9 +1,15 @@
 import { fetchChartData } from './data';
 import { Chart } from 'chart.js/auto';
 
+const themeButton = document.querySelector('#theme-btn');
+
 export async function createChart(cardEl, stock) {
   const chartCanvas = cardEl.querySelector('.card-body--graph canvas');
   if (!chartCanvas || !stock) return;
+
+  if (chartCanvas.chartInstance) {
+    chartCanvas.chartInstance.destroy();
+  }
 
   const chartData = await fetchChartData(stock.symbol);
   chartData.reverse();
@@ -21,10 +27,6 @@ export async function createChart(cardEl, stock) {
     : isDarkMode
       ? '#ff6363'
       : '#c91b1b';
-
-  if (chartCanvas.chartInstance) {
-    chartCanvas.chartInstance.destroy();
-  }
 
   chartCanvas.chartInstance = new Chart(context, {
     type: 'line',
@@ -97,4 +99,5 @@ export async function createChart(cardEl, stock) {
       animation: true,
     },
   });
+  themeButton.addEventListener('click', () => createChart(cardEl, stock));
 }
