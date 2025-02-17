@@ -1,10 +1,10 @@
 const widgetMarkupContext = require.context('/src/widgets/', true, /content\.js$/);
 const widgetScriptContext = require.context('/src/widgets/', true, /script\.js$/);
+const container = document.querySelector('#js-main-container');
 
 function loadContent(entry) {
   const module = widgetMarkupContext(`./${entry}/content.js`);
   const markup = module.getMarkup();
-  const container = document.querySelector('#js-main-container');
   container.insertAdjacentHTML('beforeend', markup);
 }
 
@@ -20,6 +20,7 @@ function loadScript(entry) {
 }
 
 function loadWidgets() {
+  container.innerHTML = '';
   for (let i = 1; i <= 8; i++) {
     const entry = String(i).padStart(2, '0');
     loadContent(entry);
