@@ -6,7 +6,7 @@ import repoContext from './core/context';
 import initializeRandomButton from './core/showRandom';
 
 export async function initializeScript() {
-  const [owner, repo] = JSON.parse(localStorage.getItem('repo')) ||  ['facebook', 'react'];
+  const [owner, repo] = JSON.parse(localStorage.getItem('repo')) || ['facebook', 'react'];
   displayCard(await fetchRepositoryDetails(owner, repo));
 
   initializeSaveButton();

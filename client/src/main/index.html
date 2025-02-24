@@ -11,9 +11,7 @@
     />
     <script src="https://kit.fontawesome.com/50cde61edc.js" crossorigin="anonymous"></script>
     <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-FSF86RLYT3"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FSF86RLYT3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -48,18 +46,26 @@
         <i class="fa-regular fa-lightbulb hidden text-xl hover:animate-pulse dark:block"></i>
       </button>
     </header>
-    <main
-      class="grid-col-custom mb-10 grid justify-items-center gap-x-3 gap-y-9 px-5 py-2"
-      id="js-main-container"
-    >
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2" role="status">
-      <div class="flex flex-row gap-2" >
-        <div class="w-4 h-4 rounded-full bg-stone-600 dark:bg-stone-200 animate-bounce"></div>
-        <div class="w-4 h-4 rounded-full bg-stone-700 dark:bg-stone-300 animate-bounce [animation-delay:-.3s]"></div>
-        <div class="w-4 h-4 rounded-full bg-stone-800 dark:bg-stone-400 animate-bounce [animation-delay:-.5s]"></div>
+    <main class="grid-col-custom mb-10 grid justify-items-center gap-x-3 gap-y-9 px-5 py-2" id="js-main-container">
+      <div
+        class="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2 text-center"
+        role="status"
+      >
+        <div class="flex flex-row gap-2">
+          <div class="h-4 w-4 animate-bounce rounded-full bg-stone-600 dark:bg-stone-200"></div>
+          <div
+            class="h-4 w-4 animate-bounce rounded-full bg-stone-700 [animation-delay:-.3s] dark:bg-stone-300"
+          ></div>
+          <div
+            class="h-4 w-4 animate-bounce rounded-full bg-stone-800 [animation-delay:-.5s] dark:bg-stone-400"
+          ></div>
+        </div>
+        <p class="text-sm text-gray-700 dark:text-stone-300">Loading widgets...</p>
+        <p class="-mt-1 flex items-center gap-1.5 text-xs text-gray-500 dark:text-stone-400">
+          <i class="fa-regular fa-rectangle-list animate-spin"></i>
+          <span class="loading-message"></span>
+        </p>
       </div>
-      <p>Loading...</p>
-    </div>
       <!-- Widget content added dynamically with JS -->
     </main>
   </body>
