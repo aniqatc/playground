@@ -13,7 +13,7 @@ class CalculatorContext {
     this.snapButton = this.widget.querySelector('.snap-btn'),
     this.calculatorEl = this.widget.querySelector('.calculator'),
     this.displayValue = this.widget.querySelector('.current-val'),
-    this.modeOptions = this.widget.querySelectorAll('.options li');
+    this.modeOptions = this.widget.querySelectorAll('.options button');
     this.graphingButtons = this.widget.querySelectorAll('.graphing-btns');
     this.equalButton = this.widget.querySelector('button[data-calc-val="="]');
     this.graphButton = this.widget.querySelector('button[data-calc-val="graph"]');

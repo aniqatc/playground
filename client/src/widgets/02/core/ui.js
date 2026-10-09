@@ -26,7 +26,7 @@ class CalculatorUI extends CalculatorContext {
         this.modeOptions.forEach((el) => el.classList.remove('active'));
         option.classList.add('active');
 
-        if (option.textContent === 'Graphing') {
+        if (option.textContent.trim() === 'Graphing') {
           Storage.getFromLocalStorage();
           Styles.graphingMode();
         } else {
@@ -68,8 +68,10 @@ class CalculatorUI extends CalculatorContext {
 
   setupCalculatorButtons() {
     this.calculatorEl.addEventListener('click', (event) => {
-      const calcValue = event.target.dataset.calcVal;
-      if (!calcValue) return;
+      // closest() so clicks on an icon or <sup> inside a button still count
+      const button = event.target.closest('button[data-calc-val]');
+      if (!button || button.disabled) return;
+      const calcValue = button.dataset.calcVal;
 
       this.resetDisplay();
       const result = executeCalculatorAction(calcValue);
@@ -94,7 +96,7 @@ class CalculatorUI extends CalculatorContext {
   }
 
   displayError() {
-    this.displayValue.style.color = '#d46060';
+    this.displayValue.style.color = 'var(--wf)';
     this.displayValue.textContent = 'Error';
   }
 
