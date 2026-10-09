@@ -29,10 +29,10 @@ class MarketContext {
 
   updateDescription(type) {
     if (type === 'stocks') {
-      this.descriptionEl.textContent = 'Top Actively Traded';
+      this.descriptionEl.textContent = 'Top actively traded';
     }
     if (type === 'currencies') {
-      this.descriptionEl.textContent = 'Exchange Rates';
+      this.descriptionEl.textContent = 'Exchange rates';
     }
   }
 

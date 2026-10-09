@@ -51,7 +51,7 @@ export function getMarkup() {
           <button class="num-btns" data-calc-val="8">8</button>
           <button class="num-btns" data-calc-val="9">9</button>
           <button class="operation-btns" data-calc-val="-" aria-label="Subtract">−</button>
-          <button class="operation-btns" data-calc-val="^" aria-label="Power">x<sup>y</sup></button>
+          <button class="operation-btns" data-calc-val="^" aria-label="Power"><span>x<sup>y</sup></span></button>
           <button class="graphing-btns" data-calc-val="sin" disabled>sin</button>
 
           <button class="num-btns" data-calc-val="4">4</button>

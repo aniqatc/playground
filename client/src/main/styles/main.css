@@ -99,8 +99,10 @@ body img {
   /* ---------- layout ---------- */
   .wrap {
     max-width: 1320px;
-    margin: 0 auto;
-    padding: 0 32px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
   .sr-only-text {
@@ -554,8 +556,10 @@ body img {
 }
 
 @media (max-width: 720px) {
+  /* only the sides: top/bottom spacing comes from Tailwind utilities on each section */
   .wrap {
-    padding: 0 16px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
   .widget-tags {
     display: none;

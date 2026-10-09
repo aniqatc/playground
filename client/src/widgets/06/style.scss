@@ -1,5 +1,17 @@
 // Widget 06: Lottery history (v2)
 
+@keyframes roll {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px) rotateX(70deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 #widget-06 {
   --spc: #f5c518; // special ball color (Mega Ball gold, Powerball red below)
   --spon: #1a1400;
@@ -240,18 +252,6 @@
 
   .rolling .lottery-special-wrapper .lottery-number-input {
     animation-delay: 0.25s;
-  }
-
-  @keyframes roll {
-    0% {
-      opacity: 0;
-      transform: translateY(-14px) rotateX(70deg);
-    }
-
-    100% {
-      opacity: 1;
-      transform: none;
-    }
   }
 
   // ---------- buttons ----------

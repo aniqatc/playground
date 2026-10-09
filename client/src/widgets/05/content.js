@@ -43,7 +43,7 @@ export function getMarkup() {
         </div>
       </section>
       <section class="content-footer">
-        <span class="short-description">Top Actively Traded</span>
+        <span class="short-description">Top actively traded</span>
         <span class="timestamp-wrapper">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4M12 16h.01"></path></svg>
           <span class="timestamp"></span>

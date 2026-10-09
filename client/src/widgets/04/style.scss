@@ -359,10 +359,11 @@
     cursor: default;
   }
 
+  // block (not flex) so the task text stays inline and the strike-through
+  // can follow it across wrapped lines
   .todo-item--details-desc {
-    display: flex;
+    display: block;
     flex: 1;
-    flex-direction: column;
     min-width: 0;
   }
 
