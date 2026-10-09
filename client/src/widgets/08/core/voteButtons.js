@@ -8,30 +8,36 @@ export default async function initializeVoteButtons(bookmark) {
   const dislikeButton = el.querySelector('.sidebar--actions--dislikes-btn');
   const likesCount = el.querySelector('.sidebar--actions--likes-count');
   const dislikesCount = el.querySelector('.sidebar--actions--dislikes-count');
-  const likeIcon = likeButton.querySelector('i');
-  const dislikeIcon = dislikeButton.querySelector('i');
+  const score = el.querySelector('.bookmark-score');
+
+  const render = ({ likeCount, dislikeCount }, vote) => {
+    likesCount.textContent = likeCount;
+    dislikesCount.textContent = dislikeCount;
+    score.textContent = likeCount - dislikeCount;
+    score.title = `${likeCount} likes · ${dislikeCount} dislikes`;
+    likeButton.setAttribute('aria-pressed', String(vote === 'like'));
+    dislikeButton.setAttribute('aria-pressed', String(vote === 'dislike'));
+  };
+
+  const pop = (button) => {
+    button.classList.remove('pop');
+    void button.offsetWidth;
+    button.classList.add('pop');
+  };
 
   likeButton.addEventListener('click', async () => {
+    pop(likeButton);
     const userVote = await fetchUserVoteCount(bookmark._id);
     if (userVote.likeCount === 0) {
-      const updatedCount = await addVote(bookmark._id, 'like');
-      likesCount.textContent = updatedCount.likeCount;
-      dislikesCount.textContent = updatedCount.dislikeCount;
-
-      likeIcon.classList.replace('fa-regular', 'fa-solid');
-      dislikeIcon.classList.replace('fa-solid', 'fa-regular');
+      render(await addVote(bookmark._id, 'like'), 'like');
     }
   });
 
   dislikeButton.addEventListener('click', async () => {
+    pop(dislikeButton);
     const userVote = await fetchUserVoteCount(bookmark._id);
     if (userVote.dislikeCount === 0) {
-      const updatedCount = await addVote(bookmark._id, 'dislike');
-      dislikesCount.textContent = updatedCount.dislikeCount;
-      likesCount.textContent = updatedCount.likeCount;
-
-      dislikeIcon.classList.replace('fa-regular', 'fa-solid');
-      likeIcon.classList.replace('fa-solid', 'fa-regular');
+      render(await addVote(bookmark._id, 'dislike'), 'dislike');
     }
   });
 }
