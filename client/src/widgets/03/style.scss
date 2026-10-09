@@ -1,209 +1,122 @@
-@use '../../main/styles/var';
+// Widget 03: Digital footprint (v2)
 
-// Animations
-@keyframes blinking-dot {
-  from {
-    opacity: 1;
+#widget-03 {
+  .widget-body {
+    gap: 12px;
   }
-  to {
-    opacity: 0.5;
-  }
-}
 
-@keyframes imageFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+  // ---------- IP address ----------
+  .ip-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 12px;
 
-// Generate Grid Item Animations
-@for $num from 1 through 5 {
-  @keyframes translateGridItemsIn-#{$num} {
-    0% {
-      transform: translateY(-100% * (6 - $num));
+    .dot {
+      position: relative;
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--up);
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: var(--up);
+        animation: ping 2.4s ease-out infinite;
+      }
+    }
+  }
+
+  .user-ip {
+    min-height: 34px;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  // ---------- map (Mapbox static image) ----------
+  .map-box {
+    position: relative;
+    flex: 1 0 118px;
+    min-height: 118px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 24px 24px,
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 24px 24px,
+      var(--soft);
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    // soft pulse on the location pin once the map has loaded
+    .map-pin-ring {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 16px;
+      height: 16px;
+      margin: -8px 0 0 -8px;
+      border-radius: 50%;
+      background: var(--wf);
       opacity: 0;
     }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-}
 
-// Base Widget Styles
-#widget-03 {
-  // Like Button Styles
-  .like-btn {
-    &:hover {
-      color: var.$color-medium-orange;
-    }
-  }
-
-  .liked-color {
-    color: var.$color-medium-orange;
-  }
-
-  // Main Content Container
-  .content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    // IP Box Styles
-    .ip-box {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      background: var.$color-light-orange;
-      padding: 4px var.$spacing-base;
-      border-radius: 2px;
-      box-shadow: var.$tight-shadow rgba(0, 0, 0, 0.1);
-      border: 1px solid #eccfbc;
-
-      .ip-title {
-        font-size: 10px;
-        font-weight: 500;
-
-        .dot {
-          display: inline-block;
-          height: 8px;
-          width: 8px;
-          border-radius: 50%;
-          background: #61bf4f;
-          animation: blinking-dot 1s linear infinite both alternate-reverse;
-        }
+    &.loaded {
+      img {
+        opacity: 1;
       }
 
-      .user-ip {
-        line-height: 1;
-        font-size: 24px;
-        font-weight: 600;
-        font-family: 'Archivo', 'Inter', sans-serif;
-      }
-    }
-
-    // Icon Styles
-    i {
-      color: var.$color-medium-orange;
-      border: var.$border-light;
-      background: #eee;
-      height: 30px;
-      width: 30px;
-      border-radius: 2px;
-      display: grid;
-      place-items: center;
-      margin-top: var.$spacing-base;
-      margin-left: var.$spacing-base;
-    }
-
-    // Data Grid Layout
-    .data-grid {
-      display: grid;
-      height: 100%;
-      grid-template-columns: 1fr;
-      gap: var.$spacing-base;
-      margin-top: var.$spacing-base;
-      overflow: hidden;
-
-      // Data Item Styles
-      .data-item {
-        font-size: var.$font-size-sm;
-        border-radius: var.$small-radius;
-        box-shadow: var.$tight-shadow rgba(178, 87, 22, 0.15);
-        background: #fff;
-        border: var.$border-light;
-
-        // Apply animations to each grid item
-        @for $num from 1 through 5 {
-          &:nth-child(#{$num}) {
-            animation: translateGridItemsIn-#{$num} 1.5s ease-in-out forwards;
-          }
-        }
-
-        // First item special styling
-        &:first-of-type {
-          background: var.$color-medium-orange;
-          grid-column: 1 / -1;
-
-          i:first-of-type {
-            color: var.$color-light-orange;
-            background: var.$bg-transparent-light;
-            border: 1px solid var.$color-medium-orange;
-          }
-
-          li {
-            color: var.$color-light-orange;
-          }
-        }
-
-        // List Styles
-        ul {
-          margin: var.$spacing-base;
-
-          li span[class^='user-'] {
-            font-weight: 500;
-            font-size: var.$font-size-base;
-          }
-        }
-      }
-
-      // Map Box Styles
-      .map-box {
-        grid-row: 2 / 4;
-        grid-column: 2 / 3;
-        display: none;
-
-        img {
-          border-radius: var.$small-radius;
-          object-fit: cover;
-          width: 100%;
-          height: 100%;
-          border: 1px solid var.$color-medium-orange;
-          animation: imageFadeIn 0.75s ease-in both 1.5s;
-        }
+      .map-pin-ring {
+        animation: ping 2.4s ease-out 0.8s infinite;
       }
     }
   }
-}
 
-// Dark Theme Styles
-.dark #widget-03 {
-  .content {
-    // IP Box Dark Styles
-    .ip-box {
-      background: #5c2c0c6d;
-      border: 1px solid var.$color-dark-orange;
+  // ---------- facts ----------
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 16px;
+    margin: 0;
+
+    div {
+      min-width: 0;
     }
 
-    // Icon Dark Styles
-    i {
-      color: var.$color-medium-orange;
-      border: var.$border-dark;
-      background: var.$gray-dark;
+    dt {
+      color: var(--muted);
+      font-size: 11.5px;
     }
 
-    // Data Grid Dark Styles
-    .data-grid {
-      .data-item {
-        background: #141414;
-        border: var.$border-dark;
+    dd {
+      min-height: 21px;
+      margin: 0;
+      font-size: 14px;
+      font-weight: 500;
+      overflow-wrap: anywhere;
+    }
 
-        &:first-of-type {
-          background: var.$color-medium-orange;
-
-          i:first-of-type {
-            background: #5c2c0c6d;
-          }
-        }
-      }
-
-      .map-box img {
-        border: 1px solid var.$color-dark-orange;
-      }
+    hr {
+      grid-column: 1 / -1;
+      width: 100%;
+      margin: 2px 0;
+      border: 0;
+      border-top: 1px solid var(--line);
     }
   }
 }

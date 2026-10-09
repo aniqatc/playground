@@ -13,17 +13,19 @@ function generateRandomNumbers() {
   const mainMaxValue = currentGame === 'megamillion' ? 70 : 69;
   const specialMaxValue = currentGame === 'megamillion' ? 25 : 26;
 
-  const randomMainNumbers = getUniqueMainNumbers(1, mainMaxValue);
-  let randomSpecialNumber;
-
-  do {
-    randomSpecialNumber = getRandomNumber(1, specialMaxValue);
-  } while (randomMainNumbers.includes(randomSpecialNumber));
+  const randomMainNumbers = getUniqueMainNumbers(1, mainMaxValue).sort((a, b) => a - b);
+  const randomSpecialNumber = getRandomNumber(1, specialMaxValue);
+  const inputs = lotteryContext.widget.querySelector('.lottery-input-container');
 
   mainNumbers.forEach((input, index) => {
     input.value = randomMainNumbers[index];
   });
   specialBall.value = randomSpecialNumber;
+
+  // replay the little "roll" animation on the number boxes
+  inputs.classList.remove('rolling');
+  void inputs.offsetWidth;
+  inputs.classList.add('rolling');
 }
 
 function getRandomNumber(min, max) {

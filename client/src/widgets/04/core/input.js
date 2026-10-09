@@ -1,33 +1,38 @@
 import todoContext from './context';
 import todoActions from './toDoActions';
+import { getSelectedDate } from './calendar';
 
 export function initializeInput() {
-  const {
-    toDoSelectedDate,
-    textarea,
-    selectOptionButton,
-    toDoAddButton,
-    inputContainer,
-    todoDateButton,
-  } = todoContext;
+  const { textarea, selectOptionButton, toDoAddButton, inputContainer, todoDateButton } =
+    todoContext;
 
   const { addToDB } = todoActions;
 
+  // keep focus in the textarea when the add button is pressed
   toDoAddButton.addEventListener('mousedown', (e) => {
     e.preventDefault();
   });
 
-  toDoAddButton.addEventListener('click', () => {
-    const dueDate = toDoSelectedDate ? toDoSelectedDate : Date.now();
-    const task = textarea.value;
+  const addTask = () => {
+    const task = textarea.value.trim();
     const priority = selectOptionButton.getAttribute('data-value');
 
     if (task && priority) {
-      addToDB(task, dueDate, priority);
+      addToDB(task, getSelectedDate().toISOString(), priority);
       textarea.value = '';
       todoDateButton.blur();
     } else {
       inputContainer.classList.add('error');
+    }
+  };
+
+  toDoAddButton.addEventListener('click', addTask);
+
+  // Enter adds the task (Shift+Enter still makes a new line)
+  textarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      addTask();
     }
   });
 

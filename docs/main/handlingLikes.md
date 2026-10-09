@@ -56,27 +56,33 @@ The two main functions that handle the 'likes' on the frontend are the `initiali
 
 This function sets up event listeners and initial states for the like buttons and the like count.
 
+In v2 the buttons and counts are found by **data attributes** instead of by their position in the page:
+
+- `[data-like-btn="02"]` is the like button in a widget's footer (rendered by the shared `card()` helper)
+- `[data-like-count="02"]` is any element that shows that widget's count. There are two per widget: one in the card footer and one in the widget index in the hero
+
+The v1 version found the count with `previousElementSibling` / `nextElementSibling`, so any change to the card's markup could silently break the likes.
+
 For each like button:
 
 - the `click` event listener is added
 - the callback for the event listener:
   - checks if the user can like the widget based on the limit (of 5)
   - updates the likes in the database by sending a `POST` request
-  - updates the button styling
+  - updates the button styling (and plays the pop / "+1" animation, or a small shake if the limit is reached)
   - updates the user's current like amount in `localStorage` (to keep track so that it doesn't exceed the limit of 5 likes per widget)
 
 For each like count value:
 
-- the like counts are retrieved (on page load) based on its associated widget ID (either from the server or the cache in `sessionStorage`) and updates the count for the user
+- the like counts are retrieved (on page load) based on its associated widget ID (either from the server or the cache in `sessionStorage`) and every matching `[data-like-count]` element is updated
 
 **`handleLikes()`** in `likeHandler.js`
 
 This function manages the fetching and updating of like counts from the server - it's an asynchronous function that uses the Fetch API to do so.
 
-This function takes three parameters: `el`, `id`, `type`
+This function takes two parameters: `id`, `type`
 
-- `el` => represents the like count to update
-- `id` => represents the widget ID
+- `id` => represents the widget ID (used to find every `[data-like-count]` element to update)
 - `type` => represents the HTTP request type, either `GET` or `POST`
 
 The function uses `sessionStorage` to cache the like count for each widget, which reduces the need for unnecessary network requests during a single session. If the like counts are available in `sessionStorage`, those values will be used to show to the user. However, if it isn't available, then either a `POST` or `GET` request is made.
@@ -94,4 +100,4 @@ When a user likes a widget, the like count in the database is still updated via 
 - `getUserLikes` => retrieves user's likes from `localStorage`
 - `canUserLike` => returns a boolean based on whether or not a user has exceeded the like limit of 5 for that specific widget
 - `updateUserLikes` => updates the count of how many times the user has liked a specific widget in `localStorage`
-- `updateLikeButtonState` => updates the styling of the like button based on how many times the user has liked the widget
+- `updateLikeButtonState` => sets the `liked` class (filled heart) once the user has liked the widget, the `maxed` class once they've used all 5 likes, and replays the `pop` animation on click

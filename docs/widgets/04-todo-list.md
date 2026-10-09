@@ -12,7 +12,16 @@
 
 A fully interactive To-Do List widget allowing users to create, edit, archive, and delete tasks. Tasks are categorized by priority levels and can be filtered based on completion, priority, or archived status.
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-04_v1.png"></a>
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-04.png" alt="Widget 04 in light and dark mode (v2 design)"></a>
+
+<details>
+<summary>v1 design</summary>
+
+#### v1
+
+<img src="/docs/screenshots/widget-04_v1.png" alt="Widget 04, v1 design">
+
+</details>
 
 ## Tech
 
@@ -28,7 +37,7 @@ A fully interactive To-Do List widget allowing users to create, edit, archive, a
 
 - **Task Management**: Users can add, edit, delay, and delete individual tasks.
 - **Priority Tagging**: Assign tasks with different priority levels (low, medium, high, or untagged).
-- **Task Filtering**: Filter tasks by completion status, priority, or archive status to quickly view relevant tasks.
+- **Task Filtering**: Tabs for All (not archived), Completed and Archived, each with a count, plus three priority dots that narrow any tab to High, Medium or Low tasks.
 - **Persistent Storage**: Each user has a unique ID stored in their local storage, enabling MongoDB to retain their data across sessions.
 - **Due Date Selection**: Flatpickr calendar integration allows users to set due dates intuitively.
 
@@ -73,4 +82,5 @@ A fully interactive To-Do List widget allowing users to create, edit, archive, a
 
 - **Create Tasks**: Add a new task by entering a description, setting a due date, and assigning a priority.
 - **Manage Tasks**: Edit tasks inline, mark them as completed, or archive them if they’re no longer active.
-- **Filter Tasks**: Use the filter tags to view tasks based on their completion status, priority, or archived state.
+- **Filter Tasks**: Use the All / Completed / Archived tabs, and tap a priority dot to show only that priority (tap it again to clear it).
+- **Add Quickly**: Press Enter in the task field to add a task (Shift+Enter for a new line).

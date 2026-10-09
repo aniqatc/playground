@@ -1,28 +1,28 @@
 import './style.scss';
+import { card, docsUrl } from '../_card';
 
 export function getMarkup() {
-  return `<!-- Widget 08: Community Bookmarks -->
-<section
-  id="widget-08"
-  class="relative rounded bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
->
-  <div
-    class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
-  >
-    <p class="mr-auto">community bookmarks</p>
-    <button class="like-btn group cursor-pointer" aria-label="like button for community bookmarks widget">
-      <i class="fa-solid fa-heart group-active:scale-125"> </i>
-    </button>
-    <span class="like-value font-archivo" id="likes-08"></span>
-  </div>
-<div class="content">
-    <section class="content-body">
-        <div class="bookmark-container"></div>
-    </section>
-    <section class="content-footer">
-        <input class="add-input" type="text" placeholder="Share a resource with the community">
-        <button class="add-btn" aria-label="add bookmark to collection"><i class="fa-solid fa-plus"></i></button>
-    </section>
-</div>
-</section>`;
+  return card({
+    id: '08',
+    title: 'Community bookmarks',
+    tags: 'Cheerio · Safe Browsing · Natural · leo-profanity',
+    color: { w: '#7B4CC9', wf: '#7B4CC9', won: '#FFFFFF' },
+    span: 7,
+    note: 'Links are safety-checked and auto-tagged',
+    docs: docsUrl('08-bookmarks.md'),
+    body: `
+      <section class="content-footer">
+        <label class="add-field">
+          <span class="sr-only-text">Share a link with the community</span>
+          <input type="url" class="add-input" placeholder="Share a resource with the community — paste a link" />
+          <button type="button" class="add-btn" aria-label="Add bookmark to collection">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+          </button>
+        </label>
+      </section>
+      <section class="content-body">
+        <div class="bookmark-container scroll-area"></div>
+      </section>
+    `,
+  });
 }

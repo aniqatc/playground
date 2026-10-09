@@ -2,33 +2,592 @@
 @tailwind components;
 @tailwind utilities;
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-archivo;
+/* ==========================================================================
+   v2 design tokens
+   Every color in the page shell and the widgets reads from these variables.
+   Light values live on :root, dark values on html.dark (the theme button
+   toggles that class). Widget cards re-tint --line/--soft/--soft2/--accent
+   with their own color, see `.widget-card` below.
+   ========================================================================== */
+:root {
+  --bg: #eeeee9;
+  --dot: rgba(22, 22, 26, 0.09);
+  --card: #ffffff;
+  --ink: #16161a;
+  --muted: #5c5c63;
+  --line: #dadad3;
+  --line0: #dadad3; /* untinted line color, used when mixing card tints */
+  --soft: #f4f4f0;
+  --soft2: #e9e9e3;
+  --accent: #2e44e0;
+  --on-accent: #ffffff;
+  --up: #1f7a45;
+  --down: #b42318;
+  --hi: #d9343b;
+  --med: #c99700;
+  --lo: #2f9e5b;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #111113;
+  --dot: rgba(237, 237, 232, 0.07);
+  --card: #1a1a1e;
+  --ink: #ededE8;
+  --muted: #a3a3ab;
+  --line: #2d2d34;
+  --line0: #2d2d34;
+  --soft: #222228;
+  --soft2: #2a2a31;
+  --accent: #8592ff;
+  --on-accent: #0e0e14;
+  --up: #5cc98a;
+  --down: #ff8a80;
+  --hi: #ff7a7f;
+  --med: #f0c239;
+  --lo: #5cc98a;
+  color-scheme: dark;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  @apply mx-auto max-w-screen-2xl bg-zinc-100 font-dmsans dark:bg-neutral-950 dark:text-zinc-100;
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  color: var(--ink);
+  font-family: Geist, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: Geist, system-ui, sans-serif;
+}
+
+a {
+  text-underline-offset: 4px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* keeps images/canvas from widgets behaving like before Tailwind's preflight */
 body canvas,
 body img {
   display: initial;
   vertical-align: initial;
 }
 
-#js-main-container section {
-  min-width: 100%;
-  max-height: 530px;
+@layer components {
+  /* ---------- layout ---------- */
+  .wrap {
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .sr-only-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* ---------- wordmark (keeps the original text-fill animation) ---------- */
+  .logo {
+    font-family: 'Bricolage Grotesque', Geist, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+    background-image: linear-gradient(90deg, var(--muted) 50%, var(--ink) 50%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .logo .dot {
+    color: var(--accent);
+  }
+
+  /* ---------- theme button ---------- */
+  .theme-btn {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    flex: none;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+    overflow: hidden;
+    transition:
+      border-color 0.2s,
+      transform 0.2s var(--ease),
+      background-color 0.35s;
+  }
+  .theme-btn:hover {
+    border-color: var(--muted);
+  }
+  .theme-btn:active {
+    transform: scale(0.92);
+  }
+  .theme-btn svg {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    transition:
+      opacity 0.3s,
+      transform 0.45s var(--ease);
+  }
+  .theme-btn .sun {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+  .dark .theme-btn .sun {
+    opacity: 1;
+    transform: none;
+  }
+  .dark .theme-btn .moon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+  }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      border-color 0.2s,
+      transform 0.2s var(--ease),
+      filter 0.2s,
+      background-color 0.35s;
+  }
+  .btn:hover {
+    border-color: var(--muted);
+  }
+  .btn:active {
+    transform: scale(0.95);
+  }
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+  .btn-primary:hover {
+    filter: brightness(1.08);
+    border-color: var(--accent);
+  }
+  .btn .go {
+    transition: transform 0.25s var(--ease);
+  }
+  .btn:hover .go {
+    transform: translateY(3px);
+  }
+
+  /* ---------- hero index ---------- */
+  .index-row {
+    display: grid;
+    grid-template-columns: 28px 12px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    padding: 0 4px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    text-decoration: none;
+    transition: padding 0.25s var(--ease);
+  }
+  .index-row:last-child {
+    border-bottom: 0;
+  }
+  .index-row:hover {
+    padding-left: 8px;
+  }
+  .index-row .swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    transition: transform 0.25s var(--ease);
+  }
+  .index-row:hover .swatch {
+    transform: scale(1.35) rotate(12deg);
+  }
+  .colorbar span {
+    flex: 1;
+    border-radius: 3px;
+    transform-origin: left;
+    animation: grow 0.7s var(--ease) both;
+  }
+  .colorbar span:nth-child(2) { animation-delay: 0.05s; }
+  .colorbar span:nth-child(3) { animation-delay: 0.1s; }
+  .colorbar span:nth-child(4) { animation-delay: 0.15s; }
+  .colorbar span:nth-child(5) { animation-delay: 0.2s; }
+  .colorbar span:nth-child(6) { animation-delay: 0.25s; }
+  .colorbar span:nth-child(7) { animation-delay: 0.3s; }
+
+  /* ---------- widget card shell (see widgets/_card.js) ---------- */
+  .widget-card {
+    /* --w: tint, --wf: strong fill, --won: text on fill — set inline per widget */
+    --line: color-mix(in srgb, var(--w) 24%, var(--line0));
+    --soft: color-mix(in srgb, var(--w) 10%, var(--card));
+    --soft2: color-mix(in srgb, var(--w) 19%, var(--card));
+    --accent: var(--wf);
+    --on-accent: var(--won);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid color-mix(in srgb, var(--w) 32%, var(--line0));
+    background: color-mix(in srgb, var(--w) 5%, var(--card));
+    scroll-margin-top: 24px;
+    transition:
+      transform 0.3s var(--ease),
+      box-shadow 0.3s,
+      background-color 0.35s,
+      border-color 0.35s;
+    animation: rise 0.7s var(--ease) both;
+  }
+  .widget-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 22px 40px -26px color-mix(in srgb, var(--w) 80%, transparent);
+  }
+  .widget-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--w) 15%, var(--card));
+  }
+  .widget-head h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .widget-num {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: var(--wf);
+    color: var(--won);
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    transition: transform 0.3s var(--ease);
+  }
+  .widget-card:hover .widget-num {
+    transform: rotate(-8deg) scale(1.08);
+  }
+  .widget-tags {
+    margin-left: auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--muted);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11.5px;
+  }
+  .widget-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 14px;
+    min-height: 0;
+    padding: 18px;
+  }
+  .widget-foot {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 12px 4px 18px;
+    border-top: 1px solid var(--line);
+    background: color-mix(in srgb, var(--w) 7%, var(--card));
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .widget-foot .docs-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    margin-left: auto;
+    padding: 0 6px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .widget-foot .docs-link:hover {
+    color: var(--accent);
+  }
+  .arrow {
+    display: inline-block;
+    transition: transform 0.25s var(--ease);
+  }
+  .docs-link:hover .arrow,
+  .index-row:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  /* ---------- like button ---------- */
+  .like-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 44px;
+    margin-left: -12px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .like-btn:hover {
+    background: var(--soft);
+    color: var(--ink);
+  }
+  .like-btn .heart {
+    position: relative;
+    display: grid;
+    place-items: center;
+    color: var(--wf);
+  }
+  .like-btn .heart svg {
+    fill: transparent;
+    transition: fill 0.2s;
+  }
+  .like-btn.liked .heart svg {
+    fill: currentColor;
+  }
+  .like-btn .heart::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid var(--wf);
+    opacity: 0;
+  }
+  .like-btn.pop .heart {
+    animation: pop 0.5s var(--ease);
+  }
+  .like-btn.pop .heart::after {
+    animation: ring 0.55s ease-out;
+  }
+  .like-btn .plus {
+    position: absolute;
+    left: 14px;
+    top: 2px;
+    color: var(--wf);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .like-btn.pop .plus {
+    animation: float-up 0.8s ease-out;
+  }
+  .like-btn.maxed.pop .heart {
+    animation: shake 0.4s;
+  }
+
+  /* ---------- small shared controls used inside widgets ---------- */
+  .ghost-btn {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      transform 0.2s var(--ease);
+  }
+  .ghost-btn:hover {
+    background: var(--soft);
+    color: var(--ink);
+  }
+  .ghost-btn:active {
+    transform: scale(0.92);
+  }
+  .ghost-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .scroll-area {
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-right: -4px;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    scrollbar-color: var(--soft2) transparent;
+  }
+
+  /* ---------- About card (widget 01) contribution legend ---------- */
+  .stack-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    font-size: 13px;
+    transition:
+      transform 0.25s var(--ease),
+      border-color 0.2s;
+  }
+  .stack-chip:hover {
+    transform: translateY(-2px);
+    border-color: var(--wf);
+  }
 }
 
-@layer utilities {
-  .grid-col-custom {
-    grid-template-columns: repeat(auto-fill, minmax(min(324px, 100%), 1fr));
-    justify-content: center;
+/* ==========================================================================
+   Motion
+   ========================================================================== */
+.rise {
+  animation: rise 0.7s var(--ease) both;
+}
+.delay-1 { animation-delay: 0.05s; }
+.delay-2 { animation-delay: 0.12s; }
+.delay-3 { animation-delay: 0.19s; }
+.delay-4 { animation-delay: 0.26s; }
+.delay-5 { animation-delay: 0.33s; }
+
+#js-main-container > .widget-card:nth-child(2) { animation-delay: 0.06s; }
+#js-main-container > .widget-card:nth-child(3) { animation-delay: 0.12s; }
+#js-main-container > .widget-card:nth-child(4) { animation-delay: 0.18s; }
+#js-main-container > .widget-card:nth-child(5) { animation-delay: 0.24s; }
+#js-main-container > .widget-card:nth-child(6) { animation-delay: 0.3s; }
+#js-main-container > .widget-card:nth-child(7) { animation-delay: 0.36s; }
+#js-main-container > .widget-card:nth-child(8) { animation-delay: 0.42s; }
+
+/* cards fade up as they scroll into view, where the browser supports it */
+@supports (animation-timeline: view()) {
+  #js-main-container > .widget-card {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+    animation-delay: 0s;
+  }
+}
+
+@keyframes rise {
+  from { opacity: 0; translate: 0 16px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes pop {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.4); }
+  60% { transform: scale(0.88); }
+  100% { transform: scale(1); }
+}
+@keyframes ring {
+  from { opacity: 0.7; transform: scale(0.3); }
+  to { opacity: 0; transform: scale(1.6); }
+}
+@keyframes float-up {
+  0% { opacity: 0; translate: 0 4px; }
+  20% { opacity: 1; }
+  100% { opacity: 0; translate: 0 -20px; }
+}
+@keyframes shake {
+  0%, 100% { translate: 0; }
+  20% { translate: -4px; }
+  40% { translate: 4px; }
+  60% { translate: -3px; }
+  80% { translate: 2px; }
+}
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(3); opacity: 0; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 720px) {
+  /* only the sides: top/bottom spacing comes from Tailwind utilities on each section */
+  .wrap {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .widget-tags {
+    display: none;
+  }
+  .widget-body {
+    padding: 14px;
+  }
+  .widget-head {
+    padding: 12px 14px;
+  }
+  .widget-foot {
+    padding-left: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.01ms !important;
+  }
+  #js-main-container > .widget-card {
+    animation-timeline: auto !important;
   }
 }

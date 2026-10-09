@@ -1,57 +1,69 @@
 import todoContext from './context';
 
+/*
+ * Tabs (All / Completed / Archived) and the three priority dots work together:
+ * the tab picks which tasks to show and a priority dot (optional) narrows it.
+ *   All        tasks that aren't archived
+ *   Completed  finished tasks that aren't archived
+ *   Archived   archived tasks
+ */
+const state = { tab: 'all', priority: null };
+
 function initializeFilterTags() {
-  const { filterContainer, toDoList } = todoContext;
-  const filterTags = filterContainer.querySelectorAll('button');
+  const { filterContainer } = todoContext;
 
   filterContainer.addEventListener('click', (event) => {
-    const clickedFilter = event.target;
-    if (clickedFilter.classList.contains('active')) {
-      return;
+    // closest() so clicking the count or the dot inside a button still works
+    const tabButton = event.target.closest('[data-tab]');
+    const priorityButton = event.target.closest('[data-priority]');
+
+    if (tabButton) {
+      state.tab = tabButton.dataset.tab;
+      filterContainer
+        .querySelectorAll('[data-tab]')
+        .forEach((btn) => btn.classList.toggle('active', btn === tabButton));
     }
-    filterTags.forEach((tag) => tag.classList.remove('active'));
-    clickedFilter.classList.add('active');
 
-    const filterType = clickedFilter.textContent.trim().toLowerCase();
-    const todoItems = toDoList.querySelectorAll('.todo-item');
+    if (priorityButton) {
+      const value = priorityButton.dataset.priority;
+      state.priority = state.priority === value ? null : value;
+      filterContainer
+        .querySelectorAll('[data-priority]')
+        .forEach((btn) => btn.setAttribute('aria-pressed', String(btn.dataset.priority === state.priority)));
+    }
 
-    filterTodoItems(todoItems, filterType);
+    refreshFilters();
   });
 }
 
-function filterTodoItems(todoItems, filterType) {
-  todoItems.forEach((item) => {
-    const isArchived = item.classList.contains('archived');
-    const isCompleted = item.querySelector("input[type='checkbox']").checked;
-    const priorityClass = Array.from(item.querySelector('.fa-hashtag')?.classList || [])
-      .find((className) => className.endsWith('-color'))
-      ?.replace('-color', '');
+function matchesTab(item, tab) {
+  const isArchived = item.classList.contains('archived');
+  const isCompleted = item.querySelector("input[type='checkbox']").checked;
 
-    let shouldDisplay = false;
-
-    switch (filterType) {
-      case 'archived':
-        shouldDisplay = isArchived;
-        break;
-      case 'completed':
-        shouldDisplay = isCompleted;
-        break;
-      case 'low':
-      case 'medium':
-      case 'high':
-        shouldDisplay = priorityClass === filterType;
-        break;
-      case 'untagged':
-        shouldDisplay = !priorityClass;
-        break;
-      case 'all':
-        shouldDisplay = true;
-        break;
-      default:
-        shouldDisplay = true;
-    }
-    item.style.display = shouldDisplay ? 'flex' : 'none';
-  });
+  if (tab === 'archived') return isArchived;
+  if (tab === 'completed') return isCompleted && !isArchived;
+  return !isArchived;
 }
 
-export { initializeFilterTags };
+/** Re-applies the current filter and updates the tab counts. Call after any change to the list. */
+function refreshFilters() {
+  const { toDoList, filterContainer, emptyMessage } = todoContext;
+  const items = [...toDoList.querySelectorAll('.todo-item')];
+  let visible = 0;
+
+  items.forEach((item) => {
+    const show =
+      matchesTab(item, state.tab) && (!state.priority || item.dataset.priority === state.priority);
+    item.hidden = !show;
+    if (show) visible++;
+  });
+
+  ['all', 'completed', 'archived'].forEach((tab) => {
+    const count = filterContainer.querySelector(`[data-count="${tab}"]`);
+    if (count) count.textContent = items.filter((item) => matchesTab(item, tab)).length;
+  });
+
+  if (emptyMessage) emptyMessage.hidden = visible > 0;
+}
+
+export { initializeFilterTags, refreshFilters };

@@ -24,15 +24,15 @@ class MarketContext {
   }
 
   updateLastUpdated(timestamp) {
-    this.timestampEl.textContent = `Last Updated: ${timestamp}`;
+    this.timestampEl.textContent = `Updated ${timestamp}`;
   }
 
   updateDescription(type) {
     if (type === 'stocks') {
-      this.descriptionEl.textContent = 'Top Actively Traded';
+      this.descriptionEl.textContent = 'Top actively traded';
     }
     if (type === 'currencies') {
-      this.descriptionEl.textContent = 'Exchange Rates';
+      this.descriptionEl.textContent = 'Exchange rates';
     }
   }
 
@@ -44,10 +44,7 @@ class MarketContext {
   addInputErrorStyling(searchEl, btnEl, type, example) {
     btnEl?.classList.add('error');
     searchEl?.classList.add('error');
-    searchEl.placeholder = `Search ${type} Symbol (e.g. ${example})`;
-    if (!btnEl === null) {
-      searchEl.value = '';
-    }
+    searchEl.placeholder = `Search ${type} symbol (e.g. ${example})`;
   }
 
   removeInputErrorStyling(searchEl, btnEl) {

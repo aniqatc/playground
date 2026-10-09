@@ -19,7 +19,8 @@ export default function initializeAddButton() {
 }
 
 async function addBookmark() {
-  const url = addInput.value.trim().toLowerCase();
+  // don't lowercase the whole URL: paths and query strings can be case-sensitive
+  const url = addInput.value.trim();
   addInput.value = '';
 
   if (!url) {
@@ -31,6 +32,9 @@ async function addBookmark() {
     const bookmark = await addNewBookmark(url);
     displayBookmark(bookmark);
     addInput.placeholder = 'Bookmark successfully added.';
+
+    addInput.closest('.add-field')?.classList.add('success');
+    setTimeout(() => addInput.closest('.add-field')?.classList.remove('success'), 1600);
 
     bookmarkContainer.scrollTo({
       top: bookmarkContainer.scrollHeight,

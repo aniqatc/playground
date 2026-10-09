@@ -1,169 +1,113 @@
-@use '../../main/styles/var';
+// Widget 01: About (v2)
+// Colors come from the CSS variables in main/styles/main.css — no hard-coded
+// light/dark values needed here.
 
-// Animations
-@keyframes translateX {
-  from {
-    transform: translateX(20px);
-  }
-  to {
-    transform: translateX(-20px);
-  }
-}
-
-// Base Widget Styles
 #widget-01 {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  // Like Button Styles
-  .like-btn {
-    &:hover {
-      color: var.$color-dark;
-    }
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 28px;
   }
 
-  .liked-color {
-    color: var.$color-dark;
+  .about-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
-  // Main Content Container
-  .content {
-    background-image: var.$bg-dotted-light;
-    background-size: 8px 8px;
+  .about-intro {
+    margin: 0;
+    font-size: 16px;
 
     strong {
-      font-weight: 500;
-    }
-
-    p {
-      font-size: var.$font-size-med;
-      word-break: keep-all;
-      hyphens: auto;
-    }
-
-    // Icons Group Section
-    .icons-group {
-      padding-top: var.$spacing-base;
-      padding-bottom: var.$spacing-base;
-      width: fit-content;
-      margin: 0 auto;
-      mask-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0),
-        rgba(0, 0, 0, 1) 40%,
-        rgba(0, 0, 0, 1) 60%,
-        rgba(0, 0, 0, 0)
-      );
-
-      // Icon Rows
-      .icons-row {
-        margin: var.$spacing-base auto;
-        display: flex;
-        justify-content: center;
-        gap: var.$spacing-base;
-        animation: translateX 3s ease-in-out infinite alternate;
-
-        &:nth-child(odd) {
-          animation-delay: -3s;
-        }
-
-        &:hover {
-          animation-play-state: paused;
-        }
-
-        // Individual Icons
-        .icon {
-          border: var.$border-light;
-          background: var.$bg-transparent-light;
-          backdrop-filter: blur(3px);
-          padding: 6px;
-          border-radius: var.$small-radius;
-
-          svg {
-            width: 33px;
-            height: 33px;
-            fill: url(#widget-01_light-gradient) var.$color-dark;
-          }
-        }
-      }
+      font-weight: 600;
     }
   }
 
-  // Card Container Styles
-  .card-container {
+  .stack-group {
     display: flex;
-    gap: var.$spacing-base;
-    height: 100%;
+    flex-direction: column;
+    gap: 8px;
+  }
 
-    .card-tile {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      font-size: var.$font-size-base;
+  .stack-label {
+    color: var(--muted);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
 
-      p {
-        color: var.$color-dark;
-        text-align: center;
+  .stack-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .about-activity {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .activity-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+
+    a {
+      margin-left: auto;
+      color: var(--ink);
+      font-family: 'Geist Mono', monospace;
+      font-size: 13px;
+      font-weight: 400;
+
+      &:hover {
+        color: var(--accent);
       }
-
-      i {
-        font-size: 18px;
-      }
-    }
-
-    .gh-image {
-      object-fit: cover;
-      object-position: 100%;
-      width: 100%;
-      min-height: 95px;
-      margin-top: 6px;
     }
   }
 
-  // Footer Styles
-  .card-footer {
-    font-size: var.$font-size-sm;
-    color: var.$color-dark;
-    text-align: center;
-  }
-}
+  .gh-chart {
+    display: block;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+    transition: border-color 0.2s;
 
-// Dark Theme Styles
-.dark #widget-01 {
-  // Like Button Dark Styles
-  .like-btn {
     &:hover {
-      color: #fff;
+      border-color: var(--wf);
     }
   }
 
-  .liked-color {
-    color: #fff;
+  .gh-image {
+    width: 100%;
+    height: auto;
   }
 
-  // Content Dark Styles
-  .content {
-    background-image: var.$bg-dotted-dark;
+  .repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    color: var(--muted);
+    font-size: 13.5px;
+    text-decoration: none;
 
-    .icons-group .icons-row .icon {
-      border: var.$border-dark;
-      background: var.$bg-transparent-dark;
+    &:hover {
+      color: var(--ink);
 
-      svg {
-        fill: url(#widget-01_dark-gradient) var.$color-light;
+      .arrow {
+        transform: translateX(4px);
       }
     }
   }
 
-  // Card Container Dark Styles
-  .card-container .card-tile p {
-    color: #dadada;
-  }
-
-  // Footer Dark Styles
-  .card-footer {
-    color: #dadada;
+  @media (max-width: 1100px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
   }
 }

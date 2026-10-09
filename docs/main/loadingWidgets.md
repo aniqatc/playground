@@ -22,10 +22,13 @@ Both of these functions are called using a loop based on the number of widgets:
 
 ```javascript
 function loadWidgets() {
-	for (let i = 1; i <= 10; i++) {
-		let entry = String(i).padStart(2, '0');
-		loadContent(entry);
-		loadScript(entry);
-	}
+  container.innerHTML = '';
+  for (let i = 1; i <= 8; i++) {
+    const entry = String(i).padStart(2, '0');
+    loadContent(entry);
+    loadScript(entry);
+  }
 }
 ```
+
+Each widget's `content.js` returns its markup through the shared `card()` helper in [`/client/src/widgets/_card.js`](../../client/src/widgets/_card.js), so every widget gets the same header, like button and footer (see [widget templates](../widgets/widgetTemplates.md)).

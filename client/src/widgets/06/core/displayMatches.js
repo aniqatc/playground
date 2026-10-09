@@ -8,11 +8,8 @@ export default function displayMatches(matches) {
   }
   lockedMessageContainer.classList.add('hidden');
   matchesContainer.classList.remove('hidden');
-  matchesContainer.innerHTML = '';
-
-  matches.forEach((match) => {
-    matchesContainer.innerHTML += generateMatchCard(match);
-  });
+  // one string instead of `innerHTML +=` per card (which re-parses the list each time)
+  matchesContainer.innerHTML = matches.map(generateMatchCard).join('');
 }
 
 function generateMatchCard(match) {
@@ -31,32 +28,27 @@ function generateMatchCard(match) {
     .join('');
 
   return `
-        <div class="lottery-match-card">
-            <h3><i class="fa-solid fa-check-double"></i> ${getMatchDescription(match, game)} on <span class="match-date">${drawingDate}</span></h3>
-            <div class="match-content">
-                <div class="match-numbers">
-                    ${numbersHTML}
-                    <span class="special-number ${match.megaBallMatch ? '' : 'not-a-match'}">${match.megaBall}</span>
-                </div>
-                <div class="match-details">
-                    <div class="jackpot">Jackpot: <span>${match.jackpot}</span></div>
-                    <div class="multiplier">Multiplier: ${match.megaplier ? match.megaplier : 1}x</span></div>
-                </div>
-            </div>
-        </div>
-    `;
+    <div class="lottery-match-card">
+      <div class="match-head">
+        <span class="match-date">${drawingDate}</span>
+        <span class="jackpot">${match.jackpot}</span>
+      </div>
+      <div class="match-numbers">
+        ${numbersHTML}
+        <span class="special-number ${match.megaBallMatch ? '' : 'not-a-match'}">${match.megaBall}</span>
+        <span class="match-summary">${getMatchDescription(match, game)} · ${match.megaplier ? match.megaplier : 1}x</span>
+      </div>
+    </div>
+  `;
 }
 
 function getMatchDescription(match, game) {
   const { matchedNumbers, megaBallMatch } = match;
   const mainMatches = matchedNumbers.length;
+  const special = game === 'megamillion' ? 'Mega Ball' : 'Powerball';
 
   if (mainMatches === 5 && megaBallMatch) {
-    return 'Perfect Match';
+    return 'Perfect match';
   }
-  if (game === 'megamillion') {
-    return `Matched ${mainMatches} number${mainMatches !== 1 ? 's' : ''}${megaBallMatch ? ' + MegaBall' : ''}`;
-  } else {
-    return `Matched ${mainMatches} number${mainMatches !== 1 ? 's' : ''}${megaBallMatch ? ' + PowerBall' : ''}`;
-  }
+  return `${mainMatches}${megaBallMatch ? ` + ${special}` : ''}`;
 }

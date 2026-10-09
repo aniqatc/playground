@@ -26,7 +26,9 @@ export default function initializeSearch() {
         return;
       }
 
-      const string = userInput.startsWith('http') ? userInput : `https://${userInput}`;
+      // the field shows a "github.com/" prefix, so people may type just "owner/repo"
+      const withHost = userInput.includes('github.com') ? userInput : `github.com/${userInput}`;
+      const string = withHost.startsWith('http') ? withHost : `https://${withHost}`;
       const url = new URL(string);
       if (!url.hostname.includes('github.com')) {
         searchInput.classList.add('error');
@@ -34,7 +36,7 @@ export default function initializeSearch() {
       }
 
       disableButtons();
-      const [owner, repo] = userInput.split('.com/')[1].split('/');
+      const [owner, repo] = withHost.split('.com/')[1].split('/');
       const data = await fetchRepositoryDetails(owner, repo);
       displayCard(data);
     } catch (error) {

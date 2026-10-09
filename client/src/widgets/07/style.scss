@@ -1,617 +1,256 @@
-@use '../../main/styles/var';
-@use 'sass:color';
+// Widget 07: Repo card (v2)
 
-// Mixins
-// Animations
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes fade-in-slide {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes grow-bar {
-  from {
-    width: 0;
-  }
-  to {
-    width: var(--final-width);
-  }
-}
-
-@keyframes pop {
-  0%,
-  90%,
-  100% {
-    transform: scale(1);
-  }
-  75% {
-    transform: scale(1.075);
-  }
-}
-
-// Base Widget Styles
 #widget-07 {
-  min-height: 100%;
-  font-size: var.$font-size-base;
+  // ---------- search ----------
+  .repo-search {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 46px;
+    padding: 0 5px 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--soft);
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
 
-  // Like Button Styles
-  .like-btn {
-    &:hover {
-      color: var.$color-medium-dark-indigo;
+    &:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+    }
+
+    &:has(.error) {
+      border-color: var(--down);
+      animation: shake 0.4s;
+    }
+
+    .prefix {
+      color: var(--muted);
+      font-family: 'Geist Mono', monospace;
+      font-size: 13px;
+    }
+
+    input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font-family: 'Geist Mono', monospace;
+      font-size: 14px;
+      outline: none;
+
+      &::placeholder {
+        color: var(--ink);
+        opacity: 0.85;
+      }
+
+      &:focus::placeholder {
+        opacity: 0.4;
+      }
+    }
+
+    .search-btn {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      flex: none;
+      border: 0;
+      border-radius: 9px;
+      background: var(--accent);
+      color: var(--on-accent);
+      cursor: pointer;
+
+      &:hover {
+        filter: brightness(1.08);
+      }
     }
   }
 
-  .liked-color {
-    color: var.$color-medium-dark-indigo;
-  }
+  // ---------- card ----------
 
-  .content {
+  .repo-card {
     display: flex;
     flex-direction: column;
-    height: 510px;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--soft);
+    animation: rise 0.45s var(--ease) both;
 
-    .content-header {
-      position: relative;
+    &.fade-out {
+      opacity: 0;
+      transform: translateY(-6px);
+      transition:
+        opacity 0.2s,
+        transform 0.2s;
+    }
+  }
 
-      .search-input {
-        border: 2px solid var.$color-x-light-indigo;
-        background-color: transparent;
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
-        border-radius: 2px;
-        padding: 6px 32px 6px 8px;
-        margin: 6px 0px;
-        width: 100%;
-        font-size: var.$font-size-sm;
-        transition: all 200ms ease-in;
+  .repo-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
-        &::placeholder {
-          color: var.$gray-medium;
-          font-size: var.$font-size-sm;
-        }
+  .repo-header--img {
+    display: block;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
 
-        &:focus {
-          outline: 1px solid var.$color-medium-indigo;
-          border: 2px solid var.$color-medium-indigo;
-        }
+  .repo-header--title {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
 
-        &.error {
-          outline: 1px solid var.$color-medium-red;
-          border: 2px solid var.$color-medium-red;
-        }
-      }
+    h3 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 600;
 
-      .search-btn {
-        color: var.$color-light-indigo;
-        background-color: var.$color-medium-dark-indigo;
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
-        border-radius: 50%;
-        height: 26px;
-        width: 26px;
-        position: absolute;
-        top: 10px;
-        right: 5px;
-        transition: all 250ms ease-out;
+      a {
+        color: var(--ink);
+        text-decoration: none;
 
         &:hover {
-          background-color: var.$color-dark-indigo;
-        }
-
-        &:active {
-          transform: scale(0.9);
-        }
-
-        &.disabled {
-          background-color: #c2c2c2;
-          color: #696767;
-          cursor: not-allowed;
-
-          &:hover {
-            background-color: #c2c2c2;
-          }
-        }
-      }
-    }
-
-    .content-body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      scrollbar-gutter: stable;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
-      margin-right: -8px;
-      padding-right: 8px;
-      height: 430px;
-
-      // Scrollbar Styles
-      &.windows-scrollbar {
-        padding-right: 0;
-      }
-
-      &::-webkit-scrollbar {
-        width: 2px;
-        position: absolute;
-        right: 0;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.25);
-        border-radius: 8px;
-      }
-
-      .repo-card {
-        flex: 1;
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
-        background-color: var.$color-light-indigo;
-        border: 1px solid var.$color-x-light-indigo;
-        border-radius: 2px;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        animation: fade-in 0.2s ease-out forwards;
-
-        &.fade-out {
-          animation: fade-out 0.3s ease forwards;
-        }
-
-        .repo-header {
-          display: flex;
-          gap: 8px;
-          animation: fade-in-slide 0.4s ease-out forwards;
-          opacity: 0;
-
-          &--img {
-            background-color: #fff;
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 4px;
-            border: 2px solid #e3e8f9;
-          }
-
-          &--title {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            h2,
-            h2 > a {
-              font-weight: 600;
-              font-family: inherit;
-              font-size: var.$font-size-lg;
-              line-height: 1.2;
-              color: var.$color-dark;
-              text-transform: capitalize;
-            }
-
-            a {
-              color: var.$gray-medium-dark;
-              font-size: var.$font-size-base;
-              line-height: 1;
-
-              &:hover {
-                color: var.$gray-medium;
-              }
-            }
-          }
-        }
-
-        .repo-description {
-          animation: fade-in-slide 0.3s ease-out 0.1s forwards;
-          opacity: 0;
-        }
-
-        .repo-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 4px;
-          animation: fade-in-slide 0.3s ease-out 0.2s forwards;
-          opacity: 0;
-
-          .tag {
-            background-color: var.$color-medium-indigo;
-            color: #f5f7ff;
-            border-radius: 4px;
-            padding: 2px 6px;
-            font-size: 11px;
-            white-space: nowrap;
-          }
-        }
-
-        .repo-stats {
-          &--item {
-            animation: fade-in-slide 0.3s ease-out forwards;
-            opacity: 0;
-            display: flex;
-            align-items: center;
-            gap: var.$spacing-base;
-            font-size: var.$font-size-base;
-            margin-bottom: 2px;
-
-            @for $i from 1 through 6 {
-              &:nth-child(#{$i}) {
-                animation-delay: #{$i * 0.2}s;
-              }
-            }
-
-            & i {
-              color: var.$color-medium-indigo;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 16px;
-            }
-
-            &--title {
-              color: var.$gray-dark;
-            }
-
-            &--line {
-              display: block;
-              flex: 1;
-              border-bottom: 1px solid #c2c8dc;
-              height: 1px;
-              width: 100%;
-            }
-
-            &--value {
-            }
-          }
-        }
-
-        .repo-languages {
-          margin-top: auto;
-          animation: fade-in-slide 0.3s ease-out 1.4s forwards;
-          opacity: 0;
-
-          h3 {
-            font-family: inherit;
-            font-size: var.$font-size-base;
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 4px;
-            white-space: nowrap;
-          }
-
-          .no-languages {
-            color: var.$gray-dark;
-          }
-
-          .language-item {
-            animation: fade-in-slide 0.3s ease-out forwards;
-            opacity: 0;
-            margin-bottom: 3px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 4px;
-            font-size: var.$font-size-sm;
-            position: relative;
-            cursor: pointer;
-            white-space: nowrap;
-
-            @for $i from 1 through 20 {
-              &:nth-child(#{$i}) {
-                animation-delay: #{$i * 0.25 + (1.2)}s;
-              }
-            }
-
-            .tooltip {
-              box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-              position: absolute;
-              pointer-events: none;
-              white-space: nowrap;
-              background-color: #fff;
-              padding: 2px 4px;
-              border-radius: 2px;
-              display: none;
-              top: 0;
-              left: 0;
-              border: 2px solid var.$color-x-light-indigo;
-              z-index: 100;
-            }
-
-            .language {
-              &-name {
-              }
-
-              &-bar {
-                height: 8px;
-                width: 100%;
-                background-color: var.$color-x-light-indigo;
-                border: 1px solid #c4ceed;
-                border-radius: 2px;
-
-                .bar {
-                  width: 0;
-                  height: 100%;
-                  background-color: var.$color-dark-indigo;
-                  border-radius: 0 2px 2px 0;
-                  animation: grow-bar 0.6s ease-out forwards;
-                  animation-delay: 2.8s;
-                }
-              }
-
-              &-count {
-                white-space: nowrap;
-
-                .slash {
-                  color: #c2c8dc;
-                  font-weight: 800;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .content-footer {
-      display: flex;
-      gap: var.$spacing-base;
-      margin-top: 6px;
-
-      button {
-        flex: 1 0;
-        border-radius: 3px;
-        padding: 4px 6px;
-        font-size: var.$font-size-base;
-        transition:
-          background-color 300ms ease-in,
-          color 350ms ease-in;
-
-        &.random-btn {
-          background-color: #c2cce8;
-          border: 1px solid var.$color-x-light-indigo;
-          color: #282828;
-
-          &:hover {
-            background-color: color.adjust(
-              var.$color-x-light-indigo,
-              $lightness: -15%,
-              $space: hsl
-            );
-          }
-        }
-
-        &.save-btn {
-          background-color: var.$color-medium-indigo;
-          border: 1px solid var.$color-x-light-indigo;
-          color: #fff;
-
-          &:hover {
-            background-color: color.adjust(var.$color-medium-indigo, $lightness: -10%, $space: hsl);
-          }
-
-          span {
-            font-size: 10px;
-            color: #f5f5f5;
-            transition: color 350ms ease-in;
-          }
-        }
-
-        &:active {
-          transform: scale(0.95);
-        }
-
-        &.disabled {
-          background-color: #c2c2c2;
-          border: 1px solid var.$color-x-light-indigo;
-          color: #696767;
-          cursor: not-allowed;
-
-          &:hover {
-            background-color: #c2c2c2;
-          }
-
-          span {
-            color: #696767;
-          }
+          color: var(--accent);
         }
       }
     }
   }
-}
 
-// Dark Theme Styles
-.dark #widget-07 {
-  .content {
-    .content-header {
-      .search-input {
-        border-color: var.$color-x-dark-indigo;
-        color: var.$color-light;
+  .repo-meta {
+    color: var(--muted);
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    text-decoration: none;
 
-        &::placeholder {
-          color: var.$gray-medium;
-        }
+    &:hover {
+      color: var(--ink);
+    }
+  }
 
-        &:focus {
-          outline: 1px solid var.$color-dark-indigo;
-          border: 2px solid var.$color-dark-indigo;
-        }
+  .repo-description {
+    margin: 0;
+    font-size: 14px;
+  }
 
-        &.error {
-          outline: 1px solid var.$color-medium-red;
-          border: 2px solid var.$color-medium-red;
-        }
-      }
+  .repo-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin: 0;
 
-      .search-btn {
-        color: var.$color-light-indigo;
-        background-color: var.$color-medium-dark-indigo;
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    dt {
+      color: var(--muted);
+      font-size: 12px;
+    }
 
-        &.disabled {
-          background-color: #545454;
-          border-color: var.$color-x-dark-indigo;
-          color: #a9a9a9;
+    dd {
+      margin: 0;
+      font-family: 'Geist Mono', monospace;
+      font-weight: 600;
+    }
+  }
 
-          &:hover {
-            background-color: #545454;
-          }
-        }
+  // stacked language bar: segments grow in one after another
+  .language-bar {
+    display: flex;
+    gap: 2px;
+    height: 10px;
+    overflow: hidden;
+    border-radius: 999px;
 
-        &:hover {
-          background-color: var.$color-dark-indigo;
+    .bar {
+      transform-origin: left;
+      animation: grow 0.9s var(--ease) both;
+
+      @for $i from 2 through 4 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{($i - 1) * 0.1}s;
         }
       }
     }
+  }
 
-    .content-body {
-      .repo-card {
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
-        background-color: var.$color-dark;
-        border-color: var.$color-x-dark-indigo;
+  .language-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    margin: 8px 0 0;
+    padding: 0;
+    color: var(--muted);
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    list-style: none;
 
-        .repo-header {
-          &--img {
-            background-color: #000;
-            border-color: var.$color-medium-dark-indigo;
-          }
-
-          &--title {
-            h2,
-            h2 > a {
-              color: #fff;
-            }
-
-            a {
-              color: var.$gray-medium;
-
-              &:hover {
-                color: var.$color-light;
-              }
-            }
-          }
-        }
-
-        .repo-tags {
-          .tag {
-            background-color: var.$color-dark-indigo;
-            color: #fff;
-          }
-        }
-
-        .repo-stats {
-          &--item {
-            i {
-              color: var.$color-medium-indigo;
-            }
-
-            &--title {
-              color: var.$gray-light;
-              white-space: nowrap;
-            }
-
-            &--line {
-              border-bottom-color: var.$color-medium-indigo;
-            }
-          }
-        }
-
-        .repo-languages {
-          .no-languages {
-            color: var.$gray-light;
-          }
-
-          .language-item {
-            .tooltip {
-              box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
-              background-color: var.$color-dark;
-              border-color: var.$color-x-dark-indigo;
-            }
-
-            .language-bar {
-              background-color: var.$color-x-dark-indigo;
-              border-color: var.$color-dark-indigo;
-
-              .bar {
-                background-color: var.$color-medium-indigo;
-              }
-            }
-
-            .language-count {
-              .slash {
-                color: var.$color-medium-indigo;
-              }
-            }
-          }
-        }
-      }
+    li {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .content-footer {
-      button {
-        &.random-btn {
-          background-color: var.$color-medium-indigo;
-          border-color: var.$color-dark-indigo;
-          color: var.$color-dark;
-
-          &:hover {
-            background-color: color.adjust(var.$color-medium-indigo, $lightness: -5%, $space: hsl);
-          }
-        }
-
-        &.save-btn {
-          background-color: var.$color-dark-indigo;
-          border-color: var.$color-dark-indigo;
-          color: var.$color-light;
-
-          &:hover {
-            background-color: color.adjust(var.$color-dark-indigo, $lightness: -5%, $space: hsl);
-          }
-
-          span {
-            color: var.$gray-light;
-          }
-        }
-
-        &.disabled {
-          background-color: #545454;
-          border-color: var.$color-x-dark-indigo;
-          color: #a9a9a9;
-
-          span {
-            color: #919191;
-          }
-
-          &:hover {
-            background-color: #545454;
-          }
-        }
-      }
+    .swatch {
+      width: 8px;
+      height: 8px;
+      border-radius: 3px;
     }
+  }
+
+  .no-languages {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    animation: rise 0.4s var(--ease) both;
+  }
+
+  // ---------- buttons ----------
+  .content-footer {
+    display: flex;
+    gap: 8px;
+  }
+
+  .repo-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 38px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--ink);
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+      border-color 0.2s,
+      transform 0.15s var(--ease),
+      opacity 0.2s;
+
+    &:hover:not(:disabled) {
+      border-color: var(--muted);
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .random-btn:disabled svg {
+    animation: spin 0.8s linear infinite;
   }
 }

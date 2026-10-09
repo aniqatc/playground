@@ -41,11 +41,13 @@ class LotteryContext {
 
   updateLockedMessage(boolean) {
     this.lockedMessageContainer.classList.remove('hidden');
-    boolean
-      ? (this.lockedMessageContainer.innerHTML =
-          '<i class="fa-solid fa-circle-exclamation"></i> <strong>No matching tickets found</strong>. Please try adjusting your search criteria.')
-      : (this.lockedMessageContainer.innerHTML =
-          '<i class="fa-solid fa-lock"></i> Search to <strong>unlock</strong> historical lottery results.');
+    const lock =
+      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>';
+    const alert =
+      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4M12 16h.01"></path></svg>';
+    this.lockedMessageContainer.innerHTML = boolean
+      ? `${alert}<span><strong>No matching tickets found.</strong> Try different numbers.</span>`
+      : `${lock}<span>Search to <strong>unlock</strong> historical results.</span>`;
   }
 }
 

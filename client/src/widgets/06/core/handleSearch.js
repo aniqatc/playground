@@ -60,15 +60,17 @@ function checkEmpty() {
   return hasEmpty;
 }
 
+// Only the five main numbers have to be different from each other — the
+// Mega Ball / Powerball is drawn from its own pool, so it can repeat one of them.
 function checkDuplicates() {
-  const numbers = Array.from(numberInputs).map((input) => parseInt(input.value));
+  const numbers = mainNumbers.map((input) => parseInt(input.value));
   let hasDuplicates = false;
 
   for (let i = 0; i < numbers.length; i++) {
     for (let j = i + 1; j < numbers.length; j++) {
       if (numbers[i] === numbers[j]) {
-        numberInputs[i].classList.add('error');
-        numberInputs[j].classList.add('error');
+        mainNumbers[i].classList.add('error');
+        mainNumbers[j].classList.add('error');
         hasDuplicates = true;
       }
     }

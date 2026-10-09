@@ -1,982 +1,533 @@
-@use 'sass:color';
-@use '../../main/styles/var';
-@import url('https://fonts.googleapis.com/css2?family=Recursive:CASL,MONO@0.25,0.25&display=swap');
+// Widget 06: Lottery history (v2)
 
-// Mixins
-
-// Animations
-@keyframes shake {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-2px);
-  }
-  75% {
-    transform: translateX(2px);
-  }
-}
-
-@keyframes container-fade-in {
+@keyframes roll {
   0% {
     opacity: 0;
-    max-height: 0;
+    transform: translateY(-14px) rotateX(70deg);
   }
+
   100% {
     opacity: 1;
-    max-height: 196px;
+    transform: none;
   }
 }
 
-@keyframes container-exit {
-  0% {
-    opacity: 1;
-    max-height: 196px;
-  }
-  100% {
-    opacity: 0;
-    max-height: 0;
-  }
-}
-
-@keyframes match-fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes stat-fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(25%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Base Widget Styles
 #widget-06 {
-  height: inherit;
+  --spc: #f5c518; // special ball color (Mega Ball gold, Powerball red below)
+  --spon: #1a1400;
 
-  // Like Button Styles
-  .like-btn {
-    &:hover {
-      color: var.$color-medium-aqua-blue;
-    }
-  }
-
-  .liked-color {
-    color: var.$color-medium-aqua-blue;
+  &:has(.content[data-game='powerball']) {
+    --spc: #e5484d;
+    --spon: #ffffff;
   }
 
   .hidden {
     display: none !important;
   }
 
-  // Main Content Container
-  .content {
-    font-size: 13px;
-    color: var.$color-dark;
+  // ---------- header: game switch + info ----------
+  .content-header {
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    align-items: center;
+    gap: 8px;
+  }
 
-    // Header
-    .content-header {
-      text-align: end;
-      margin-bottom: var.$spacing-base;
+  .game-switch {
+    position: relative;
+    display: inline-grid;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    padding: 3px;
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    background: var(--soft);
 
-      .logo-wrapper {
-        position: relative;
-        display: inline-block;
-
-        &:hover .tooltip {
-          opacity: 1;
-          transform: translateX(10px);
-        }
-
-        .lottery-logo {
-          max-height: 62px;
-          cursor: help;
-        }
-
-        .tooltip {
-          position: absolute;
-          right: calc(100% + 12px);
-          top: 0;
-          bottom: 0;
-          font-size: 11px;
-          color: #5b5b5b;
-          background-color: #f0f0f0;
-          border: 1px solid #bcd3d7;
-          border-radius: 4px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          width: max-content;
-          height: max-content;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: 4px 8px;
-          opacity: 0;
-          transform: translateX(0);
-          transition: all 0.2s ease-in-out;
-
-          .tooltip-link {
-            color: #124f60;
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 1px;
-
-            &:hover {
-              text-decoration: underline;
-            }
-
-            i {
-              font-size: 10px;
-            }
-          }
-
-          &::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: -8px;
-            width: 14px;
-            height: 14px;
-            background-color: #f0f0f0;
-            border-right: 1px solid #bcd3d7;
-            border-top: 1px solid #bcd3d7;
-            transform: translateY(-50%) rotate(45deg);
-            z-index: -2;
-          }
-        }
-      }
+    .pill {
+      position: absolute;
+      top: 3px;
+      bottom: 3px;
+      left: 3px;
+      width: calc(50% - 3px);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      transition: transform 0.38s var(--ease);
     }
 
-    // Main Content
-    .content-body {
-      container-type: inline-size;
-      display: flex;
-      flex-direction: column;
-      height: 420px;
-
-      .lottery-title {
-        font-family: inherit;
-        text-align: center;
-        margin-bottom: 4px;
-        font-size: 14px;
-      }
-
-      // Input Container
-      .lottery-input-container {
-        margin-bottom: 18px;
-
-        .lottery-inputs {
-          display: flex;
-          justify-content: center;
-          gap: 6px;
-
-          .lottery-main-numbers {
-            display: flex;
-            justify-content: space-around;
-            gap: 6px;
-            width: 100%;
-
-            .number-input-wrapper {
-              flex: 1;
-              position: relative;
-              text-align: center;
-              max-width: 50px;
-
-              .lottery-number-input {
-                width: 100%;
-                height: 50px;
-                border-radius: 4px;
-                border: 2px solid var.$color-medium-aqua-blue;
-                background-color: var.$color-light-aqua-blue;
-                text-align: center;
-                font-size: 18px;
-                color: var.$color-dark;
-                font-family: 'Recursive', 'Archivo', 'Inter', sans-serif;
-                transition: all 200ms ease-in;
-
-                &:not(:placeholder-shown) ~ .input-hint {
-                  opacity: 0;
-                }
-
-                &:invalid,
-                &:out-of-range,
-                &.error {
-                  animation: shake 0.2s ease-in-out;
-                  border-color: #ff3b3b;
-                  background-color: #fff2f2;
-                  color: #ff3b3b;
-
-                  & ~ .input-hint {
-                    color: #ff3b3b;
-                    opacity: 1;
-                    bottom: -16px;
-                  }
-                }
-
-                &:focus {
-                  outline: none;
-                  border-color: var.$color-dark-aqua-blue;
-
-                  & ~ .input-hint {
-                    bottom: -16px;
-                  }
-
-                  &:invalid,
-                  &:out-of-range,
-                  &.error {
-                    border-color: #ff3b3b;
-
-                    & ~ .input-hint {
-                      color: #ff3b3b;
-                    }
-                  }
-                }
-
-                // Remove spinners
-                &::-webkit-outer-spin-button,
-                &::-webkit-inner-spin-button {
-                  -webkit-appearance: none;
-                  margin: 0;
-                }
-              }
-
-              @container (min-width: 350px) {
-                max-width: 70px;
-
-                .lottery-number-input {
-                  height: 60px;
-                }
-              }
-
-              .input-hint {
-                position: absolute;
-                left: 0;
-                right: 0;
-                bottom: 2px;
-                font-size: 9px;
-                color: var.$gray-medium;
-                pointer-events: none;
-                transition: all 200ms ease-in;
-              }
-            }
-          }
-
-          .lottery-special-wrapper {
-            .number-input-wrapper {
-              position: relative;
-              text-align: center;
-
-              .lottery-number-input.special-ball {
-                width: 50px;
-                height: 50px;
-                border-radius: 4px;
-                border: 2px solid var.$color-medium-aqua-blue;
-                background-color: var.$color-medium-aqua-blue;
-                text-align: center;
-                font-size: 18px;
-                color: var.$color-dark;
-                font-family: 'Recursive', 'Archivo', 'Inter', sans-serif;
-                transition: all 200ms ease-in;
-
-                &:not(:placeholder-shown) ~ .input-hint {
-                  opacity: 0;
-                }
-
-                &:invalid,
-                &:out-of-range,
-                &.error {
-                  animation: shake 0.2s ease-in-out;
-                  border-color: #ff3b3b;
-                  background-color: #ff3b3b;
-                  color: #fff2f2;
-
-                  & ~ .input-hint {
-                    color: #ff3b3b;
-                    opacity: 1;
-                    bottom: -16px;
-                  }
-                }
-
-                &:focus {
-                  outline: none;
-                  border-color: var.$color-dark-aqua-blue;
-
-                  & ~ .input-hint {
-                    bottom: -16px;
-                    color: var.$gray-medium;
-                  }
-
-                  & ~ .special-ball-label {
-                    top: -16px;
-                    font-weight: 500;
-                    color: var.$color-dark-aqua-blue;
-                  }
-
-                  &:invalid,
-                  &:out-of-range,
-                  &.error {
-                    border-color: #ff3b3b;
-
-                    & ~ .input-hint,
-                    & ~ .special-ball-label {
-                      color: #ff3b3b;
-                    }
-                  }
-                }
-
-                // Remove spinners
-                &::-webkit-outer-spin-button,
-                &::-webkit-inner-spin-button {
-                  -webkit-appearance: none;
-                  margin: 0;
-                }
-              }
-
-              @container (min-width: 350px) {
-                .lottery-number-input.special-ball {
-                  width: 60px;
-                  height: 60px;
-                }
-              }
-
-              .input-hint {
-                position: absolute;
-                left: 0;
-                right: 0;
-                bottom: 2px;
-                font-size: 9px;
-                pointer-events: none;
-                transition: all 200ms ease-in;
-                color: var.$color-light-aqua-blue;
-              }
-
-              .special-ball-label {
-                font-size: 10px;
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 2px;
-                pointer-events: none;
-                transform: rotate(0);
-                color: var.$color-light-aqua-blue;
-                transition: all 200ms ease-in;
-              }
-            }
-          }
-        }
-      }
-
-      // Action Buttons
-      .lottery-actions {
-        display: flex;
-        margin-bottom: 12px;
-        gap: 8px;
-
-        .lottery-btn {
-          font-size: 12px;
-          flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 6px;
-          border-radius: 4px;
-          padding: 6px;
-          background-color: var.$color-muted-aqua-blue;
-          transition: all 200ms ease;
-
-          &.btn-search {
-            background-color: var.$color-medium-aqua-blue;
-            color: #fff;
-          }
-
-          &:hover {
-            background-color: color.adjust(
-              var.$color-medium-aqua-blue,
-              $lightness: -10%,
-              $space: hsl
-            );
-            color: #fff;
-          }
-        }
-      }
-
-      // Search Range
-      .lottery-search-range {
-        text-align: center;
-        color: var.$gray-medium-dark;
-        font-size: 11px;
-        margin-bottom: var.$spacing-base;
-
-        i {
-          margin-right: 4px;
-        }
-      }
-
-      // Results Section
-      .lottery-results {
-        margin-top: auto;
-        margin-bottom: 4px;
-        border: 1px solid #ddedf0;
-        padding: 4px;
-        border-radius: 4px;
-
-        .lottery-tabs {
-          display: flex;
-          gap: 16px;
-          margin-bottom: 4px;
-
-          .lottery-tab {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            padding: 4px;
-            border-radius: 4px;
-            transition: all 200ms ease;
-
-            & i {
-              font-size: 11px;
-            }
-
-            &.active {
-              color: var.$color-dark-aqua-blue;
-              font-weight: 600;
-            }
-
-            &:hover {
-              color: var.$color-dark-aqua-blue;
-            }
-          }
-        }
-
-        .scrollable-container {
-          overflow-y: scroll;
-          scrollbar-gutter: stable both-edges;
-          scrollbar-width: thin;
-          scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
-          padding-right: 4px;
-          margin-right: -4px;
-
-          // Scrollbar Styles
-          &::-webkit-scrollbar {
-            width: 2px;
-            position: absolute;
-            right: 0;
-          }
-
-          &::-webkit-scrollbar-track {
-            background: transparent;
-          }
-
-          &::-webkit-scrollbar-thumb {
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 4px;
-            background-clip: padding-box;
-          }
-
-          .lottery-results-content {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            min-height: 90px;
-            max-height: 196px;
-            width: 100%;
-
-            .lottery-locked-message {
-              border-radius: 4px;
-              padding: 4px;
-              color: #727272;
-              background-color: #f0f0f0;
-              border: 1px solid #bcd3d7;
-              font-size: 11px;
-              animation: match-fade-in 500ms ease-in forwards;
-            }
-
-            .lottery-matches,
-            .lottery-stats {
-              display: flex;
-              flex-direction: column;
-              gap: 6px;
-              animation: container-fade-in 700ms ease-in forwards;
-
-              &.exit {
-                animation: container-exit 700ms ease-in forwards;
-              }
-
-              h3 {
-                font-weight: 600;
-                margin-bottom: 6px;
-                border-bottom: 1px solid #bcd3d7;
-                color: var.$color-dark-aqua-blue;
-                font-family: 'DM Sans', 'system-ui', '-apple-system', 'BlinkMacSystemFont',
-                  'sans-serif';
-
-                i {
-                  margin-right: 2px;
-                }
-
-                .match-date {
-                  font-weight: 800;
-                }
-              }
-
-              .lottery-match-card {
-                background-color: #f0f0f0;
-                border: 1px solid #bcd3d7;
-                border-radius: 4px;
-                padding: 4px;
-                opacity: 0;
-                animation: match-fade-in 500ms ease-in forwards;
-
-                .match-content {
-                  .match-numbers {
-                    display: flex;
-                    gap: 6px;
-
-                    .number,
-                    .special-number {
-                      font-family: 'Recursive', 'Archivo', 'Inter', sans-serif;
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                      background-color: var.$color-light-aqua-blue;
-                      width: 28px;
-                      height: 28px;
-                      border-radius: 50%;
-                      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-                    }
-
-                    .number.not-a-match {
-                      background-color: #b4b4b4;
-                      color: #4f4f4f;
-                    }
-
-                    .special-number {
-                      background-color: var.$color-medium-aqua-blue;
-                      color: var.$color-light-aqua-blue;
-
-                      &.not-a-match {
-                        background-color: #7c7c7c;
-                        color: #cecece;
-                      }
-                    }
-                  }
-
-                  .match-details {
-                    margin-top: 4px;
-                    display: flex;
-                    justify-content: space-between;
-
-                    div span {
-                      font-weight: 600;
-                    }
-                  }
-                }
-              }
-
-              .lottery-stat-card {
-                background-color: #f0f0f0;
-                border: 1px solid #bcd3d7;
-                border-radius: 4px;
-                padding: 4px;
-                opacity: 0;
-                animation: stat-fade-in 500ms ease-in forwards;
-
-                .stats-overview {
-                  display: grid;
-                  grid-template-columns: 1fr 2fr;
-                  gap: 8px;
-                  margin-bottom: 8px;
-
-                  .stat-item {
-                    background-color: #f5f5f5;
-                    border-radius: 4px;
-                    padding: 6px;
-                    text-align: center;
-
-                    .stat-label {
-                      display: block;
-                      color: var.$gray-medium;
-                      font-size: 10px;
-                      margin-bottom: 2px;
-                    }
-
-                    .stat-value {
-                      font-size: 13px;
-                      font-weight: 500;
-                      color: var.$color-dark;
-                    }
-                  }
-                }
-
-                .number-analysis {
-                  .number-stats {
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 6px;
-
-                    .number-stat {
-                      background-color: #f5f5f5;
-                      border-radius: 4px;
-                      padding: 6px;
-                      display: flex;
-                      align-items: center;
-                      gap: 8px;
-
-                      .number {
-                        flex-shrink: 0;
-                        font-family: 'Recursive', 'Archivo', 'Inter', sans-serif;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        background-color: var.$color-light-aqua-blue;
-                        width: 24px;
-                        height: 24px;
-                        border-radius: 50%;
-                        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-                      }
-
-                      .stat-details {
-                        font-size: 11px;
-
-                        .frequency {
-                          color: var.$color-dark;
-                          font-weight: 500;
-                        }
-
-                        .percentage {
-                          color: var.$gray-medium;
-                          font-size: 10px;
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+    &:has([data-game='powerball'].active) .pill {
+      transform: translateX(100%);
     }
 
-    // Footer
-    .content-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      margin-bottom: -5px;
-      margin-top: auto;
+    button {
+      position: relative;
+      z-index: 1;
+      min-height: 32px;
+      padding: 6px 14px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+      cursor: pointer;
 
-      .lottery-switch-link {
-        color: var.$color-muted-dark-aqua-blue;
-        text-decoration: none;
-        font-weight: 600;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-
-      .lottery-reset-btn {
-        font-size: 14px;
-        color: var.$gray-medium;
-
-        &:hover {
-          color: var.$color-medium-aqua-blue;
-        }
+      &.active {
+        color: var(--ink);
+        font-weight: 500;
       }
     }
   }
-}
 
-// Dark Theme Styles
-.dark #widget-06 {
-  .content {
-    color: var.$color-light;
+  .game-info {
+    position: relative;
+    margin-left: auto;
 
-    .content-header {
-      .logo-wrapper {
-        .tooltip {
-          color: #98abb4;
-          background-color: #202729;
-          border-color: #2f4448;
+    .tooltip {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 250px;
+      padding: 12px 14px;
+      border: 1px solid var(--line0);
+      border-radius: 12px;
+      background: var(--card);
+      box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.3);
+      font-size: 13px;
+      opacity: 0;
+      transform: translateY(-6px) scale(0.97);
+      transform-origin: top right;
+      pointer-events: none;
+      transition:
+        opacity 0.2s,
+        transform 0.25s var(--ease);
 
-          .tooltip-link {
-            color: var.$color-light-aqua-blue;
-          }
+      p {
+        margin: 0;
+      }
 
-          &::before {
-            background-color: #202729;
-            border-right-color: #2f4448;
-            border-top-color: #2f4448;
-          }
-        }
+      .label {
+        display: block;
+        color: var(--muted);
+        font-size: 11.5px;
+      }
+
+      a {
+        color: var(--ink);
       }
     }
 
-    .content-body {
-      .lottery-input-container {
-        .lottery-inputs {
-          .lottery-main-numbers {
-            .number-input-wrapper {
-              .lottery-number-input {
-                border-color: var.$color-medium-aqua-blue;
-                background-color: var.$color-muted-dark-aqua-blue;
-                color: var.$color-light;
+    &.open .tooltip {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+  }
 
-                &:invalid,
-                &:out-of-range,
-                &.error {
-                  border-color: #ff3b3b;
-                  background-color: #3d2424;
-                  color: #ff6b6b;
+  // ---------- title + inputs ----------
+  .content-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 14px;
+    min-height: 0;
+  }
 
-                  & ~ .input-hint {
-                    color: #ff3b3b;
-                    opacity: 1;
-                    bottom: -16px;
-                  }
-                }
+  .lottery-title {
+    margin: 0;
+    font-family: 'Bricolage Grotesque', Geist, sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
 
-                &:focus {
-                  border-color: var.$color-dark-aqua-blue;
+    strong {
+      color: var(--wf);
+      font-weight: 600;
+    }
+  }
 
-                  & ~ .input-hint {
-                    bottom: -16px;
-                  }
+  .lottery-search-range {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11.5px;
+  }
 
-                  &:invalid,
-                  &:out-of-range,
-                  &.error {
-                    border-color: #ff3b3b;
+  .lottery-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    perspective: 400px;
+  }
 
-                    & ~ .input-hint {
-                      color: #ff3b3b;
-                    }
-                  }
-                }
-              }
+  .lottery-main-numbers {
+    display: flex;
+    gap: 6px;
+  }
 
-              .input-hint {
-                color: #98abb4;
-              }
-            }
-          }
+  .number-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
 
-          .lottery-special-wrapper {
-            .number-input-wrapper {
-              .lottery-number-input.special-ball {
-                border-color: var.$color-medium-aqua-blue;
-                background-color: var.$color-medium-aqua-blue;
-                color: #fff;
+  .lottery-number-input {
+    width: 46px;
+    height: 50px;
+    padding: 0;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+    color: var(--ink);
+    font-family: 'Geist Mono', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    outline: none;
+    -moz-appearance: textfield;
+    transition:
+      border-color 0.2s,
+      transform 0.2s var(--ease),
+      box-shadow 0.2s;
 
-                &:invalid,
-                &:out-of-range,
-                &.error {
-                  border-color: #ff3b3b;
-                  background-color: #ff3b3b;
-                  color: #fff2f2;
-
-                  & ~ .input-hint {
-                    color: #ff3b3b;
-                    opacity: 1;
-                    bottom: -16px;
-                  }
-                }
-
-                &:focus {
-                  border-color: var.$color-dark-aqua-blue;
-
-                  & ~ .input-hint {
-                    bottom: -16px;
-                    color: #98abb4;
-                  }
-
-                  & ~ .special-ball-label {
-                    color: var.$color-medium-aqua-blue;
-                  }
-
-                  &:invalid,
-                  &:out-of-range,
-                  &.error {
-                    border-color: #ff3b3b;
-
-                    & ~ .input-hint,
-                    & ~ .special-ball-label {
-                      color: #ff3b3b;
-                    }
-                  }
-                }
-              }
-
-              .input-hint {
-                color: var.$color-light-aqua-blue;
-              }
-
-              .special-ball-label {
-                color: var.$color-light-aqua-blue;
-              }
-            }
-          }
-        }
-      }
-
-      .lottery-actions {
-        .lottery-btn {
-          background-color: var.$color-muted-dark-aqua-blue;
-
-          &.btn-search {
-            background-color: var.$color-medium-aqua-blue;
-            color: var.$color-dark;
-          }
-
-          &:hover {
-            background-color: var.$color-dark-aqua-blue;
-            color: var.$color-light;
-          }
-        }
-      }
-
-      .lottery-search-range {
-        color: #98abb4;
-      }
-
-      .lottery-results {
-        border: var.$border-dark;
-        background-color: var.$color-dark;
-
-        .lottery-tabs {
-          .lottery-tab {
-            color: #98abb4;
-
-            &.active {
-              color: var.$color-light-aqua-blue;
-            }
-
-            &:hover {
-              color: var.$color-light-aqua-blue;
-            }
-          }
-        }
-
-        .scrollable-container {
-          .lottery-results-content {
-            .lottery-locked-message {
-              color: #98abb4;
-              border-color: #2f4448;
-              background-color: #202729;
-            }
-
-            .lottery-matches,
-            .lottery-stats {
-              h3 {
-                border-bottom-color: #2f4448;
-                color: var.$color-light-aqua-blue;
-              }
-
-              .lottery-match-card {
-                border-color: #2f4448;
-                background-color: #202729;
-
-                .match-content {
-                  .match-numbers {
-                    .number {
-                      background-color: #2f4448;
-                      color: var.$color-light;
-
-                      &.not-a-match {
-                        background-color: #757575;
-                        color: #c2c2c2;
-                      }
-                    }
-
-                    .special-number {
-                      background-color: var.$color-medium-aqua-blue;
-                      color: var.$color-dark;
-
-                      &.not-a-match {
-                        background-color: #505050;
-                        color: #bbbbbb;
-                      }
-                    }
-                  }
-                }
-              }
-
-              .lottery-stat-card {
-                background-color: #202729;
-                border-color: #2f4448;
-
-                .stats-overview {
-                  .stat-item {
-                    background-color: #2f4448;
-
-                    .stat-label {
-                      color: #98abb4;
-                    }
-
-                    .stat-value {
-                      color: var.$color-light;
-                    }
-                  }
-                }
-
-                .number-analysis {
-                  .number-stats {
-                    .number-stat {
-                      background-color: #3a494d;
-
-                      .number {
-                        background-color: var.$color-light;
-                        color: #2f4448;
-                      }
-
-                      .stat-details {
-                        .frequency {
-                          color: var.$color-light;
-                        }
-
-                        .percentage {
-                          color: var.$gray-light;
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      margin: 0;
+      -webkit-appearance: none;
     }
 
-    .content-footer {
-      .lottery-switch-link {
-        color: var.$color-muted-aqua-blue;
-      }
+    &:focus {
+      border-color: var(--wf);
+      box-shadow: 0 6px 14px -8px var(--wf);
+      transform: translateY(-2px);
+    }
 
-      .lottery-reset-btn {
-        color: #98abb4;
+    &.error {
+      border-color: var(--down);
+      animation: shake 0.4s;
+    }
 
-        &:hover {
-          color: var.$color-medium-aqua-blue;
-        }
+    &.special-ball {
+      border-color: var(--spc);
+      background: var(--spc);
+      color: var(--spon);
+    }
+  }
+
+  .input-hint {
+    color: var(--muted);
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    opacity: 0;
+    transform: translateY(-3px);
+    transition:
+      opacity 0.2s,
+      transform 0.2s;
+  }
+
+  .number-input-wrapper:focus-within .input-hint {
+    opacity: 1;
+    transform: none;
+  }
+
+  .special-ball-label {
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  // quick pick: numbers roll in one after another
+  .rolling .lottery-number-input {
+    animation: roll 0.5s var(--ease) both;
+  }
+
+  @for $i from 2 through 6 {
+    .rolling .number-input-wrapper:nth-child(#{$i}) .lottery-number-input {
+      animation-delay: #{($i - 1) * 0.05}s;
+    }
+  }
+
+  .rolling .lottery-special-wrapper .lottery-number-input {
+    animation-delay: 0.25s;
+  }
+
+  // ---------- buttons ----------
+  .lottery-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .lottery-btn {
+    display: inline-flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+    color: var(--ink);
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+      border-color 0.2s,
+      filter 0.2s,
+      transform 0.15s var(--ease);
+
+    &:hover {
+      border-color: var(--muted);
+    }
+
+    &:active {
+      transform: scale(0.96);
+    }
+
+    &.btn-search {
+      flex: 1.4;
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--on-accent);
+
+      &:hover {
+        filter: brightness(1.08);
       }
+    }
+  }
+
+  // ---------- results ----------
+  .lottery-results {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .lottery-tabs {
+    display: flex;
+    gap: 2px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .lottery-tab {
+    position: relative;
+    min-height: 40px;
+    padding: 0 8px;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 13.5px;
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 6px;
+      right: 6px;
+      bottom: -1px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--wf);
+      transform: scaleX(0);
+      transition: transform 0.3s var(--ease);
+    }
+
+    &:hover {
+      color: var(--ink);
+    }
+
+    &.active {
+      color: var(--ink);
+      font-weight: 600;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  .scrollable-container {
+    flex: 1 1 0;
+    min-height: 200px;
+  }
+
+  .lottery-locked-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 26px 12px;
+    color: var(--muted);
+    font-size: 13.5px;
+    text-align: center;
+    animation: rise 0.4s var(--ease) both;
+
+    strong {
+      color: var(--ink);
+    }
+  }
+
+  // containers fade out (handleTabs/handleReset add `.exit` before hiding them)
+  .lottery-matches,
+  .lottery-stats {
+    transition: opacity 0.4s;
+
+    &.exit {
+      opacity: 0;
+    }
+  }
+
+  .lottery-match-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 2px;
+    border-bottom: 1px solid var(--line);
+    animation: rise 0.45s var(--ease) both;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    @for $i from 2 through 6 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 0.08}s;
+      }
+    }
+  }
+
+  .match-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 13px;
+
+    .match-date {
+      font-weight: 600;
+    }
+
+    .jackpot {
+      font-family: 'Geist Mono', monospace;
+    }
+  }
+
+  .match-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .number,
+  .special-number {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-family: 'Geist Mono', monospace;
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+
+  .lottery-match-card .number:not(.not-a-match),
+  .lottery-match-card .special-number:not(.not-a-match) {
+    animation: pop 0.5s var(--ease) 0.3s both;
+  }
+
+  .number.not-a-match {
+    border-color: var(--line);
+    background: var(--soft);
+    color: var(--muted);
+  }
+
+  .special-number {
+    border: 2px solid var(--spc);
+    background: var(--spc);
+    color: var(--spon);
+
+    &.not-a-match {
+      background: transparent;
+      color: var(--ink);
+    }
+  }
+
+  .match-summary {
+    margin-left: auto;
+    color: var(--muted);
+    font-size: 11.5px;
+  }
+
+  .lottery-stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 12px;
+    animation: rise 0.45s var(--ease) both;
+  }
+
+  .stats-overview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--soft);
+  }
+
+  .stat-label {
+    color: var(--muted);
+    font-size: 11.5px;
+  }
+
+  .stat-value {
+    font-family: 'Geist Mono', monospace;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .number-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .number-stat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13.5px;
+
+    .percentage {
+      color: var(--muted);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .scrollable-container {
+      flex: none;
+      min-height: 0;
+      max-height: 520px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .lottery-number-input {
+      width: 42px;
+      height: 46px;
     }
   }
 }

@@ -11,7 +11,16 @@ A dual-mode calculator that can handle evaluating different arithmetic expressio
 
 **Relevant file(s)**: [/client/src/widgets/02/\*](../../client/src/widgets/02/)
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-02_v2.png"></a>
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-02.png" alt="Widget 02 in light and dark mode (v2 design)"></a>
+
+<details>
+<summary>v1 design</summary>
+
+#### v1
+
+<img src="/docs/screenshots/widget-02_v2.png" alt="Widget 02, v1 design">
+
+</details>
 
 ## Tech
 

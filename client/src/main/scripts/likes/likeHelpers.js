@@ -1,10 +1,12 @@
+const MAX_LIKES = 5;
+
 function getUserLikes() {
   return JSON.parse(localStorage.getItem('userLikes')) || {};
 }
 
 function canUserLike(id) {
   const userLikes = getUserLikes();
-  return userLikes[id] >= 5 ? false : true;
+  return (userLikes[id] || 0) < MAX_LIKES;
 }
 
 function updateUserLikes(id) {
@@ -13,22 +15,27 @@ function updateUserLikes(id) {
   localStorage.setItem('userLikes', JSON.stringify(userLikes));
 }
 
-function updateLikeButtonState(btnIcon, id) {
-  const userLikes = getUserLikes();
-  if (userLikes[id] > 0) {
-    btnIcon.classList.add('liked-color');
-  }
-  if (userLikes[id] === 5) {
-    btnIcon.classList.remove('group-active:scale-125');
-    btnIcon.classList.add('animate-pop');
-    btnIcon.addEventListener(
-      'animationend',
-      () => {
-        btnIcon.classList.remove('animate-pop');
-      },
-      { once: true }
-    );
-    btnIcon.parentElement.disabled = true;
+/**
+ * Reflects the visitor's own likes on a like button.
+ * - `liked`  fills the heart once they've liked the widget at least once
+ * - `maxed`  once they've used all 5 likes (the next click shakes instead of popping)
+ * - `pop`    replays the pop / "+1" animation on click
+ */
+function updateLikeButtonState(btn, id, { animate = false, blocked = false } = {}) {
+  const count = getUserLikes()[id] || 0;
+  const plus = btn.querySelector('.plus');
+
+  btn.classList.toggle('liked', count > 0);
+  btn.classList.toggle('maxed', count >= MAX_LIKES);
+  btn.setAttribute('aria-pressed', String(count > 0));
+  if (plus) plus.textContent = blocked ? `max ${MAX_LIKES}` : '+1';
+
+  if (animate) {
+    btn.classList.remove('pop');
+    void btn.offsetWidth; // restart the animation if it's already running
+    btn.classList.add('pop');
+    clearTimeout(btn.popTimer);
+    btn.popTimer = setTimeout(() => btn.classList.remove('pop'), 850);
   }
 }
 

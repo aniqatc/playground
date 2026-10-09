@@ -18,7 +18,8 @@ class ToDoContext {
     this.toDoAddButton = this.widget.querySelector('.todo-add-btn');
     // Todo Items
     this.toDoList = this.widget.querySelector('.todo-list');
-    // Tag Filters
+    this.emptyMessage = this.widget.querySelector('.todo-empty');
+    // Tabs + priority filters
     this.filterContainer = this.widget.querySelector('.content-footer');
   }
 }
