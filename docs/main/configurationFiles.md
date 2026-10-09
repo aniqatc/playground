@@ -30,6 +30,7 @@
 - [tailwind.config.js](../../client/tailwind.config.js)
   - Configures Tailwind CSS
   - Specifies content sources, dark mode, and theme customization
+  - v2: the theme colors (`bg`, `card`, `ink`, `muted`, `line`, `soft`, `soft2`, `accent`) point at CSS variables from `main.css`, so classes like `bg-card` or `text-muted` follow light/dark mode automatically; fonts are `font-display` (Bricolage Grotesque), `font-sans` (Geist) and `font-mono` (Geist Mono)
 
 ### Server config files
 - [package.json](../../package.json)

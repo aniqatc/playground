@@ -12,7 +12,16 @@
 
 A mini dashboard that presents a user's digital footprint, including geographic location (obtained using their IP), browser details, operating system, and ISP information, all underscored by a dynamic map visualization for a quick and elegant overview of their online presence.
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-03_v1.png"></a>
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-03.png" alt="Widget 03 in light and dark mode (v2 design)"></a>
+
+<details>
+<summary>v1 design</summary>
+
+#### v1
+
+<img src="/docs/screenshots/widget-03_v1.png" alt="Widget 03, v1 design">
+
+</details>
 
 ## Tech
 

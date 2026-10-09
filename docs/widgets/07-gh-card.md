@@ -10,7 +10,16 @@
 
 **Relevant file(s)**: [/client/src/widgets/07/\*](../../client/src/widgets/07/), [/server/widgets/07/\*](../../server/widgets/07/)
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-07_v1.png"></a>
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-07.png" alt="Widget 07 in light and dark mode (v2 design)"></a>
+
+<details>
+<summary>v1 design</summary>
+
+#### v1
+
+<img src="/docs/screenshots/widget-07_v1.png" alt="Widget 07, v1 design">
+
+</details>
 
 A GitHub repository visualization tool that generates cards displaying repository statistics and language breakdowns. Features include random repository discovery, search functionality, and PNG export capabilities.
 
@@ -27,19 +36,17 @@ No persistent storage required; all data is fetched directly from GitHub's API i
 
 ## Features
 
-- **Repository Search**: Search any GitHub repository using repository URL (e.g. `github.com/aniqatc/weather`) or user profile URL
+- **Repository Search**: Search any GitHub repository using repository URL (e.g. `github.com/aniqatc/weather`), just `owner/repo` (the field shows the `github.com/` prefix), or a user profile URL
 - **User Repository Discovery**: View any user's most recent repository by entering their user profile URL (e.g. `github.com/aniqatc`)
 - **Random Repository Discover**: View a random repository from GitHub's most popular repositories (5000+ stars)
 - **Comprehensive Stats Display**:
-  - Basic repository information (name, description, topics, user avatar and relevant links)
-  - Repository metrics (stars, forks, watchers)
-  - Last updated timestamp
-  - License information
+  - Basic repository information (name, owner, license, description, user avatar and relevant links)
+  - Repository metrics (stars, forks) and last updated date
+  - (v1 also listed topics, watchers and repository size; v2 keeps the card compact)
   - Language breakdown with percentage visualization
 - **Language Analysis**:
-  - Visual representation of language distribution
-  - Byte count and line estimates for each language
-  - Interactive tooltips showing percentage value for each language
+  - A stacked bar of the top three languages plus "Other", with a legend
+  - Byte count, line estimate and share of total lines for each segment (shown on hover)
 - **Export Functionality**: Save repository cards as `png` images for sharing
 - **Responsive Design & Dark Mode**
 - **Animated Interface**
@@ -56,7 +63,7 @@ No persistent storage required; all data is fetched directly from GitHub's API i
 
 1. **Search Interface**: URL-based repository search with error handling
 2. **Card Display**: Animated repository cards
-3. **Language Visualization**: Interactive language breakdown with statistics
+3. **Language Visualization**: Stacked language bar with a legend
 4. **Export Controls**: `png` export functionality for repository cards
 5. **Random Feature**: Random repository card is displayed
 
@@ -69,7 +76,6 @@ No persistent storage required; all data is fetched directly from GitHub's API i
 - [`core/displayCard.js`]: Manages repository card rendering and animations, handles calculation of the language stats (by converting the byte value to an estimated line count)
 - [`core/handleSearch.js`]: Validates input and manages search process
 - [`core/saveImage.js`]: Handles PNG export functionality
-- [`core/tooltips.js`]: Manages interactive language statistics tooltips
 - [`core/showRandom.js`]: Initializes the random button to fetch a random repository and uses the function in `displayCard.js` to display the repository card
 
 **Root Files**:

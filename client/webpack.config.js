@@ -62,18 +62,29 @@ module.exports = {
         keywords:
           'interactive widgets, graphing calculator, financial dashboard, task management, digital footprint, lottery analysis, github visualization, bookmark platform, mongodb, express, nodejs, webpack, tailwind, sass',
         author: 'Aniqa',
-        'og:type': 'website',
-        'og:title': 'Interactive Widget Playground | Modern Web Development Showcase',
-        'og:description':
-          'Discover a collection of interactive web tools showcasing modern full-stack development: from data visualization to utility applications, built with Node.js, Express, MongoDB, and Webpack.',
-        'og:url': 'https://playground.aniqa.dev',
-        'og:image':
-          'https://raw.githubusercontent.com/aniqatc/project-directory/refs/heads/main/assets/playground-light.png',
+        // Open Graph tags use the `property` attribute (not `name`), so they're
+        // written as attribute objects here
+        'og:type': { property: 'og:type', content: 'website' },
+        'og:title': {
+          property: 'og:title',
+          content: 'Interactive Widget Playground | Modern Web Development Showcase',
+        },
+        'og:description': {
+          property: 'og:description',
+          content:
+            'Discover a collection of interactive web tools showcasing modern full-stack development: from data visualization to utility applications, built with Node.js, Express, MongoDB, and Webpack.',
+        },
+        'og:url': { property: 'og:url', content: 'https://playground.aniqa.dev' },
+        'og:image': {
+          property: 'og:image',
+          content:
+            'https://raw.githubusercontent.com/aniqatc/playground/main/docs/screenshots/v2/og-image.png',
+        },
         'twitter:title': 'Interactive Widget Playground | Full-Stack Web Development',
         'twitter:card': 'summary_large_image',
         'twitter:image':
-          'https://raw.githubusercontent.com/aniqatc/project-directory/refs/heads/main/assets/playground-light.png',
-        'twitter:image:alt': 'Collection of interactive web widgets and tools',
+          'https://raw.githubusercontent.com/aniqatc/playground/main/docs/screenshots/v2/og-image.png',
+        'twitter:image:alt': 'Playground: seven small full-stack widgets in a colorful card grid',
         'twitter:site': '@aniqatc',
         'twitter:description':
           'Explore interactive web tools: graphing calculator, financial dashboard, task manager, digital footprint analyzer, lottery data tool, and more.',

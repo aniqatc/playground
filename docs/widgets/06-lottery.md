@@ -11,7 +11,16 @@
 
 **Relevant file(s)**: [/client/src/widgets/06/\*](../../client/src/widgets/06/), [/server/widgets/06/\*](../../server/widgets/06/)
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-06_v1.png"></a>
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-06.png" alt="Widget 06 in light and dark mode (v2 design)"></a>
+
+<details>
+<summary>v1 design</summary>
+
+#### v1
+
+<img src="/docs/screenshots/widget-06_v1.png" alt="Widget 06, v1 design">
+
+</details>
 
 A lottery analysis tool that helps players analyze historical Powerball and Mega Millions drawings, featuring quick number generation, detailed match statistics, and visual indicators to easily spot winning combinations - all searchable across 20+ years of drawing history.
 
@@ -63,7 +72,7 @@ MongoDB Collections:
 2. **Quick Pick**: Generates randomized numbers within the valid range for each game
 3. **Results Display: Matches**: Match cards showing drawing details (matched vs unmatched numbers, jackpot value, multiplier value and description)
 4. **Results Display: Stats**: Statistics dashboard with frequency information for each number, highest jackpot that includes the user-inputted numbers and number of drawings searched
-5. **Switch Game Modes & Result Display Views**: Megamillions/Powerball game; Matches/Stats views
+5. **Switch Game Modes & Result Display Views**: a Mega Millions / Powerball switch at the top (drawing times and number ranges are in the ⓘ popover); Matches/Stats views
 
 ### Frontend Components
 

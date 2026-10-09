@@ -16,7 +16,16 @@
 
 A community-driven bookmark platform that processes submitted URLs to extract metadata, validate content safety, and generate topic tags. Features include community voting, automated metadata extraction, and content filtering to maintain a curated collection of high-quality web resources.
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/widget-08_v1.png"></a>
+<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-08.png" alt="Widget 08 in light and dark mode (v2 design)"></a>
+
+<details>
+<summary>v1 design</summary>
+
+#### v1
+
+<img src="/docs/screenshots/widget-08_v1.png" alt="Widget 08, v1 design">
+
+</details>
 
 ## Tech
 
@@ -41,7 +50,7 @@ A community-driven bookmark platform that processes submitted URLs to extract me
   - Safety validation using Google's Safe Browsing API
   - Content filtering using Leo-Profanity (specifically to block out inappropriate or hateful content)
 - **Community Features**:
-  - Like and dislike voting system (1 vote per user)
+  - Like and dislike voting system (1 vote per user); the card shows the score (likes minus dislikes), with the separate counts in the tooltip and for screen readers
   - Vote tracking and limiting restrictions are applied to each user
   - Sorted by newest submissions
 - **Content Display**:
