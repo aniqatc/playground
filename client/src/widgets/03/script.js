@@ -10,43 +10,37 @@ function updateMap(data) {
   const widget = document.querySelector('#widget-03');
   const userMap = widget.querySelector('.user-map-img');
   const userMapParent = widget.querySelector('.map-box');
-  const userDataGrid = widget.querySelector('.data-grid');
+  // the theme button stores 'light' or 'dark', which match Mapbox's light-v11 / dark-v11 styles
   const theme = localStorage.getItem('theme') || 'outdoors';
-  const lat = data?.locationData.lat || '33.55';
-  const lon = data?.locationData.lon || '-117.77';
-  const mapURL = `https://api.mapbox.com/styles/v1/mapbox/${theme}-v11/static/pin-s+d27334(${lon},${lat})/${lon},${lat},11,0/300x300@2x?access_token=${process.env.MAPBOX_KEY}`;
+  const lat = data?.locationData?.lat || '33.55';
+  const lon = data?.locationData?.lon || '-117.77';
+  const mapURL = `https://api.mapbox.com/styles/v1/mapbox/${theme}-v11/static/pin-s+e8762b(${lon},${lat})/${lon},${lat},11,0/640x320@2x?access_token=${process.env.MAPBOX_KEY}`;
 
   if (!mapURL.includes('undefined')) {
-    userDataGrid.style.gridTemplateColumns = '1fr 1fr';
-    userMapParent.style.display = 'block';
+    userMap.addEventListener('load', () => userMapParent.classList.add('loaded'), { once: true });
+    userMap.alt = `Map of your approximate location near ${data?.locationData?.city || 'you'}`;
     userMap.src = mapURL;
   }
 }
 
 function updateContent(data) {
   const widget = document.querySelector('#widget-03');
-  const userCountry = widget.querySelector('.user-country');
-  const userRegion = widget.querySelector('.user-region');
-  const userCity = widget.querySelector('.user-city');
-  const userLat = widget.querySelector('.user-lat');
-  const userLon = widget.querySelector('.user-lon');
-  const userBrowser = widget.querySelector('.user-browser');
-  const userOS = widget.querySelector('.user-os');
-  const userPlatform = widget.querySelector('.user-platform');
-  const userTimezone = widget.querySelector('.user-timezone');
-  const userISP = widget.querySelector('.user-isp');
-  const userIP = widget.querySelector('.user-ip');
-  const timezoneFormatted = data?.locationData?.timezone?.replace('_', ' ');
+  const set = (selector, value) => {
+    widget.querySelector(selector).textContent = value;
+  };
+  const location = data?.locationData || {};
+  // a template string is always truthy, so build it first and fall back if parts are missing
+  const browser = data?.browser ? `${data.browser} ${data.browserVersion || ''}`.trim() : '';
 
-  userBrowser.textContent = `${data?.browser} ${data?.browserVersion}` || 'Citrus Explorer 8.0';
-  userOS.textContent = data?.os || 'OrangeOS';
-  userIP.textContent = data?.ip || '192.168.OJ';
-  userISP.textContent = data?.locationData?.isp || 'SunNet';
-  userTimezone.textContent = timezoneFormatted || 'Orange Zone';
-  userLat.textContent = data?.locationData?.lat || '33.55';
-  userLon.textContent = data?.locationData?.lon || '-117.77';
-  userCity.textContent = data?.locationData?.city || 'Orangetown';
-  userRegion.textContent = data?.locationData?.regionName || 'Valley of Oranges';
-  userCountry.textContent = data?.locationData?.country || 'Orange Republic';
-  userPlatform.textContent = data?.platform || 'OrangePad';
+  set('.user-browser', browser || 'Citrus Explorer 8.0');
+  set('.user-os', data?.os || 'OrangeOS');
+  set('.user-ip', data?.ip || '192.168.OJ');
+  set('.user-isp', location.isp || 'SunNet');
+  set('.user-timezone', location.timezone || 'Orange Zone');
+  set('.user-lat', location.lat || '33.55');
+  set('.user-lon', location.lon || '-117.77');
+  set('.user-city', location.city || 'Orangetown');
+  set('.user-region', location.regionName || 'Valley of Oranges');
+  set('.user-country', location.country || 'Orange Republic');
+  set('.user-platform', data?.platform || 'OrangePad');
 }
