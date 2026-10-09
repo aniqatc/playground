@@ -1,84 +1,68 @@
 import './style.scss';
+import { card, docsUrl } from '../_card';
+
+const priorities = [
+  { value: 'untagged', label: 'Untagged' },
+  { value: 'high', label: 'High' },
+  { value: 'medium', label: 'Medium' },
+  { value: 'low', label: 'Low' },
+];
 
 export function getMarkup() {
-  return `
-        <!-- Widget 04: To-Do -->
-      <section
-        id="widget-04"
-        class="relative rounded bg-stone-50 px-3 py-3 shadow-md dark:bg-zinc-800"
-      >
-        <div
-          class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
-        >
-          <p class="mr-auto">task manager</p>
-          <button
-            class="like-btn group cursor-pointer"
-            aria-label="like button for task manager widget"
-          >
-            <i class="fa-solid fa-heart group-active:scale-125"></i>
-          </button>
-          <span class="like-value font-archivo" id="likes-04"></span>
-        </div>
-        <div class="content">
-          <section class="content-head">
-            <div class="todo-input">
-              <textarea
-                placeholder="What do you need to do?"
-                maxlength="75"
-                aria-label="Enter task description"
-              ></textarea>
-              <button class="todo-temp-btn" aria-label="Add new task">
-                <i class="fa-solid fa-plus"></i>
+  return card({
+    id: '04',
+    title: 'Task manager',
+    tags: 'MongoDB · Flatpickr',
+    color: { w: '#E0AA00', wf: '#F0B90B', won: '#1A1400' },
+    span: 4,
+    note: 'Tasks saved per visitor',
+    docs: docsUrl('04-todo-list.md'),
+    body: `
+      <section class="content-head">
+        <div class="todo-input">
+          <label class="sr-only-text" for="todo-task-input">Task description</label>
+          <textarea id="todo-task-input" rows="1" placeholder="What do you need to do?" maxlength="75"></textarea>
+          <div class="todo-taskbar">
+            <div class="todo-taskbar--select">
+              <button type="button" class="filter--selected-option ghost-btn" data-value="untagged" aria-haspopup="true" aria-label="Priority: Untagged" title="Priority">
+                <span class="prio-dot untagged"></span>
               </button>
-            </div>
-            <div class="todo-taskbar">
-              <div class="todo-taskbar--select">
-                <div class="filter--selected-option" data-value="untagged">
-                  <i class="fa-solid fa-circle fa-fade untagged-color"></i>
-                  Untagged
-                  <i class="fa-solid fa-angle-down select-arrow-icon"></i>
-                </div>
-                <div class="filter--options-list">
-                  <div class="filter--option" data-value="untagged">
-                    <i class="fa-solid fa-circle untagged-color"></i> Untagged
-                  </div>
-                  <div class="filter--option" data-value="high">
-                    <i class="fa-solid fa-circle high-color"></i> High
-                  </div>
-                  <div class="filter--option" data-value="medium">
-                    <i class="fa-solid fa-circle medium-color"></i> Medium
-                  </div>
-                  <div class="filter--option" data-value="low">
-                    <i class="fa-solid fa-circle low-color"></i> Low
-                  </div>
-                </div>
-              </div>
-              <div class="todo---selected-date"></div>
-              <div class="todo-taskbar--buttons">
-                <button class="todo-date-btn" aria-label="Select due date">
-                  <i class="fa-solid fa-calendar-days"></i>
-                </button>
-                <button class="todo-add-btn" aria-label="Add task">
-                  <i class="fa-solid fa-plus"></i>
-                </button>
+              <div class="filter--options-list" role="menu" aria-label="Priority">
+                ${priorities
+                  .map(
+                    (p) => `
+                  <button type="button" role="menuitem" class="filter--option" data-value="${p.value}">
+                    <span class="prio-dot ${p.value}"></span>${p.label}
+                  </button>`
+                  )
+                  .join('')}
               </div>
             </div>
-          </section>
-          <section class="content-body">
-            <ul class="todo-list">
-            </ul>
-          </section>
-          <section class="content-footer">
-            <button class="active" aria-label="Show all tasks">All</button>
-            <button aria-label="Show archived tasks">Archived</button>
-            <button aria-label="Show completed tasks">Completed</button>
-            <button aria-label="Show low priority tasks"><i class="fa-solid fa-hashtag low-color"></i>Low</button>
-            <button aria-label="Show medium priority tasks">
-              <i class="fa-solid fa-hashtag medium-color"></i>Medium
+            <button type="button" class="todo-date-btn" aria-label="Select due date" title="Due date">
+              <span class="todo---selected-date"></span>
             </button>
-            <button aria-label="Show high priority tasks"><i class="fa-solid fa-hashtag high-color"></i>High</button>
-          </section>
+            <button type="button" class="todo-add-btn" aria-label="Add task">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+            </button>
+          </div>
         </div>
       </section>
-`;
+      <section class="content-footer" aria-label="Filter tasks">
+        <div class="todo-tabs" role="group" aria-label="Show">
+          <button type="button" class="active" data-tab="all">All <span class="count" data-count="all"></span></button>
+          <button type="button" data-tab="completed">Completed <span class="count" data-count="completed"></span></button>
+          <button type="button" data-tab="archived">Archived <span class="count" data-count="archived"></span></button>
+        </div>
+        <div class="todo-priority-filter" role="group" aria-label="Filter by priority">
+          <button type="button" data-priority="high" aria-pressed="false" aria-label="Show high priority" title="High"><span class="prio-dot high"></span></button>
+          <button type="button" data-priority="medium" aria-pressed="false" aria-label="Show medium priority" title="Medium"><span class="prio-dot medium"></span></button>
+          <button type="button" data-priority="low" aria-pressed="false" aria-label="Show low priority" title="Low"><span class="prio-dot low"></span></button>
+        </div>
+      </section>
+      <section class="content-body scroll-area">
+        <ul class="todo-list"></ul>
+        <p class="todo-empty" hidden>Nothing here yet.</p>
+      </section>
+    `,
+  });
 }

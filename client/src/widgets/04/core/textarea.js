@@ -1,56 +1,40 @@
 import todoContext from './context';
 
+const labels = { untagged: 'Untagged', high: 'High', medium: 'Medium', low: 'Low' };
+
 export function initializeTextareaEl() {
-  const {
-    textarea,
-    inputContainer,
-    taskbarContainer,
-    selectOptionButton,
-    selectOptionsList,
-    selectOption,
-    todoDateButton,
-  } = todoContext;
+  const { textarea, inputContainer, selectOptionButton, selectOptionsList, selectOption } =
+    todoContext;
+  const menuWrapper = selectOptionsList.parentElement;
 
-  let isSelecting = false;
+  textarea.addEventListener('focus', () => inputContainer.classList.add('focused'));
+  textarea.addEventListener('blur', () => inputContainer.classList.remove('focused'));
 
-  selectOptionButton.addEventListener('mousedown', () => {
-    isSelecting = true;
-  });
+  const closeMenu = () => {
+    menuWrapper.classList.remove('active');
+    selectOptionButton.setAttribute('aria-expanded', 'false');
+  };
 
-  selectOptionsList.addEventListener('mousedown', () => {
-    isSelecting = true;
-  });
-
-  todoDateButton.addEventListener('mousedown', () => {
-    isSelecting = true;
-  });
-
-  textarea.addEventListener('focus', () => {
-    inputContainer.classList.add('focused');
-    taskbarContainer.classList.add('focused');
-  });
-
-  textarea.addEventListener('blur', () => {
-    if (textarea.value.trim() === '' && !isSelecting) {
-      inputContainer.classList.remove('focused');
-      taskbarContainer.classList.remove('focused');
-    }
-    isSelecting = false;
-  });
-
-  selectOptionButton.addEventListener('click', () => {
-    selectOptionsList.parentElement.classList.toggle('active');
+  selectOptionButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = menuWrapper.classList.toggle('active');
+    selectOptionButton.setAttribute('aria-expanded', String(isOpen));
   });
 
   selectOption.forEach((option) => {
     option.addEventListener('click', () => {
       const selectedValue = option.getAttribute('data-value');
-      const selectedText = option.innerHTML;
 
-      selectOptionButton.innerHTML = `${selectedText} <i class="fa-solid fa-angle-down"></i>`;
+      selectOptionButton.innerHTML = `<span class="prio-dot ${selectedValue}"></span>`;
       selectOptionButton.setAttribute('data-value', selectedValue);
-
-      selectOptionsList.parentElement.classList.remove('active');
+      selectOptionButton.setAttribute('aria-label', `Priority: ${labels[selectedValue]}`);
+      closeMenu();
+      textarea.focus();
     });
+  });
+
+  // close the priority menu when clicking anywhere else
+  document.addEventListener('click', (e) => {
+    if (!menuWrapper.contains(e.target)) closeMenu();
   });
 }
