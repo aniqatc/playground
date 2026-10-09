@@ -53,6 +53,8 @@ function initializeStockBtn(stockData) {
   if (stockTab.classList.contains('hidden')) {
     currencyButton.classList.remove('active');
     stockButton.classList.add('active');
+    stockButton.setAttribute('aria-pressed', 'true');
+    currencyButton.setAttribute('aria-pressed', 'false');
     currencyTab.classList.add('hidden');
     stockTab.classList.remove('hidden');
     marketContext.updateLastUpdated(stockData.lastUpdated);
@@ -65,6 +67,8 @@ function initializeCurrencyBtn(currencyData) {
   if (currencyTab.classList.contains('hidden')) {
     currencyButton.classList.add('active');
     stockButton.classList.remove('active');
+    currencyButton.setAttribute('aria-pressed', 'true');
+    stockButton.setAttribute('aria-pressed', 'false');
     if (currencyCardGroup.innerHTML === '') {
       generateCurrencyCards(currencyData);
     }

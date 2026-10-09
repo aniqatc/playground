@@ -21,7 +21,10 @@ function initializeFilterTags() {
       state.tab = tabButton.dataset.tab;
       filterContainer
         .querySelectorAll('[data-tab]')
-        .forEach((btn) => btn.classList.toggle('active', btn === tabButton));
+        .forEach((btn) => {
+          btn.classList.toggle('active', btn === tabButton);
+          btn.setAttribute('aria-pressed', String(btn === tabButton));
+        });
     }
 
     if (priorityButton) {

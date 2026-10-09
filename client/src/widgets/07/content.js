@@ -11,14 +11,15 @@ export function getMarkup() {
     docs: docsUrl('07-gh-card.md'),
     body: `
       <section class="content-header">
-        <label class="repo-search">
-          <span class="sr-only-text">GitHub repository or profile URL</span>
+        <!-- a div, not a <label>: a button inside a label makes the whole label act like a click on the input -->
+        <div class="repo-search">
+          <label class="sr-only-text" for="repo-search-input">GitHub repository or profile URL</label>
           <span class="prefix" aria-hidden="true">github.com/</span>
-          <input type="text" class="search-input" placeholder="owner/repo" autocomplete="off" />
+          <input type="text" id="repo-search-input" class="search-input" placeholder="owner/repo" autocomplete="off" />
           <button type="button" class="search-btn disabled" aria-label="Search GitHub repository or profile" disabled>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
           </button>
-        </label>
+        </div>
       </section>
       <section class="content-body"></section>
       <section class="content-footer">

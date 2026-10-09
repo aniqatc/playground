@@ -8,9 +8,11 @@ function initializeTabs() {
 }
 
 function switchTab(event) {
-  tabs.forEach((tab) => tab.classList.remove('active'));
   const clickedTab = event.currentTarget;
-  clickedTab.classList.add('active');
+  tabs.forEach((tab) => {
+    tab.classList.toggle('active', tab === clickedTab);
+    tab.setAttribute('aria-pressed', String(tab === clickedTab));
+  });
 
   const currentContainer = statsContainer.classList.contains('hidden')
     ? matchesContainer

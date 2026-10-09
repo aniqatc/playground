@@ -15,7 +15,10 @@ export default async function initializeSwitchLink() {
       event.preventDefault();
       // the switch has a button per game, so ignore clicks on the game that's already showing
       if (link.dataset.game === content.dataset.game) return;
-      switchGameLinks.forEach((el) => el.classList.toggle('active', el === link));
+      switchGameLinks.forEach((el) => {
+        el.classList.toggle('active', el === link);
+        el.setAttribute('aria-pressed', String(el === link));
+      });
       switchGameMode();
       lotteryContext.updateSearchRange();
     });

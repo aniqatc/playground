@@ -24,14 +24,14 @@ export function getMarkup() {
           <textarea id="todo-task-input" rows="1" placeholder="What do you need to do?" maxlength="75"></textarea>
           <div class="todo-taskbar">
             <div class="todo-taskbar--select">
-              <button type="button" class="filter--selected-option ghost-btn" data-value="untagged" aria-haspopup="true" aria-label="Priority: Untagged" title="Priority">
+              <button type="button" class="filter--selected-option ghost-btn" data-value="untagged" aria-expanded="false" aria-controls="todo-priority-options" aria-label="Priority: Untagged" title="Priority">
                 <span class="prio-dot untagged"></span>
               </button>
-              <div class="filter--options-list" role="menu" aria-label="Priority">
+              <div class="filter--options-list" id="todo-priority-options" role="group" aria-label="Priority" inert>
                 ${priorities
                   .map(
                     (p) => `
-                  <button type="button" role="menuitem" class="filter--option" data-value="${p.value}">
+                  <button type="button" class="filter--option" data-value="${p.value}" aria-pressed="${p.value === 'untagged'}">
                     <span class="prio-dot ${p.value}"></span>${p.label}
                   </button>`
                   )
@@ -49,9 +49,9 @@ export function getMarkup() {
       </section>
       <section class="content-footer" aria-label="Filter tasks">
         <div class="todo-tabs" role="group" aria-label="Show">
-          <button type="button" class="active" data-tab="all">All <span class="count" data-count="all"></span></button>
-          <button type="button" data-tab="completed">Completed <span class="count" data-count="completed"></span></button>
-          <button type="button" data-tab="archived">Archived <span class="count" data-count="archived"></span></button>
+          <button type="button" class="active" data-tab="all" aria-pressed="true">All <span class="count" data-count="all"></span></button>
+          <button type="button" data-tab="completed" aria-pressed="false">Completed <span class="count" data-count="completed"></span></button>
+          <button type="button" data-tab="archived" aria-pressed="false">Archived <span class="count" data-count="archived"></span></button>
         </div>
         <div class="todo-priority-filter" role="group" aria-label="Filter by priority">
           <button type="button" data-priority="high" aria-pressed="false" aria-label="Show high priority" title="High"><span class="prio-dot high"></span></button>

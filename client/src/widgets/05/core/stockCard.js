@@ -26,7 +26,7 @@ function stockCardHTML(stock, expanded) {
       </span>
       <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
     </button>
-    <div class="card-body">
+    <div class="card-body" ${expanded ? '' : 'inert'}>
       <div>
         <dl class="card-body--details">
           <div><dt>Volume</dt><dd>${parseInt(stock.volume).toLocaleString()}</dd></div>
@@ -36,7 +36,7 @@ function stockCardHTML(stock, expanded) {
           <div><dt>Exchange</dt><dd>${stock.exchange}</dd></div>
           <div><dt>Year low</dt><dd>${money(stock.yearLow)}</dd></div>
           <div><dt>Year high</dt><dd>${money(stock.yearHigh)}</dd></div>
-          <div><dt>Website</dt><dd><a href="${stock.website}" target="_blank">Visit ↗</a></dd></div>
+          <div><dt>Website</dt><dd><a href="${stock.website}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${stock.name} website (opens in a new tab)">Visit ↗</a></dd></div>
         </dl>
         <div class="card-body--chart">
           <span class="chart-label">7-day trend</span>
@@ -97,6 +97,8 @@ function toggleCardState(cardEl) {
   const expandBtn = cardEl.querySelector('.expand-btn');
   const isCollapsed = cardEl.classList.toggle('initial');
   expandBtn.setAttribute('aria-expanded', String(!isCollapsed));
+  // inert while collapsed so the hidden "Visit" link isn't a Tab stop
+  cardEl.querySelector('.card-body').inert = isCollapsed;
 }
 
 export { toggleCardState, generateStockCard, showChart, hideChart };

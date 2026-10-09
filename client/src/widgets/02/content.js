@@ -16,11 +16,11 @@ export function getMarkup() {
       <nav class="calc-menu" aria-label="Calculator controls">
         <div class="options" role="group" aria-label="Calculator mode">
           <span class="pill" aria-hidden="true"></span>
-          <button type="button" class="active">Scientific</button>
-          <button type="button">Graphing</button>
+          <button type="button" class="active" aria-pressed="true">Scientific</button>
+          <button type="button" aria-pressed="false">Graphing</button>
         </div>
         <div class="toolbar">
-          <button type="button" class="ghost-btn history-btn" title="Toggle history" aria-label="Toggle calculation history">
+          <button type="button" class="ghost-btn history-btn" title="Toggle history" aria-label="Show calculation history" aria-pressed="false">
             ${icon('<path d="m21 16-4 4-4-4M17 20V4M3 8l4-4 4 4M7 4v16"></path>')}
           </button>
           <button type="button" class="ghost-btn snap-btn" title="Snap display" aria-label="Save the calculator display as a .png">

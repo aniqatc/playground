@@ -15,14 +15,15 @@ export function getMarkup() {
       <section class="content-head">
         <div class="market-tabs" role="group" aria-label="Market">
           <span class="pill" aria-hidden="true"></span>
-          <button type="button" class="stock-btn active" aria-label="View stocks tab">Stocks</button>
-          <button type="button" class="currency-btn" aria-label="View currencies tab">Currencies</button>
+          <button type="button" class="stock-btn active" aria-pressed="true">Stocks</button>
+          <button type="button" class="currency-btn" aria-pressed="false">Currencies</button>
         </div>
-        <label class="input-group stock-search">
-          <span class="sr-only-text">Search for a company stock symbol</span>
-          <input type="text" placeholder="Search company symbol…" autocomplete="off" class="stock-input" />
+        <!-- a div, not a <label>: a button inside a label makes the whole label act like a click on the input -->
+        <div class="input-group stock-search">
+          <label class="sr-only-text" for="stock-search-input">Search for a company stock symbol</label>
+          <input type="text" id="stock-search-input" placeholder="Search company symbol…" autocomplete="off" class="stock-input" />
           <button type="button" class="stock-search-btn ghost-btn" aria-label="Search for stock">${searchIcon}</button>
-        </label>
+        </div>
         <label class="input-group currency-search">
           <span class="sr-only-text">Search for a currency symbol</span>
           ${searchIcon}

@@ -2,6 +2,7 @@ import repoContext from './context';
 import { fetchRepositoryDetails } from './data';
 import displayCard from './displayCard';
 import { disableButtons, enableButtons } from './buttonState';
+import { announce } from '../../_card';
 
 export default function initializeSearch() {
   const { searchInput, searchButton } = repoContext;
@@ -15,14 +16,22 @@ export default function initializeSearch() {
 
   searchInput.addEventListener('input', () => {
     searchInput.classList.remove('error');
+    searchInput.removeAttribute('aria-invalid');
   });
+
+  const showError = (message) => {
+    searchInput.classList.add('error');
+    searchInput.setAttribute('aria-invalid', 'true');
+    searchInput.placeholder = message;
+    announce('07', message);
+  };
 
   searchButton.addEventListener('click', async () => {
     try {
       const userInput = searchInput.value.trim().toLowerCase();
       searchInput.value = '';
       if (!userInput) {
-        searchInput.classList.add('error');
+        showError('Enter a GitHub repository or profile URL');
         return;
       }
 
@@ -31,7 +40,7 @@ export default function initializeSearch() {
       const string = withHost.startsWith('http') ? withHost : `https://${withHost}`;
       const url = new URL(string);
       if (!url.hostname.includes('github.com')) {
-        searchInput.classList.add('error');
+        showError('Enter valid GitHub repository or profile URL');
         return;
       }
 
@@ -40,8 +49,7 @@ export default function initializeSearch() {
       const data = await fetchRepositoryDetails(owner, repo);
       displayCard(data);
     } catch (error) {
-      searchInput.classList.add('error');
-      searchInput.placeholder = 'Enter valid GitHub repository or profile URL';
+      showError('Enter valid GitHub repository or profile URL');
       enableButtons();
     }
   });

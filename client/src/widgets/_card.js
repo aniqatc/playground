@@ -47,6 +47,7 @@ export function card({ id, title, tags = '', color, span = 4, note = '', docs = 
       <div class="widget-body content" ${bodyAttrs}>
         ${body}
       </div>
+      <p class="sr-only-text" role="status" data-status="${id}"></p>
       <footer class="widget-foot">
         <button class="like-btn" data-like-btn="${id}" aria-label="Like ${title}">
           <span class="heart">${heartIcon}</span>
@@ -59,6 +60,21 @@ export function card({ id, title, tags = '', color, span = 4, note = '', docs = 
       </footer>
     </section>
   `;
+}
+
+/**
+ * Reads a short message out to screen readers (errors, "added", etc.).
+ * Visual cues like a red border or a new placeholder aren't announced on their own.
+ * @param {string} id  two-digit widget number, e.g. '08'
+ */
+export function announce(id, message) {
+  const region = document.querySelector(`[data-status="${id}"]`);
+  if (!region) return;
+  // clear first so the same message twice in a row is still read out
+  region.textContent = '';
+  setTimeout(() => {
+    region.textContent = message;
+  }, 50);
 }
 
 export const docsUrl = (file) => `https://github.com/aniqatc/playground/blob/main/docs/widgets/${file}`;
