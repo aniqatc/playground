@@ -16,9 +16,8 @@ function loadCurrencyCards(rates) {
 
   isLoading = true; // loading this batch just started
   const batch = rates.slice(currentIndex, currentIndex + batchSize); // only load currency within the batch size
-  batch.forEach((currency) => {
-    currencyCardGroup.innerHTML += currencyCardHTML(currency);
-  });
+  // build the batch as one string: `innerHTML +=` in a loop re-parses the whole list every time
+  currencyCardGroup.insertAdjacentHTML('beforeend', batch.map(currencyCardHTML).join(''));
 
   currentIndex += batchSize; // update index for the currencyData
   isLoading = false; // loading this batch is complete
@@ -29,9 +28,7 @@ function loadCurrencyCards(rates) {
       return;
     }
     const nextBatch = rates.slice(currentIndex, currentIndex + batchSize);
-    nextBatch.forEach((currency) => {
-      currencyCardGroup.innerHTML += currencyCardHTML(currency);
-    });
+    currencyCardGroup.insertAdjacentHTML('beforeend', nextBatch.map(currencyCardHTML).join(''));
     currentIndex += batchSize;
   }, 100);
 }
@@ -43,17 +40,15 @@ function currencyCardHTML(currency) {
                         <span class="logo-wrapper">
                             <span class="symbol">${currency.symbol || '<i class="fa-solid fa-sack-dollar"></i>'}</span>
                         </span>
-                <h1 class="company-symbol">${currency.currencyCode}</h1>
+                <span class="company-symbol">${currency.currencyCode}</span>
                 <span class="company-name">${currency.fullName}</span>
             </div>
             <div class="card-heading--price">
                 <div>
-                            <span class="company-price--value">
-                                <i class="fa-solid fa-arrow-trend-${currency.rate >= 1 ? 'up' : 'down'}"></i>
-                            </span>
-                    <h1 class="company-price--indicator">${currency.rate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h1>
+                            <span class="company-price--value trend"><i class="fa-solid fa-arrow-trend-${currency.rate >= 1 ? 'up' : 'down'}" aria-hidden="true"></i></span>
+                    <span class="company-price--indicator">${currency.rate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
-                <span class="company-price--label">versus <strong>USD</strong></span>
+                <span class="company-price--label">vs USD</span>
             </div>
         </div>
     </div>`;
@@ -66,13 +61,13 @@ function generateBaselineCurrencyCard() {
                                 <span class="logo-wrapper">                            
                                     <span class="symbol"><i class="fa-solid fa-dollar-sign"></i></span>
                                 </span>
-                                <h1 class="company-symbol">USD</h1>
+                                <span class="company-symbol">USD</span>
                                 <span class="company-name">United States Dollar</span>
                             </div>
                         <div class="card-heading--price">
                             <div>
-                                <span class="company-price--value"><i class="fa-solid fa-money-check-dollar"></i></span>
-                                <h1 class="company-price--indicator">$1.00</h1>
+                                
+                                <span class="company-price--indicator">$1.00</span>
                             </div>
                             <span class="company-price--label">Baseline Currency</span>
                         </div>

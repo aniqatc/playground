@@ -37,16 +37,16 @@ export function card({ id, title, tags = '', color, span = 4, note = '', docs = 
   const style = `--w: ${color.w}; --wf: ${color.wf}; --won: ${color.won}`;
 
   return `
-    <section id="widget-${id}" class="card ${SPANS[span]}" style="${style}" aria-labelledby="widget-${id}-title">
-      <header class="card-head">
-        <span class="card-num">${id}</span>
+    <section id="widget-${id}" class="widget-card ${SPANS[span]}" style="${style}" aria-labelledby="widget-${id}-title">
+      <header class="widget-head">
+        <span class="widget-num">${id}</span>
         <h2 id="widget-${id}-title">${title}</h2>
-        ${tags ? `<span class="card-tags">${tags}</span>` : ''}
+        ${tags ? `<span class="widget-tags">${tags}</span>` : ''}
       </header>
-      <div class="card-body content">
+      <div class="widget-body content">
         ${body}
       </div>
-      <footer class="card-foot">
+      <footer class="widget-foot">
         <button class="like-btn" data-like-btn="${id}" aria-label="Like ${title}">
           <span class="heart">${heartIcon}</span>
           <span class="font-mono" data-like-count="${id}">–</span>

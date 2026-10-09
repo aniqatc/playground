@@ -1,6 +1,5 @@
 import marketContext from './context.js';
-import { toggleCardState } from './stockCard';
-import { createChart } from './charts';
+import { toggleCardState, showChart, hideChart } from './stockCard';
 import { generateCurrencyCards } from './currencyCard';
 
 const {
@@ -30,39 +29,23 @@ function initializeExpandBtn(stockData) {
   if (!stockTab.classList.contains('hidden')) {
     const cards = stockCardGroup.querySelectorAll('.card');
     const allExpanded = Array.from(cards).every((card) => !card.classList.contains('initial'));
+    expandAllButton.setAttribute('aria-pressed', String(!allExpanded));
 
-    if (allExpanded) {
-      cards.forEach((card) => {
-        const graphDiv = card.querySelector('.card-body--graph');
-        if (graphDiv.chart) {
-          graphDiv.chart.destroy();
-          graphDiv.chart = null;
-        }
-        graphDiv.innerHTML = '';
+    cards.forEach(async (card) => {
+      const isCollapsed = card.classList.contains('initial');
+      if (allExpanded) {
+        hideChart(card);
         toggleCardState(card);
-      });
-    } else {
-      cards.forEach(async (card) => {
-        if (card.classList.contains('initial')) {
-          toggleCardState(card);
-
-          const graphDiv = card.querySelector('.card-body--graph');
-          graphDiv.innerHTML = '<canvas></canvas>';
-          const symbol = card.querySelector('.company-symbol').textContent;
-          const stock = stockData.stocks.find((stock) => stock.symbol === symbol);
-
-          if (stock) {
-            graphDiv.chart = await createChart(card, stock);
-          }
-        }
-      });
-    }
-  } else if (!currencyTab.classList.contains('hidden')) {
-    currencyCardGroup.querySelectorAll('.card').forEach((card) => {
-      if (!card.classList.contains('baseline')) {
-        card.classList.toggle('initial');
+      } else if (isCollapsed) {
+        toggleCardState(card);
+        const stock = stockData.stocks.find((s) => s.symbol === card.dataset.symbol);
+        if (stock) await showChart(card, stock);
       }
     });
+  } else if (!currencyTab.classList.contains('hidden')) {
+    // currencies: switch between the full list and a compact list (names hidden)
+    const compact = currencyCardGroup.classList.toggle('compact');
+    expandAllButton.setAttribute('aria-pressed', String(!compact));
   }
 }
 

@@ -7,7 +7,7 @@
    Every color in the page shell and the widgets reads from these variables.
    Light values live on :root, dark values on html.dark (the theme button
    toggles that class). Widget cards re-tint --line/--soft/--soft2/--accent
-   with their own color, see `.card` below.
+   with their own color, see `.widget-card` below.
    ========================================================================== */
 :root {
   --bg: #eeeee9;
@@ -258,7 +258,7 @@ body img {
   .colorbar span:nth-child(7) { animation-delay: 0.3s; }
 
   /* ---------- widget card shell (see widgets/_card.js) ---------- */
-  .card {
+  .widget-card {
     /* --w: tint, --wf: strong fill, --won: text on fill — set inline per widget */
     --line: color-mix(in srgb, var(--w) 24%, var(--line0));
     --soft: color-mix(in srgb, var(--w) 10%, var(--card));
@@ -281,11 +281,11 @@ body img {
       border-color 0.35s;
     animation: rise 0.7s var(--ease) both;
   }
-  .card:hover {
+  .widget-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 22px 40px -26px color-mix(in srgb, var(--w) 80%, transparent);
   }
-  .card-head {
+  .widget-head {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -293,13 +293,13 @@ body img {
     border-bottom: 1px solid var(--line);
     background: color-mix(in srgb, var(--w) 15%, var(--card));
   }
-  .card-head h2 {
+  .widget-head h2 {
     margin: 0;
     font-size: 15px;
     font-weight: 600;
     letter-spacing: -0.01em;
   }
-  .card-num {
+  .widget-num {
     display: inline-block;
     padding: 2px 7px;
     border-radius: 6px;
@@ -310,10 +310,10 @@ body img {
     font-weight: 600;
     transition: transform 0.3s var(--ease);
   }
-  .card:hover .card-num {
+  .widget-card:hover .widget-num {
     transform: rotate(-8deg) scale(1.08);
   }
-  .card-tags {
+  .widget-tags {
     margin-left: auto;
     min-width: 0;
     overflow: hidden;
@@ -323,7 +323,7 @@ body img {
     font-family: 'Geist Mono', monospace;
     font-size: 11.5px;
   }
-  .card-body {
+  .widget-body {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -331,7 +331,7 @@ body img {
     min-height: 0;
     padding: 18px;
   }
-  .card-foot {
+  .widget-foot {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -341,7 +341,7 @@ body img {
     color: var(--muted);
     font-size: 13px;
   }
-  .card-foot .docs-link {
+  .widget-foot .docs-link {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -351,7 +351,7 @@ body img {
     color: var(--muted);
     text-decoration: none;
   }
-  .card-foot .docs-link:hover {
+  .widget-foot .docs-link:hover {
     color: var(--accent);
   }
   .arrow {
@@ -497,17 +497,17 @@ body img {
 .delay-4 { animation-delay: 0.26s; }
 .delay-5 { animation-delay: 0.33s; }
 
-#js-main-container > .card:nth-child(2) { animation-delay: 0.06s; }
-#js-main-container > .card:nth-child(3) { animation-delay: 0.12s; }
-#js-main-container > .card:nth-child(4) { animation-delay: 0.18s; }
-#js-main-container > .card:nth-child(5) { animation-delay: 0.24s; }
-#js-main-container > .card:nth-child(6) { animation-delay: 0.3s; }
-#js-main-container > .card:nth-child(7) { animation-delay: 0.36s; }
-#js-main-container > .card:nth-child(8) { animation-delay: 0.42s; }
+#js-main-container > .widget-card:nth-child(2) { animation-delay: 0.06s; }
+#js-main-container > .widget-card:nth-child(3) { animation-delay: 0.12s; }
+#js-main-container > .widget-card:nth-child(4) { animation-delay: 0.18s; }
+#js-main-container > .widget-card:nth-child(5) { animation-delay: 0.24s; }
+#js-main-container > .widget-card:nth-child(6) { animation-delay: 0.3s; }
+#js-main-container > .widget-card:nth-child(7) { animation-delay: 0.36s; }
+#js-main-container > .widget-card:nth-child(8) { animation-delay: 0.42s; }
 
 /* cards fade up as they scroll into view, where the browser supports it */
 @supports (animation-timeline: view()) {
-  #js-main-container > .card {
+  #js-main-container > .widget-card {
     animation: rise linear both;
     animation-timeline: view();
     animation-range: entry 0% entry 30%;
@@ -557,16 +557,16 @@ body img {
   .wrap {
     padding: 0 16px;
   }
-  .card-tags {
+  .widget-tags {
     display: none;
   }
-  .card-body {
+  .widget-body {
     padding: 14px;
   }
-  .card-head {
+  .widget-head {
     padding: 12px 14px;
   }
-  .card-foot {
+  .widget-foot {
     padding-left: 14px;
   }
 }
@@ -583,7 +583,7 @@ body img {
     animation-delay: 0s !important;
     transition-duration: 0.01ms !important;
   }
-  #js-main-container > .card {
+  #js-main-container > .widget-card {
     animation-timeline: auto !important;
   }
 }
