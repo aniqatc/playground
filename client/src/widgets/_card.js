@@ -31,9 +31,10 @@ const heartIcon = `<svg width="16" height="16" viewBox="0 0 24 24" stroke="curre
  * @param {string} [options.note]    short text shown in the footer (hidden on phones)
  * @param {string} [options.docs]    URL for the "Build notes" link
  * @param {string} [options.footerExtra] extra footer markup (e.g. a reset button)
+ * @param {string} [options.bodyAttrs] extra attributes for the body element (e.g. data-game)
  * @param {string} options.body      the widget's inner markup
  */
-export function card({ id, title, tags = '', color, span = 4, note = '', docs = '', footerExtra = '', body }) {
+export function card({ id, title, tags = '', color, span = 4, note = '', docs = '', footerExtra = '', bodyAttrs = '', body }) {
   const style = `--w: ${color.w}; --wf: ${color.wf}; --won: ${color.won}`;
 
   return `
@@ -43,7 +44,7 @@ export function card({ id, title, tags = '', color, span = 4, note = '', docs = 
         <h2 id="widget-${id}-title">${title}</h2>
         ${tags ? `<span class="widget-tags">${tags}</span>` : ''}
       </header>
-      <div class="widget-body content">
+      <div class="widget-body content" ${bodyAttrs}>
         ${body}
       </div>
       <footer class="widget-foot">

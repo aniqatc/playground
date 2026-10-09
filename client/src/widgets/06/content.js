@@ -1,174 +1,96 @@
 import './style.scss';
-import MegamillionsLogo from './assets/megamillions-blue.png';
-import PowerballLogo from './assets/powerball-blue.png';
+import { card, docsUrl } from '../_card';
+
+const numberInput = (n) => `
+  <div class="number-input-wrapper">
+    <input type="number" inputmode="numeric" placeholder=" " min="1" max="70" maxlength="2" class="lottery-number-input" aria-label="Number ${n}">
+    <span class="input-hint megaball-content">Max. 70</span>
+    <span class="input-hint powerball-content hidden">Max. 69</span>
+  </div>`;
 
 export function getMarkup() {
-  return `<!-- Widget 06: Historical Lottery -->
-<section
-  id="widget-06"
-  class="relative rounded bg-stone-50 px-3 py-2 shadow-md dark:border-zinc-600 dark:bg-zinc-800"
->
-  <div
-    class="absolute -bottom-6 -ml-3 flex w-full justify-between gap-1 text-sm text-gray-500 dark:text-slate-400"
-  >
-    <p class="mr-auto">lottery history</p>
-    <button class="like-btn group cursor-pointer" aria-label="like button for historical lottery widget">
-      <i class="fa-solid fa-heart group-active:scale-125"></i>
-    </button>
-    <span class="like-value font-archivo" id="likes-06"></span>
-  </div>
-
-  <div class="content" data-game="megamillion">
-    <!-- Header -->
-    <header class="content-header">
-  <!-- Game-specific logos -->
-  <div class="logo-wrapper" role="tooltip">
-    <img 
-      src="${MegamillionsLogo}" 
-      alt="Mega Millions logo" 
-      class="lottery-logo megaball-content"
-      aria-label="Mega Millions Lottery"
-    >
-    <div class="tooltip megaball-content">
-      <p>Drawings: <strong>Tues & Fri @ 11pm ET</strong></p>
-      <p>5 numbers <strong>(1-70)</strong> & 1 Mega Ball <strong>(1-25)</strong></p>
-      <a href="https://www.megamillions.com" target="_blank" rel="noopener noreferrer" class="tooltip-link">
-        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        Visit Official Site
-      </a>
-    </div>
-  </div>
-  <div class="logo-wrapper" role="tooltip">
-    <img 
-      src="${PowerballLogo}" 
-      alt="Powerball logo" 
-      class="lottery-logo powerball-content hidden"
-      aria-label="Powerball Lottery"
-    >
-    <div class="tooltip powerball-content hidden">
-      <p>Drawings: <strong>Mon, Wed & Sat @ 10:59pm ET</strong></p>
-      <p>5 numbers <strong>(1-69)</strong> + 1 Powerball <strong>(1-26)</strong></p>
-      <a href="https://www.powerball.com" target="_blank" rel="noopener noreferrer" class="tooltip-link">
-        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        Visit Official Site
-      </a>
-    </div>
-  </div>
-</header>
-
-    <!-- Main content -->
-    <main class="content-body">
-      <h2 class="lottery-title">Check if your numbers ever hit the <strong>jackpot</strong></h2>
-
-      <div class="lottery-search-range">
-        <i class="fa-regular fa-calendar"></i>
-        <span>Search Range: <span class="search-date-start"></span> - <span class="search-date-end"></span></span>
-      </div>
-      
-      <!-- Lottery number inputs -->
-      <div class="lottery-input-container" aria-label="Enter lottery numbers">
-        <div class="lottery-inputs" role="group" aria-label="Main lottery numbers">
-          <div class="lottery-main-numbers" role="group" aria-label="Pick 5 numbers">
-            <div class="number-input-wrapper">
-              <input type="number" placeholder=" " min="1" max="70" maxlength="2" class="lottery-number-input" aria-label="Number 1">
-              <span class="input-hint megaball-content">Max. 70</span>
-              <span class="input-hint powerball-content hidden">Max. 69</span>
-            </div>
-            <div class="number-input-wrapper">
-              <input type="number" placeholder=" " min="1" max="70" maxlength="2" class="lottery-number-input" aria-label="Number 2">
-              <span class="input-hint megaball-content">Max. 70</span>
-              <span class="input-hint powerball-content hidden">Max. 69</span>
-            </div>
-            <div class="number-input-wrapper">
-              <input type="number" placeholder=" " min="1" max="70" maxlength="2" class="lottery-number-input" aria-label="Number 3">
-              <span class="input-hint megaball-content">Max. 70</span>
-              <span class="input-hint powerball-content hidden">Max. 69</span>
-            </div>
-            <div class="number-input-wrapper">
-              <input type="number" placeholder=" " min="1" max="70" maxlength="2" class="lottery-number-input" aria-label="Number 4">
-              <span class="input-hint megaball-content">Max. 70</span>
-              <span class="input-hint powerball-content hidden">Max. 69</span>
-            </div>
-            <div class="number-input-wrapper">
-              <input type="number" placeholder=" " min="1" max="70" maxlength="2" class="lottery-number-input" aria-label="Number 5">
-              <span class="input-hint megaball-content">Max. 70</span>
-              <span class="input-hint powerball-content hidden">Max. 69</span>
-            </div>
+  return card({
+    id: '06',
+    title: 'Lottery history',
+    tags: '20+ years of drawings',
+    color: { w: '#12A4C7', wf: '#16B0D6', won: '#04222B' },
+    span: 5,
+    docs: docsUrl('06-lottery.md'),
+    bodyAttrs: 'data-game="megamillion"',
+    footerExtra: `
+      <button type="button" class="lottery-reset-btn like-btn" aria-label="Reset lottery results">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8M3 3v5h5"></path></svg>
+        Reset
+      </button>`,
+    body: `
+      <header class="content-header">
+        <div class="game-switch" role="group" aria-label="Game">
+          <span class="pill" aria-hidden="true"></span>
+          <button type="button" class="lottery-switch-link active" data-game="megamillion">Mega Millions</button>
+          <button type="button" class="lottery-switch-link" data-game="powerball">Powerball</button>
+        </div>
+        <div class="game-info">
+          <button type="button" class="ghost-btn game-info-btn" aria-expanded="false" aria-label="Game rules and drawing times" title="Game info">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+          </button>
+          <div class="tooltip megaball-content" role="dialog" aria-label="Mega Millions info">
+            <p><span class="label">Drawings</span><strong>Tues & Fri @ 11pm ET</strong></p>
+            <p><span class="label">Numbers</span>5 numbers <strong>(1–70)</strong> & 1 Mega Ball <strong>(1–25)</strong></p>
+            <a href="https://www.megamillions.com" target="_blank" rel="noopener noreferrer" class="tooltip-link">Visit official site ↗</a>
           </div>
-          
-          <div class="lottery-special-wrapper" role="group">
+          <div class="tooltip powerball-content hidden" role="dialog" aria-label="Powerball info">
+            <p><span class="label">Drawings</span><strong>Mon, Wed & Sat @ 10:59pm ET</strong></p>
+            <p><span class="label">Numbers</span>5 numbers <strong>(1–69)</strong> + 1 Powerball <strong>(1–26)</strong></p>
+            <a href="https://www.powerball.com" target="_blank" rel="noopener noreferrer" class="tooltip-link">Visit official site ↗</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="content-body">
+        <div>
+          <h3 class="lottery-title">Did your numbers ever hit the <strong>jackpot?</strong></h3>
+          <p class="lottery-search-range">Search range <span class="search-date-start"></span> – <span class="search-date-end"></span></p>
+        </div>
+
+        <div class="lottery-input-container" role="group" aria-label="Enter lottery numbers">
+          <div class="lottery-main-numbers" role="group" aria-label="Pick 5 numbers">
+            ${[1, 2, 3, 4, 5].map(numberInput).join('')}
+          </div>
+          <div class="lottery-special-wrapper">
             <div class="number-input-wrapper">
-              <input 
-                type="number" 
-                placeholder=" "
-                min="1" 
-                max="25" 
-                maxlength="2"
-                class="lottery-number-input special-ball" 
-                id="special-ball-number"
-                aria-label="Special Ball"
-              >
-              <span class="input-hint megaball-content">Max. 25</span>
-              <span class="input-hint powerball-content hidden">Max. 26</span>
-              <label class="special-ball-label megaball-content" for="special-ball-number">Megaball</label>
+              <input type="number" inputmode="numeric" placeholder=" " min="1" max="25" maxlength="2"
+                class="lottery-number-input special-ball" id="special-ball-number" aria-label="Special ball">
+              <label class="special-ball-label megaball-content" for="special-ball-number">Mega Ball</label>
               <label class="special-ball-label powerball-content hidden" for="special-ball-number">Powerball</label>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Action buttons -->
-      <div class="lottery-actions">
-        <button class="lottery-btn btn-random" aria-label="Generate random numbers">
-          <i class="fa-solid fa-shuffle"></i>
-          <span>Quick Pick</span>
-        </button>
-        <button class="lottery-btn btn-search" aria-label="Search for matches">
-          <span>Find Matches</span>
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-      </div>
-
-      <!-- Results section -->
-      <div class="lottery-results" role="tabpanel">
-        <div class="lottery-tabs" role="tablist">
-          <button class="lottery-tab active" role="tab">
-            <i class="fa-solid fa-trophy"></i>
-            <span>Matches</span>
+        <div class="lottery-actions">
+          <button type="button" class="lottery-btn btn-random">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.7-1.1 2-1.7 3.3-1.7H22M18 2l4 4-4 4M2 6h1.9c1.5 0 2.9.9 3.6 2.2M22 18h-5.9c-1.3 0-2.6-.7-3.3-1.8l-.5-.8M18 14l4 4-4 4"></path></svg>
+            Quick pick
           </button>
-          <button class="lottery-tab" role="tab">
-            <i class="fa-solid fa-chart-simple"></i>
-            <span>Stats</span>
-          </button>
+          <button type="button" class="lottery-btn btn-search">Find matches</button>
         </div>
 
-       <div class="scrollable-container">
-        <div class="lottery-results-content">
-          <div class="lottery-locked-message">
-            <i class="fa-solid fa-lock"></i> Search to <strong>unlock</strong> historical lottery results.
+        <div class="lottery-results">
+          <div class="lottery-tabs" role="tablist" aria-label="Results">
+            <button type="button" class="lottery-tab active" role="tab">Matches</button>
+            <button type="button" class="lottery-tab" role="tab">Stats</button>
           </div>
-          <div class="lottery-matches hidden"></div>
-         <div class="lottery-stats hidden"></div>
-        </div></div>
+          <div class="scrollable-container scroll-area">
+            <div class="lottery-results-content" aria-live="polite">
+              <div class="lottery-locked-message">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <span>Search to <strong>unlock</strong> historical results.</span>
+              </div>
+              <div class="lottery-matches hidden"></div>
+              <div class="lottery-stats hidden"></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="content-footer">
-      <p class="megaball-content">
-        Switch to 
-        <a href="#" class="lottery-switch-link" aria-label="Switch to Powerball Lottery">
-          <span>Powerball</span></a> Results
-      </p>
-      <p class="powerball-content hidden">
-        Switch to 
-        <a href="#" class="lottery-switch-link" aria-label="Switch to Mega Millions Lottery">
-          <span>Mega Millions</span></a> Results
-      </p>
-      <button class="lottery-reset-btn" aria-label="Reset lottery results">
-        <i class="fa-solid fa-rotate"></i>
-       </button>
-    </footer>
-  </div>
-</section>`;
+    `,
+  });
 }
