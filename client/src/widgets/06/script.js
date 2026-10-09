@@ -19,17 +19,29 @@ export async function initializeScript() {
 function initializeGameInfo() {
   const wrapper = document.querySelector('#widget-06 .game-info');
   const button = wrapper.querySelector('.game-info-btn');
+  const panels = wrapper.querySelectorAll('.tooltip');
+
+  // the popover is `inert` while closed so its link isn't a hidden Tab stop
+  const setOpen = (isOpen) => {
+    wrapper.classList.toggle('open', isOpen);
+    button.setAttribute('aria-expanded', String(isOpen));
+    panels.forEach((panel) => (panel.inert = !isOpen));
+  };
 
   button.addEventListener('click', (event) => {
     event.stopPropagation();
-    const isOpen = wrapper.classList.toggle('open');
-    button.setAttribute('aria-expanded', String(isOpen));
+    setOpen(!wrapper.classList.contains('open'));
   });
 
   document.addEventListener('click', (event) => {
-    if (!wrapper.contains(event.target)) {
-      wrapper.classList.remove('open');
-      button.setAttribute('aria-expanded', 'false');
+    if (!wrapper.contains(event.target)) setOpen(false);
+  });
+
+  // Escape closes it and returns focus to the ⓘ button
+  wrapper.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && wrapper.classList.contains('open')) {
+      setOpen(false);
+      button.focus();
     }
   });
 }

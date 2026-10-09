@@ -1,6 +1,7 @@
 import todoContext from './context';
 import todoActions from './toDoActions';
 import { getSelectedDate } from './calendar';
+import { announce } from '../../_card';
 
 export function initializeInput() {
   const { textarea, selectOptionButton, toDoAddButton, inputContainer, todoDateButton } =
@@ -19,10 +20,13 @@ export function initializeInput() {
 
     if (task && priority) {
       addToDB(task, getSelectedDate().toISOString(), priority);
+      announce('04', `Added: ${task}`);
       textarea.value = '';
       todoDateButton.blur();
     } else {
       inputContainer.classList.add('error');
+      textarea.setAttribute('aria-invalid', 'true');
+      announce('04', 'Type a task first.');
     }
   };
 
@@ -38,5 +42,6 @@ export function initializeInput() {
 
   textarea.addEventListener('input', () => {
     inputContainer.classList.remove('error');
+    textarea.removeAttribute('aria-invalid');
   });
 }

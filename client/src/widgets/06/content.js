@@ -26,22 +26,22 @@ export function getMarkup() {
       <header class="content-header">
         <div class="game-switch" role="group" aria-label="Game">
           <span class="pill" aria-hidden="true"></span>
-          <button type="button" class="lottery-switch-link active" data-game="megamillion">Mega Millions</button>
-          <button type="button" class="lottery-switch-link" data-game="powerball">Powerball</button>
+          <button type="button" class="lottery-switch-link active" data-game="megamillion" aria-pressed="true">Mega Millions</button>
+          <button type="button" class="lottery-switch-link" data-game="powerball" aria-pressed="false">Powerball</button>
         </div>
         <div class="game-info">
-          <button type="button" class="ghost-btn game-info-btn" aria-expanded="false" aria-label="Game rules and drawing times" title="Game info">
+          <button type="button" class="ghost-btn game-info-btn" aria-expanded="false" aria-controls="lottery-info-mega lottery-info-power" aria-label="Game rules and drawing times" title="Game info">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
           </button>
-          <div class="tooltip megaball-content" role="dialog" aria-label="Mega Millions info">
+          <div class="tooltip megaball-content" id="lottery-info-mega" role="region" aria-label="Mega Millions info" inert>
             <p><span class="label">Drawings</span><strong>Tues & Fri @ 11pm ET</strong></p>
             <p><span class="label">Numbers</span>5 numbers <strong>(1–70)</strong> & 1 Mega Ball <strong>(1–25)</strong></p>
-            <a href="https://www.megamillions.com" target="_blank" rel="noopener noreferrer" class="tooltip-link">Visit official site ↗</a>
+            <a href="https://www.megamillions.com" target="_blank" rel="noopener noreferrer" class="tooltip-link" aria-label="Visit official Mega Millions site (opens in a new tab)">Visit official site ↗</a>
           </div>
-          <div class="tooltip powerball-content hidden" role="dialog" aria-label="Powerball info">
+          <div class="tooltip powerball-content hidden" id="lottery-info-power" role="region" aria-label="Powerball info" inert>
             <p><span class="label">Drawings</span><strong>Mon, Wed & Sat @ 10:59pm ET</strong></p>
             <p><span class="label">Numbers</span>5 numbers <strong>(1–69)</strong> + 1 Powerball <strong>(1–26)</strong></p>
-            <a href="https://www.powerball.com" target="_blank" rel="noopener noreferrer" class="tooltip-link">Visit official site ↗</a>
+            <a href="https://www.powerball.com" target="_blank" rel="noopener noreferrer" class="tooltip-link" aria-label="Visit official Powerball site (opens in a new tab)">Visit official site ↗</a>
           </div>
         </div>
       </header>
@@ -75,9 +75,9 @@ export function getMarkup() {
         </div>
 
         <div class="lottery-results">
-          <div class="lottery-tabs" role="tablist" aria-label="Results">
-            <button type="button" class="lottery-tab active" role="tab">Matches</button>
-            <button type="button" class="lottery-tab" role="tab">Stats</button>
+          <div class="lottery-tabs" role="group" aria-label="Results">
+            <button type="button" class="lottery-tab active" aria-pressed="true">Matches</button>
+            <button type="button" class="lottery-tab" aria-pressed="false">Stats</button>
           </div>
           <div class="scrollable-container scroll-area">
             <div class="lottery-results-content" aria-live="polite">

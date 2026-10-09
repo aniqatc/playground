@@ -33,6 +33,7 @@ class ToDoActions {
 
   setExpanded(item, expanded) {
     item.classList.toggle('active', expanded);
+    item.querySelector('.todo-item--actions')?.toggleAttribute('inert', !expanded);
     const expandBtn = item.querySelector('.todo-item-expand-btn');
     if (expandBtn) expandBtn.setAttribute('aria-expanded', String(expanded));
   }
@@ -73,21 +74,23 @@ class ToDoActions {
   rowMarkup({ _id, task, dueDate, priority, isCompleted, isArchived }) {
     return `
       <div class="todo-item--details">
-        <input type="checkbox" class="todo-checkbox" id="todo-${_id}"
+        <!-- the checkbox is named by the task text (a label's aria-label isn't passed on to its input) -->
+        <input type="checkbox" class="todo-checkbox" id="todo-${_id}" aria-labelledby="todo-task-${_id}"
           ${isCompleted || isArchived ? 'checked' : ''}
           ${isArchived ? 'disabled' : ''} />
-        <label class="todo-check" for="todo-${_id}" aria-label="Mark task as complete">${icons.check}</label>
+        <label class="todo-check" for="todo-${_id}" aria-hidden="true">${icons.check}</label>
         <div class="todo-item--details-desc">
-          <span class="todo-item--task">${escapeHTML(task)}</span>
+          <span class="todo-item--task" id="todo-task-${_id}">${escapeHTML(task)}</span>
           <span class="todo-item--date"><span class="prio-dot ${priority}"></span>${formatDate(dueDate)}</span>
         </div>
         ${
           isArchived
-            ? `<button type="button" class="delete-btn todo-icon-btn" aria-label="Delete archived task" title="Delete">${icons.trash}</button>`
-            : `<button type="button" class="todo-item-expand-btn todo-icon-btn" aria-expanded="false" aria-label="Show task actions">${icons.more}</button>`
+            ? `<button type="button" class="delete-btn todo-icon-btn" aria-label="Delete archived task: ${escapeHTML(task)}" title="Delete">${icons.trash}</button>`
+            : `<button type="button" class="todo-item-expand-btn todo-icon-btn" aria-expanded="false" aria-controls="todo-actions-${_id}" aria-label="Actions for ${escapeHTML(task)}">${icons.more}</button>`
         }
       </div>
-      <div class="todo-item--actions">
+      <!-- inert while collapsed so keyboard users don't tab into buttons they can't see -->
+      <div class="todo-item--actions" id="todo-actions-${_id}" inert>
         <div>
           <div class="todo-actions-row">
             <button type="button" class="archive-btn">${icons.archive}Archive</button>
@@ -203,6 +206,7 @@ class ToDoActions {
     const saveTask = async (updatedTask) => {
       const task = updatedTask.trim() || taskEl.dataset.original;
       taskEl.textContent = task;
+      toDoItem.querySelector('.todo-item-expand-btn')?.setAttribute('aria-label', `Actions for ${task}`);
       editButton.innerHTML = `${icons.edit}<span>Edit</span>`;
       document.removeEventListener('click', toDoItem.clickOutsideEdit);
       await this.updateTaskInDB(todoId, task);

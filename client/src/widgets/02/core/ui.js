@@ -23,8 +23,10 @@ class CalculatorUI extends CalculatorContext {
   setupCalcMode() {
     this.modeOptions.forEach((option) => {
       option.addEventListener('click', () => {
-        this.modeOptions.forEach((el) => el.classList.remove('active'));
-        option.classList.add('active');
+        this.modeOptions.forEach((el) => {
+          el.classList.toggle('active', el === option);
+          el.setAttribute('aria-pressed', String(el === option));
+        });
 
         if (option.textContent.trim() === 'Graphing') {
           Storage.getFromLocalStorage();
@@ -38,6 +40,8 @@ class CalculatorUI extends CalculatorContext {
 
   setupHistoryButton() {
     this.toggleHistoryButton.addEventListener('click', () => {
+      const pressed = this.toggleHistoryButton.getAttribute('aria-pressed') === 'true';
+      this.toggleHistoryButton.setAttribute('aria-pressed', String(!pressed));
       this.pastEntries.forEach((entry) => {
         entry.classList.toggle('active');
       });
