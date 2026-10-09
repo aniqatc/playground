@@ -1,6 +1,13 @@
 // Widget 08: Community bookmarks (v2)
 
 #widget-08 {
+  // purple text that stays readable on both themes (pure --accent is too dark on the dark card)
+  --bm-ink: color-mix(in srgb, var(--accent) 78%, var(--ink));
+
+  .dark & {
+    --bm-ink: color-mix(in srgb, var(--accent) 60%, #fff);
+  }
+
   // ---------- share field ----------
   .add-field {
     display: flex;
@@ -103,10 +110,12 @@
     animation: rise 0.45s var(--ease) both;
     transition:
       border-color 0.2s,
+      background-color 0.2s,
       transform 0.25s var(--ease);
 
     &:hover {
-      border-color: var(--wf);
+      border-color: color-mix(in srgb, var(--wf) 55%, var(--line));
+      background: color-mix(in srgb, var(--soft) 55%, var(--card));
       transform: translateY(-2px);
 
       .bookmark-content--img {
@@ -121,8 +130,8 @@
     flex-direction: column;
     align-items: center;
     padding: 4px 0;
-    border: 1px solid var(--line);
     border-radius: 10px;
+    background: var(--soft);
 
     button {
       display: grid;
@@ -139,12 +148,12 @@
         background-color 0.2s;
 
       &:hover {
-        background: var(--soft);
-        color: var(--ink);
+        background: var(--soft2);
+        color: var(--bm-ink);
       }
 
       &[aria-pressed='true'] {
-        color: var(--wf);
+        color: var(--bm-ink);
       }
 
       &.pop svg {
@@ -154,6 +163,7 @@
   }
 
   .bookmark-score {
+    color: var(--bm-ink);
     font-family: 'Geist Mono', monospace;
     font-size: 14px;
     font-weight: 600;
@@ -182,7 +192,7 @@
   }
 
   .bookmark-author {
-    color: var(--muted);
+    color: var(--bm-ink);
     font-family: 'Geist Mono', monospace;
     font-size: 12px;
   }
@@ -205,9 +215,9 @@
 
   .topic {
     padding: 3px 9px;
-    border: 1px solid var(--line);
     border-radius: 999px;
-    color: var(--muted);
+    background: var(--soft);
+    color: var(--bm-ink);
     font-family: 'Geist Mono', monospace;
     font-size: 12px;
   }
@@ -222,6 +232,8 @@
     overflow: hidden;
     border-radius: 12px;
     background: var(--soft2);
+    outline: 1px solid color-mix(in srgb, var(--wf) 28%, transparent);
+    outline-offset: -1px;
     transition: transform 0.3s var(--ease);
 
     img {

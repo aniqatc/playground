@@ -461,6 +461,9 @@ body img {
 
   .scroll-area {
     overflow-y: auto;
+    /* overflow-y: auto quietly makes overflow-x auto too, so any 1px overflow
+       showed a sideways scrollbar; lists here should only ever scroll vertically */
+    overflow-x: hidden;
     padding-right: 10px;
     margin-right: -4px;
     scrollbar-gutter: stable;
