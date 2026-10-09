@@ -3,26 +3,38 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      // v2 design tokens — the actual values live as CSS variables in main.css
+      // so they can switch between light and dark (and be tinted per widget card)
+      colors: {
+        bg: 'var(--bg)',
+        card: 'var(--card)',
+        ink: 'var(--ink)',
+        muted: 'var(--muted)',
+        line: 'var(--line)',
+        soft: 'var(--soft)',
+        soft2: 'var(--soft2)',
+        accent: 'var(--accent)',
+        'on-accent': 'var(--on-accent)',
+      },
       fontFamily: {
-        archivo: ['Archivo', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        dmsans: ['DM Sans', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['"Bricolage Grotesque"', 'Geist', 'system-ui', 'sans-serif'],
+        sans: ['Geist', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        mono: ['"Geist Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+      },
+      maxWidth: {
+        page: '1320px',
       },
       animation: {
-        'text-fill': 'textFill 2s ease both 250ms',
-        'border-rotate': 'borderRotate 4s linear both infinite',
-        pop: 'pop 1s ease-in both',
+        'text-fill': 'textFill 1.3s cubic-bezier(.2,.8,.2,1) both 150ms',
+        rise: 'rise .7s cubic-bezier(.2,.8,.2,1) both',
       },
       keyframes: {
         textFill: {
           '100%': { backgroundPositionX: '-100%' },
         },
-        borderRotate: {
-          '0%': { transform: 'rotate(0deg) scale(10)' },
-          '100%': { transform: 'rotate(-360deg) scale(10)' },
-        },
-        pop: {
-          '0%, 60%, 100%': { transform: 'scale(1)', opacity: '1' },
-          '25%': { transform: 'scale(1.75)', opacity: '0.25' },
+        rise: {
+          from: { opacity: '0', translate: '0 16px' },
+          to: { opacity: '1', translate: '0 0' },
         },
       },
     },

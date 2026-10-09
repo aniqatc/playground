@@ -1,32 +1,40 @@
 import { canUserLike, updateLikeButtonState, updateUserLikes } from './likeHelpers';
 
+/*
+ * Like buttons and counts are found by data attributes instead of by their
+ * position in the DOM (the old version used previousElementSibling/
+ * nextElementSibling, which broke as soon as the markup changed).
+ *
+ *   <button data-like-btn="02">            the like button inside a card
+ *   <span data-like-count="02">            any element that shows the count
+ *                                          (the card footer and the hero index)
+ */
 function initializeLikeHandler() {
-  const likeValues = document.querySelectorAll('.like-value');
-  const likeButtons = document.querySelectorAll('.like-btn');
-
-  likeValues.forEach((el) => {
-    const btnIcon = el.previousElementSibling.lastElementChild;
-    const widgetId = el.id.split('-')[1];
-    handleLikes(el, widgetId, 'GET');
-    updateLikeButtonState(btnIcon, widgetId);
-  });
+  const likeButtons = document.querySelectorAll('[data-like-btn]');
 
   likeButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const btnIcon = btn.firstElementChild;
-      const likesEl = btn.nextElementSibling;
-      const widgetId = likesEl.id.split('-')[1];
+    const widgetId = btn.dataset.likeBtn;
+    handleLikes(widgetId, 'GET');
+    updateLikeButtonState(btn, widgetId);
 
-      if (canUserLike(widgetId)) {
-        handleLikes(likesEl, widgetId, 'POST');
+    btn.addEventListener('click', () => {
+      const allowed = canUserLike(widgetId);
+      if (allowed) {
+        handleLikes(widgetId, 'POST');
         updateUserLikes(widgetId);
       }
-      updateLikeButtonState(btnIcon, widgetId);
+      updateLikeButtonState(btn, widgetId, { animate: true, blocked: !allowed });
     });
   });
 }
 
-async function handleLikes(el, id, type) {
+function renderCount(widgetId, count) {
+  document.querySelectorAll(`[data-like-count="${widgetId}"]`).forEach((el) => {
+    el.textContent = count;
+  });
+}
+
+async function handleLikes(id, type) {
   const cacheKey = `likes-${id}`;
   const cachedLikes = sessionStorage.getItem(cacheKey);
   let data;
@@ -43,7 +51,7 @@ async function handleLikes(el, id, type) {
       sessionStorage.setItem(cacheKey, JSON.stringify(data));
     }
 
-    el.textContent = data.likeCount;
+    renderCount(id, data.likeCount);
   } catch (error) {
     console.error(`Error with handling likes: ${error}`);
   }

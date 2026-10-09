@@ -2,13 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap"
       rel="stylesheet"
     />
+    <!-- Font Awesome is still used for the icons inside individual widgets -->
     <script src="https://kit.fontawesome.com/50cde61edc.js" crossorigin="anonymous"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FSF86RLYT3"></script>
@@ -25,48 +26,92 @@
     <title>Playground</title>
   </head>
   <body>
-    <header class="flex items-center px-5 py-2" aria-label="Site Header">
-      <div
-        id="text-highlight"
-        class="flex animate-text-fill items-center gap-2 bg-gradient-to-r from-gray-400 from-50% to-slate-950 to-50% bg-[length:200%_100%] bg-clip-text text-transparent dark:from-gray-700 dark:to-gray-300"
-      >
-        <h1 class="text-4xl font-medium leading-relaxed">playground</h1>
-        <p>
-          by
-          <a
-            href="https://aniqa.dev"
-            target="_blank"
-            class="duration-250 border-b border-slate-400 transition-all hover:border-b-2 hover:border-slate-950 hover:text-slate-950 dark:border-gray-700 hover:dark:border-gray-300 hover:dark:text-gray-300"
-            >aniqa</a
-          >
-        </p>
-      </div>
-      <button class="ml-auto" id="theme-btn" aria-label="Toggle Theme Mode">
-        <i class="fa-solid fa-lightbulb block text-xl hover:animate-pulse dark:hidden"></i>
-        <i class="fa-regular fa-lightbulb hidden text-xl hover:animate-pulse dark:block"></i>
+    <!-- Top bar -->
+    <header class="wrap flex items-center gap-6 py-[22px]" aria-label="Site header">
+      <a href="#top" id="text-highlight" class="logo animate-text-fill">playground<span class="dot">.</span></a>
+      <nav aria-label="Primary" class="ml-3 hidden gap-1.5 text-sm sm:flex">
+        <a href="#widgets" class="rounded-lg px-2.5 py-2.5 text-ink no-underline hover:text-accent">Widgets</a>
+        <a href="#widget-01" class="rounded-lg px-2.5 py-2.5 text-ink no-underline hover:text-accent">About</a>
+        <a href="https://github.com/aniqatc/playground" target="_blank" class="rounded-lg px-2.5 py-2.5 text-ink no-underline hover:text-accent">Source</a>
+        <a href="https://aniqa.dev" target="_blank" class="rounded-lg px-2.5 py-2.5 text-ink no-underline hover:text-accent">aniqa.dev</a>
+      </nav>
+      <button class="theme-btn ml-auto" id="theme-btn" aria-label="Toggle light and dark mode" title="Toggle theme">
+        <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+        <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
       </button>
     </header>
-    <main class="grid-col-custom mb-10 grid justify-items-center gap-x-3 gap-y-9 px-5 py-2" id="js-main-container">
-      <div
-        class="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2 text-center"
-        role="status"
-      >
-        <div class="flex flex-row gap-2">
-          <div class="h-4 w-4 animate-bounce rounded-full bg-stone-600 dark:bg-stone-200"></div>
-          <div
-            class="h-4 w-4 animate-bounce rounded-full bg-stone-700 [animation-delay:-.3s] dark:bg-stone-300"
-          ></div>
-          <div
-            class="h-4 w-4 animate-bounce rounded-full bg-stone-800 [animation-delay:-.5s] dark:bg-stone-400"
-          ></div>
+
+    <!-- Hero -->
+    <section id="top" class="wrap pb-12 pt-6 sm:pb-16 sm:pt-14" aria-label="Introduction">
+      <div class="grid items-end gap-9 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-14">
+        <div class="flex flex-col gap-5 sm:gap-7">
+          <p class="rise delay-1 m-0 font-mono text-[13px] text-muted">
+            A full-stack sandbox by <a href="https://aniqa.dev" target="_blank" class="text-ink">Aniqa</a>
+          </p>
+          <h1 class="rise delay-2 m-0 font-display text-[42px] font-bold leading-[1.02] tracking-[-0.045em] sm:text-[clamp(44px,6.4vw,88px)] sm:leading-[0.98]">
+            Seven small apps.<br />One big<span class="text-accent"> playground.</span>
+          </h1>
+          <p class="rise delay-3 m-0 max-w-[560px] text-base leading-relaxed text-muted sm:text-lg">
+            Each widget is its own little product with a real backend behind it — built to learn one new thing at a time.
+            They're all live, so go ahead and poke at them.
+          </p>
+          <div class="rise delay-4 flex flex-wrap gap-3">
+            <a href="#widgets" class="btn btn-primary">
+              Start playing
+              <svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"></path></svg>
+            </a>
+            <a href="https://github.com/aniqatc/playground" target="_blank" class="btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path></svg>
+              View the source
+            </a>
+          </div>
         </div>
-        <p class="text-sm text-gray-700 dark:text-stone-300">Loading widgets...</p>
-        <p class="-mt-1 flex items-center gap-1.5 text-xs text-gray-500 dark:text-stone-400">
-          <i class="fa-regular fa-rectangle-list animate-spin"></i>
-          <span class="loading-message"></span>
-        </p>
+
+        <div class="rise delay-5 rounded-[18px] border border-line bg-card px-5 pb-3 pt-4">
+          <div class="colorbar flex h-1.5 gap-1" aria-hidden="true">
+            <span class="bg-[#E5484D]"></span><span class="bg-[#E8762B]"></span><span class="bg-[#E0AA00]"></span><span class="bg-[#2F9E5B]"></span><span class="bg-[#12A4C7]"></span><span class="bg-[#4F5BFF]"></span><span class="bg-[#7B4CC9]"></span>
+          </div>
+          <div class="flex items-baseline justify-between px-1 pb-2.5 pt-3.5">
+            <h2 class="m-0 font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted">Index</h2>
+            <span class="font-mono text-xs text-muted">likes</span>
+          </div>
+          <nav aria-label="Widgets index" class="flex flex-col">
+            <a class="index-row" href="#widget-02"><span class="font-mono text-xs text-muted">02</span><span class="swatch bg-[#E5484D]"></span><span>Calculator</span><span class="font-mono text-xs text-muted" data-like-count="02"></span></a>
+            <a class="index-row" href="#widget-03"><span class="font-mono text-xs text-muted">03</span><span class="swatch bg-[#E8762B]"></span><span>Digital footprint</span><span class="font-mono text-xs text-muted" data-like-count="03"></span></a>
+            <a class="index-row" href="#widget-04"><span class="font-mono text-xs text-muted">04</span><span class="swatch bg-[#E0AA00]"></span><span>Task manager</span><span class="font-mono text-xs text-muted" data-like-count="04"></span></a>
+            <a class="index-row" href="#widget-05"><span class="font-mono text-xs text-muted">05</span><span class="swatch bg-[#2F9E5B]"></span><span>Financial markets</span><span class="font-mono text-xs text-muted" data-like-count="05"></span></a>
+            <a class="index-row" href="#widget-06"><span class="font-mono text-xs text-muted">06</span><span class="swatch bg-[#12A4C7]"></span><span>Lottery history</span><span class="font-mono text-xs text-muted" data-like-count="06"></span></a>
+            <a class="index-row" href="#widget-07"><span class="font-mono text-xs text-muted">07</span><span class="swatch bg-[#4F5BFF]"></span><span>Repo card</span><span class="font-mono text-xs text-muted" data-like-count="07"></span></a>
+            <a class="index-row" href="#widget-08"><span class="font-mono text-xs text-muted">08</span><span class="swatch bg-[#7B4CC9]"></span><span>Community bookmarks</span><span class="font-mono text-xs text-muted" data-like-count="08"></span></a>
+          </nav>
+        </div>
       </div>
-      <!-- Widget content added dynamically with JS -->
-    </main>
+    </section>
+
+    <!-- Widgets -->
+    <div id="widgets" class="wrap scroll-mt-6 pb-24">
+      <div class="mb-5 flex items-baseline gap-4">
+        <h2 class="m-0 font-display text-[28px] font-bold tracking-[-0.03em]">The widgets</h2>
+        <span class="hidden font-mono text-xs text-muted sm:inline">GPL-3.0 · new widget ideas welcome</span>
+      </div>
+      <main class="relative grid min-h-[320px] grid-cols-12 gap-4 sm:gap-5" id="js-main-container">
+        <div class="col-span-12 flex flex-col items-center gap-2 py-24 text-center" role="status">
+          <div class="flex flex-row gap-2">
+            <div class="h-3 w-3 animate-bounce rounded-full bg-[#E5484D]"></div>
+            <div class="h-3 w-3 animate-bounce rounded-full bg-[#E0AA00] [animation-delay:-.3s]"></div>
+            <div class="h-3 w-3 animate-bounce rounded-full bg-[#4F5BFF] [animation-delay:-.5s]"></div>
+          </div>
+          <p class="text-sm text-ink">Loading widgets…</p>
+          <p class="-mt-1 font-mono text-xs text-muted"><span class="loading-message"></span></p>
+        </div>
+        <!-- Widget content added dynamically with JS -->
+      </main>
+    </div>
+
+    <footer class="wrap flex flex-wrap items-center justify-between gap-4 border-t border-line pb-10 pt-7 text-sm text-muted">
+      <span>Built by <a href="https://aniqa.dev" target="_blank" class="text-ink">Aniqa</a></span>
+      <span class="font-mono text-xs">Frontend on Vercel · API on Heroku · Data in MongoDB Atlas</span>
+      <a href="https://github.com/aniqatc/playground" target="_blank" class="text-ink">GitHub ↗</a>
+    </footer>
   </body>
 </html>
