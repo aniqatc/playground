@@ -351,9 +351,10 @@
   }
 
   // ---------- currencies ----------
+  // as many columns as fit (2 on a wide card, 1 on a narrow one) instead of a fixed 2
   .currency-container .card-group {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
     align-content: start;
     gap: 4px 16px;
   }
@@ -380,11 +381,20 @@
     }
   }
 
+  .currency-container .card {
+    min-width: 0;
+  }
+
   .currency-container .card-head {
     display: flex;
     align-items: center;
     gap: 10px;
+    min-width: 0;
     padding: 8px 4px;
+  }
+
+  .currency-container .card-heading--price {
+    flex: none;
   }
 
   .currency-container .card-heading--name {
@@ -492,8 +502,5 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .currency-container .card-group {
-      grid-template-columns: 1fr;
-    }
   }
 }
