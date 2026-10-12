@@ -27,7 +27,7 @@ A community-driven bookmark platform that processes submitted URLs to extract me
 
 ## Storage
 
-- MongoDB: Stores bookmark metadata, user votes, interaction data and individual user credentials
+- MongoDB: Stores bookmark metadata, user votes and interaction data, linked to each visitor's ID (no passwords or personal details)
 - Local Storage: Maintains individual user identification (that connects to an ID in the MongoDB databases)
 
 ## Features

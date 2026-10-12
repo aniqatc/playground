@@ -49,7 +49,7 @@ A fully interactive To-Do List widget allowing users to create, edit, archive, a
 **Frontend Components**
 
 - [`style.scss`](../../client/src/widgets/04/style.scss): Handles the styling for the widget, including the subtle animation that occurs when page is loaded
-- [`content.js`](../../client/src/widgets/04/content.js): Contains the HTML structure for the widget (including placeholder values if there is an error getting the user's digital footprint)
+- [`content.js`](../../client/src/widgets/04/content.js): Contains the HTML structure for the widget
 - [`script.js`](../../client/src/widgets/04/script.js): Initializes and loads the widget components, handles default task display and manages user data retrieval
 - [`core/*`](../../client/src/widgets/04/core): 
   - **Calendar** ([`calendar.js`](../../client/src/widgets/04/core/calendar.js) & [../calendar.scss](../../client/src/widgets/04/core/calendar.scss)): Handles the initialization and styling of the Flatpickr calendar instance

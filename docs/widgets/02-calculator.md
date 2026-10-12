@@ -71,7 +71,7 @@ Initializes and manages DOM elements, such as buttons, display, and history
 
 Processes arithmetic expressions and handles graphing tasks
 
-- `evaluateExpression(expression)` => Evaluates arithmetic expressions with custom handling for exponents (`evaluateExponent(expression)`)
+- `evaluateExpression(expression)` => Evaluates arithmetic expressions with `expr-eval`
 - `graphFunction(expression)` => Renders the graph of a given expression using the Function-Plot library
 
 **`CalculatorUI`**
