@@ -1,16 +1,8 @@
-#### Digital Footprint
+## 03 · Digital footprint
 
-[![HTML Badge](https://img.shields.io/badge/HTML-D27334)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-D27334)](https://github.com/aniqatc/playground)
-[![JavaScript Badge](https://img.shields.io/badge/JavaScript-D27334)](https://github.com/aniqatc/playground)
-[![Node Badge](https://img.shields.io/badge/Node-D27334)](https://github.com/aniqatc/playground)
-[![Express Badge](https://img.shields.io/badge/Express-D27334)](https://github.com/aniqatc/playground)
-[![MapBox Badge](https://img.shields.io/badge/MapBox-D27334)](https://www.mapbox.com/)
-[![IP API Badge](https://img.shields.io/badge/IP%20API-D27334)](https://ip-api.com/)
+A mini dashboard that presents a user's digital footprint, including geographic location (obtained using their IP), browser details, operating system, and ISP information with their approximate location shown on a map.
 
-**Relevant file(s)**: [/client/src/widgets/03/\*](../../client/src/widgets/03/), [/server/widgets/03/ipHandler.js](../../server/widgets/03/ipHandler.js)
-
-A mini dashboard that presents a user's digital footprint, including geographic location (obtained using their IP), browser details, operating system, and ISP information, all underscored by a dynamic map visualization for a quick and elegant overview of their online presence.
+**Relevant files**: [/client/src/widgets/03/\*](../../client/src/widgets/03/), [/server/widgets/03/ipHandler.js](../../server/widgets/03/ipHandler.js)
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-03.png" alt="Widget 03 in light and dark mode (v2 design)"></a>
 
@@ -29,10 +21,11 @@ A mini dashboard that presents a user's digital footprint, including geographic 
 - Node.js & Express.js: Backend technologies used for handling API requests
 - Mapbox API: For generating dynamic maps based on geolocation data
 - IP-API: For retrieving geolocation data from user IP addresses
+- express-useragent: For reading the browser, OS and platform from the request
 
 ## Storage
 
-- For privacy reasons, I am not utilizing or saving the user's data in any way
+- For privacy reasons, I am not using or saving the user's data in any way
 
 ## Features
 

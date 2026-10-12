@@ -1,14 +1,8 @@
-#### GitHub Repository Search
+## 07 · Repo card
 
-[![HTML Badge](https://img.shields.io/badge/HTML-6366F1)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-6366F1)](https://github.com/aniqatc/playground)
-[![HTML-to-Image Badge](https://img.shields.io/badge/html2image-6366F1)](https://github.com/aniqatc/playground)
-[![JavaScript Badge](https://img.shields.io/badge/JavaScript-6366F1)](https://github.com/aniqatc/playground)
-[![Node Badge](https://img.shields.io/badge/Node-6366F1)](https://github.com/aniqatc/playground)
-[![Express Badge](https://img.shields.io/badge/Express-6366F1)](https://github.com/aniqatc/playground)
-[![Octokit Badge](https://img.shields.io/badge/Octokit-6366F1)](https://github.com/aniqatc/playground)
+A GitHub repository visualization tool that generates cards displaying repository statistics and language breakdowns. Features include random repository discovery, search functionality, and PNG export capabilities.
 
-**Relevant file(s)**: [/client/src/widgets/07/\*](../../client/src/widgets/07/), [/server/widgets/07/\*](../../server/widgets/07/)
+**Relevant files**: [/client/src/widgets/07/\*](../../client/src/widgets/07/), [/server/widgets/07/\*](../../server/widgets/07/)
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-07.png" alt="Widget 07 in light and dark mode (v2 design)"></a>
 
@@ -20,8 +14,6 @@
 <img src="/docs/screenshots/widget-07_v1.png" alt="Widget 07, v1 design">
 
 </details>
-
-A GitHub repository visualization tool that generates cards displaying repository statistics and language breakdowns. Features include random repository discovery, search functionality, and PNG export capabilities.
 
 ## Tech
 
@@ -39,7 +31,7 @@ No persistent storage required; all data is fetched directly from GitHub's API i
 - **Repository Search**: Search any GitHub repository using repository URL (e.g. `github.com/aniqatc/weather`), just `owner/repo` (the field shows the `github.com/` prefix), or a user profile URL
 - **User Repository Discovery**: View any user's most recent repository by entering their user profile URL (e.g. `github.com/aniqatc`)
 - **Random Repository Discover**: View a random repository from GitHub's most popular repositories (5000+ stars)
-- **Comprehensive Stats Display**:
+- **Stats Display**:
   - Basic repository information (name, owner, license, description, user avatar and relevant links)
   - Repository metrics (stars, forks) and last updated date
   - (v1 also listed topics, watchers and repository size; v2 keeps the card compact)
