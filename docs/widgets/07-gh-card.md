@@ -30,7 +30,7 @@ No persistent storage required; all data is fetched directly from GitHub's API i
 
 - **Repository Search**: Search any GitHub repository using repository URL (e.g. `github.com/aniqatc/weather`), just `owner/repo` (the field shows the `github.com/` prefix), or a user profile URL
 - **User Repository Discovery**: View any user's most recent repository by entering their user profile URL (e.g. `github.com/aniqatc`)
-- **Random Repository Discover**: View a random repository from GitHub's most popular repositories (5000+ stars)
+- **Random Repository Discovery**: View a random repository from GitHub's most popular repositories (5000+ stars)
 - **Stats Display**:
   - Basic repository information (name, owner, license, description, user avatar and relevant links)
   - Repository metrics (stars, forks) and last updated date
@@ -62,13 +62,13 @@ No persistent storage required; all data is fetched directly from GitHub's API i
 ### Frontend Components
 
 **Core Directory**:
-- [`core/context.js`]: Manages DOM elements and shared widget state
-- [`core/data.js`]: Handles API requests to the backend
-- [`core/buttonState.js`]: Controls button states during loading and animations, provides helpers to enable and disable buttons
-- [`core/displayCard.js`]: Manages repository card rendering and animations, handles calculation of the language stats (by converting the byte value to an estimated line count)
-- [`core/handleSearch.js`]: Validates input and manages search process
-- [`core/saveImage.js`]: Handles PNG export functionality
-- [`core/showRandom.js`]: Initializes the random button to fetch a random repository and uses the function in `displayCard.js` to display the repository card
+- [`core/context.js`](../../client/src/widgets/07/core/context.js): Manages DOM elements and shared widget state
+- [`core/data.js`](../../client/src/widgets/07/core/data.js): Handles API requests to the backend
+- [`core/buttonState.js`](../../client/src/widgets/07/core/buttonState.js): Controls button states during loading and animations, provides helpers to enable and disable buttons
+- [`core/displayCard.js`](../../client/src/widgets/07/core/displayCard.js): Manages repository card rendering and animations, handles calculation of the language stats (by converting the byte value to an estimated line count)
+- [`core/handleSearch.js`](../../client/src/widgets/07/core/handleSearch.js): Validates input and manages search process
+- [`core/saveImage.js`](../../client/src/widgets/07/core/saveImage.js): Handles PNG export functionality
+- [`core/showRandom.js`](../../client/src/widgets/07/core/showRandom.js): Initializes the random button to fetch a random repository and uses the function in `displayCard.js` to display the repository card
 
 **Root Files**:
 - [`content.js`](/client/src/widgets/07/content.js): Defines base HTML structure and placeholder templates for the widget
@@ -87,7 +87,7 @@ No persistent storage required; all data is fetched directly from GitHub's API i
 
 **Base Directory**:
 - [`ghRouter.js`](/server/widgets/07/ghRouter.js): Express router handling GitHub API requests with endpoints
-  - `:/owner/:repo` => repository details, including user information and language stats
+  - `/:owner/:repo` => repository details, including user information and language stats
   - `/random` => random repository discovery
 
 ## How to Use

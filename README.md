@@ -78,7 +78,7 @@ Search for a GitHub repository or pull a random one, see its stats and language 
 
 ### 08 · Community bookmarks
 
-Submit a link and it gets a title, description and topic tags automatically. Vote on links and filter the board by tag.
+Submit a link and it gets a title, description and topic tags automatically. Vote links up or down and browse them as cards with their topic tags.
 
 **Stack:** Express, MongoDB, Cheerio, Google Safe Browsing, natural and leo-profanity · [Build notes](docs/widgets/08-bookmarks.md)
 

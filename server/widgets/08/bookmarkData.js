@@ -12,7 +12,7 @@ class BookmarkData {
   }
 
   async getBookmarks(userId) {
-    const bookmarks = await Bookmark.find().sort({ createdAt: 1 }); // newest first
+    const bookmarks = await Bookmark.find().sort({ createdAt: 1 }); // oldest first, in the order they were submitted
     const user = await User.findOne({ userId: userId });
 
     return bookmarks.map((bookmark) => {

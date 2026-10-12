@@ -27,7 +27,7 @@ A community-driven bookmark platform that processes submitted URLs to extract me
 
 ## Storage
 
-- MongoDB: Stores bookmark metadata, user votes, interaction data and individual user credentials
+- MongoDB: Stores bookmark metadata, user votes and interaction data, linked to each visitor's ID (no passwords or personal details)
 - Local Storage: Maintains individual user identification (that connects to an ID in the MongoDB databases)
 
 ## Features
@@ -40,7 +40,7 @@ A community-driven bookmark platform that processes submitted URLs to extract me
 - **Community Features**:
   - Like and dislike voting system (1 vote per user); the card shows the score (likes minus dislikes), with the separate counts in the tooltip and for screen readers
   - Vote tracking and limiting restrictions are applied to each user
-  - Sorted by newest submissions
+  - Sorted oldest first, in the order they were submitted
 - **Content Display**:
   - Minimalistic and uniform card layout for each bookmark
   - Topic tags with extracted keywords from the metadata or generated using the NLP library to identify key phrases

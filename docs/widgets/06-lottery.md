@@ -20,7 +20,7 @@ A lottery analysis tool that helps players analyze historical Powerball and Mega
 - JavaScript/HTML/SCSS: Core technologies for building and styling the widget
 - Node.js & Express.js: Backend technologies for managing lottery data, search operations and data transformations
 - MongoDB: Document-based database for storing historical lottery drawing data for both games
-- RapidAPI Powerball and Mega Millions APIs: Source of the drawing data
+- AvoraTech Powerball and Mega Millions APIs (through RapidAPI): Source of the drawing data
 - Node-cron: Scheduler for monthly updates to minimize API requests
 
 ## Storage

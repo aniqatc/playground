@@ -55,7 +55,7 @@ Geolocation accuracy depends on the IP address, which may not always be precise
 
 **Backend** [/server/widgets/03/ipHandler.js](../../server/widgets/03/ipHandler.js)
 
-1. User data collection: collects the user's IP address, browser details, OS and platform using the `useragent` middleware. The IP is then used to request geolocation data from the IP-API library
+1. User data collection: collects the user's IP address, browser details, OS and platform using the `useragent` middleware. The IP is then used to request geolocation data from IP-API
 2. API endpoint: provides an endpoint that the frontend can call to retrieve user data
 3. Geolocation fetching: uses the IP address from the `useragent` middleware to get precise location data (country, region, city, latitude, longitude, and timezone) from the IP-API
 4. IP processing: ensures that IP is formatted in the correct way
@@ -65,5 +65,5 @@ Geolocation accuracy depends on the IP address, which may not always be precise
 - [`server.js`](/server.js): Initializes the Express.js server & handles API routing
 - [`ipHandler.js`](../../server/widgets/03/ipHandler.js):
   - `collectUserData()` => middleware that extracts the user's IP address, browser and platform details and then calls IP-API for geolocation data (`getLocationData(ip)`) which is bundled as object inside `userInfo`
-  - `getLocationData(ip)` => helper function that fetches the geolocation data based on the user's IP addressi using IP-API
+  - `getLocationData(ip)` => helper function that fetches the geolocation data based on the user's IP address using IP-API
   - `getUserInfo()` => API endpoint that returns the user's collected data to the frontend (found inside the `userInfo` object)

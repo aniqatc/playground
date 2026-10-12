@@ -22,7 +22,7 @@ A financial markets widget that delivers real-time currency exchange rates again
 - Node.js & Express.js: Backend technologies for managing market data and API integrations
 - MongoDB: Document-based database for caching API responses and historical data
 - APIs: Real-time market data integration (AlphaVantage, TwelveData, and OpenExchange)
-- Node-cron: Scheduler for automated daily market updates to minimize API requests
+- Node-cron: Scheduler for market updates each weekday morning to minimize API requests
 - Chart.js: Interactive price history visualization with tooltips and responsive design
 
 ## Storage
@@ -91,13 +91,13 @@ Each component is designed with specific responsibilities to maintain code organ
 
 ### Backend: [/server/widgets/05/\*](../../server/widgets/05/)
 
-1. **Node-cron Job**: Scheduled tasks for data updates once a day
+1. **Node-cron Job**: Scheduled data updates each weekday morning
 2. **Market and Currency Routers**: API endpoints for data retrieval
 3. **MongoDB/Mongoose Models**: Schemas for market data
 
 ### Backend Components
 
-- [/server.js](/server.js): Initializes the Express.js server, handles API routing, and uses node-cron to refresh market data daily
+- [/server.js](/server.js): Initializes the Express.js server, handles API routing, and uses node-cron to refresh market data each weekday
 
 **Currency Directory**:
 - [`currencyData.js`](/server/widgets/05/currency/currencyData.js): Service layer for processing currency data from OpenExchange API
