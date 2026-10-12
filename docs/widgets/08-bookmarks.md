@@ -1,20 +1,8 @@
-#### Widget 08: Community Bookmarks 
+## 08 · Community bookmarks
 
-[![HTML Badge](https://img.shields.io/badge/HTML-602CA2)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-602CA2)](https://github.com/aniqatc/playground)
-[![JavaScript Badge](https://img.shields.io/badge/JavaScript-602CA2)](https://github.com/aniqatc/playground)
-[![Node Badge](https://img.shields.io/badge/Node-602CA2)](https://github.com/aniqatc/playground)
-[![Express Badge](https://img.shields.io/badge/Express-602CA2)](https://github.com/aniqatc/playground)
-[![MongoDB Badge](https://img.shields.io/badge/MongoDB-602CA2)](https://github.com/aniqatc/playground)
-[![Cheerio Badge](https://img.shields.io/badge/Cheerio-602CA2)](https://github.com/aniqatc/playground)
-[![Google Safe Browsing Badge](https://img.shields.io/badge/Google%20Safe%20Browsing-602CA2)](https://github.com/aniqatc/playground)
-[![Natural Badge](https://img.shields.io/badge/Natural-602CA2)](https://github.com/aniqatc/playground)
-[![Leo-Profanity Badge](https://img.shields.io/badge/Leo%20Profanity-602CA2)](https://github.com/aniqatc/playground)
-[![Google Favicon Badge](https://img.shields.io/badge/MongoDB-602CA2)](https://github.com/aniqatc/playground)
+A community-driven bookmark platform that processes submitted URLs to extract metadata, validate content safety, and generate topic tags. Features include community voting, automated metadata extraction, and content filtering to keep the collection clean and safe.
 
-**Relevant file(s)**: [/client/src/widgets/08/\*](../../client/src/widgets/08/), [/server/widgets/08/\*](../../server/widgets/08/)
-
-A community-driven bookmark platform that processes submitted URLs to extract metadata, validate content safety, and generate topic tags. Features include community voting, automated metadata extraction, and content filtering to maintain a curated collection of high-quality web resources.
+**Relevant files**: [/client/src/widgets/08/\*](../../client/src/widgets/08/), [/server/widgets/08/\*](../../server/widgets/08/)
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-08.png" alt="Widget 08 in light and dark mode (v2 design)"></a>
 
@@ -113,10 +101,10 @@ A community-driven bookmark platform that processes submitted URLs to extract me
 **Base Directory**:
 - [`bookmarkModel.js`](../../server/widgets/08/bookmarkModel.js): MongoDB schema for bookmarks
 - [`bookmarkRouter.js`](../../server/widgets/08/bookmarkRouter.js): Express routes for bookmark operations
-- [`BookmarkData.js`](../../server/widgets/08/bookmarkData.js): Core class handling bookmark processing
+- [`bookmarkData.js`](../../server/widgets/08/bookmarkData.js): Core class handling bookmark processing
   - `getBookmarks()` => handles retrieving bookmarks that were successfully saved to the database and packages it with the current like and dislike count, including the user's last vote
   - `processBookmark()` => processes the URL provided by the end-user; validates the URL, goes through filtering and safety checks and is then saved to the database
-  - `extractMetadata()` => helper function to extract metadata from the URL using Cheerio
+  - `extractMetaData()` => helper function to extract metadata from the URL using Cheerio
   - `extractTopics()` => helper function to extract topic tags from the webpage metadata using the Natural NLP library
   - `hasBadWords()` => helper function check the URL for any inappropriate content using Leo-Profanity library
   - `isNotSafe()` => helper function to check if the URL is flagged by Google's Safe Browsing API

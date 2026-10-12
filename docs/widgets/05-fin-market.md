@@ -1,18 +1,8 @@
-#### Financial Markets Monitor
+## 05 · Financial markets
 
-[![HTML Badge](https://img.shields.io/badge/HTML-4eb247)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-4eb247)](https://github.com/aniqatc/playground)
-[![JavaScript Badge](https://img.shields.io/badge/JavaScript-4eb247)](https://github.com/aniqatc/playground)
-[![Node Badge](https://img.shields.io/badge/Node-4eb247)](https://github.com/aniqatc/playground)
-[![Express Badge](https://img.shields.io/badge/Express-4eb247)](https://github.com/aniqatc/playground)
-[![MongoDB Badge](https://img.shields.io/badge/MongoDB-4eb247)](https://github.com/aniqatc/playground)
-[![OpenExchange Badge](https://img.shields.io/badge/OpenExchange%20API-4eb247)](https://github.com/aniqatc/playground)
-[![TwelveData Badge](https://img.shields.io/badge/TwelveData%20API-4eb247)](https://github.com/aniqatc/playground)
-[![AlphaVantage Badge](https://img.shields.io/badge/Alpha%20Vantage%20API-4eb247)](https://github.com/aniqatc/playground)
-[![Chart.js Badge](https://img.shields.io/badge/Chartjs-4eb247)](https://github.com/aniqatc/playground)
-[![Google Favicon API Badge](https://img.shields.io/badge/Google%20Favicon%20API-4eb247)](https://github.com/aniqatc/playground)
+A financial markets widget that delivers real-time currency exchange rates against USD and stock market data through interactive 7-day price history graphs, color-coded trend indicators, and detailed metrics for market monitoring.
 
-**Relevant file(s)**: [/client/src/widgets/05/\*](../../client/src/widgets/05/), [/server/widgets/05/\*](../../server/widgets/05/)
+**Relevant files**: [/client/src/widgets/05/\*](../../client/src/widgets/05/), [/server/widgets/05/\*](../../server/widgets/05/)
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-05.png" alt="Widget 05 in light and dark mode (v2 design)"></a>
 
@@ -25,8 +15,6 @@
 <img src="/docs/screenshots/widget-05_v1-2.png" alt="Widget 05, v1 design">
 
 </details>
-
-A financial markets widget that delivers real-time currency exchange rates against USD and stock market data through interactive 7-day price history graphs, color-coded trend indicators, and detailed metrics for market monitoring.
 
 ## Tech
 

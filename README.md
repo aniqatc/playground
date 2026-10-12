@@ -1,285 +1,209 @@
-## playground
+# Playground
 
-[https://playground.aniqa.dev](https://playground.aniqa.dev)
+A collection of eight independent widgets, from a graphing calculator to a community bookmark board, each built to practice a different part of full-stack development.
 
-🕹️ A place to showcase a collection of independent, interactive widgets that each demonstrate a different functionality using both frontend and backend technologies. 
-<p float="left">
-  <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/playground-light.png" width="49%" alt="Playground v2 in light mode"></a>
-  <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/playground-dark.png" width="49%" alt="Playground v2 in dark mode"></a>
-</p>
+**[Live site](https://playground.aniqa.dev)** · [Build notes](docs/README.md)
 
-> These screenshots show the **v2 design** (current). The original design is documented in [v1 design](#v1-design) at the bottom of this page.
+<table>
+  <tr>
+    <td width="50%"><a href="https://playground.aniqa.dev"><img src="docs/screenshots/v2/playground-light.png" alt="Playground in light mode: a hero with the widget index above a grid of wide and narrow widget cards" width="100%"></a></td>
+    <td width="50%"><a href="https://playground.aniqa.dev"><img src="docs/screenshots/v2/playground-dark.png" alt="Playground in dark mode, showing the same grid of widget cards" width="100%"></a></td>
+  </tr>
+</table>
 
 ## Tech
 
-- **Frontend**: HTML5, Tailwind, Sass, JavaScript
-- **Design (v2)**: CSS custom properties for light/dark design tokens, Bricolage Grotesque + Geist + Geist Mono
-- **Backend**: Node, Express, MongoDB, Mongoose
+- HTML, Sass, Tailwind CSS and JavaScript, bundled with Webpack
+- Node, Express, MongoDB and Mongoose
+- Vercel (frontend), Heroku (backend) and MongoDB Atlas
+- Each widget's extra libraries and APIs are listed under its feature below
 
-**Hosts**
+## Features
 
-- **Frontend**: Vercel
-- **Backend**: Heroku
-- **Database**: MongoDB Atlas
+### 01 · About
 
-**Build Tools**
-- **Bundling & Optimization**: Webpack
-- **Tailwind Processing**: PostCSS
-- **Linter**: ESLint
-- **Formatter**: Prettier
+A full-width card with what the playground is for, the stack grouped into frontend, backend and hosting, my GitHub activity grid and a link to the source.
 
-## Project Files
+**Stack:** HTML and SCSS · [Build notes](docs/widgets/01-about.md)
+
+<a href="https://playground.aniqa.dev"><img src="docs/screenshots/v2/widget-01.png" alt="About widget in light and dark mode" width="100%"></a>
+
+### 02 · Calculator
+
+Evaluates expressions, graphs functions, keeps a history of what you've entered and saves the display and history as a PNG.
+
+**Stack:** Function Plot, expr-eval and html2canvas · [Build notes](docs/widgets/02-calculator.md)
+
+<a href="https://playground.aniqa.dev"><img src="docs/screenshots/v2/widget-02.png" alt="Calculator widget in light and dark mode" width="100%"></a>
+
+### 03 · Digital footprint
+
+Shows what a site can learn about you: approximate location from your IP, browser, OS and ISP, with your location on a map.
+
+**Stack:** Express, express-useragent, ip-api and Mapbox · [Build notes](docs/widgets/03-digital-footprint.md)
+
+<a href="https://playground.aniqa.dev"><img src="docs/screenshots/v2/widget-03.png" alt="Digital footprint widget in light and dark mode" width="100%"></a>
+
+### 04 · Task manager
+
+Tasks with priority tags, due dates and tag filters, plus edit, delay, archive and delete actions. New visitors start with a few example tasks.
+
+**Stack:** Express, MongoDB and Flatpickr · [Build notes](docs/widgets/04-todo-list.md)
+
+<a href="https://playground.aniqa.dev"><img src="docs/screenshots/v2/widget-04.png" alt="Task manager widget in light and dark mode" width="100%"></a>
+
+### 05 · Financial markets
+
+Currency rates against USD and featured stocks with 7-day price charts and color-coded trends, refreshed every weekday.
+
+**Stack:** Express, MongoDB, Twelve Data, Alpha Vantage, Open Exchange Rates and Chart.js · [Build notes](docs/widgets/05-fin-market.md)
+
+<a href="https://playground.aniqa.dev"><img src="docs/screenshots/v2/widget-05.png" alt="Financial markets widget in light and dark mode" width="100%"></a>
+
+### 06 · Lottery history
+
+Search 20+ years of Powerball and Mega Millions drawings for your numbers, generate a quick pick and see match stats.
+
+**Stack:** Express, MongoDB and RapidAPI lottery APIs · [Build notes](docs/widgets/06-lottery.md)
+
+<a href="https://playground.aniqa.dev"><img src="docs/screenshots/v2/widget-06.png" alt="Lottery history widget in light and dark mode" width="100%"></a>
+
+### 07 · Repo card
+
+Search for a GitHub repository or pull a random one, see its stats and language breakdown as a card and save it as an image.
+
+**Stack:** Express, Octokit and html-to-image · [Build notes](docs/widgets/07-gh-card.md)
+
+<a href="https://playground.aniqa.dev"><img src="docs/screenshots/v2/widget-07.png" alt="Repo card widget in light and dark mode" width="100%"></a>
+
+### 08 · Community bookmarks
+
+Submit a link and it gets a title, description and topic tags automatically. Vote on links and filter the board by tag.
+
+**Stack:** Express, MongoDB, Cheerio, Google Safe Browsing, natural and leo-profanity · [Build notes](docs/widgets/08-bookmarks.md)
+
+<a href="https://playground.aniqa.dev"><img src="docs/screenshots/v2/widget-08.png" alt="Community bookmarks widget in light and dark mode" width="100%"></a>
+
+## Design
+
+- Light and dark modes from one set of design tokens (CSS custom properties)
+- A shared card shell gives every widget a numbered header, tech tags, a like button and a build notes link
+- A 12-column grid mixes wide and narrow cards, with Bricolage Grotesque, Geist and Geist Mono
+
+## Accessibility
+
+- Toggles and likes report state with `aria-pressed`, menus with `aria-expanded`
+- Calculator and lottery results are announced through live regions
+- Form errors are marked with `aria-invalid`
+- Visible focus styles, and animations respect reduced motion
+
+## Project structure
 
 ```plaintext
 playground/
-├── client/                 # Client-side code
-│   ├── public/             # Public assets
-│   ├── src/                # Source code for the client
-│   │   ├── main/           # Main client-side scripts and styles (relating to theme mode, styling, like system, user handling, etc)
-│   │   ├── widgets/        # Client-side logic for individual widgets
-│   │   │   ├── 01/         # Widget 01 (About: tech stack + GitHub activity)
-│   │   │   ├── 02/         # Widget 02 (Calculator)
-│   │   │   ├── 03/         # Widget 03 (Digital Footprint)
-│   │   │   ├── 04/         # Widget 04 (Task Manager)
-│   │   │   ├── 05/         # Widget 05 (Financial Market Monitor)
-│   │   │   ├── 06/         # Widget 06 (Historical Lottery Search)
-│   │   │   ├── 07/         # Widget 07 (GitHub Repository Visualizer)
-│   │   │   ├── 08/         # Widget 08 (Community Bookmarks)
-│   │   │   │    │          # Example structure of individual widget folders:
-│   │   │   │    ├── core/  
-│   │   │   │    ├── content.js
-│   │   │   │    ├── script.js
-│   │   │   │    ├── style.scss
-│   │   │   
-│   │   ├── _card.js        # Shared card shell (header, like button, footer) used by every widget
-│   │
-│   ├── .env                # Environment variables for the client-side
-│   ├── .env.development    # Environment-specific variables for development mode in the client-side
-│   ├── .eslintrc.js        # ESLint configuration for linting client-side JavaScript
-│   ├── .prettierrc         # Prettier configuration for formatting client-side code
-│   ├── postcss.config.js   # PostCSS configuration for CSS processing
-│   ├── tailwind.config.js  # Tailwind CSS configuration
-│   ├── webpack.config.js   # Webpack configuration 
-│   ├── package.json        # Metadata and scripts for the client-side
-│   ├── package-lock.json   # Exact dependency versions for the client-side
-│
-├── docs/                   # Documentation files for the project
-│
-├── server/                 # Server-side code
-│   ├── main/               # Main server-side logic (handling users and widget likes)
-│   ├── widgets/            # Server-side logic for individual widgets
-│   │   ├── 03/             # Widget 03 (Digital Footprint)
-│   │   ├── 04/             # Widget 04 (Task Manager)
-│   │   ├── 05/             # Widget 05 (Financial Market Monitor)
-│   │   ├── 06/             # Widget 06 (Historical Lottery Search)
-│   │   ├── 07/             # Widget 07 (GitHub Repository Visualizer)
-│   │   ├── 08/             # Widget 08 (Community Bookmarks)
-│   ├── _modelTemplate.js   # Template for server-side data models 
-│
-├── .env                    # Environment variables for the server
-├── .eslintrc.js            # ESLint configuration for the server-side
-├── .gitignore              # Git ignore file to exclude certain files from version control
-├── .prettierignore         # Prettier ignore file to exclude certain files from formatting
-├── .prettierrc             # Prettier configuration for the server-side
-├── package.json            # Metadata and scripts for the server-side
-├── package-lock.json       # Exact dependency versions for the server-side
-├── Procfile                # Process file for Heroku deployment
-├── server.js               # Entry point for the server-side application
-│
-├── LICENSE                 # License for the project
-├── README.md               # Project README (contains notes/screenshots about the widgets, structure, and more)
+├── client/                  # Frontend (Vercel)
+│   ├── src/
+│   │   ├── main/            # Page shell: index.html, styles, theme, users, likes, widget loading
+│   │   └── widgets/
+│   │       ├── _card.js     # Shared card shell (header, tech tags, like button, build notes link)
+│   │       ├── 01/          # About
+│   │       ├── 02/          # Calculator
+│   │       ├── 03/          # Digital footprint
+│   │       ├── 04/          # Task manager
+│   │       ├── 05/          # Financial markets
+│   │       ├── 06/          # Lottery history
+│   │       ├── 07/          # Repo card
+│   │       └── 08/          # Community bookmarks
+│   ├── webpack.config.js    # Bundling, Sass/PostCSS, env variables, PWA manifest
+│   └── tailwind.config.js
+├── server/                  # Backend (Heroku)
+│   ├── main/                # User and like models and routes
+│   └── widgets/             # API routes, models and data fetching for widgets 03–08
+├── server.js                # Express setup, routes and scheduled data refreshes
+├── Procfile                 # Heroku start command
+└── docs/                    # Build notes for the site and each widget, plus screenshots
 ```
 
-**Webpack** configuration for client-side code (`client/webpack.config.js`):
-- processes SCSS and PostCSS
-- bundles modular JavaScript
-- minifies CSS and JavaScript
-- configures HTML (meta tags, icons)
-- loads environment variables from `.env`
-- manages `manifest.json` for PWA support
-- optimizes images and saves them in `assets/images` with hashed filenames
-- splits JavaScript into chunks for better performance
-- outputs hashed filenames for JS and CSS to enable caching
+Each widget folder follows the same layout:
 
-## Individual Widgets
+```plaintext
+05/
+├── content.js    # The widget's HTML
+├── script.js     # Entry point that wires up the widget
+├── style.scss    # Widget styles
+└── core/         # One module per job (charts.js, stockSearch.js, currencyCard.js, ...)
+```
 
-### Widget 01: About ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/01-about.md))
+## Key concepts
 
-[![HTML Badge](https://img.shields.io/badge/HTML-0A0A0A)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-0A0A0A)](https://github.com/aniqatc/playground)
+- **One widget, one new skill.** Each widget let me learn something new: third-party APIs, MongoDB models, scraping, image export or text processing.
+- **Scheduled data instead of live calls.** Free API tiers allow too few requests for every visitor, so `node-cron` refreshes stocks and currencies each weekday and lottery results monthly into MongoDB.
+- **Accounts without sign-up.** A random ID in localStorage ties tasks and likes to a visitor.
+- **Processing user submissions.** Bookmarks are scraped with Cheerio, checked with Google Safe Browsing, tagged with natural and filtered with leo-profanity before saving.
 
-A full-width card describing the purpose of the playground, the tech stack grouped into frontend, backend and hosting, the creator's GitHub activity grid, and a link to the source code.
+## Setup
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-01.png" alt="Widget 01 in light and dark mode"></a>
+Requires Node 18+, a MongoDB database and API keys for the widgets you want to run.
 
-### Widget 02: Calculator ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/02-calculator.md))
+**Server** (`.env` in the root, see `.env.example`):
 
-[![HTML Badge](https://img.shields.io/badge/HTML-B81717)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-B81717)](https://github.com/aniqatc/playground)
-[![JavaScript Badge](https://img.shields.io/badge/JavaScript-B81717)](https://github.com/aniqatc/playground)
-[![Function Plot Badge](https://img.shields.io/badge/FunctionPlot-B81717)](https://github.com/mauriciopoppe/function-plot)
-[![Expr-Eval Badge](https://img.shields.io/badge/expr--eval-B81717)](https://github.com/niklasvh/html2canvas)
-[![HTML2Canvas Badge](https://img.shields.io/badge/HTML2Canvas-B81717)](https://github.com/niklasvh/html2canvas)
+| Variable | Where to get it |
+| --- | --- |
+| `DB_URI`, `DB_PW` | MongoDB Atlas connection string with `<PASSWORD>` in place of the password, and the password |
+| `FRONTEND_LOCAL`, `FRONTEND_HOSTED` | Allowed CORS origins, e.g. `http://localhost:8080` |
+| `ALPHA_VANTAGE_API_KEY` | [Alpha Vantage](https://www.alphavantage.co/support/#api-key) |
+| `TWELVE_DATA_API_KEY` | [Twelve Data](https://twelvedata.com/) |
+| `OPEN_EXCHANGE_API_KEY` | [Open Exchange Rates](https://openexchangerates.org/) |
+| `LOTTERY_API_KEY` | [RapidAPI](https://rapidapi.com/) Powerball and Mega Millions APIs |
+| `GH_API_KEY` | GitHub personal access token |
+| `GOOGLE_API_KEY` | Google Cloud, with the Safe Browsing API enabled |
 
-A dual-mode calculator that can handle evaluating different arithmetic expressions and provides the ability to graph select functions, accessed through a minimalistic user interface. The calculator allows users to keep track of their previously inputted expressions and allows them to save a `.png` file of the calculator's display and history.
+**Client** (`client/.env.development`, see `client/.env.development.example`):
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-02.png" alt="Widget 02 in light and dark mode"></a>
+| Variable | Where to get it |
+| --- | --- |
+| `SERVER` | API URL, `http://localhost:3000` locally |
+| `MAPBOX_KEY` | [Mapbox](https://account.mapbox.com/) access token |
 
-### Widget 03: Digital Footprint ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/03-digital-footprint.md))
+```bash
+git clone https://github.com/aniqatc/playground.git
+cd playground
+npm install && npm run start:dev    # API on port 3000
+cd client
+npm install && npm start            # site on port 8080
+```
 
-[![HTML Badge](https://img.shields.io/badge/HTML-D27334)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-D27334)](https://github.com/aniqatc/playground)
-[![JavaScript Badge](https://img.shields.io/badge/JavaScript-D27334)](https://github.com/aniqatc/playground)
-[![Node Badge](https://img.shields.io/badge/Node-D27334)](https://github.com/aniqatc/playground)
-[![Express Badge](https://img.shields.io/badge/Express-D27334)](https://github.com/aniqatc/playground)
-[![MapBox Badge](https://img.shields.io/badge/MapBox-D27334)](https://www.mapbox.com/)
-[![IP API Badge](https://img.shields.io/badge/IP%20API-D27334)](https://ip-api.com/)
+## Scripts
 
-A mini dashboard that presents a user's digital footprint, including geographic location (obtained using their IP), browser details, operating system, and ISP information, all underscored by a dynamic map visualization for a quick and elegant overview of their online presence.
+| Command | Where | What it does |
+| --- | --- | --- |
+| `npm run start:dev` | root | API in development (local CORS origin) |
+| `npm start` | root | API in production (Heroku) |
+| `npm start` | client | Dev server |
+| `npm run build` | client | Production build |
+| `npm run lint` / `lint:fix` | client | ESLint (`lint:server` in root) |
+| `npm run format` | client | Prettier (`format:server` in root) |
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-03.png" alt="Widget 03 in light and dark mode"></a>
+## Changelog
 
-### Widget 04: Task Tracker ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/04-todo-list.md))
+### October 2026
 
-[![HTML Badge](https://img.shields.io/badge/HTML-F4BA52)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-F4BA52)](https://github.com/aniqatc/playground)
-[![JavaScript Badge](https://img.shields.io/badge/JavaScript-F4BA52)](https://github.com/aniqatc/playground)
-[![Node Badge](https://img.shields.io/badge/Node-F4BA52)](https://github.com/aniqatc/playground)
-[![Express Badge](https://img.shields.io/badge/Express-F4BA52)](https://github.com/aniqatc/playground)
-[![Flatpickr Badge](https://img.shields.io/badge/Flatpickr-F4BA52)](https://github.com/aniqatc/playground)
-[![MongoDB Badge](https://img.shields.io/badge/MongoDB-F4BA52)](https://github.com/aniqatc/playground)
+- Redesigned at my direction with Claude's help; every widget's functionality is unchanged
+- Shared design tokens, card shell and 12-column grid replaced per-widget colors and equal-width cards
+- Original design screenshots are in [docs/screenshots](docs/screenshots)
 
-A user-friendly to-do list widget that lets users manage tasks with priority tags, due dates, and quick actions like edit, delay, archive, or delete.
+### February 2025
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-04.png" alt="Widget 04 in light and dark mode"></a>
+- Example `.env` files and improved loading states
 
-### Widget 05: Financial Markets Monitor ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/05-fin-market.md))
+### September–December 2024
 
-[![HTML Badge](https://img.shields.io/badge/HTML-4eb247)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-4eb247)](https://github.com/aniqatc/playground)
-[![JavaScript Badge](https://img.shields.io/badge/JavaScript-4eb247)](https://github.com/aniqatc/playground)
-[![Node Badge](https://img.shields.io/badge/Node-4eb247)](https://github.com/aniqatc/playground)
-[![Express Badge](https://img.shields.io/badge/Express-4eb247)](https://github.com/aniqatc/playground)
-[![MongoDB Badge](https://img.shields.io/badge/MongoDB-4eb247)](https://github.com/aniqatc/playground)
-[![OpenExchange Badge](https://img.shields.io/badge/OpenExchange%20API-4eb247)](https://github.com/aniqatc/playground)
-[![TwelveData Badge](https://img.shields.io/badge/TwelveData%20API-4eb247)](https://github.com/aniqatc/playground)
-[![AlphaVantage Badge](https://img.shields.io/badge/Alpha%20Vantage%20API-4eb247)](https://github.com/aniqatc/playground)
-[![Chart.js Badge](https://img.shields.io/badge/Chartjs-4eb247)](https://github.com/aniqatc/playground)
-[![Google Favicon API Badge](https://img.shields.io/badge/Google%20Favicon%20API-4eb247)](https://github.com/aniqatc/playground)
+- Added the task tracker, financial markets, lottery search, GitHub cards and community bookmarks widgets
 
-A financial markets widget that delivers real-time currency exchange rates against USD and stock market data through interactive 7-day price history graphs, color-coded trend indicators, and detailed metrics for market monitoring.
+### December 2023
 
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-05.png" alt="Widget 05 in light and dark mode"></a>
+- Initial release with About, Calculator, Digital footprint and likes
 
-### Widget 06: Historical Lottery Search ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/06-lottery.md))
+## License
 
-[![HTML Badge](https://img.shields.io/badge/HTML-38C4DC)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-38C4DC)](https://github.com/aniqatc/playground)
-[![JavaScript Badge](https://img.shields.io/badge/JavaScript-38C4DC)](https://github.com/aniqatc/playground)
-[![Node Badge](https://img.shields.io/badge/Node-38C4DC)](https://github.com/aniqatc/playground)
-[![Express Badge](https://img.shields.io/badge/Express-38C4DC)](https://github.com/aniqatc/playground)
-[![MongoDB Badge](https://img.shields.io/badge/MongoDB-38C4DC)](https://github.com/aniqatc/playground)
-[![AvoraTech Powerball Badge](https://img.shields.io/badge/AvoraTech%20Powerball%20API-38C4DC)](https://github.com/aniqatc/playground)
-[![AvoraTech Megamillions Badge](https://img.shields.io/badge/AvoraTech%20Megamillions%20API-38C4DC)](https://github.com/aniqatc/playground)
-
-A lottery analysis tool that helps players analyze historical Powerball and Mega Millions drawings, featuring quick number generation, detailed match statistics, and visual indicators to easily spot winning combinations - all searchable across 20+ years of drawing history.
-
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-06.png" alt="Widget 06 in light and dark mode"></a>
-
-### Widget 07: GitHub Repository Search ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/07-gh-card.md))
-
-[![HTML Badge](https://img.shields.io/badge/HTML-6366F1)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-6366F1)](https://github.com/aniqatc/playground)
-[![HTML-to-Image Badge](https://img.shields.io/badge/html2image-6366F1)](https://github.com/aniqatc/playground)
-[![JavaScript Badge](https://img.shields.io/badge/JavaScript-6366F1)](https://github.com/aniqatc/playground)
-[![Node Badge](https://img.shields.io/badge/Node-6366F1)](https://github.com/aniqatc/playground)
-[![Express Badge](https://img.shields.io/badge/Express-6366F1)](https://github.com/aniqatc/playground)
-[![Octokit Badge](https://img.shields.io/badge/Octokit-6366F1)](https://github.com/aniqatc/playground)
-
-A GitHub repository visualization tool that generates cards displaying repository statistics and language breakdowns. Features include random repository discovery, search functionality, and PNG export capabilities.
-
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-07.png" alt="Widget 07 in light and dark mode"></a>
-
-### Widget 08: Community Bookmarks ([README](https://github.com/aniqatc/playground/blob/main/docs/widgets/08-bookmarks.md))
-
-[![HTML Badge](https://img.shields.io/badge/HTML-602CA2)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-602CA2)](https://github.com/aniqatc/playground)
-[![JavaScript Badge](https://img.shields.io/badge/JavaScript-602CA2)](https://github.com/aniqatc/playground)
-[![Node Badge](https://img.shields.io/badge/Node-602CA2)](https://github.com/aniqatc/playground)
-[![Express Badge](https://img.shields.io/badge/Express-602CA2)](https://github.com/aniqatc/playground)
-[![MongoDB Badge](https://img.shields.io/badge/MongoDB-602CA2)](https://github.com/aniqatc/playground)
-[![Cheerio Badge](https://img.shields.io/badge/Cheerio-602CA2)](https://github.com/aniqatc/playground)
-[![Google Safe Browsing Badge](https://img.shields.io/badge/Google%20Safe%20Browsing-602CA2)](https://github.com/aniqatc/playground)
-[![Natural Badge](https://img.shields.io/badge/Natural-602CA2)](https://github.com/aniqatc/playground)
-[![Leo-Profanity Badge](https://img.shields.io/badge/Leo%20Profanity-602CA2)](https://github.com/aniqatc/playground)
-[![Google Favicon Badge](https://img.shields.io/badge/MongoDB-602CA2)](https://github.com/aniqatc/playground)
-
-A community-driven bookmark platform that processes submitted URLs to extract metadata, validate content safety, and generate topic tags. Features include community voting, automated metadata extraction, and content filtering to maintain a curated collection of high-quality web resources.
-
-<a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-08.png" alt="Widget 08 in light and dark mode"></a>
-
-## v1 design
-
-The first version of the playground used a different look: each widget had its own hand-picked palette in `_var.scss`, a plain stone/zinc card with the widget's name and like count underneath it, Archivo + DM Sans + Inter as fonts, a lightbulb theme toggle, and an auto-fill grid where every card had the same width. The About widget used an animated rotating border (`_border.html`) and a grid of tech logos.
-
-The v2 redesign (October 2026) kept every widget's features and data and changed the presentation:
-
-- one set of light/dark design tokens (CSS custom properties) instead of per-widget hard-coded colors
-- a shared card shell (`client/src/widgets/_card.js`) with a numbered header, tech tags, like button and "Build notes" link
-- a hero with a live widget index, a 12-column grid with wide and narrow cards, and small animations throughout
-
-<p float="left">
-  <img src="/docs/screenshots/playground-light.png" width="49%" alt="Playground v1 in light mode">
-  <img src="/docs/screenshots/playground-dark.png" width="49%" alt="Playground v1 in dark mode">
-</p>
-
-<details>
-<summary>v1 widget screenshots</summary>
-
-#### Widget 01: About
-<img src="/docs/screenshots/widget-01_v1.png" alt="About widget, v1">
-
-#### Widget 02: Calculator
-<img src="/docs/screenshots/widget-02_v2.png" alt="Calculator widget, v1 design (second iteration)">
-
-#### Widget 03: Digital Footprint
-<img src="/docs/screenshots/widget-03_v1.png" alt="Digital footprint widget, v1">
-
-#### Widget 04: Task Tracker
-<img src="/docs/screenshots/widget-04_v1.png" alt="Task tracker widget, v1">
-
-#### Widget 05: Financial Markets Monitor
-<img src="/docs/screenshots/widget-05_v1-1.png" alt="Financial markets widget (stocks), v1">
-<img src="/docs/screenshots/widget-05_v1-2.png" alt="Financial markets widget (currencies), v1">
-
-#### Widget 06: Historical Lottery Search
-<img src="/docs/screenshots/widget-06_v1.png" alt="Lottery widget, v1">
-
-#### Widget 07: GitHub Repository Search
-<img src="/docs/screenshots/widget-07_v1.png" alt="Repo card widget, v1">
-
-#### Widget 08: Community Bookmarks
-<img src="/docs/screenshots/widget-08_v1.png" alt="Community bookmarks widget, v1">
-
-</details>
-
-## Available Scripts
-
-### Server-Side Development (Root `/` Directory)
-- `npm run start:dev`: starts the backend server and sets `NODE_ENV` variable to `development` (sets a different CORS origin so that requests can be made from the frontend development localhost)
-- `npm run start`: starts the backend server, used for production; sets `NODE_ENV` variable to `production` (sets a different CORS origin so that requests can be made from the hosted frontend)
-- `npm run lint:server`: check for code errors based on the `.eslintrc.js` config file
-- `npm run lint:server:fix`: automatically fix minor syntax errors identified by ESLint
-- `npm run format:server`: format the server-side code based on the `.prettierrc` config file
-
-### Client-Side Development (`/client` Directory):
-- `npm run start`: starts the development server with `NODE_ENV` variable set to `development`
-- `npm run build`: builds frontend for production with `NODE_ENV` variable set to `production`
-- `npm run lint`: check for code errors based on the `.eslintrc.js` config file
-- `npm run lint:fix`: automatically fix minor syntax errors identified by ESLint
-- `npm run format`: format client-side code based on the `.prettierrc` config file
-
-## License & Contributions
-📑 This project is licensed under the [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html). 
-
-👋🏼 Contributions for new widgets are always welcome.
+[GPL-3.0](LICENSE). New widgets are welcome; see the [widget templates](docs/widgets/widgetTemplates.md).

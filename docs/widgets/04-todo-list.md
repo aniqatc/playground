@@ -1,16 +1,8 @@
-#### Task Tracker
-
-[![HTML Badge](https://img.shields.io/badge/HTML-F4BA52)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-F4BA52)](https://github.com/aniqatc/playground)
-[![JavaScript Badge](https://img.shields.io/badge/JavaScript-F4BA52)](https://github.com/aniqatc/playground)
-[![Node Badge](https://img.shields.io/badge/Node-F4BA52)](https://github.com/aniqatc/playground)
-[![Express Badge](https://img.shields.io/badge/Express-F4BA52)](https://github.com/aniqatc/playground)
-[![Flatpickr Badge](https://img.shields.io/badge/Flatpickr-F4BA52)](https://github.com/aniqatc/playground)
-[![MongoDB Badge](https://img.shields.io/badge/MongoDB-F4BA52)](https://github.com/aniqatc/playground)
-
-**Relevant file(s)**: [/client/src/widgets/04/\*](../../client/src/widgets/04/), [/server/widgets/04/\*](../../server/widgets/04/)
+## 04 · Task manager
 
 A fully interactive To-Do List widget allowing users to create, edit, archive, and delete tasks. Tasks are categorized by priority levels and can be filtered based on completion, priority, or archived status.
+
+**Relevant files**: [/client/src/widgets/04/\*](../../client/src/widgets/04/), [/server/widgets/04/\*](../../server/widgets/04/)
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-04.png" alt="Widget 04 in light and dark mode (v2 design)"></a>
 
@@ -27,6 +19,7 @@ A fully interactive To-Do List widget allowing users to create, edit, archive, a
 
 - JavaScript/HTML/SCSS: Core technologies for building and styling the widget
 - Node.js & Express.js: Backend technologies for managing and serving task data
+- MongoDB: Database for storing each visitor's tasks
 - Flatpickr: Calendar integration for selecting due dates
 
 ## Storage
@@ -39,7 +32,7 @@ A fully interactive To-Do List widget allowing users to create, edit, archive, a
 - **Priority Tagging**: Assign tasks with different priority levels (low, medium, high, or untagged).
 - **Task Filtering**: Tabs for All (not archived), Completed and Archived, each with a count, plus three priority dots that narrow any tab to High, Medium or Low tasks.
 - **Persistent Storage**: Each user has a unique ID stored in their local storage, enabling MongoDB to retain their data across sessions.
-- **Due Date Selection**: Flatpickr calendar integration allows users to set due dates intuitively.
+- **Due Date Selection**: Flatpickr calendar integration lets users pick due dates from a calendar.
 
 ## Limitations
 

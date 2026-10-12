@@ -44,4 +44,4 @@ Cards fade up as they scroll into view (using `animation-timeline: view()` where
 
 ### v1
 
-The first version used a `_var.scss` file with a hand-picked set of colors per widget (e.g. `$color-light-red`, `$color-dark-red`) and a separate `.dark #widget-0X { ... }` block in every widget for dark mode. v2 replaced that file with the tokens above. See the [v1 design section of the README](../../README.md#v1-design) for screenshots.
+The first version used a `_var.scss` file with a hand-picked set of colors per widget (e.g. `$color-light-red`, `$color-dark-red`) and a separate `.dark #widget-0X { ... }` block in every widget for dark mode. v2 replaced that file with the tokens above. v1 screenshots are in [docs/screenshots](../screenshots/).

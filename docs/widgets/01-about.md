@@ -1,11 +1,10 @@
-## About
-
-[![HTML Badge](https://img.shields.io/badge/HTML-0A0A0A)](https://github.com/aniqatc/playground)
-[![SCSS Badge](https://img.shields.io/badge/SCSS-0A0A0A)](https://github.com/aniqatc/playground)
-
-**Relevant file(s)**: [/client/src/widgets/01/\*](../../client/src/widgets/01/)
+## 01 · About
 
 A full-width card describing the purpose of the playground, the tech stack grouped into frontend, backend and hosting, the creator's GitHub activity grid, and a link to the playground repository.
+
+**Stack:** HTML and SCSS
+
+**Relevant files**: [/client/src/widgets/01/\*](../../client/src/widgets/01/)
 
 <a href="https://playground.aniqa.dev/"><img src="/docs/screenshots/v2/widget-01.png" alt="Widget 01 in light and dark mode (v2 design)"></a>
 

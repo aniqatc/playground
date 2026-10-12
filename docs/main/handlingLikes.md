@@ -50,7 +50,7 @@ Now, there are two functions that handle the requests:
 
 #### Key points relating to the frontend:
 
-The two main functions that handle the 'likes' on the frontend are the `initializeLikeHandler()` and `handleLikes()` in the `likeHandler.js` file. Both of these also utilize additional helper functions that are found in the `likeHelpers.js` file.
+The two main functions that handle the 'likes' on the frontend are the `initializeLikeHandler()` and `handleLikes()` in the `likeHandler.js` file. Both also use helper functions that are found in the `likeHelpers.js` file.
 
 **`initializeLikeHandler()`** in `likeHandler.js`
 
