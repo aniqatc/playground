@@ -40,7 +40,7 @@ A community-driven bookmark platform that processes submitted URLs to extract me
 - **Community Features**:
   - Like and dislike voting system (1 vote per user); the card shows the score (likes minus dislikes), with the separate counts in the tooltip and for screen readers
   - Vote tracking and limiting restrictions are applied to each user
-  - Sorted by newest submissions
+  - Sorted oldest first, in the order they were submitted
 - **Content Display**:
   - Minimalistic and uniform card layout for each bookmark
   - Topic tags with extracted keywords from the metadata or generated using the NLP library to identify key phrases
