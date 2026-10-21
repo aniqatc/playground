@@ -101,5 +101,5 @@ No persistent storage required; all data is fetched directly from GitHub's API i
    - Language breakdown with percentage bars
    - Hover over the language bars for additional stats
 3. **Export card**:
-   - Click "`Download .png`" to download the repository card
+   - Click "`Download .png`" to download the repository card (on phones this opens the share sheet, where you can pick "Save Image")
    - Card includes all the visible repository information

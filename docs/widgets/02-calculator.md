@@ -19,7 +19,7 @@ A dual-mode calculator that can handle evaluating different arithmetic expressio
 
 - JavaScript/HTML/SCSS: Core technologies for building and styling the widget
 - Function Plot: Library for building interactive SVG graphs
-- HTML2Canvas: library for exporting portion of the calculator display as `.png`
+- html-to-image: library for exporting the calculator display as a `.png` (shared with the repo card in `widgets/_snapshot.js`; it replaced HTML2Canvas, which couldn't read the v2 `color-mix()` colors)
 - expr-eval: library used to evaluate basic arithmetic operations 
 
 ## Storage

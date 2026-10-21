@@ -1,4 +1,4 @@
-import html2canvas from 'html2canvas';
+import { saveSnapshot } from '../../_snapshot';
 import { CalculatorContext } from './context';
 import { Storage } from './storage';
 import { Logic } from './logic';
@@ -59,14 +59,7 @@ class CalculatorUI extends CalculatorContext {
 
   setupSnapButton() {
     this.snapButton.addEventListener('click', () => {
-      html2canvas(this.widget.querySelector('.display'), {
-        removeContainer: true,
-      }).then((canvas) => {
-        const link = document.createElement('a');
-        link.download = 'calc-history.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-      });
+      saveSnapshot(this.widget.querySelector('.display'), 'calc-history.png', '02', this.snapButton);
     });
   }
 

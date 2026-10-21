@@ -8,7 +8,7 @@ export function getMarkup() {
   return card({
     id: '02',
     title: 'Calculator',
-    tags: 'expr-eval · function-plot · html2canvas',
+    tags: 'expr-eval · function-plot · html-to-image',
     color: { w: '#E5484D', wf: '#C8323A', won: '#FFFFFF' },
     span: 4,
     docs: docsUrl('02-calculator.md'),
