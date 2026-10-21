@@ -543,6 +543,11 @@ body img {
   20% { opacity: 1; }
   100% { opacity: 0; translate: 0 -20px; }
 }
+/* the snapshot buttons shake when an image couldn't be saved (widgets/_snapshot.js) */
+.save-failed {
+  animation: shake 0.4s;
+}
+
 @keyframes shake {
   0%, 100% { translate: 0; }
   20% { translate: -4px; }

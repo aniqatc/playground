@@ -32,7 +32,7 @@ A full-width card with what the playground is for, the stack grouped into fronte
 
 Evaluates expressions, graphs functions, keeps a history of what you've entered and saves the display and history as a PNG.
 
-**Stack:** Function Plot, expr-eval and html2canvas · [Build notes](docs/widgets/02-calculator.md)
+**Stack:** Function Plot, expr-eval and html-to-image · [Build notes](docs/widgets/02-calculator.md)
 
 <a href="https://playground.aniqa.dev"><img src="docs/screenshots/v2/widget-02.png" alt="Calculator widget in light and dark mode" width="100%"></a>
 
